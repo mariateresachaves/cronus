@@ -1,0 +1,74 @@
+/**
+ * JavaCC template file created by SF JavaCC plugin 1.5.28+ wizard for JavaCC 1.5.0+
+ */options{  STATIC = false;}PARSER_BEGIN(Calculator)
+package main;
+import java.io.PrintStream;
+
+public class Calculator{  public static void main(String args []) throws ParseException, TokenMgrError, NumberFormatException  {    Calculator parser = new Calculator(System.in);    parser.Start(System.out);  }}PARSER_END(Calculator)
+
+SKIP :{
+  " "}
+
+TOKEN :{	< EOL : "\n" | "\r" | "\r\n" >
+| 	< PLUS : "+" >
+|   < NUMBER : < DIGITS > | < DIGITS > "." < DIGITS > | < DIGITS > "." | "." < DIGITS > >
+| 	< #DIGITS : (["0"-"9"])+ >
+|   < MINUS : "-" >
+| 	< TIMES : "*" >
+| 	< DIVIDE : "/" >
+| 	< OPEN_PAR : "(" >
+| 	< CLOSE_PAR : ")" >
+}
+
+void Start(PrintStream printStream) throws NumberFormatException :
+{
+  	double previousValue;
+}{
+  	(
+  	  previousValue = Expression()
+  	  < EOL >
+  	  { printStream.println( previousValue); }  	)*
+  	< EOF >}
+
+double Expression() throws NumberFormatException :
+{
+  	double i;
+  	double value;}{
+  	value = Term()
+  	(
+    	< PLUS >
+    	i = Term()
+    	{ value += i; }
+   |
+   		< MINUS >
+   		i = Term()
+    	{ value -= i; }  	)*
+  	{ return value; }}
+
+double Term() throws NumberFormatException :
+{
+  	double i;
+  	double value;}{
+  	value = Primary()
+  	(
+  	  	< TIMES >
+  	  	i = Primary()
+  	  	{ value *= i; }
+  	 |
+  	 	< DIVIDE >
+  	  	i = Primary()
+  	  	{ value /= i; }  	)*
+  	{ return value;}}
+
+double Primary() throws NumberFormatException :
+{
+  	Token t;
+  	double d;}{
+  	t = < NUMBER >
+  	{ return Double.parseDouble(t.image); }
+|
+	< OPEN_PAR > d = Expression() < CLOSE_PAR >
+	{ return d; }
+|
+	< MINUS > d = Primary()
+	{ return d; }}
