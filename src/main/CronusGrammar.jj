@@ -1,0 +1,133 @@
+/**
+ * JavaCC template file created by SF JavaCC plugin 1.5.28+ wizard for JavaCC 1.5.0+
+ */options{  	STATIC = false;
+	LOOKAHEAD = 1;}PARSER_BEGIN(CronusGrammar)package main;
+
+import java.io.PrintStream;
+
+public class CronusGrammar{  public static void main(String args []) throws ParseException, TokenMgrError  {    CronusGrammar parser = new CronusGrammar(System.in);
+    parser.Start(System.out);  }}PARSER_END(CronusGrammar)
+SKIP :
+{
+  	" "
+| 	"\n"
+| 	"\r"
+| 	"\r\n"
+}
+
+TOKEN : /*LITERALS*/
+{
+	< #DIGIT   : ["0"-"9"] >
+| 	< #LOWER   : ["a"-"z"] >
+| 	< #UPPER   : ["A"-"Z"] >
+|   < #STRING  : ~[] >
+| 	< #CHAR    : ["a"-"z"] | ["A"-"Z"] >
+| 	< #INTEGER : ("+" | "-")? (< DIGIT >)+ >
+| 	< #FLOAT   : ("+" | "-")? ((< DIGIT >)*".")?(< DIGIT >)+ >
+| 	< #QUOTE   : "\"" | "'" >
+}
+
+TOKEN : /*CLASSES*/
+{
+ 	< GRAPH : "Graph" >
+| 	< NODE  : "Node" >
+| 	< EDGE  : "Edge" >
+}
+
+TOKEN : /*RESERVED WORDS*/
+{
+  	< NEW  : "new">
+| 	< BOOL : "true" | "false" >
+/*|	< KEY  : < STRING > | < CHAR > | < BOOL > >*/}
+
+TOKEN : /*OPERATORS*/
+{
+   	< OPAR  : "(" > 
+| 	< CPAR  : ")" >
+| 	< OBR   : "{" >
+| 	< CBR   : "}" >
+| 	< COL   : ":" >
+| 	< SCOL  : ";" >
+| 	< COMMA : "," >
+| 	< EQ    : "=" >
+| 	< DOT   : "." >
+| 	< COMP  : ">" | "<" | "<=" | ">=" | "==" >
+}
+
+TOKEN : /*FUNCTIONS*/
+{
+  	< PATH          : < QUOTE > ( ( (< LOWER > | < UPPER >) ":")? ("\\"(< LOWER > | < UPPER > | < DIGIT > | "_" | "." | "-")+ )+("\\")?
+    	                      | ("/")?((< LOWER > | < UPPER > | < DIGIT > | "_" | "." | "-")+"/")+("/")? )
+        	          < QUOTE > >
+|	< VARIABLE      : ( < LOWER > (< LOWER > | < UPPER > | "_" | "-")* ) >
+/* | BYTE = ……… */
+| 	< LABEL         : "label" >
+|	< WEIGHT        : "weight" >
+|	< SHORTESTPATH  : "shortestPath" >
+|	< DEPHSEARCH    : "dephSearch" >
+|	< BREADTHSEARCH : "breadthSearch" >
+|	< IN            : "in" >
+|	< OUT           : "out" >
+|	< EDGES         : "edges"  >
+|	< NODES         : "nodes" >}
+
+void Start(PrintStream printStream) :
+{
+  	String previousValue;
+}
+{
+  	{ printStream.println("New Graph"); }
+ 	(
+    	previousValue = NewGraph()
+    	{ printStream.println( previousValue); }
+  	)*
+  	{ printStream.println("--- End of program ---"); }
+}
+
+String NewGraph() :
+{
+  	Token v;
+  	String graphVar, pathVar, valueLeft, valueRight=null, returnValue;}
+{
+	LOOKAHEAD( 2 )  	( valueLeft = Declaration() | v = < VARIABLE > {valueLeft = v.image;} )
+	< EQ >
+	valueRight = NewGraphRight()
+	{
+  	  returnValue = String.format("%s = %s", valueLeft, valueRight);
+  	}
+  	< SCOL >
+	{ return returnValue; }
+ | 
+  	valueLeft = Declaration()
+  	{
+  	  returnValue = String.format("%s;", valueLeft);
+  	}
+  	< SCOL >
+	{ return returnValue; } }
+
+String Declaration() :
+{
+  Token g, v;
+  String returnValue;}{
+  	g = < GRAPH >
+  	v = < VARIABLE >
+  	{
+  	  returnValue = String.format("%s %s", g.image, v.image);
+  	  return returnValue;  	}}
+
+String NewGraphRight() :
+{
+  Token n, g, p;
+  String returnValue;
+}
+{
+  	n = < NEW >
+  	g = < GRAPH >
+  	< OPAR >
+  	p = < PATH >
+  	< CPAR >
+  	{
+  	  returnValue = String.format("%s %s(%s) ", n.image, g.image, p.image);
+  	  return returnValue;
+  	}
+}
