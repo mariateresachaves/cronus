@@ -4,6 +4,7 @@
 	LOOKAHEAD = 1;}PARSER_BEGIN(CronusGrammar)package main;
 
 import java.io.PrintStream;
+import javax.management.BadStringOperationException;
 
 public class CronusGrammar{  public static void main(String args []) throws ParseException, TokenMgrError  {    CronusGrammar parser = new CronusGrammar(System.in);
     parser.Start(System.out);  }}PARSER_END(CronusGrammar)
@@ -20,47 +21,12 @@ TOKEN : /*LITERALS*/
 	< #DIGIT   : ["0"-"9"] >
 | 	< #LOWER   : ["a"-"z"] >
 | 	< #UPPER   : ["A"-"Z"] >
-|   < #STRING  : ~[] >
-| 	< #CHAR    : ["a"-"z"] | ["A"-"Z"] >
-| 	< #INTEGER : ("+" | "-")? (< DIGIT >)+ >
-| 	< #FLOAT   : ("+" | "-")? ((< DIGIT >)*".")?(< DIGIT >)+ >
-| 	< #QUOTE   : "\"" | "'" >
-}
-
-TOKEN : /*CLASSES*/
-{
- 	< GRAPH : "Graph" >
-| 	< NODE  : "Node" >
-| 	< EDGE  : "Edge" >
 }
 
 TOKEN : /*RESERVED WORDS*/
 {
   	< NEW  : "new">
 | 	< BOOL : "true" | "false" >
-/*|	< KEY  : < STRING > | < CHAR > | < BOOL > >*/}
-
-TOKEN : /*OPERATORS*/
-{
-   	< OPAR  : "(" > 
-| 	< CPAR  : ")" >
-| 	< OBR   : "{" >
-| 	< CBR   : "}" >
-| 	< COL   : ":" >
-| 	< SCOL  : ";" >
-| 	< COMMA : "," >
-| 	< EQ    : "=" >
-| 	< DOT   : "." >
-| 	< COMP  : ">" | "<" | "<=" | ">=" | "==" >
-}
-
-TOKEN : /*FUNCTIONS*/
-{
-  	< PATH          : < QUOTE > ( ( (< LOWER > | < UPPER >) ":")? ("\\"(< LOWER > | < UPPER > | < DIGIT > | "_" | "." | "-")+ )+("\\")?
-    	                      | ("/")?((< LOWER > | < UPPER > | < DIGIT > | "_" | "." | "-")+"/")+("/")? )
-        	          < QUOTE > >
-|	< VARIABLE      : ( < LOWER > (< LOWER > | < UPPER > | "_" | "-")* ) >
-/* | BYTE = ……… */
 | 	< LABEL         : "label" >
 |	< WEIGHT        : "weight" >
 |	< SHORTESTPATH  : "shortestPath" >
@@ -69,7 +35,42 @@ TOKEN : /*FUNCTIONS*/
 |	< IN            : "in" >
 |	< OUT           : "out" >
 |	< EDGES         : "edges"  >
-|	< NODES         : "nodes" >}
+|	< NODES         : "nodes" >
+}
+
+TOKEN : /*CLASSES*/
+{
+  	< GRAPH    : "Graph" >
+| 	< NODE     : "Node" >
+| 	< EDGE     : "Edge" >
+| 	< VARIABLE : ("_" | < LOWER > | < UPPER > )+ ("_" | < LOWER > | < UPPER > | < DIGIT > )* >
+|   < STRING  : ("\"" | "'")~[]("\"" | "'") >
+| 	< INTEGER : ("+" | "-")? (< DIGIT >)+ >
+| 	< FLOAT   : ("+" | "-")? ((< DIGIT >)*".")?(< DIGIT >)+ >
+}
+
+TOKEN : /*OPERATORS*/
+{
+   	< OPAR    : "(" > 
+| 	< CPAR    : ")" >
+| 	< OBR     : "{" >
+| 	< CBR     : "}" >
+| 	< OSQBR   : "[" >
+| 	< CSQBR   : "]" >
+| 	< COL     : ":" >
+| 	< SCOL    : ";" >
+| 	< COMMA   : "," >
+| 	< EQ      : "=" >
+| 	< DOT     : "." >
+| 	< QUOTE   : "\"" | "'" >
+| 	< COMP    : ">" | "<" | "<=" | ">=" | "==" >
+}
+
+TOKEN : /*FUNCTIONS*/
+{
+  	< PATH          : ("\"" | "'") ( ( (< LOWER > | < UPPER >) ":")? ("\\"(< LOWER > | < UPPER > | < DIGIT > | "_" | "." | "-")+ )+("\\")?
+    	                      | ("/")?((< LOWER > | < UPPER > | < DIGIT > | "_" | "." | "-")+"/")+("/")? )
+        	          ("\"" | "'") >}
 
 void Start(PrintStream printStream) :
 {
@@ -80,54 +81,137 @@ void Start(PrintStream printStream) :
  	(
     	previousValue = NewGraph()
     	{ printStream.println( previousValue); }
-  	)*
+   |
+   		previousValue = ListNodes()
+    	{ printStream.println( previousValue); }
+  	)+
   	{ printStream.println("--- End of program ---"); }
 }
 
 String NewGraph() :
 {
   	Token v;
-  	String graphVar, pathVar, valueLeft, valueRight=null, returnValue;}
-{
-	LOOKAHEAD( 2 )  	( valueLeft = Declaration() | v = < VARIABLE > {valueLeft = v.image;} )
-	< EQ >
-	valueRight = NewGraphRight()
-	{
-  	  returnValue = String.format("%s = %s", valueLeft, valueRight);
-  	}
-  	< SCOL >
-	{ return returnValue; }
- | 
-  	valueLeft = Declaration()
+  	String graphVar, pathVar, valueLeft, valueRight=null;}
+{  	valueLeft = Declaration() (< EQ > valueRight = NewGraphRight() )? < SCOL >
   	{
-  	  returnValue = String.format("%s;", valueLeft);
-  	}
-  	< SCOL >
-	{ return returnValue; } }
+	  if (valueRight == null)
+	  		return String.format("%s;", valueLeft);
+	  else
+	  		return String.format("%s = %s;", valueLeft, valueRight);
+  	 }
+ |
+ 	v = < VARIABLE > {valueLeft = v.image;} < EQ > valueRight = NewGraphRight() < SCOL >
+	{
+	  if (valueRight == null)
+	  		return String.format("%s;", valueLeft);
+	  else
+	  		return String.format("%s = %s;", valueLeft, valueRight);
+  	 }}
 
 String Declaration() :
 {
-  Token g, v;
-  String returnValue;}{
+  Token g, v;}{
   	g = < GRAPH >
   	v = < VARIABLE >
   	{
-  	  returnValue = String.format("%s %s", g.image, v.image);
-  	  return returnValue;  	}}
+  	  return String.format("%s %s", g.image, v.image);  	}}
 
 String NewGraphRight() :
 {
-  Token n, g, p;
-  String returnValue;
+  Token n, g, p, opar, cpar;
 }
 {
-  	n = < NEW >
-  	g = < GRAPH >
-  	< OPAR >
-  	p = < PATH >
-  	< CPAR >
+  	n    = < NEW >
+  	g    = < GRAPH >
+  	opar = < OPAR >
+  	p    = < PATH >
+  	cpar = < CPAR >
   	{
-  	  returnValue = String.format("%s %s(%s) ", n.image, g.image, p.image);
-  	  return returnValue;
+  	  return String.format("%s %s%s%s%s", n.image, g.image, opar.image, p.image, cpar.image);
   	}
 }
+
+String ListNodes() :
+{
+  	Token v;
+  	String graphVar, pathVar, valueLeft, valueRight=null;}
+{
+  	valueLeft = NodeListDec() (< EQ > valueRight = ListNodesRight() )? < SCOL >
+  	{
+	  if (valueRight == null)
+	  		return String.format("%s;", valueLeft);
+	  else
+	  		return String.format("%s = %s;", valueLeft, valueRight);
+  	 }
+ |
+ 	v = < VARIABLE > {valueLeft = v.image;} < EQ > valueRight = ListNodesRight() < SCOL >
+	{
+	  if (valueRight == null)
+	  		return String.format("%s;", valueLeft);
+	  else
+	  		return String.format("%s = %s;", valueLeft, valueRight);
+  	 }}
+
+String NodeListDec() :
+{
+  	Token n, obr, cbr, v;}
+{
+  	n   = < NODE >
+  	obr = < OSQBR >
+  	cbr = < CSQBR >
+  	v   = < VARIABLE >
+
+	{ return String.format("%s%s%s %s", n.image, obr.image, cbr.image, v.image); }
+  	}
+
+String ListNodesRight() :
+{
+	Token v, d, n, o, c;
+  	String parValue = null;}{
+  	v = < VARIABLE >
+  	d = < DOT >
+  	n = < NODES >
+  	o = < OBR >
+  	( parValue = ParametersNode() )?
+  	c = < CBR >
+  	{  	  	if(parValue == null)
+			return String.format("%s%s%s%s%s", v.image, d.image, n.image, o.image, c.image);
+		else
+			return String.format("%s%s%s%s%s%s", v.image, d.image, n.image, o.image, parValue, c.image);
+  	}}
+
+String ParametersNode() :
+{
+  	Token label, eq, quote, string, comma, osqbr, csqbr, comp, key;
+  	String value, returnValue;}{
+  	label  = < LABEL >
+  	eq     = < EQ >
+	string = < VARIABLE >
+  	comma  = < COMMA >
+  	osqbr  = < OSQBR >
+  	key    = < VARIABLE >
+  	comp   = < COMP >
+  	value  = Value()
+  	{ returnValue = String.format("%s%s%s%s %s%s%s%s", label.image, eq.image, string.image,
+  	                               comma.image, osqbr.image, key.image, comp.image, value); }
+ 	(
+ 	  	comma = < COMMA >
+ 	  	key   = < VARIABLE >
+  	  	comp  = < COMP >
+  	  	value = Value()
+  	  	{ returnValue += String.format("%s %s%s%s", comma.image, key.image, comp.image, value);} 	)*
+ 	csqbr = < CSQBR >
+  	{
+  	  	returnValue += csqbr.image;
+  	  	return returnValue;
+  	}}
+
+String Value() :
+{
+  Token s, i, f;}{
+  	s = < STRING >
+  	{ return String.format("%s", s.image); }
+|   i = < INTEGER >
+	{ return String.format("%s", i.image); }
+|   f = < FLOAT >
+	{ return String.format("%s", f.image); }}

@@ -2,6 +2,7 @@
 package main;
 
 import java.io.PrintStream;
+import javax.management.BadStringOperationException;
 
 public class CronusGrammar implements CronusGrammarConstants {
   public static void main(String args []) throws ParseException, TokenMgrError
@@ -18,112 +19,220 @@ public class CronusGrammar implements CronusGrammarConstants {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case GRAPH:
       case VARIABLE:
-        ;
+        previousValue = NewGraph();
+          printStream.println( previousValue);
+        break;
+      case NODE:
+        previousValue = ListNodes();
+          printStream.println( previousValue);
         break;
       default:
         jj_la1[0] = jj_gen;
+        jj_consume_token(-1);
+        throw new ParseException();
+      }
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case GRAPH:
+      case NODE:
+      case VARIABLE:
+        ;
+        break;
+      default:
+        jj_la1[1] = jj_gen;
         break label_1;
       }
-      previousValue = NewGraph();
-          printStream.println( previousValue);
     }
           printStream.println("--- End of program ---");
   }
 
   final public String NewGraph() throws ParseException {
         Token v;
-        String graphVar, pathVar, valueLeft, valueRight=null, returnValue;
-    if (jj_2_1(2)) {
+        String graphVar, pathVar, valueLeft, valueRight=null;
+    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+    case GRAPH:
+      valueLeft = Declaration();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case GRAPH:
-        valueLeft = Declaration();
-        break;
-      case VARIABLE:
-        v = jj_consume_token(VARIABLE);
-                                                        valueLeft = v.image;
-        break;
-      default:
-        jj_la1[1] = jj_gen;
-        jj_consume_token(-1);
-        throw new ParseException();
-      }
-      jj_consume_token(EQ);
-      valueRight = NewGraphRight();
-          returnValue = String.format("%s = %s", valueLeft, valueRight);
-      jj_consume_token(SCOL);
-          {if (true) return returnValue;}
-    } else {
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case GRAPH:
-        valueLeft = Declaration();
-          returnValue = String.format("%s;", valueLeft);
-        jj_consume_token(SCOL);
-          {if (true) return returnValue;}
+      case EQ:
+        jj_consume_token(EQ);
+        valueRight = NewGraphRight();
         break;
       default:
         jj_la1[2] = jj_gen;
-        jj_consume_token(-1);
-        throw new ParseException();
+        ;
       }
+      jj_consume_token(SCOL);
+          if (valueRight == null)
+                        {if (true) return String.format("%s;", valueLeft);}
+          else
+                        {if (true) return String.format("%s = %s;", valueLeft, valueRight);}
+      break;
+    case VARIABLE:
+      v = jj_consume_token(VARIABLE);
+                          valueLeft = v.image;
+      jj_consume_token(EQ);
+      valueRight = NewGraphRight();
+      jj_consume_token(SCOL);
+          if (valueRight == null)
+                        {if (true) return String.format("%s;", valueLeft);}
+          else
+                        {if (true) return String.format("%s = %s;", valueLeft, valueRight);}
+      break;
+    default:
+      jj_la1[3] = jj_gen;
+      jj_consume_token(-1);
+      throw new ParseException();
     }
     throw new Error("Missing return statement in function");
   }
 
   final public String Declaration() throws ParseException {
   Token g, v;
-  String returnValue;
     g = jj_consume_token(GRAPH);
     v = jj_consume_token(VARIABLE);
-          returnValue = String.format("%s %s", g.image, v.image);
-          {if (true) return returnValue;}
+          {if (true) return String.format("%s %s", g.image, v.image);}
     throw new Error("Missing return statement in function");
   }
 
   final public String NewGraphRight() throws ParseException {
-  Token n, g, p;
-  String returnValue;
+  Token n, g, p, opar, cpar;
     n = jj_consume_token(NEW);
     g = jj_consume_token(GRAPH);
-    jj_consume_token(OPAR);
+    opar = jj_consume_token(OPAR);
     p = jj_consume_token(PATH);
-    jj_consume_token(CPAR);
-          returnValue = String.format("%s %s(%s) ", n.image, g.image, p.image);
-          {if (true) return returnValue;}
+    cpar = jj_consume_token(CPAR);
+          {if (true) return String.format("%s %s%s%s%s", n.image, g.image, opar.image, p.image, cpar.image);}
     throw new Error("Missing return statement in function");
   }
 
-  private boolean jj_2_1(int xla) {
-    jj_la = xla; jj_lastpos = jj_scanpos = token;
-    try { return !jj_3_1(); }
-    catch(LookaheadSuccess ls) { return true; }
-    finally { jj_save(0, xla); }
-  }
-
-  private boolean jj_3_1() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_2()) {
-    jj_scanpos = xsp;
-    if (jj_3R_3()) return true;
+  final public String ListNodes() throws ParseException {
+        Token v;
+        String graphVar, pathVar, valueLeft, valueRight=null;
+    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+    case NODE:
+      valueLeft = NodeListDec();
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case EQ:
+        jj_consume_token(EQ);
+        valueRight = ListNodesRight();
+        break;
+      default:
+        jj_la1[4] = jj_gen;
+        ;
+      }
+      jj_consume_token(SCOL);
+          if (valueRight == null)
+                        {if (true) return String.format("%s;", valueLeft);}
+          else
+                        {if (true) return String.format("%s = %s;", valueLeft, valueRight);}
+      break;
+    case VARIABLE:
+      v = jj_consume_token(VARIABLE);
+                          valueLeft = v.image;
+      jj_consume_token(EQ);
+      valueRight = ListNodesRight();
+      jj_consume_token(SCOL);
+          if (valueRight == null)
+                        {if (true) return String.format("%s;", valueLeft);}
+          else
+                        {if (true) return String.format("%s = %s;", valueLeft, valueRight);}
+      break;
+    default:
+      jj_la1[5] = jj_gen;
+      jj_consume_token(-1);
+      throw new ParseException();
     }
-    if (jj_scan_token(EQ)) return true;
-    return false;
+    throw new Error("Missing return statement in function");
   }
 
-  private boolean jj_3R_3() {
-    if (jj_scan_token(VARIABLE)) return true;
-    return false;
+  final public String NodeListDec() throws ParseException {
+        Token n, obr, cbr, v;
+    n = jj_consume_token(NODE);
+    obr = jj_consume_token(OSQBR);
+    cbr = jj_consume_token(CSQBR);
+    v = jj_consume_token(VARIABLE);
+          {if (true) return String.format("%s%s%s %s", n.image, obr.image, cbr.image, v.image);}
+    throw new Error("Missing return statement in function");
   }
 
-  private boolean jj_3R_4() {
-    if (jj_scan_token(GRAPH)) return true;
-    if (jj_scan_token(VARIABLE)) return true;
-    return false;
+  final public String ListNodesRight() throws ParseException {
+        Token v, d, n, o, c;
+        String parValue = null;
+    v = jj_consume_token(VARIABLE);
+    d = jj_consume_token(DOT);
+    n = jj_consume_token(NODES);
+    o = jj_consume_token(OBR);
+    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+    case LABEL:
+      parValue = ParametersNode();
+      break;
+    default:
+      jj_la1[6] = jj_gen;
+      ;
+    }
+    c = jj_consume_token(CBR);
+                if(parValue == null)
+                        {if (true) return String.format("%s%s%s%s%s", v.image, d.image, n.image, o.image, c.image);}
+                else
+                        {if (true) return String.format("%s%s%s%s%s%s", v.image, d.image, n.image, o.image, parValue, c.image);}
+    throw new Error("Missing return statement in function");
   }
 
-  private boolean jj_3R_2() {
-    if (jj_3R_4()) return true;
-    return false;
+  final public String ParametersNode() throws ParseException {
+        Token label, eq, quote, string, comma, osqbr, csqbr, comp, key;
+        String value, returnValue;
+    label = jj_consume_token(LABEL);
+    eq = jj_consume_token(EQ);
+    string = jj_consume_token(VARIABLE);
+    comma = jj_consume_token(COMMA);
+    osqbr = jj_consume_token(OSQBR);
+    key = jj_consume_token(VARIABLE);
+    comp = jj_consume_token(COMP);
+    value = Value();
+          returnValue = String.format("%s%s%s%s %s%s%s%s", label.image, eq.image, string.image,
+                                       comma.image, osqbr.image, key.image, comp.image, value);
+    label_2:
+    while (true) {
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case COMMA:
+        ;
+        break;
+      default:
+        jj_la1[7] = jj_gen;
+        break label_2;
+      }
+      comma = jj_consume_token(COMMA);
+      key = jj_consume_token(VARIABLE);
+      comp = jj_consume_token(COMP);
+      value = Value();
+                  returnValue += String.format("%s %s%s%s", comma.image, key.image, comp.image, value);
+    }
+    csqbr = jj_consume_token(CSQBR);
+                returnValue += csqbr.image;
+                {if (true) return returnValue;}
+    throw new Error("Missing return statement in function");
+  }
+
+  final public String Value() throws ParseException {
+  Token s, i, f;
+    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+    case STRING:
+      s = jj_consume_token(STRING);
+          {if (true) return String.format("%s", s.image);}
+      break;
+    case INTEGER:
+      i = jj_consume_token(INTEGER);
+          {if (true) return String.format("%s", i.image);}
+      break;
+    case FLOAT:
+      f = jj_consume_token(FLOAT);
+          {if (true) return String.format("%s", f.image);}
+      break;
+    default:
+      jj_la1[8] = jj_gen;
+      jj_consume_token(-1);
+      throw new ParseException();
+    }
+    throw new Error("Missing return statement in function");
   }
 
   /** Generated Token Manager. */
@@ -134,10 +243,8 @@ public class CronusGrammar implements CronusGrammarConstants {
   /** Next token. */
   public Token jj_nt;
   private int jj_ntk;
-  private Token jj_scanpos, jj_lastpos;
-  private int jj_la;
   private int jj_gen;
-  final private int[] jj_la1 = new int[3];
+  final private int[] jj_la1 = new int[9];
   static private int[] jj_la1_0;
   static private int[] jj_la1_1;
   static {
@@ -145,14 +252,11 @@ public class CronusGrammar implements CronusGrammarConstants {
       jj_la1_init_1();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x20002000,0x20002000,0x2000,};
+      jj_la1_0 = new int[] {0x580000,0x580000,0x0,0x480000,0x0,0x500000,0x400,0x0,0x3800000,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x0,0x0,0x0,};
+      jj_la1_1 = new int[] {0x0,0x0,0x8,0x0,0x8,0x0,0x0,0x4,0x0,};
    }
-  final private JJCalls[] jj_2_rtns = new JJCalls[1];
-  private boolean jj_rescan = false;
-  private int jj_gc = 0;
 
   /** Constructor with InputStream. */
   public CronusGrammar(java.io.InputStream stream) {
@@ -165,8 +269,7 @@ public class CronusGrammar implements CronusGrammarConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
-    for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
+    for (int i = 0; i < 9; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -180,8 +283,7 @@ public class CronusGrammar implements CronusGrammarConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
-    for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
+    for (int i = 0; i < 9; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -191,8 +293,7 @@ public class CronusGrammar implements CronusGrammarConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
-    for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
+    for (int i = 0; i < 9; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -202,8 +303,7 @@ public class CronusGrammar implements CronusGrammarConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
-    for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
+    for (int i = 0; i < 9; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -212,8 +312,7 @@ public class CronusGrammar implements CronusGrammarConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
-    for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
+    for (int i = 0; i < 9; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -222,8 +321,7 @@ public class CronusGrammar implements CronusGrammarConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
-    for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
+    for (int i = 0; i < 9; i++) jj_la1[i] = -1;
   }
 
   private Token jj_consume_token(int kind) throws ParseException {
@@ -233,44 +331,11 @@ public class CronusGrammar implements CronusGrammarConstants {
     jj_ntk = -1;
     if (token.kind == kind) {
       jj_gen++;
-      if (++jj_gc > 100) {
-        jj_gc = 0;
-        for (int i = 0; i < jj_2_rtns.length; i++) {
-          JJCalls c = jj_2_rtns[i];
-          while (c != null) {
-            if (c.gen < jj_gen) c.first = null;
-            c = c.next;
-          }
-        }
-      }
       return token;
     }
     token = oldToken;
     jj_kind = kind;
     throw generateParseException();
-  }
-
-  static private final class LookaheadSuccess extends java.lang.Error { }
-  final private LookaheadSuccess jj_ls = new LookaheadSuccess();
-  private boolean jj_scan_token(int kind) {
-    if (jj_scanpos == jj_lastpos) {
-      jj_la--;
-      if (jj_scanpos.next == null) {
-        jj_lastpos = jj_scanpos = jj_scanpos.next = token_source.getNextToken();
-      } else {
-        jj_lastpos = jj_scanpos = jj_scanpos.next;
-      }
-    } else {
-      jj_scanpos = jj_scanpos.next;
-    }
-    if (jj_rescan) {
-      int i = 0; Token tok = token;
-      while (tok != null && tok != jj_scanpos) { i++; tok = tok.next; }
-      if (tok != null) jj_add_error_token(kind, i);
-    }
-    if (jj_scanpos.kind != kind) return true;
-    if (jj_la == 0 && jj_scanpos == jj_lastpos) throw jj_ls;
-    return false;
   }
 
 
@@ -303,43 +368,16 @@ public class CronusGrammar implements CronusGrammarConstants {
   private java.util.List<int[]> jj_expentries = new java.util.ArrayList<int[]>();
   private int[] jj_expentry;
   private int jj_kind = -1;
-  private int[] jj_lasttokens = new int[100];
-  private int jj_endpos;
-
-  private void jj_add_error_token(int kind, int pos) {
-    if (pos >= 100) return;
-    if (pos == jj_endpos + 1) {
-      jj_lasttokens[jj_endpos++] = kind;
-    } else if (jj_endpos != 0) {
-      jj_expentry = new int[jj_endpos];
-      for (int i = 0; i < jj_endpos; i++) {
-        jj_expentry[i] = jj_lasttokens[i];
-      }
-      jj_entries_loop: for (java.util.Iterator<?> it = jj_expentries.iterator(); it.hasNext();) {
-        int[] oldentry = (int[])(it.next());
-        if (oldentry.length == jj_expentry.length) {
-          for (int i = 0; i < jj_expentry.length; i++) {
-            if (oldentry[i] != jj_expentry[i]) {
-              continue jj_entries_loop;
-            }
-          }
-          jj_expentries.add(jj_expentry);
-          break jj_entries_loop;
-        }
-      }
-      if (pos != 0) jj_lasttokens[(jj_endpos = pos) - 1] = kind;
-    }
-  }
 
   /** Generate ParseException. */
   public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[39];
+    boolean[] la1tokens = new boolean[40];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 9; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {
@@ -351,16 +389,13 @@ public class CronusGrammar implements CronusGrammarConstants {
         }
       }
     }
-    for (int i = 0; i < 39; i++) {
+    for (int i = 0; i < 40; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;
         jj_expentries.add(jj_expentry);
       }
     }
-    jj_endpos = 0;
-    jj_rescan_token();
-    jj_add_error_token(0, 0);
     int[][] exptokseq = new int[jj_expentries.size()][];
     for (int i = 0; i < jj_expentries.size(); i++) {
       exptokseq[i] = jj_expentries.get(i);
@@ -374,41 +409,6 @@ public class CronusGrammar implements CronusGrammarConstants {
 
   /** Disable tracing. */
   final public void disable_tracing() {
-  }
-
-  private void jj_rescan_token() {
-    jj_rescan = true;
-    for (int i = 0; i < 1; i++) {
-    try {
-      JJCalls p = jj_2_rtns[i];
-      do {
-        if (p.gen > jj_gen) {
-          jj_la = p.arg; jj_lastpos = jj_scanpos = p.first;
-          switch (i) {
-            case 0: jj_3_1(); break;
-          }
-        }
-        p = p.next;
-      } while (p != null);
-      } catch(LookaheadSuccess ls) { }
-    }
-    jj_rescan = false;
-  }
-
-  private void jj_save(int index, int xla) {
-    JJCalls p = jj_2_rtns[index];
-    while (p.gen > jj_gen) {
-      if (p.next == null) { p = p.next = new JJCalls(); break; }
-      p = p.next;
-    }
-    p.gen = jj_gen + xla - jj_la; p.first = token; p.arg = xla;
-  }
-
-  static final class JJCalls {
-    int gen;
-    Token first;
-    int arg;
-    JJCalls next;
   }
 
 }

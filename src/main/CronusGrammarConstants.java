@@ -17,67 +17,69 @@ public interface CronusGrammarConstants {
   /** RegularExpression Id. */
   int UPPER = 7;
   /** RegularExpression Id. */
-  int STRING = 8;
+  int NEW = 8;
   /** RegularExpression Id. */
-  int CHAR = 9;
+  int BOOL = 9;
   /** RegularExpression Id. */
-  int INTEGER = 10;
+  int LABEL = 10;
   /** RegularExpression Id. */
-  int FLOAT = 11;
+  int WEIGHT = 11;
   /** RegularExpression Id. */
-  int QUOTE = 12;
+  int SHORTESTPATH = 12;
   /** RegularExpression Id. */
-  int GRAPH = 13;
+  int DEPHSEARCH = 13;
   /** RegularExpression Id. */
-  int NODE = 14;
+  int BREADTHSEARCH = 14;
   /** RegularExpression Id. */
-  int EDGE = 15;
+  int IN = 15;
   /** RegularExpression Id. */
-  int NEW = 16;
+  int OUT = 16;
   /** RegularExpression Id. */
-  int BOOL = 17;
+  int EDGES = 17;
   /** RegularExpression Id. */
-  int OPAR = 18;
+  int NODES = 18;
   /** RegularExpression Id. */
-  int CPAR = 19;
+  int GRAPH = 19;
   /** RegularExpression Id. */
-  int OBR = 20;
+  int NODE = 20;
   /** RegularExpression Id. */
-  int CBR = 21;
+  int EDGE = 21;
   /** RegularExpression Id. */
-  int COL = 22;
+  int VARIABLE = 22;
   /** RegularExpression Id. */
-  int SCOL = 23;
+  int STRING = 23;
   /** RegularExpression Id. */
-  int COMMA = 24;
+  int INTEGER = 24;
   /** RegularExpression Id. */
-  int EQ = 25;
+  int FLOAT = 25;
   /** RegularExpression Id. */
-  int DOT = 26;
+  int OPAR = 26;
   /** RegularExpression Id. */
-  int COMP = 27;
+  int CPAR = 27;
   /** RegularExpression Id. */
-  int PATH = 28;
+  int OBR = 28;
   /** RegularExpression Id. */
-  int VARIABLE = 29;
+  int CBR = 29;
   /** RegularExpression Id. */
-  int LABEL = 30;
+  int OSQBR = 30;
   /** RegularExpression Id. */
-  int WEIGHT = 31;
+  int CSQBR = 31;
   /** RegularExpression Id. */
-  int SHORTESTPATH = 32;
+  int COL = 32;
   /** RegularExpression Id. */
-  int DEPHSEARCH = 33;
+  int SCOL = 33;
   /** RegularExpression Id. */
-  int BREADTHSEARCH = 34;
+  int COMMA = 34;
   /** RegularExpression Id. */
-  int IN = 35;
+  int EQ = 35;
   /** RegularExpression Id. */
-  int OUT = 36;
+  int DOT = 36;
   /** RegularExpression Id. */
-  int EDGES = 37;
+  int QUOTE = 37;
   /** RegularExpression Id. */
-  int NODES = 38;
+  int COMP = 38;
+  /** RegularExpression Id. */
+  int PATH = 39;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -92,28 +94,8 @@ public interface CronusGrammarConstants {
     "<DIGIT>",
     "<LOWER>",
     "<UPPER>",
-    "<STRING>",
-    "<CHAR>",
-    "<INTEGER>",
-    "<FLOAT>",
-    "<QUOTE>",
-    "\"Graph\"",
-    "\"Node\"",
-    "\"Edge\"",
     "\"new\"",
     "<BOOL>",
-    "\"(\"",
-    "\")\"",
-    "\"{\"",
-    "\"}\"",
-    "\":\"",
-    "\";\"",
-    "\",\"",
-    "\"=\"",
-    "\".\"",
-    "<COMP>",
-    "<PATH>",
-    "<VARIABLE>",
     "\"label\"",
     "\"weight\"",
     "\"shortestPath\"",
@@ -123,6 +105,27 @@ public interface CronusGrammarConstants {
     "\"out\"",
     "\"edges\"",
     "\"nodes\"",
+    "\"Graph\"",
+    "\"Node\"",
+    "\"Edge\"",
+    "<VARIABLE>",
+    "<STRING>",
+    "<INTEGER>",
+    "<FLOAT>",
+    "\"(\"",
+    "\")\"",
+    "\"{\"",
+    "\"}\"",
+    "\"[\"",
+    "\"]\"",
+    "\":\"",
+    "\";\"",
+    "\",\"",
+    "\"=\"",
+    "\".\"",
+    "<QUOTE>",
+    "<COMP>",
+    "<PATH>",
   };
 
 }
