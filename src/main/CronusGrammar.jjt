@@ -1,0 +1,515 @@
+/**
+ * JavaCC template file created by SF JavaCC plugin 1.5.28+ wizard for JavaCC 1.5.0+
+ */
+options
+{
+  	STATIC = true;
+	LOOKAHEAD = 1;
+}
+
+PARSER_BEGIN(CronusGrammar)
+package main;
+
+public class CronusGrammar
+{
+  public static void main(String args []) throws ParseException, TokenMgrError
+  {
+    CronusGrammar parser = new CronusGrammar(System.in);
+    SimpleNode root = parser.Start();
+    root.dump("");
+    
+  }
+}
+
+PARSER_END(CronusGrammar)
+
+SKIP :
+{
+  	" "
+| 	"\n"
+| 	"\r"
+| 	"\r\n"
+}
+
+TOKEN : /* --- LITERALS --- */
+{
+	< #DIGIT   : ["0"-"9"] >
+| 	< #LOWER   : ["a"-"z"] >
+| 	< #UPPER   : ["A"-"Z"] >
+}
+
+TOKEN : /* --- RESERVED WORDS --- */
+{
+  	< NEW           : "new">
+| 	< BOOL          : "true" | "false" >
+|   < LABEL         : "label" >
+|   < DEGREE        : "degree" >
+|   < WEIGHT        : "weight" >
+|   < SHORTESTPATH  : "shortestPath" >
+|   < DEPTHSEARCH   : "depthSearch" >
+|   < BREADTHSEARCH : "breadthSearch" >
+|   < IN            : "in" >
+|   < OUT           : "out" >
+|   < EDGES         : "edges" >
+|   < EDGEF         : "edge" >
+|   < NODES         : "nodes" >
+|   < NODEF         : "node" >
+}
+
+TOKEN : /* --- CLASSES --- */
+{
+  	< GRAPH    : "Graph" >
+| 	< NODE     : "Node" >
+| 	< EDGE     : "Edge" >
+| 	< VARIABLE : ("_" | < LOWER > | < UPPER > )+ ("_" | < LOWER > | < UPPER > | < DIGIT > )* >
+|   < STRING   : "\"" (~["\"", "\\"] | "\\\"" | "\\\\")* "\"" >
+| 	< INTEGER  : ("+" | "-")? (< DIGIT >)+ >
+| 	< FLOAT    : ("+" | "-")? ((< DIGIT >)*".")?(< DIGIT >)+ >
+}
+
+TOKEN : /*--- OPERATORS --- */
+{
+   	< OPAR    : "(" > 
+| 	< CPAR    : ")" >
+| 	< OBR     : "{" >
+| 	< CBR     : "}" >
+| 	< OSQBR   : "[" >
+| 	< CSQBR   : "]" >
+| 	< COL     : ":" >
+| 	< SCOL    : ";" >
+| 	< COMMA   : "," >
+| 	< EQ      : "=" >
+| 	< DOT     : "." >
+| 	< QUOTE   : "\"" | "'" >
+| 	< COMP    : ">" | "<" | "<=" | ">=" | "==" >
+}
+
+TOKEN : /* --- FUNCTIONS --- */
+{
+  	< PATH : ("\"" | "'") ( ( (< LOWER > | < UPPER >) ":")? ("\\"(< LOWER > | < UPPER > | < DIGIT > | "_" | "." | "-")+ )+("\\")?
+    	   | ("/")?((< LOWER > | < UPPER > | < DIGIT > | "_" | "." | "-")+"/")+("/")? )
+        	("\"" | "'") >
+}
+
+/*
+	== START FUNCTION ==
+*/
+SimpleNode Start() :
+{
+}
+{
+ 	(
+ 	    LOOKAHEAD(3)
+    	Declaration()
+|
+		LOOKAHEAD(2)
+    	NewGraph()
+|
+		LOOKAHEAD(2)
+   		ListNodes()
+|
+   		SearchGraph()
+  	)+
+  	< EOF >
+  	{return jjtThis;}
+}
+
+/*
+	== DECLARATION OF VARIABLES ==
+*/
+void Declaration() #DECLARATION :
+{
+  	Token scol;
+}
+{
+  	Graph() scol = < SCOL > #SCOL {jjtThis.value = scol.image;}
+|
+	Edge() scol = < SCOL > #SCOL {jjtThis.value = scol.image;}
+|
+	LOOKAHEAD(2)
+	Node() scol = < SCOL > #SCOL {jjtThis.value = scol.image;}
+|
+	ListNode() scol = < SCOL > #SCOL {jjtThis.value = scol.image;}
+}
+
+/*
+	== GRAPH DECLARATION ==
+*/
+void Graph() :
+{
+  	Token g, v;
+}
+{
+  	g = < GRAPH > #GRAPH {jjtThis.value = g.image;}
+  	v = <VARIABLE > #VARIABLE {jjtThis.value = v.image;}
+}
+
+/*
+	== EDGE DECLARATION ==
+*/
+void Edge() :
+{
+  	Token e, v;
+}
+{
+  	e = < EDGE > #EDGE {jjtThis.value = e.image;}
+  	v = <VARIABLE > #VARIABLE {jjtThis.value = v.image;}
+}
+
+/*
+	== NODE DECLARATION ==
+*/
+void Node() :
+{
+  	Token n, v;
+}
+{
+  	n = < NODE > #NODE {jjtThis.value = n.image;}
+  	v = < VARIABLE > #VARIABLE {jjtThis.value = v.image;}
+}
+
+/*
+	== LIST OF NODES DECLARATION ==
+*/
+void ListNode() #LISTNODE :
+{
+  	Token n, osqbr, csqbr, v;
+}
+{
+  	n = < NODE > #NODE {jjtThis.value = n.image;}
+  	osqbr = < OSQBR > #OSQBR {jjtThis.value = osqbr.image;}
+  	csqbr = < CSQBR > #CSQBR {jjtThis.value = csqbr.image;}
+  	v = < VARIABLE > #VARIABLE {jjtThis.value = v.image;}
+}
+
+/*
+	== NEW GRAPH ==
+*/
+void NewGraph() #NEWGRAPH :
+{
+  	Token eq, scol, v;
+}
+{
+  	(	Declaration()
+  		|
+  		v = < VARIABLE > #VARIABLE {jjtThis.value = v.image;}
+  	)
+	eq = < EQ > #EQ {jjtThis.value = eq.image;}
+	NewGraphRight()
+  	scol = < SCOL > #SCOL {jjtThis.value = scol.image;}
+}
+
+/*
+	== RIGHT HAND SIDE OF A NEW GRAPH ==
+*/
+void NewGraphRight() #NEWGRAPHRIGHT :
+{
+  Token n, g, p, opar, cpar;
+}
+{
+  	n    = < NEW > #NEW {jjtThis.value = n.image;}
+  	g    = < GRAPH > #GRAPH {jjtThis.value = g.image;}
+  	opar = < OPAR > #OPAR {jjtThis.value = opar.image;}
+  	p    = < PATH > #PATH {jjtThis.value = p.image;}
+  	cpar = < CPAR > #CPAR {jjtThis.value = cpar.image;}
+}
+
+/*
+	== LIST ALL NODES ACCORDING TWO PARAMETERS (IF ANY) ==
+*/
+void ListNodes() #LISTNODES :
+{
+  	Token eq, scol, v;
+}
+{
+  	NodeListDec()
+  	(
+    	eq = < EQ > #EQ {jjtThis.value = eq.image;}
+    	ListNodesRight()
+  	)?
+  	scol = < SCOL > #SCOL {jjtThis.value = scol.image;}
+|
+	v = < VARIABLE > #VARIABLE {jjtThis.value = v.image;}
+  	eq = < EQ > #EQ {jjtThis.value = eq.image;}
+  	ListNodesRight()
+  	scol = < SCOL > #SCOL {jjtThis.value = scol.image;}
+}
+
+/*
+	== NODE LIST DECLARATION ==
+*/
+void NodeListDec() #NODELISTDECLARATION :
+{
+  Token n, obr, cbr, v;
+}
+{
+  n = < NODE > #NODE {jjtThis.value = n.image;}
+  obr = < OSQBR > #OSQBR {jjtThis.value = obr.image;}
+  cbr = < CSQBR > #CSQBR {jjtThis.value = cbr.image;}
+  v = < VARIABLE > #VARIABLE {jjtThis.value = v.image;}
+}
+
+/*
+	== RIGHT SIDE OF DECLARATION TO GET LIST OF NODES ==
+*/
+void ListNodesRight() #LISTNODESRIGHT :
+{
+	Token v, d, n, o, c;
+}
+{
+  	v = < VARIABLE > #VARIABLE {jjtThis.value = v.image;}
+  	d = < DOT > #DOT {jjtThis.value = d.image;}
+  	n = < NODES > #NODES {jjtThis.value = n.image;}
+  	o = < OPAR > #OBR {jjtThis.value = o.image;}
+  	( AllParametersNode() )?
+  	c = < CPAR > #CBR {jjtThis.value = c.image;}
+}
+
+/*
+	== FILTER SEARCH NODE WITH ALL THREE PARAMETERS ==
+*/
+void AllParametersNode() #ALLPARAMETERSNODE :
+{
+  Token comma;
+}
+{
+  	LOOKAHEAD(2)
+	NodeLabel()
+  	(
+    	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+    	NodeDegree()
+	    (
+	      comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+	      NodeProperties()
+	    )?
+    )?
+|
+	NodeLabel()
+  	(
+	    
+	    comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+    	NodeProperties()
+	    (
+	      comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+	      NodeDegree()
+	    )?
+    )?
+|
+	LOOKAHEAD(2)
+	NodeDegree()
+  	(
+    	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+    	NodeLabel()
+	    (
+	      comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+	      NodeProperties()
+	    )?
+    )?
+|
+	NodeDegree()
+  	(
+    	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+    	NodeProperties()
+	    (
+	      comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+	      NodeLabel()
+	    )?
+    )?
+|
+	LOOKAHEAD(2)
+	NodeProperties()
+  	(
+    	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+    	NodeLabel()
+	    (
+	      comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+	      NodeDegree()
+	    )?
+    )?
+|
+	NodeProperties()
+  	(
+		comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+    	NodeDegree()
+	    (
+	      comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+	      NodeLabel()
+	    )?
+    )?
+}
+
+/*
+	== FILTER NODE PARAMETER LABEL ==
+*/
+void NodeLabel() :
+{
+  Token label, eq;
+}
+{
+  label = < LABEL > #LABEL {jjtThis.value = label.image;}
+  eq = < EQ > #EQ {jjtThis.value = eq.image;}
+  Value()
+}
+
+/*
+	== FILTER NODE PARAMETER DEGREE ==
+*/
+void NodeDegree() :
+{
+  Token degree;
+}
+{
+  degree = < DEGREE > #DEGREE {jjtThis.value = degree.image;}
+  CompareValues()
+}
+
+/*
+	== TYPES OF VALUES: STRING OR NUMBER ==
+*/
+void Value() :
+{
+  Token s, i, f;
+}
+{
+  	s = < STRING > #STRING {jjtThis.value = s.image;}
+|   i = < INTEGER > #INTEGER {jjtThis.value = i.image;}
+|   f = < FLOAT > #FLOAT {jjtThis.value = f.image;}
+}
+/*
+	== SEARCH ==
+*/
+void SearchGraph() #SEARCHGRAPH :
+{
+	Token v, d, scol;
+}
+{
+ 	v = < VARIABLE > #VARIABLE {jjtThis.value = v.image;}
+ 	d = < DOT > #DOT {jjtThis.value = d.image;}
+ 	(
+ 	   	SearchShortestPath()
+ 	|
+ 	   	SearchDepth()
+ 	|
+ 	   	SearchBreadth()
+ 	)
+ 	scol = < SCOL > #SCOL {jjtThis.value = scol.image;}
+}
+
+/*
+	== SEARCHSHORTESTPATH ==
+*/
+void SearchShortestPath() #SEARCHSHORTESTPATH :
+{
+  	Token sp, opar, v1, comma, v2, cpar;
+}
+{
+  	sp = < SHORTESTPATH > #SHORTESTPATH {jjtThis.value = sp.image;}
+  	opar = < OPAR > #OPAR {jjtThis.value = opar.image;}
+  	v1 = < VARIABLE > #VARIABLE {jjtThis.value = v1.image;}
+  	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+  	v2 = < VARIABLE > #VARIABLE {jjtThis.value = v2.image;}
+	(
+	  	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+	  	NodeProperties()
+	)?
+   	cpar = < CPAR > #CPAR {jjtThis.value = cpar.image;}
+}
+
+/*
+	== DEPTHSEARCH ==
+*/
+void SearchDepth() #DEPTHSEARCH :
+{
+  	Token sp, opar, v1, comma, v2, cpar;
+}
+{
+  	sp = < DEPTHSEARCH > {jjtThis.value = sp.image;}
+  	opar = < OPAR > #OPAR {jjtThis.value = opar.image;}
+  	v1 = < VARIABLE > #VARIABLE {jjtThis.value = v1.image;}
+  	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+  	v2 = < VARIABLE > #VARIABLE {jjtThis.value = v2.image;}
+	(
+	  	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+	  	NodeProperties()
+	)?
+   	cpar = < CPAR > #CPAR {jjtThis.value = cpar.image;}
+}
+
+/*
+	== BREADTHSEARCH ==
+*/
+void SearchBreadth() #BREADTHSEARCH :
+{
+  	Token sp, opar, v1, comma, v2, cpar;
+}
+{
+  	sp = < BREADTHSEARCH > {jjtThis.value = sp.image;}
+  	opar = < OPAR > #OPAR {jjtThis.value = opar.image;}
+  	v1 = < VARIABLE > #VARIABLE {jjtThis.value = v1.image;}
+  	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+  	v2 = < VARIABLE > #VARIABLE {jjtThis.value = v2.image;}
+	(
+		comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+	  	NodeProperties()
+	)?
+  	cpar = < CPAR > #CPAR {jjtThis.value = cpar.image;}
+}
+
+/*
+ 	== FILTER NODE PARAMETER PROPERTIES ==
+*/
+void NodeProperties() :
+{
+  	Token comma, osqbr, csqbr, key;
+}
+{
+  	osqbr = < OSQBR > #OSQBR {jjtThis.value = osqbr.image;}
+  	key = < VARIABLE > #VARIABLE {jjtThis.value = key.image;}
+  	CompareValues()
+  	(
+    	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+    	key = < VARIABLE > #VARIABLE {jjtThis.value = key.image;}
+    	CompareValues()
+  	)*
+  	csqbr = < CSQBR > #CSQBR {jjtThis.value = csqbr.image;}
+}
+
+/*
+	== DEFINE WAYS TO COMPARE VARIABLE WITH VALUES ==
+*/
+void CompareValues() :
+{
+  Token eq, os, s, i, f, cs, comma, comp;
+}
+{
+  	// Equals to an Interval
+  	eq = < EQ > #EQ {jjtThis.value = eq.image;}
+  	(
+  	  	os = < OSQBR > #OSQBR {jjtThis.value = os.image;}
+  	|
+  		cs = < CSQBR > #CSQBR {jjtThis.value = cs.image;})
+  	(
+  	  	s = < STRING > #STRING {jjtThis.value = s.image;}
+  	|
+  	  	i = < INTEGER > #INTEGER {jjtThis.value = i.image;}
+  	|
+  	  	f = < FLOAT > #FLOAT {jjtThis.value = f.image;}
+  	)
+  	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+  	Value()
+  	(
+  	  	os = < OSQBR > #OSQBR {jjtThis.value = os.image;}
+  	|
+  		cs = < CSQBR > #CSQBR {jjtThis.value = cs.image;}
+  	)
+|
+	// Compares to a Value
+	comp = < COMP > #COMP {jjtThis.value = comp.image;}
+	(
+  	  	s = < STRING > #STRING {jjtThis.value = s.image;}
+  	|
+  	  	i = < INTEGER > #INTEGER {jjtThis.value = i.image;}
+  	|
+  	  	f = < FLOAT > #FLOAT {jjtThis.value = f.image;}
+  	)
+}
