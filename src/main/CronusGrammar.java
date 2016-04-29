@@ -17,7 +17,7 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
  /*@bgen(jjtree) Start */
   SimpleNode jjtn000 = new SimpleNode(JJTSTART);
   boolean jjtc000 = true;
-  jjtree.openNodeScope(jjtn000);
+  jjtree.openNodeScope(jjtn000);Token scol;
     try {
       label_1:
       while (true) {
@@ -83,75 +83,61 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
  /*@bgen(jjtree) DECLARATION */
         SimpleNode jjtn000 = new SimpleNode(JJTDECLARATION);
         boolean jjtc000 = true;
-        jjtree.openNodeScope(jjtn000);Token scol;
+        jjtree.openNodeScope(jjtn000);Token g, v, scol;
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case GRAPH:
-        Graph();
-                  SimpleNode jjtn001 = new SimpleNode(JJTSCOL);
-                  boolean jjtc001 = true;
-                  jjtree.openNodeScope(jjtn001);
+        g = jj_consume_token(GRAPH);
+                                SimpleNode jjtn001 = new SimpleNode(JJTGRAPH);
+                                boolean jjtc001 = true;
+                                jjtree.openNodeScope(jjtn001);
         try {
-          scol = jj_consume_token(SCOL);
+                                jjtree.closeNodeScope(jjtn001, true);
+                                jjtc001 = false;
+                               jjtn001.val = g.image;
         } finally {
-                  if (jjtc001) {
-                    jjtree.closeNodeScope(jjtn001, true);
-                  }
+                                if (jjtc001) {
+                                  jjtree.closeNodeScope(jjtn001, true);
+                                }
         }
-                                        jjtree.closeNodeScope(jjtn000, true);
-                                        jjtc000 = false;
-                                       jjtn000.value = scol.image;
+        v = jj_consume_token(VARIABLE);
+                                  SimpleNode jjtn002 = new SimpleNode(JJTVARIABLE);
+                                  boolean jjtc002 = true;
+                                  jjtree.openNodeScope(jjtn002);
+        try {
+                                  jjtree.closeNodeScope(jjtn002, true);
+                                  jjtc002 = false;
+                                 jjtn002.val = v.image;
+        } finally {
+                                  if (jjtc002) {
+                                    jjtree.closeNodeScope(jjtn002, true);
+                                  }
+        }
+        scol = jj_consume_token(SCOL);
+                                  SimpleNode jjtn003 = new SimpleNode(JJTSCOL);
+                                  boolean jjtc003 = true;
+                                  jjtree.openNodeScope(jjtn003);
+        try {
+                                  jjtree.closeNodeScope(jjtn003, true);
+                                  jjtc003 = false;
+                                 jjtn003.val = scol.image;
+        } finally {
+                                  if (jjtc003) {
+                                    jjtree.closeNodeScope(jjtn003, true);
+                                  }
+        }
         break;
       case EDGE:
         Edge();
-                 SimpleNode jjtn002 = new SimpleNode(JJTSCOL);
-                 boolean jjtc002 = true;
-                 jjtree.openNodeScope(jjtn002);
-        try {
-          scol = jj_consume_token(SCOL);
-        } finally {
-                 if (jjtc002) {
-                   jjtree.closeNodeScope(jjtn002, true);
-                 }
-        }
-                                       jjtree.closeNodeScope(jjtn000, true);
-                                       jjtc000 = false;
-                                      jjtn000.value = scol.image;
         break;
       default:
         jj_la1[2] = jj_gen;
         if (jj_2_4(2)) {
           Node();
-                 SimpleNode jjtn003 = new SimpleNode(JJTSCOL);
-                 boolean jjtc003 = true;
-                 jjtree.openNodeScope(jjtn003);
-          try {
-            scol = jj_consume_token(SCOL);
-          } finally {
-                 if (jjtc003) {
-                   jjtree.closeNodeScope(jjtn003, true);
-                 }
-          }
-                                       jjtree.closeNodeScope(jjtn000, true);
-                                       jjtc000 = false;
-                                      jjtn000.value = scol.image;
         } else {
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case NODE:
             ListNode();
-                     SimpleNode jjtn004 = new SimpleNode(JJTSCOL);
-                     boolean jjtc004 = true;
-                     jjtree.openNodeScope(jjtn004);
-            try {
-              scol = jj_consume_token(SCOL);
-            } finally {
-                     if (jjtc004) {
-                       jjtree.closeNodeScope(jjtn004, true);
-                     }
-            }
-                                           jjtree.closeNodeScope(jjtn000, true);
-                                           jjtc000 = false;
-                                          jjtn000.value = scol.image;
             break;
           default:
             jj_la1[3] = jj_gen;
@@ -182,46 +168,6 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
   }
 
 /*
-	== GRAPH DECLARATION ==
-*/
-  static final public void Graph() throws ParseException {
- /*@bgen(jjtree) Graph */
-        SimpleNode jjtn000 = new SimpleNode(JJTGRAPH);
-        boolean jjtc000 = true;
-        jjtree.openNodeScope(jjtn000);Token g, v;
-    try {
-          SimpleNode jjtn001 = new SimpleNode(JJTGRAPH);
-          boolean jjtc001 = true;
-          jjtree.openNodeScope(jjtn001);
-      try {
-        g = jj_consume_token(GRAPH);
-      } finally {
-          if (jjtc001) {
-            jjtree.closeNodeScope(jjtn001, true);
-          }
-      }
-                              jjtn000.value = g.image;
-          SimpleNode jjtn002 = new SimpleNode(JJTVARIABLE);
-          boolean jjtc002 = true;
-          jjtree.openNodeScope(jjtn002);
-      try {
-        v = jj_consume_token(VARIABLE);
-      } finally {
-          if (jjtc002) {
-            jjtree.closeNodeScope(jjtn002, true);
-          }
-      }
-                                    jjtree.closeNodeScope(jjtn000, true);
-                                    jjtc000 = false;
-                                   jjtn000.value = v.image;
-    } finally {
-          if (jjtc000) {
-            jjtree.closeNodeScope(jjtn000, true);
-          }
-    }
-  }
-
-/*
 	== EDGE DECLARATION ==
 */
   static final public void Edge() throws ParseException {
@@ -230,30 +176,12 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);Token e, v;
     try {
-          SimpleNode jjtn001 = new SimpleNode(JJTEDGE);
-          boolean jjtc001 = true;
-          jjtree.openNodeScope(jjtn001);
-      try {
-        e = jj_consume_token(EDGE);
-      } finally {
-          if (jjtc001) {
-            jjtree.closeNodeScope(jjtn001, true);
-          }
-      }
-                            jjtn000.value = e.image;
-          SimpleNode jjtn002 = new SimpleNode(JJTVARIABLE);
-          boolean jjtc002 = true;
-          jjtree.openNodeScope(jjtn002);
-      try {
-        v = jj_consume_token(VARIABLE);
-      } finally {
-          if (jjtc002) {
-            jjtree.closeNodeScope(jjtn002, true);
-          }
-      }
-                                    jjtree.closeNodeScope(jjtn000, true);
-                                    jjtc000 = false;
-                                   jjtn000.value = v.image;
+      e = jj_consume_token(EDGE);
+                      jjtn000.val = e.image;
+      v = jj_consume_token(VARIABLE);
+                          jjtree.closeNodeScope(jjtn000, true);
+                          jjtc000 = false;
+                         jjtn000.val = v.image;
     } finally {
           if (jjtc000) {
             jjtree.closeNodeScope(jjtn000, true);
@@ -270,30 +198,12 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);Token n, v;
     try {
-          SimpleNode jjtn001 = new SimpleNode(JJTNODE);
-          boolean jjtc001 = true;
-          jjtree.openNodeScope(jjtn001);
-      try {
-        n = jj_consume_token(NODE);
-      } finally {
-          if (jjtc001) {
-            jjtree.closeNodeScope(jjtn001, true);
-          }
-      }
-                            jjtn000.value = n.image;
-          SimpleNode jjtn002 = new SimpleNode(JJTVARIABLE);
-          boolean jjtc002 = true;
-          jjtree.openNodeScope(jjtn002);
-      try {
-        v = jj_consume_token(VARIABLE);
-      } finally {
-          if (jjtc002) {
-            jjtree.closeNodeScope(jjtn002, true);
-          }
-      }
-                                     jjtree.closeNodeScope(jjtn000, true);
-                                     jjtc000 = false;
-                                    jjtn000.value = v.image;
+      n = jj_consume_token(NODE);
+                      jjtn000.val = n.image;
+      v = jj_consume_token(VARIABLE);
+                           jjtree.closeNodeScope(jjtn000, true);
+                           jjtc000 = false;
+                          jjtn000.val = v.image;
     } finally {
           if (jjtc000) {
             jjtree.closeNodeScope(jjtn000, true);
@@ -305,57 +215,21 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
 	== LIST OF NODES DECLARATION ==
 */
   static final public void ListNode() throws ParseException {
- /*@bgen(jjtree) LISTNODE */
+ /*@bgen(jjtree) ListNode */
         SimpleNode jjtn000 = new SimpleNode(JJTLISTNODE);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);Token n, osqbr, csqbr, v;
     try {
-          SimpleNode jjtn001 = new SimpleNode(JJTNODE);
-          boolean jjtc001 = true;
-          jjtree.openNodeScope(jjtn001);
-      try {
-        n = jj_consume_token(NODE);
-      } finally {
-          if (jjtc001) {
-            jjtree.closeNodeScope(jjtn001, true);
-          }
-      }
-                            jjtn000.value = n.image;
-          SimpleNode jjtn002 = new SimpleNode(JJTOSQBR);
-          boolean jjtc002 = true;
-          jjtree.openNodeScope(jjtn002);
-      try {
-        osqbr = jj_consume_token(OSQBR);
-      } finally {
-          if (jjtc002) {
-            jjtree.closeNodeScope(jjtn002, true);
-          }
-      }
-                                  jjtn000.value = osqbr.image;
-          SimpleNode jjtn003 = new SimpleNode(JJTCSQBR);
-          boolean jjtc003 = true;
-          jjtree.openNodeScope(jjtn003);
-      try {
-        csqbr = jj_consume_token(CSQBR);
-      } finally {
-          if (jjtc003) {
-            jjtree.closeNodeScope(jjtn003, true);
-          }
-      }
-                                  jjtn000.value = csqbr.image;
-          SimpleNode jjtn004 = new SimpleNode(JJTVARIABLE);
-          boolean jjtc004 = true;
-          jjtree.openNodeScope(jjtn004);
-      try {
-        v = jj_consume_token(VARIABLE);
-      } finally {
-          if (jjtc004) {
-            jjtree.closeNodeScope(jjtn004, true);
-          }
-      }
-                                     jjtree.closeNodeScope(jjtn000, true);
-                                     jjtc000 = false;
-                                    jjtn000.value = v.image;
+      n = jj_consume_token(NODE);
+                      jjtn000.val = n.image;
+      osqbr = jj_consume_token(OSQBR);
+                           jjtn000.val = osqbr.image;
+      csqbr = jj_consume_token(CSQBR);
+                           jjtn000.val = csqbr.image;
+      v = jj_consume_token(VARIABLE);
+                           jjtree.closeNodeScope(jjtn000, true);
+                           jjtc000 = false;
+                          jjtn000.val = v.image;
     } finally {
           if (jjtc000) {
             jjtree.closeNodeScope(jjtn000, true);
@@ -379,48 +253,21 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
         Declaration();
         break;
       case VARIABLE:
-                  SimpleNode jjtn001 = new SimpleNode(JJTVARIABLE);
-                  boolean jjtc001 = true;
-                  jjtree.openNodeScope(jjtn001);
-        try {
-          v = jj_consume_token(VARIABLE);
-        } finally {
-                  if (jjtc001) {
-                    jjtree.closeNodeScope(jjtn001, true);
-                  }
-        }
-                                            jjtn000.value = v.image;
+        v = jj_consume_token(VARIABLE);
+                                  jjtn000.val = v.image;
         break;
       default:
         jj_la1[4] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
-          SimpleNode jjtn002 = new SimpleNode(JJTEQ);
-          boolean jjtc002 = true;
-          jjtree.openNodeScope(jjtn002);
-      try {
-        eq = jj_consume_token(EQ);
-      } finally {
-          if (jjtc002) {
-            jjtree.closeNodeScope(jjtn002, true);
-          }
-      }
-                         jjtn000.value = eq.image;
+      eq = jj_consume_token(EQ);
+                     jjtn000.val = eq.image;
       NewGraphRight();
-          SimpleNode jjtn003 = new SimpleNode(JJTSCOL);
-          boolean jjtc003 = true;
-          jjtree.openNodeScope(jjtn003);
-      try {
-        scol = jj_consume_token(SCOL);
-      } finally {
-          if (jjtc003) {
-            jjtree.closeNodeScope(jjtn003, true);
-          }
-      }
-                                jjtree.closeNodeScope(jjtn000, true);
-                                jjtc000 = false;
-                               jjtn000.value = scol.image;
+      scol = jj_consume_token(SCOL);
+                          jjtree.closeNodeScope(jjtn000, true);
+                          jjtc000 = false;
+                         jjtn000.val = scol.image;
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -451,63 +298,18 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);Token n, g, p, opar, cpar;
     try {
-          SimpleNode jjtn001 = new SimpleNode(JJTNEW);
-          boolean jjtc001 = true;
-          jjtree.openNodeScope(jjtn001);
-      try {
-        n = jj_consume_token(NEW);
-      } finally {
-          if (jjtc001) {
-            jjtree.closeNodeScope(jjtn001, true);
-          }
-      }
-                             jjtn000.value = n.image;
-          SimpleNode jjtn002 = new SimpleNode(JJTGRAPH);
-          boolean jjtc002 = true;
-          jjtree.openNodeScope(jjtn002);
-      try {
-        g = jj_consume_token(GRAPH);
-      } finally {
-          if (jjtc002) {
-            jjtree.closeNodeScope(jjtn002, true);
-          }
-      }
-                                 jjtn000.value = g.image;
-          SimpleNode jjtn003 = new SimpleNode(JJTOPAR);
-          boolean jjtc003 = true;
-          jjtree.openNodeScope(jjtn003);
-      try {
-        opar = jj_consume_token(OPAR);
-      } finally {
-          if (jjtc003) {
-            jjtree.closeNodeScope(jjtn003, true);
-          }
-      }
-                               jjtn000.value = opar.image;
-          SimpleNode jjtn004 = new SimpleNode(JJTPATH);
-          boolean jjtc004 = true;
-          jjtree.openNodeScope(jjtn004);
-      try {
-        p = jj_consume_token(PATH);
-      } finally {
-          if (jjtc004) {
-            jjtree.closeNodeScope(jjtn004, true);
-          }
-      }
-                               jjtn000.value = p.image;
-          SimpleNode jjtn005 = new SimpleNode(JJTCPAR);
-          boolean jjtc005 = true;
-          jjtree.openNodeScope(jjtn005);
-      try {
-        cpar = jj_consume_token(CPAR);
-      } finally {
-          if (jjtc005) {
-            jjtree.closeNodeScope(jjtn005, true);
-          }
-      }
-                                jjtree.closeNodeScope(jjtn000, true);
-                                jjtc000 = false;
-                               jjtn000.value = cpar.image;
+      n = jj_consume_token(NEW);
+                        jjtn000.val = n.image;
+      g = jj_consume_token(GRAPH);
+                          jjtn000.val = g.image;
+      opar = jj_consume_token(OPAR);
+                         jjtn000.val = opar.image;
+      p = jj_consume_token(PATH);
+                         jjtn000.val = p.image;
+      cpar = jj_consume_token(CPAR);
+                          jjtree.closeNodeScope(jjtn000, true);
+                          jjtc000 = false;
+                         jjtn000.val = cpar.image;
     } finally {
           if (jjtc000) {
             jjtree.closeNodeScope(jjtn000, true);
@@ -529,74 +331,29 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
         NodeListDec();
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case EQ:
-          SimpleNode jjtn001 = new SimpleNode(JJTEQ);
-          boolean jjtc001 = true;
-          jjtree.openNodeScope(jjtn001);
-          try {
-            eq = jj_consume_token(EQ);
-          } finally {
-          if (jjtc001) {
-            jjtree.closeNodeScope(jjtn001, true);
-          }
-          }
-                         jjtn000.value = eq.image;
+          eq = jj_consume_token(EQ);
+                     jjtn000.val = eq.image;
           ListNodesRight();
           break;
         default:
           jj_la1[5] = jj_gen;
           ;
         }
-          SimpleNode jjtn002 = new SimpleNode(JJTSCOL);
-          boolean jjtc002 = true;
-          jjtree.openNodeScope(jjtn002);
-        try {
-          scol = jj_consume_token(SCOL);
-        } finally {
-          if (jjtc002) {
-            jjtree.closeNodeScope(jjtn002, true);
-          }
-        }
-                                jjtree.closeNodeScope(jjtn000, true);
-                                jjtc000 = false;
-                               jjtn000.value = scol.image;
+        scol = jj_consume_token(SCOL);
+                          jjtree.closeNodeScope(jjtn000, true);
+                          jjtc000 = false;
+                         jjtn000.val = scol.image;
         break;
       case VARIABLE:
-          SimpleNode jjtn003 = new SimpleNode(JJTVARIABLE);
-          boolean jjtc003 = true;
-          jjtree.openNodeScope(jjtn003);
-        try {
-          v = jj_consume_token(VARIABLE);
-        } finally {
-          if (jjtc003) {
-            jjtree.closeNodeScope(jjtn003, true);
-          }
-        }
-                                    jjtn000.value = v.image;
-          SimpleNode jjtn004 = new SimpleNode(JJTEQ);
-          boolean jjtc004 = true;
-          jjtree.openNodeScope(jjtn004);
-        try {
-          eq = jj_consume_token(EQ);
-        } finally {
-          if (jjtc004) {
-            jjtree.closeNodeScope(jjtn004, true);
-          }
-        }
-                         jjtn000.value = eq.image;
+        v = jj_consume_token(VARIABLE);
+                          jjtn000.val = v.image;
+        eq = jj_consume_token(EQ);
+                     jjtn000.val = eq.image;
         ListNodesRight();
-          SimpleNode jjtn005 = new SimpleNode(JJTSCOL);
-          boolean jjtc005 = true;
-          jjtree.openNodeScope(jjtn005);
-        try {
-          scol = jj_consume_token(SCOL);
-        } finally {
-          if (jjtc005) {
-            jjtree.closeNodeScope(jjtn005, true);
-          }
-        }
-                                jjtree.closeNodeScope(jjtn000, true);
-                                jjtc000 = false;
-                               jjtn000.value = scol.image;
+        scol = jj_consume_token(SCOL);
+                          jjtree.closeNodeScope(jjtn000, true);
+                          jjtc000 = false;
+                         jjtn000.val = scol.image;
         break;
       default:
         jj_la1[6] = jj_gen;
@@ -633,52 +390,16 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);Token n, obr, cbr, v;
     try {
-    SimpleNode jjtn001 = new SimpleNode(JJTNODE);
-    boolean jjtc001 = true;
-    jjtree.openNodeScope(jjtn001);
-      try {
-        n = jj_consume_token(NODE);
-      } finally {
-    if (jjtc001) {
-      jjtree.closeNodeScope(jjtn001, true);
-    }
-      }
-                      jjtn000.value = n.image;
-    SimpleNode jjtn002 = new SimpleNode(JJTOSQBR);
-    boolean jjtc002 = true;
-    jjtree.openNodeScope(jjtn002);
-      try {
-        obr = jj_consume_token(OSQBR);
-      } finally {
-    if (jjtc002) {
-      jjtree.closeNodeScope(jjtn002, true);
-    }
-      }
-                          jjtn000.value = obr.image;
-    SimpleNode jjtn003 = new SimpleNode(JJTCSQBR);
-    boolean jjtc003 = true;
-    jjtree.openNodeScope(jjtn003);
-      try {
-        cbr = jj_consume_token(CSQBR);
-      } finally {
-    if (jjtc003) {
-      jjtree.closeNodeScope(jjtn003, true);
-    }
-      }
-                          jjtn000.value = cbr.image;
-    SimpleNode jjtn004 = new SimpleNode(JJTVARIABLE);
-    boolean jjtc004 = true;
-    jjtree.openNodeScope(jjtn004);
-      try {
-        v = jj_consume_token(VARIABLE);
-      } finally {
-    if (jjtc004) {
-      jjtree.closeNodeScope(jjtn004, true);
-    }
-      }
-                               jjtree.closeNodeScope(jjtn000, true);
-                               jjtc000 = false;
-                              jjtn000.value = v.image;
+      n = jj_consume_token(NODE);
+                jjtn000.val = n.image;
+      obr = jj_consume_token(OSQBR);
+                   jjtn000.val = obr.image;
+      cbr = jj_consume_token(CSQBR);
+                   jjtn000.val = cbr.image;
+      v = jj_consume_token(VARIABLE);
+                     jjtree.closeNodeScope(jjtn000, true);
+                     jjtc000 = false;
+                    jjtn000.val = v.image;
     } finally {
     if (jjtc000) {
       jjtree.closeNodeScope(jjtn000, true);
@@ -695,50 +416,14 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);Token v, d, n, o, c;
     try {
-          SimpleNode jjtn001 = new SimpleNode(JJTVARIABLE);
-          boolean jjtc001 = true;
-          jjtree.openNodeScope(jjtn001);
-      try {
-        v = jj_consume_token(VARIABLE);
-      } finally {
-          if (jjtc001) {
-            jjtree.closeNodeScope(jjtn001, true);
-          }
-      }
-                                    jjtn000.value = v.image;
-          SimpleNode jjtn002 = new SimpleNode(JJTDOT);
-          boolean jjtc002 = true;
-          jjtree.openNodeScope(jjtn002);
-      try {
-        d = jj_consume_token(DOT);
-      } finally {
-          if (jjtc002) {
-            jjtree.closeNodeScope(jjtn002, true);
-          }
-      }
-                          jjtn000.value = d.image;
-          SimpleNode jjtn003 = new SimpleNode(JJTNODES);
-          boolean jjtc003 = true;
-          jjtree.openNodeScope(jjtn003);
-      try {
-        n = jj_consume_token(NODES);
-      } finally {
-          if (jjtc003) {
-            jjtree.closeNodeScope(jjtn003, true);
-          }
-      }
-                              jjtn000.value = n.image;
-          SimpleNode jjtn004 = new SimpleNode(JJTOBR);
-          boolean jjtc004 = true;
-          jjtree.openNodeScope(jjtn004);
-      try {
-        o = jj_consume_token(OPAR);
-      } finally {
-          if (jjtc004) {
-            jjtree.closeNodeScope(jjtn004, true);
-          }
-      }
-                           jjtn000.value = o.image;
+      v = jj_consume_token(VARIABLE);
+                          jjtn000.val = v.image;
+      d = jj_consume_token(DOT);
+                     jjtn000.val = d.image;
+      n = jj_consume_token(NODES);
+                       jjtn000.val = n.image;
+      o = jj_consume_token(OPAR);
+                      jjtn000.val = o.image;
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case LABEL:
       case DEGREE:
@@ -749,19 +434,10 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
         jj_la1[7] = jj_gen;
         ;
       }
-          SimpleNode jjtn005 = new SimpleNode(JJTCBR);
-          boolean jjtc005 = true;
-          jjtree.openNodeScope(jjtn005);
-      try {
-        c = jj_consume_token(CPAR);
-      } finally {
-          if (jjtc005) {
-            jjtree.closeNodeScope(jjtn005, true);
-          }
-      }
-                            jjtree.closeNodeScope(jjtn000, true);
-                            jjtc000 = false;
-                           jjtn000.value = c.image;
+      c = jj_consume_token(CPAR);
+                       jjtree.closeNodeScope(jjtn000, true);
+                       jjtc000 = false;
+                      jjtn000.val = c.image;
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -796,31 +472,13 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
         NodeLabel();
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case COMMA:
-          SimpleNode jjtn001 = new SimpleNode(JJTCOMMA);
-          boolean jjtc001 = true;
-          jjtree.openNodeScope(jjtn001);
-          try {
-            comma = jj_consume_token(COMMA);
-          } finally {
-          if (jjtc001) {
-            jjtree.closeNodeScope(jjtn001, true);
-          }
-          }
-                                  jjtn000.value = comma.image;
+          comma = jj_consume_token(COMMA);
+                           jjtn000.val = comma.image;
           NodeDegree();
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case COMMA:
-                SimpleNode jjtn002 = new SimpleNode(JJTCOMMA);
-                boolean jjtc002 = true;
-                jjtree.openNodeScope(jjtn002);
-            try {
-              comma = jj_consume_token(COMMA);
-            } finally {
-                if (jjtc002) {
-                  jjtree.closeNodeScope(jjtn002, true);
-                }
-            }
-                                        jjtn000.value = comma.image;
+            comma = jj_consume_token(COMMA);
+                                 jjtn000.val = comma.image;
             NodeProperties();
             break;
           default:
@@ -838,31 +496,13 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
           NodeLabel();
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case COMMA:
-              SimpleNode jjtn003 = new SimpleNode(JJTCOMMA);
-              boolean jjtc003 = true;
-              jjtree.openNodeScope(jjtn003);
-            try {
-              comma = jj_consume_token(COMMA);
-            } finally {
-              if (jjtc003) {
-                jjtree.closeNodeScope(jjtn003, true);
-              }
-            }
-                                      jjtn000.value = comma.image;
+            comma = jj_consume_token(COMMA);
+                               jjtn000.val = comma.image;
             NodeProperties();
             switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
             case COMMA:
-                SimpleNode jjtn004 = new SimpleNode(JJTCOMMA);
-                boolean jjtc004 = true;
-                jjtree.openNodeScope(jjtn004);
-              try {
-                comma = jj_consume_token(COMMA);
-              } finally {
-                if (jjtc004) {
-                  jjtree.closeNodeScope(jjtn004, true);
-                }
-              }
-                                        jjtn000.value = comma.image;
+              comma = jj_consume_token(COMMA);
+                                 jjtn000.val = comma.image;
               NodeDegree();
               break;
             default:
@@ -881,31 +521,13 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
             NodeDegree();
             switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
             case COMMA:
-          SimpleNode jjtn005 = new SimpleNode(JJTCOMMA);
-          boolean jjtc005 = true;
-          jjtree.openNodeScope(jjtn005);
-              try {
-                comma = jj_consume_token(COMMA);
-              } finally {
-          if (jjtc005) {
-            jjtree.closeNodeScope(jjtn005, true);
-          }
-              }
-                                  jjtn000.value = comma.image;
+              comma = jj_consume_token(COMMA);
+                           jjtn000.val = comma.image;
               NodeLabel();
               switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
               case COMMA:
-                SimpleNode jjtn006 = new SimpleNode(JJTCOMMA);
-                boolean jjtc006 = true;
-                jjtree.openNodeScope(jjtn006);
-                try {
-                  comma = jj_consume_token(COMMA);
-                } finally {
-                if (jjtc006) {
-                  jjtree.closeNodeScope(jjtn006, true);
-                }
-                }
-                                        jjtn000.value = comma.image;
+                comma = jj_consume_token(COMMA);
+                                 jjtn000.val = comma.image;
                 NodeProperties();
                 break;
               default:
@@ -923,31 +545,13 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
               NodeDegree();
               switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
               case COMMA:
-          SimpleNode jjtn007 = new SimpleNode(JJTCOMMA);
-          boolean jjtc007 = true;
-          jjtree.openNodeScope(jjtn007);
-                try {
-                  comma = jj_consume_token(COMMA);
-                } finally {
-          if (jjtc007) {
-            jjtree.closeNodeScope(jjtn007, true);
-          }
-                }
-                                  jjtn000.value = comma.image;
+                comma = jj_consume_token(COMMA);
+                           jjtn000.val = comma.image;
                 NodeProperties();
                 switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
                 case COMMA:
-                SimpleNode jjtn008 = new SimpleNode(JJTCOMMA);
-                boolean jjtc008 = true;
-                jjtree.openNodeScope(jjtn008);
-                  try {
-                    comma = jj_consume_token(COMMA);
-                  } finally {
-                if (jjtc008) {
-                  jjtree.closeNodeScope(jjtn008, true);
-                }
-                  }
-                                        jjtn000.value = comma.image;
+                  comma = jj_consume_token(COMMA);
+                                 jjtn000.val = comma.image;
                   NodeLabel();
                   break;
                 default:
@@ -966,31 +570,13 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
                 NodeProperties();
                 switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
                 case COMMA:
-          SimpleNode jjtn009 = new SimpleNode(JJTCOMMA);
-          boolean jjtc009 = true;
-          jjtree.openNodeScope(jjtn009);
-                  try {
-                    comma = jj_consume_token(COMMA);
-                  } finally {
-          if (jjtc009) {
-            jjtree.closeNodeScope(jjtn009, true);
-          }
-                  }
-                                  jjtn000.value = comma.image;
+                  comma = jj_consume_token(COMMA);
+                           jjtn000.val = comma.image;
                   NodeLabel();
                   switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
                   case COMMA:
-                SimpleNode jjtn010 = new SimpleNode(JJTCOMMA);
-                boolean jjtc010 = true;
-                jjtree.openNodeScope(jjtn010);
-                    try {
-                      comma = jj_consume_token(COMMA);
-                    } finally {
-                if (jjtc010) {
-                  jjtree.closeNodeScope(jjtn010, true);
-                }
-                    }
-                                        jjtn000.value = comma.image;
+                    comma = jj_consume_token(COMMA);
+                                 jjtn000.val = comma.image;
                     NodeDegree();
                     break;
                   default:
@@ -1008,31 +594,13 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
                   NodeProperties();
                   switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
                   case COMMA:
-                  SimpleNode jjtn011 = new SimpleNode(JJTCOMMA);
-                  boolean jjtc011 = true;
-                  jjtree.openNodeScope(jjtn011);
-                    try {
-                      comma = jj_consume_token(COMMA);
-                    } finally {
-                  if (jjtc011) {
-                    jjtree.closeNodeScope(jjtn011, true);
-                  }
-                    }
-                                          jjtn000.value = comma.image;
+                    comma = jj_consume_token(COMMA);
+                                   jjtn000.val = comma.image;
                     NodeDegree();
                     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
                     case COMMA:
-                SimpleNode jjtn012 = new SimpleNode(JJTCOMMA);
-                boolean jjtc012 = true;
-                jjtree.openNodeScope(jjtn012);
-                      try {
-                        comma = jj_consume_token(COMMA);
-                      } finally {
-                if (jjtc012) {
-                  jjtree.closeNodeScope(jjtn012, true);
-                }
-                      }
-                                        jjtn000.value = comma.image;
+                      comma = jj_consume_token(COMMA);
+                                 jjtn000.val = comma.image;
                       NodeLabel();
                       break;
                     default:
@@ -1085,28 +653,10 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);Token label, eq;
     try {
-    SimpleNode jjtn001 = new SimpleNode(JJTLABEL);
-    boolean jjtc001 = true;
-    jjtree.openNodeScope(jjtn001);
-      try {
-        label = jj_consume_token(LABEL);
-      } finally {
-    if (jjtc001) {
-      jjtree.closeNodeScope(jjtn001, true);
-    }
-      }
-                            jjtn000.value = label.image;
-    SimpleNode jjtn002 = new SimpleNode(JJTEQ);
-    boolean jjtc002 = true;
-    jjtree.openNodeScope(jjtn002);
-      try {
-        eq = jj_consume_token(EQ);
-      } finally {
-    if (jjtc002) {
-      jjtree.closeNodeScope(jjtn002, true);
-    }
-      }
-                   jjtn000.value = eq.image;
+      label = jj_consume_token(LABEL);
+                     jjtn000.val = label.image;
+      eq = jj_consume_token(EQ);
+               jjtn000.val = eq.image;
       Value();
     } catch (Throwable jjte000) {
     if (jjtc000) {
@@ -1138,17 +688,8 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);Token degree;
     try {
-    SimpleNode jjtn001 = new SimpleNode(JJTDEGREE);
-    boolean jjtc001 = true;
-    jjtree.openNodeScope(jjtn001);
-      try {
-        degree = jj_consume_token(DEGREE);
-      } finally {
-    if (jjtc001) {
-      jjtree.closeNodeScope(jjtn001, true);
-    }
-      }
-                               jjtn000.value = degree.image;
+      degree = jj_consume_token(DEGREE);
+                       jjtn000.val = degree.image;
       CompareValues();
     } catch (Throwable jjte000) {
     if (jjtc000) {
@@ -1182,49 +723,22 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case STRING:
-          SimpleNode jjtn001 = new SimpleNode(JJTSTRING);
-          boolean jjtc001 = true;
-          jjtree.openNodeScope(jjtn001);
-        try {
-          s = jj_consume_token(STRING);
-        } finally {
-          if (jjtc001) {
-            jjtree.closeNodeScope(jjtn001, true);
-          }
-        }
-                                 jjtree.closeNodeScope(jjtn000, true);
-                                 jjtc000 = false;
-                                jjtn000.value = s.image;
+        s = jj_consume_token(STRING);
+                         jjtree.closeNodeScope(jjtn000, true);
+                         jjtc000 = false;
+                        jjtn000.val = s.image;
         break;
       case INTEGER:
-      SimpleNode jjtn002 = new SimpleNode(JJTINTEGER);
-      boolean jjtc002 = true;
-      jjtree.openNodeScope(jjtn002);
-        try {
-          i = jj_consume_token(INTEGER);
-        } finally {
-      if (jjtc002) {
-        jjtree.closeNodeScope(jjtn002, true);
-      }
-        }
-                               jjtree.closeNodeScope(jjtn000, true);
-                               jjtc000 = false;
-                              jjtn000.value = i.image;
+        i = jj_consume_token(INTEGER);
+                      jjtree.closeNodeScope(jjtn000, true);
+                      jjtc000 = false;
+                     jjtn000.val = i.image;
         break;
       case FLOAT:
-      SimpleNode jjtn003 = new SimpleNode(JJTFLOAT);
-      boolean jjtc003 = true;
-      jjtree.openNodeScope(jjtn003);
-        try {
-          f = jj_consume_token(FLOAT);
-        } finally {
-      if (jjtc003) {
-        jjtree.closeNodeScope(jjtn003, true);
-      }
-        }
-                           jjtree.closeNodeScope(jjtn000, true);
-                           jjtc000 = false;
-                          jjtn000.value = f.image;
+        f = jj_consume_token(FLOAT);
+                    jjtree.closeNodeScope(jjtn000, true);
+                    jjtc000 = false;
+                   jjtn000.val = f.image;
         break;
       default:
         jj_la1[23] = jj_gen;
@@ -1247,28 +761,10 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);Token v, d, scol;
     try {
-          SimpleNode jjtn001 = new SimpleNode(JJTVARIABLE);
-          boolean jjtc001 = true;
-          jjtree.openNodeScope(jjtn001);
-      try {
-        v = jj_consume_token(VARIABLE);
-      } finally {
-          if (jjtc001) {
-            jjtree.closeNodeScope(jjtn001, true);
-          }
-      }
-                                    jjtn000.value = v.image;
-          SimpleNode jjtn002 = new SimpleNode(JJTDOT);
-          boolean jjtc002 = true;
-          jjtree.openNodeScope(jjtn002);
-      try {
-        d = jj_consume_token(DOT);
-      } finally {
-          if (jjtc002) {
-            jjtree.closeNodeScope(jjtn002, true);
-          }
-      }
-                          jjtn000.value = d.image;
+      v = jj_consume_token(VARIABLE);
+                          jjtn000.val = v.image;
+      d = jj_consume_token(DOT);
+                     jjtn000.val = d.image;
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case SHORTESTPATH:
         SearchShortestPath();
@@ -1284,19 +780,10 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
         jj_consume_token(-1);
         throw new ParseException();
       }
-          SimpleNode jjtn003 = new SimpleNode(JJTSCOL);
-          boolean jjtc003 = true;
-          jjtree.openNodeScope(jjtn003);
-      try {
-        scol = jj_consume_token(SCOL);
-      } finally {
-          if (jjtc003) {
-            jjtree.closeNodeScope(jjtn003, true);
-          }
-      }
-                                jjtree.closeNodeScope(jjtn000, true);
-                                jjtc000 = false;
-                               jjtn000.value = scol.image;
+      scol = jj_consume_token(SCOL);
+                          jjtree.closeNodeScope(jjtn000, true);
+                          jjtc000 = false;
+                         jjtn000.val = scol.image;
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -1327,93 +814,30 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);Token sp, opar, v1, comma, v2, cpar;
     try {
-          SimpleNode jjtn001 = new SimpleNode(JJTSHORTESTPATH);
-          boolean jjtc001 = true;
-          jjtree.openNodeScope(jjtn001);
-      try {
-        sp = jj_consume_token(SHORTESTPATH);
-      } finally {
-          if (jjtc001) {
-            jjtree.closeNodeScope(jjtn001, true);
-          }
-      }
-                                             jjtn000.value = sp.image;
-          SimpleNode jjtn002 = new SimpleNode(JJTOPAR);
-          boolean jjtc002 = true;
-          jjtree.openNodeScope(jjtn002);
-      try {
-        opar = jj_consume_token(OPAR);
-      } finally {
-          if (jjtc002) {
-            jjtree.closeNodeScope(jjtn002, true);
-          }
-      }
-                               jjtn000.value = opar.image;
-          SimpleNode jjtn003 = new SimpleNode(JJTVARIABLE);
-          boolean jjtc003 = true;
-          jjtree.openNodeScope(jjtn003);
-      try {
-        v1 = jj_consume_token(VARIABLE);
-      } finally {
-          if (jjtc003) {
-            jjtree.closeNodeScope(jjtn003, true);
-          }
-      }
-                                     jjtn000.value = v1.image;
-          SimpleNode jjtn004 = new SimpleNode(JJTCOMMA);
-          boolean jjtc004 = true;
-          jjtree.openNodeScope(jjtn004);
-      try {
-        comma = jj_consume_token(COMMA);
-      } finally {
-          if (jjtc004) {
-            jjtree.closeNodeScope(jjtn004, true);
-          }
-      }
-                                  jjtn000.value = comma.image;
-          SimpleNode jjtn005 = new SimpleNode(JJTVARIABLE);
-          boolean jjtc005 = true;
-          jjtree.openNodeScope(jjtn005);
-      try {
-        v2 = jj_consume_token(VARIABLE);
-      } finally {
-          if (jjtc005) {
-            jjtree.closeNodeScope(jjtn005, true);
-          }
-      }
-                                     jjtn000.value = v2.image;
+      sp = jj_consume_token(SHORTESTPATH);
+                               jjtn000.val = sp.image;
+      opar = jj_consume_token(OPAR);
+                         jjtn000.val = opar.image;
+      v1 = jj_consume_token(VARIABLE);
+                           jjtn000.val = v1.image;
+      comma = jj_consume_token(COMMA);
+                           jjtn000.val = comma.image;
+      v2 = jj_consume_token(VARIABLE);
+                           jjtn000.val = v2.image;
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case COMMA:
-                  SimpleNode jjtn006 = new SimpleNode(JJTCOMMA);
-                  boolean jjtc006 = true;
-                  jjtree.openNodeScope(jjtn006);
-        try {
-          comma = jj_consume_token(COMMA);
-        } finally {
-                  if (jjtc006) {
-                    jjtree.closeNodeScope(jjtn006, true);
-                  }
-        }
-                                          jjtn000.value = comma.image;
+        comma = jj_consume_token(COMMA);
+                                   jjtn000.val = comma.image;
         NodeProperties();
         break;
       default:
         jj_la1[25] = jj_gen;
         ;
       }
-          SimpleNode jjtn007 = new SimpleNode(JJTCPAR);
-          boolean jjtc007 = true;
-          jjtree.openNodeScope(jjtn007);
-      try {
-        cpar = jj_consume_token(CPAR);
-      } finally {
-          if (jjtc007) {
-            jjtree.closeNodeScope(jjtn007, true);
-          }
-      }
-                                jjtree.closeNodeScope(jjtn000, true);
-                                jjtc000 = false;
-                               jjtn000.value = cpar.image;
+      cpar = jj_consume_token(CPAR);
+                          jjtree.closeNodeScope(jjtn000, true);
+                          jjtc000 = false;
+                         jjtn000.val = cpar.image;
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -1445,83 +869,29 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
         jjtree.openNodeScope(jjtn000);Token sp, opar, v1, comma, v2, cpar;
     try {
       sp = jj_consume_token(DEPTHSEARCH);
-                              jjtn000.value = sp.image;
-          SimpleNode jjtn001 = new SimpleNode(JJTOPAR);
-          boolean jjtc001 = true;
-          jjtree.openNodeScope(jjtn001);
-      try {
-        opar = jj_consume_token(OPAR);
-      } finally {
-          if (jjtc001) {
-            jjtree.closeNodeScope(jjtn001, true);
-          }
-      }
-                               jjtn000.value = opar.image;
-          SimpleNode jjtn002 = new SimpleNode(JJTVARIABLE);
-          boolean jjtc002 = true;
-          jjtree.openNodeScope(jjtn002);
-      try {
-        v1 = jj_consume_token(VARIABLE);
-      } finally {
-          if (jjtc002) {
-            jjtree.closeNodeScope(jjtn002, true);
-          }
-      }
-                                     jjtn000.value = v1.image;
-          SimpleNode jjtn003 = new SimpleNode(JJTCOMMA);
-          boolean jjtc003 = true;
-          jjtree.openNodeScope(jjtn003);
-      try {
-        comma = jj_consume_token(COMMA);
-      } finally {
-          if (jjtc003) {
-            jjtree.closeNodeScope(jjtn003, true);
-          }
-      }
-                                  jjtn000.value = comma.image;
-          SimpleNode jjtn004 = new SimpleNode(JJTVARIABLE);
-          boolean jjtc004 = true;
-          jjtree.openNodeScope(jjtn004);
-      try {
-        v2 = jj_consume_token(VARIABLE);
-      } finally {
-          if (jjtc004) {
-            jjtree.closeNodeScope(jjtn004, true);
-          }
-      }
-                                     jjtn000.value = v2.image;
+                              jjtn000.val = sp.image;
+      opar = jj_consume_token(OPAR);
+                         jjtn000.val = opar.image;
+      v1 = jj_consume_token(VARIABLE);
+                           jjtn000.val = v1.image;
+      comma = jj_consume_token(COMMA);
+                           jjtn000.val = comma.image;
+      v2 = jj_consume_token(VARIABLE);
+                           jjtn000.val = v2.image;
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case COMMA:
-                  SimpleNode jjtn005 = new SimpleNode(JJTCOMMA);
-                  boolean jjtc005 = true;
-                  jjtree.openNodeScope(jjtn005);
-        try {
-          comma = jj_consume_token(COMMA);
-        } finally {
-                  if (jjtc005) {
-                    jjtree.closeNodeScope(jjtn005, true);
-                  }
-        }
-                                          jjtn000.value = comma.image;
+        comma = jj_consume_token(COMMA);
+                                   jjtn000.val = comma.image;
         NodeProperties();
         break;
       default:
         jj_la1[26] = jj_gen;
         ;
       }
-          SimpleNode jjtn006 = new SimpleNode(JJTCPAR);
-          boolean jjtc006 = true;
-          jjtree.openNodeScope(jjtn006);
-      try {
-        cpar = jj_consume_token(CPAR);
-      } finally {
-          if (jjtc006) {
-            jjtree.closeNodeScope(jjtn006, true);
-          }
-      }
-                                jjtree.closeNodeScope(jjtn000, true);
-                                jjtc000 = false;
-                               jjtn000.value = cpar.image;
+      cpar = jj_consume_token(CPAR);
+                          jjtree.closeNodeScope(jjtn000, true);
+                          jjtc000 = false;
+                         jjtn000.val = cpar.image;
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -1553,83 +923,29 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
         jjtree.openNodeScope(jjtn000);Token sp, opar, v1, comma, v2, cpar;
     try {
       sp = jj_consume_token(BREADTHSEARCH);
-                                jjtn000.value = sp.image;
-          SimpleNode jjtn001 = new SimpleNode(JJTOPAR);
-          boolean jjtc001 = true;
-          jjtree.openNodeScope(jjtn001);
-      try {
-        opar = jj_consume_token(OPAR);
-      } finally {
-          if (jjtc001) {
-            jjtree.closeNodeScope(jjtn001, true);
-          }
-      }
-                               jjtn000.value = opar.image;
-          SimpleNode jjtn002 = new SimpleNode(JJTVARIABLE);
-          boolean jjtc002 = true;
-          jjtree.openNodeScope(jjtn002);
-      try {
-        v1 = jj_consume_token(VARIABLE);
-      } finally {
-          if (jjtc002) {
-            jjtree.closeNodeScope(jjtn002, true);
-          }
-      }
-                                     jjtn000.value = v1.image;
-          SimpleNode jjtn003 = new SimpleNode(JJTCOMMA);
-          boolean jjtc003 = true;
-          jjtree.openNodeScope(jjtn003);
-      try {
-        comma = jj_consume_token(COMMA);
-      } finally {
-          if (jjtc003) {
-            jjtree.closeNodeScope(jjtn003, true);
-          }
-      }
-                                  jjtn000.value = comma.image;
-          SimpleNode jjtn004 = new SimpleNode(JJTVARIABLE);
-          boolean jjtc004 = true;
-          jjtree.openNodeScope(jjtn004);
-      try {
-        v2 = jj_consume_token(VARIABLE);
-      } finally {
-          if (jjtc004) {
-            jjtree.closeNodeScope(jjtn004, true);
-          }
-      }
-                                     jjtn000.value = v2.image;
+                                jjtn000.val = sp.image;
+      opar = jj_consume_token(OPAR);
+                         jjtn000.val = opar.image;
+      v1 = jj_consume_token(VARIABLE);
+                           jjtn000.val = v1.image;
+      comma = jj_consume_token(COMMA);
+                           jjtn000.val = comma.image;
+      v2 = jj_consume_token(VARIABLE);
+                           jjtn000.val = v2.image;
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case COMMA:
-                  SimpleNode jjtn005 = new SimpleNode(JJTCOMMA);
-                  boolean jjtc005 = true;
-                  jjtree.openNodeScope(jjtn005);
-        try {
-          comma = jj_consume_token(COMMA);
-        } finally {
-                  if (jjtc005) {
-                    jjtree.closeNodeScope(jjtn005, true);
-                  }
-        }
-                                          jjtn000.value = comma.image;
+        comma = jj_consume_token(COMMA);
+                                   jjtn000.val = comma.image;
         NodeProperties();
         break;
       default:
         jj_la1[27] = jj_gen;
         ;
       }
-          SimpleNode jjtn006 = new SimpleNode(JJTCPAR);
-          boolean jjtc006 = true;
-          jjtree.openNodeScope(jjtn006);
-      try {
-        cpar = jj_consume_token(CPAR);
-      } finally {
-          if (jjtc006) {
-            jjtree.closeNodeScope(jjtn006, true);
-          }
-      }
-                                jjtree.closeNodeScope(jjtn000, true);
-                                jjtc000 = false;
-                               jjtn000.value = cpar.image;
+      cpar = jj_consume_token(CPAR);
+                          jjtree.closeNodeScope(jjtn000, true);
+                          jjtc000 = false;
+                         jjtn000.val = cpar.image;
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -1660,28 +976,10 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);Token comma, osqbr, csqbr, key;
     try {
-          SimpleNode jjtn001 = new SimpleNode(JJTOSQBR);
-          boolean jjtc001 = true;
-          jjtree.openNodeScope(jjtn001);
-      try {
-        osqbr = jj_consume_token(OSQBR);
-      } finally {
-          if (jjtc001) {
-            jjtree.closeNodeScope(jjtn001, true);
-          }
-      }
-                                  jjtn000.value = osqbr.image;
-          SimpleNode jjtn002 = new SimpleNode(JJTVARIABLE);
-          boolean jjtc002 = true;
-          jjtree.openNodeScope(jjtn002);
-      try {
-        key = jj_consume_token(VARIABLE);
-      } finally {
-          if (jjtc002) {
-            jjtree.closeNodeScope(jjtn002, true);
-          }
-      }
-                                      jjtn000.value = key.image;
+      osqbr = jj_consume_token(OSQBR);
+                           jjtn000.val = osqbr.image;
+      key = jj_consume_token(VARIABLE);
+                            jjtn000.val = key.image;
       CompareValues();
       label_2:
       while (true) {
@@ -1693,43 +991,16 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
           jj_la1[28] = jj_gen;
           break label_2;
         }
-          SimpleNode jjtn003 = new SimpleNode(JJTCOMMA);
-          boolean jjtc003 = true;
-          jjtree.openNodeScope(jjtn003);
-        try {
-          comma = jj_consume_token(COMMA);
-        } finally {
-          if (jjtc003) {
-            jjtree.closeNodeScope(jjtn003, true);
-          }
-        }
-                                  jjtn000.value = comma.image;
-          SimpleNode jjtn004 = new SimpleNode(JJTVARIABLE);
-          boolean jjtc004 = true;
-          jjtree.openNodeScope(jjtn004);
-        try {
-          key = jj_consume_token(VARIABLE);
-        } finally {
-          if (jjtc004) {
-            jjtree.closeNodeScope(jjtn004, true);
-          }
-        }
-                                      jjtn000.value = key.image;
+        comma = jj_consume_token(COMMA);
+                           jjtn000.val = comma.image;
+        key = jj_consume_token(VARIABLE);
+                            jjtn000.val = key.image;
         CompareValues();
       }
-          SimpleNode jjtn005 = new SimpleNode(JJTCSQBR);
-          boolean jjtc005 = true;
-          jjtree.openNodeScope(jjtn005);
-      try {
-        csqbr = jj_consume_token(CSQBR);
-      } finally {
-          if (jjtc005) {
-            jjtree.closeNodeScope(jjtn005, true);
-          }
-      }
-                                   jjtree.closeNodeScope(jjtn000, true);
-                                   jjtc000 = false;
-                                  jjtn000.value = csqbr.image;
+      csqbr = jj_consume_token(CSQBR);
+                            jjtree.closeNodeScope(jjtn000, true);
+                            jjtc000 = false;
+                           jjtn000.val = csqbr.image;
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -1762,44 +1033,17 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case EQ:
-          SimpleNode jjtn001 = new SimpleNode(JJTEQ);
-          boolean jjtc001 = true;
-          jjtree.openNodeScope(jjtn001);
-        try {
-          // Equals to an Interval
-                  eq = jj_consume_token(EQ);
-        } finally {
-          if (jjtc001) {
-            jjtree.closeNodeScope(jjtn001, true);
-          }
-        }
-                         jjtn000.value = eq.image;
+        // Equals to an Interval
+                eq = jj_consume_token(EQ);
+                     jjtn000.val = eq.image;
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case OSQBR:
-                  SimpleNode jjtn002 = new SimpleNode(JJTOSQBR);
-                  boolean jjtc002 = true;
-                  jjtree.openNodeScope(jjtn002);
-          try {
-            os = jj_consume_token(OSQBR);
-          } finally {
-                  if (jjtc002) {
-                    jjtree.closeNodeScope(jjtn002, true);
-                  }
-          }
-                                       jjtn000.value = os.image;
+          os = jj_consume_token(OSQBR);
+                                jjtn000.val = os.image;
           break;
         case CSQBR:
-                  SimpleNode jjtn003 = new SimpleNode(JJTCSQBR);
-                  boolean jjtc003 = true;
-                  jjtree.openNodeScope(jjtn003);
-          try {
-            cs = jj_consume_token(CSQBR);
-          } finally {
-                  if (jjtc003) {
-                    jjtree.closeNodeScope(jjtn003, true);
-                  }
-          }
-                                       jjtn000.value = cs.image;
+          cs = jj_consume_token(CSQBR);
+                                jjtn000.val = cs.image;
           break;
         default:
           jj_la1[29] = jj_gen;
@@ -1808,91 +1052,37 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
         }
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case STRING:
-                  SimpleNode jjtn004 = new SimpleNode(JJTSTRING);
-                  boolean jjtc004 = true;
-                  jjtree.openNodeScope(jjtn004);
-          try {
-            s = jj_consume_token(STRING);
-          } finally {
-                  if (jjtc004) {
-                    jjtree.closeNodeScope(jjtn004, true);
-                  }
-          }
-                                        jjtn000.value = s.image;
+          s = jj_consume_token(STRING);
+                                jjtn000.val = s.image;
           break;
         case INTEGER:
-                  SimpleNode jjtn005 = new SimpleNode(JJTINTEGER);
-                  boolean jjtc005 = true;
-                  jjtree.openNodeScope(jjtn005);
-          try {
-            i = jj_consume_token(INTEGER);
-          } finally {
-                  if (jjtc005) {
-                    jjtree.closeNodeScope(jjtn005, true);
-                  }
-          }
-                                          jjtn000.value = i.image;
+          i = jj_consume_token(INTEGER);
+                                 jjtn000.val = i.image;
           break;
         case FLOAT:
-                  SimpleNode jjtn006 = new SimpleNode(JJTFLOAT);
-                  boolean jjtc006 = true;
-                  jjtree.openNodeScope(jjtn006);
-          try {
-            f = jj_consume_token(FLOAT);
-          } finally {
-                  if (jjtc006) {
-                    jjtree.closeNodeScope(jjtn006, true);
-                  }
-          }
-                                      jjtn000.value = f.image;
+          f = jj_consume_token(FLOAT);
+                               jjtn000.val = f.image;
           break;
         default:
           jj_la1[30] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
-          SimpleNode jjtn007 = new SimpleNode(JJTCOMMA);
-          boolean jjtc007 = true;
-          jjtree.openNodeScope(jjtn007);
-        try {
-          comma = jj_consume_token(COMMA);
-        } finally {
-          if (jjtc007) {
-            jjtree.closeNodeScope(jjtn007, true);
-          }
-        }
-                                  jjtn000.value = comma.image;
+        comma = jj_consume_token(COMMA);
+                           jjtn000.val = comma.image;
         Value();
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case OSQBR:
-                  SimpleNode jjtn008 = new SimpleNode(JJTOSQBR);
-                  boolean jjtc008 = true;
-                  jjtree.openNodeScope(jjtn008);
-          try {
-            os = jj_consume_token(OSQBR);
-          } finally {
-                  if (jjtc008) {
-                    jjtree.closeNodeScope(jjtn008, true);
-                  }
-          }
-                                        jjtree.closeNodeScope(jjtn000, true);
-                                        jjtc000 = false;
-                                       jjtn000.value = os.image;
+          os = jj_consume_token(OSQBR);
+                                 jjtree.closeNodeScope(jjtn000, true);
+                                 jjtc000 = false;
+                                jjtn000.val = os.image;
           break;
         case CSQBR:
-                  SimpleNode jjtn009 = new SimpleNode(JJTCSQBR);
-                  boolean jjtc009 = true;
-                  jjtree.openNodeScope(jjtn009);
-          try {
-            cs = jj_consume_token(CSQBR);
-          } finally {
-                  if (jjtc009) {
-                    jjtree.closeNodeScope(jjtn009, true);
-                  }
-          }
-                                        jjtree.closeNodeScope(jjtn000, true);
-                                        jjtc000 = false;
-                                       jjtn000.value = cs.image;
+          cs = jj_consume_token(CSQBR);
+                                 jjtree.closeNodeScope(jjtn000, true);
+                                 jjtc000 = false;
+                                jjtn000.val = cs.image;
           break;
         default:
           jj_la1[31] = jj_gen;
@@ -1901,63 +1091,27 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
         }
         break;
       case COMP:
-          SimpleNode jjtn010 = new SimpleNode(JJTCOMP);
-          boolean jjtc010 = true;
-          jjtree.openNodeScope(jjtn010);
-        try {
-          // Compares to a Value
-                  comp = jj_consume_token(COMP);
-        } finally {
-          if (jjtc010) {
-            jjtree.closeNodeScope(jjtn010, true);
-          }
-        }
-                               jjtn000.value = comp.image;
+        // Compares to a Value
+                comp = jj_consume_token(COMP);
+                         jjtn000.val = comp.image;
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case STRING:
-                  SimpleNode jjtn011 = new SimpleNode(JJTSTRING);
-                  boolean jjtc011 = true;
-                  jjtree.openNodeScope(jjtn011);
-          try {
-            s = jj_consume_token(STRING);
-          } finally {
-                  if (jjtc011) {
-                    jjtree.closeNodeScope(jjtn011, true);
-                  }
-          }
-                                         jjtree.closeNodeScope(jjtn000, true);
-                                         jjtc000 = false;
-                                        jjtn000.value = s.image;
+          s = jj_consume_token(STRING);
+                                 jjtree.closeNodeScope(jjtn000, true);
+                                 jjtc000 = false;
+                                jjtn000.val = s.image;
           break;
         case INTEGER:
-                  SimpleNode jjtn012 = new SimpleNode(JJTINTEGER);
-                  boolean jjtc012 = true;
-                  jjtree.openNodeScope(jjtn012);
-          try {
-            i = jj_consume_token(INTEGER);
-          } finally {
-                  if (jjtc012) {
-                    jjtree.closeNodeScope(jjtn012, true);
-                  }
-          }
-                                           jjtree.closeNodeScope(jjtn000, true);
-                                           jjtc000 = false;
-                                          jjtn000.value = i.image;
+          i = jj_consume_token(INTEGER);
+                                  jjtree.closeNodeScope(jjtn000, true);
+                                  jjtc000 = false;
+                                 jjtn000.val = i.image;
           break;
         case FLOAT:
-                  SimpleNode jjtn013 = new SimpleNode(JJTFLOAT);
-                  boolean jjtc013 = true;
-                  jjtree.openNodeScope(jjtn013);
-          try {
-            f = jj_consume_token(FLOAT);
-          } finally {
-                  if (jjtc013) {
-                    jjtree.closeNodeScope(jjtn013, true);
-                  }
-          }
-                                       jjtree.closeNodeScope(jjtn000, true);
-                                       jjtc000 = false;
-                                      jjtn000.value = f.image;
+          f = jj_consume_token(FLOAT);
+                                jjtree.closeNodeScope(jjtn000, true);
+                                jjtc000 = false;
+                               jjtn000.val = f.image;
           break;
         default:
           jj_la1[32] = jj_gen;
@@ -2040,40 +1194,20 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
     finally { jj_save(6, xla); }
   }
 
-  static private boolean jj_3R_23() {
-    if (jj_scan_token(COMP)) return true;
+  static private boolean jj_3R_16() {
+    if (jj_scan_token(VARIABLE)) return true;
+    if (jj_scan_token(EQ)) return true;
     return false;
   }
 
-  static private boolean jj_3R_15() {
-    if (jj_3R_21()) return true;
+  static private boolean jj_3R_9() {
+    if (jj_scan_token(OSQBR)) return true;
+    if (jj_scan_token(VARIABLE)) return true;
     return false;
   }
 
-  static private boolean jj_3R_5() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_15()) {
-    jj_scanpos = xsp;
-    if (jj_3R_16()) return true;
-    }
-    return false;
-  }
-
-  static private boolean jj_3_7() {
-    if (jj_3R_9()) return true;
-    return false;
-  }
-
-  static private boolean jj_3_4() {
-    if (jj_3R_6()) return true;
-    if (jj_scan_token(SCOL)) return true;
-    return false;
-  }
-
-  static private boolean jj_3R_11() {
-    if (jj_3R_19()) return true;
-    if (jj_scan_token(SCOL)) return true;
+  static private boolean jj_3_5() {
+    if (jj_3R_7()) return true;
     return false;
   }
 
@@ -2094,8 +1228,51 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
   }
 
   static private boolean jj_3R_10() {
-    if (jj_3R_18()) return true;
+    if (jj_scan_token(GRAPH)) return true;
+    if (jj_scan_token(VARIABLE)) return true;
     if (jj_scan_token(SCOL)) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_19() {
+    if (jj_scan_token(NODE)) return true;
+    if (jj_scan_token(OSQBR)) return true;
+    if (jj_scan_token(CSQBR)) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_22() {
+    if (jj_scan_token(COMP)) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_15() {
+    if (jj_3R_20()) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_5() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_15()) {
+    jj_scanpos = xsp;
+    if (jj_3R_16()) return true;
+    }
+    return false;
+  }
+
+  static private boolean jj_3_7() {
+    if (jj_3R_9()) return true;
+    return false;
+  }
+
+  static private boolean jj_3_3() {
+    if (jj_3R_5()) return true;
+    return false;
+  }
+
+  static private boolean jj_3_2() {
+    if (jj_3R_4()) return true;
     return false;
   }
 
@@ -2111,28 +1288,13 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
     return false;
   }
 
-  static private boolean jj_3_3() {
-    if (jj_3R_5()) return true;
+  static private boolean jj_3_1() {
+    if (jj_3R_3()) return true;
     return false;
   }
 
-  static private boolean jj_3_2() {
-    if (jj_3R_4()) return true;
-    return false;
-  }
-
-  static private boolean jj_3R_22() {
+  static private boolean jj_3R_21() {
     if (jj_scan_token(EQ)) return true;
-    return false;
-  }
-
-  static private boolean jj_3R_17() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_22()) {
-    jj_scanpos = xsp;
-    if (jj_3R_23()) return true;
-    }
     return false;
   }
 
@@ -2141,12 +1303,22 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
     return false;
   }
 
+  static private boolean jj_3R_17() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_21()) {
+    jj_scanpos = xsp;
+    if (jj_3R_22()) return true;
+    }
+    return false;
+  }
+
   static private boolean jj_3R_14() {
     if (jj_scan_token(VARIABLE)) return true;
     return false;
   }
 
-  static private boolean jj_3R_19() {
+  static private boolean jj_3R_18() {
     if (jj_scan_token(EDGE)) return true;
     if (jj_scan_token(VARIABLE)) return true;
     return false;
@@ -2163,12 +1335,7 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
     return false;
   }
 
-  static private boolean jj_3_1() {
-    if (jj_3R_3()) return true;
-    return false;
-  }
-
-  static private boolean jj_3R_21() {
+  static private boolean jj_3R_20() {
     if (jj_scan_token(NODE)) return true;
     if (jj_scan_token(OSQBR)) return true;
     return false;
@@ -2185,38 +1352,18 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
     return false;
   }
 
-  static private boolean jj_3R_18() {
-    if (jj_scan_token(GRAPH)) return true;
-    if (jj_scan_token(VARIABLE)) return true;
-    return false;
-  }
-
-  static private boolean jj_3R_16() {
-    if (jj_scan_token(VARIABLE)) return true;
-    if (jj_scan_token(EQ)) return true;
-    return false;
-  }
-
-  static private boolean jj_3R_9() {
-    if (jj_scan_token(OSQBR)) return true;
-    if (jj_scan_token(VARIABLE)) return true;
-    return false;
-  }
-
-  static private boolean jj_3_5() {
-    if (jj_3R_7()) return true;
-    return false;
-  }
-
-  static private boolean jj_3R_20() {
-    if (jj_scan_token(NODE)) return true;
-    if (jj_scan_token(OSQBR)) return true;
-    if (jj_scan_token(CSQBR)) return true;
-    return false;
-  }
-
   static private boolean jj_3R_12() {
-    if (jj_3R_20()) return true;
+    if (jj_3R_19()) return true;
+    return false;
+  }
+
+  static private boolean jj_3_4() {
+    if (jj_3R_6()) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_11() {
+    if (jj_3R_18()) return true;
     return false;
   }
 

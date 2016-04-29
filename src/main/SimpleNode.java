@@ -10,7 +10,9 @@ class SimpleNode implements Node {
   protected int id;
   protected Object value;
   protected CronusGrammar parser;
-
+  
+  public String val;
+  
   public SimpleNode(int i) {
     id = i;
   }
@@ -48,7 +50,7 @@ class SimpleNode implements Node {
     return (children == null) ? 0 : children.length;
   }
 
-  public void jjtSetValue(Object value) { this.value = value; }
+  public void jjtSetValue(Object value) { this.value = value;};
   public Object jjtGetValue() { return value; }
 
   /* You can override these two methods in subclasses of SimpleNode to
@@ -65,6 +67,10 @@ class SimpleNode implements Node {
 
   public void dump(String prefix) {
     System.out.println(toString(prefix));
+     
+    if(children == null)
+    	System.out.println("\t[" + this.val + "]");
+    
     if (children != null) {
       for (int i = 0; i < children.length; ++i) {
         SimpleNode n = (SimpleNode)children[i];

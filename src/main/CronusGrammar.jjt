@@ -26,7 +26,7 @@ PARSER_END(CronusGrammar)
 SKIP :
 {
   	" "
-| 	"\n"
+|  "\n"
 | 	"\r"
 | 	"\r\n"
 }
@@ -96,11 +96,12 @@ TOKEN : /* --- FUNCTIONS --- */
 */
 SimpleNode Start() :
 {
+  Token scol;
 }
 {
  	(
  	    LOOKAHEAD(3)
-    	Declaration()
+    	Declaration() 
 |
 		LOOKAHEAD(2)
     	NewGraph()
@@ -119,29 +120,20 @@ SimpleNode Start() :
 */
 void Declaration() #DECLARATION :
 {
-  	Token scol;
+  	Token g, v, scol;
 }
 {
-  	Graph() scol = < SCOL > #SCOL {jjtThis.value = scol.image;}
+  	(
+  	  	g = < GRAPH > {jjtThis.val = g.image;} #GRAPH
+		v = <VARIABLE > {jjtThis.val = v.image;} #VARIABLE
+		scol = < SCOL > {jjtThis.val = scol.image;} #SCOL  	)
 |
-	Edge() scol = < SCOL > #SCOL {jjtThis.value = scol.image;}
+	Edge()
 |
 	LOOKAHEAD(2)
-	Node() scol = < SCOL > #SCOL {jjtThis.value = scol.image;}
+	Node()
 |
-	ListNode() scol = < SCOL > #SCOL {jjtThis.value = scol.image;}
-}
-
-/*
-	== GRAPH DECLARATION ==
-*/
-void Graph() :
-{
-  	Token g, v;
-}
-{
-  	g = < GRAPH > #GRAPH {jjtThis.value = g.image;}
-  	v = <VARIABLE > #VARIABLE {jjtThis.value = v.image;}
+	ListNode()
 }
 
 /*
@@ -152,8 +144,8 @@ void Edge() :
   	Token e, v;
 }
 {
-  	e = < EDGE > #EDGE {jjtThis.value = e.image;}
-  	v = <VARIABLE > #VARIABLE {jjtThis.value = v.image;}
+  	e = < EDGE > {jjtThis.val = e.image;}
+  	v = <VARIABLE > {jjtThis.val = v.image;}
 }
 
 /*
@@ -164,22 +156,22 @@ void Node() :
   	Token n, v;
 }
 {
-  	n = < NODE > #NODE {jjtThis.value = n.image;}
-  	v = < VARIABLE > #VARIABLE {jjtThis.value = v.image;}
+  	n = < NODE > {jjtThis.val = n.image;}
+  	v = < VARIABLE > {jjtThis.val = v.image;}
 }
 
 /*
 	== LIST OF NODES DECLARATION ==
 */
-void ListNode() #LISTNODE :
+void ListNode() :
 {
   	Token n, osqbr, csqbr, v;
 }
 {
-  	n = < NODE > #NODE {jjtThis.value = n.image;}
-  	osqbr = < OSQBR > #OSQBR {jjtThis.value = osqbr.image;}
-  	csqbr = < CSQBR > #CSQBR {jjtThis.value = csqbr.image;}
-  	v = < VARIABLE > #VARIABLE {jjtThis.value = v.image;}
+  	n = < NODE > {jjtThis.val = n.image;}
+  	osqbr = < OSQBR > {jjtThis.val = osqbr.image;}
+  	csqbr = < CSQBR > {jjtThis.val = csqbr.image;}
+  	v = < VARIABLE > {jjtThis.val = v.image;}
 }
 
 /*
@@ -191,12 +183,12 @@ void NewGraph() #NEWGRAPH :
 }
 {
   	(	Declaration()
-  		|
-  		v = < VARIABLE > #VARIABLE {jjtThis.value = v.image;}
+  	|
+  		v = < VARIABLE > {jjtThis.val = v.image;}
   	)
-	eq = < EQ > #EQ {jjtThis.value = eq.image;}
+	eq = < EQ > {jjtThis.val = eq.image;}
 	NewGraphRight()
-  	scol = < SCOL > #SCOL {jjtThis.value = scol.image;}
+  	scol = < SCOL > {jjtThis.val = scol.image;}
 }
 
 /*
@@ -207,11 +199,11 @@ void NewGraphRight() #NEWGRAPHRIGHT :
   Token n, g, p, opar, cpar;
 }
 {
-  	n    = < NEW > #NEW {jjtThis.value = n.image;}
-  	g    = < GRAPH > #GRAPH {jjtThis.value = g.image;}
-  	opar = < OPAR > #OPAR {jjtThis.value = opar.image;}
-  	p    = < PATH > #PATH {jjtThis.value = p.image;}
-  	cpar = < CPAR > #CPAR {jjtThis.value = cpar.image;}
+  	n    = < NEW > {jjtThis.val = n.image;}
+  	g    = < GRAPH > {jjtThis.val = g.image;}
+  	opar = < OPAR > {jjtThis.val = opar.image;}
+  	p    = < PATH > {jjtThis.val = p.image;}
+  	cpar = < CPAR > {jjtThis.val = cpar.image;}
 }
 
 /*
@@ -224,15 +216,15 @@ void ListNodes() #LISTNODES :
 {
   	NodeListDec()
   	(
-    	eq = < EQ > #EQ {jjtThis.value = eq.image;}
+    	eq = < EQ > {jjtThis.val = eq.image;}
     	ListNodesRight()
   	)?
-  	scol = < SCOL > #SCOL {jjtThis.value = scol.image;}
+  	scol = < SCOL > {jjtThis.val = scol.image;}
 |
-	v = < VARIABLE > #VARIABLE {jjtThis.value = v.image;}
-  	eq = < EQ > #EQ {jjtThis.value = eq.image;}
+	v = < VARIABLE > {jjtThis.val = v.image;}
+  	eq = < EQ > {jjtThis.val = eq.image;}
   	ListNodesRight()
-  	scol = < SCOL > #SCOL {jjtThis.value = scol.image;}
+  	scol = < SCOL > {jjtThis.val = scol.image;}
 }
 
 /*
@@ -243,10 +235,10 @@ void NodeListDec() #NODELISTDECLARATION :
   Token n, obr, cbr, v;
 }
 {
-  n = < NODE > #NODE {jjtThis.value = n.image;}
-  obr = < OSQBR > #OSQBR {jjtThis.value = obr.image;}
-  cbr = < CSQBR > #CSQBR {jjtThis.value = cbr.image;}
-  v = < VARIABLE > #VARIABLE {jjtThis.value = v.image;}
+  n = < NODE > {jjtThis.val = n.image;}
+  obr = < OSQBR > {jjtThis.val = obr.image;}
+  cbr = < CSQBR > {jjtThis.val = cbr.image;}
+  v = < VARIABLE > {jjtThis.val = v.image;}
 }
 
 /*
@@ -257,12 +249,12 @@ void ListNodesRight() #LISTNODESRIGHT :
 	Token v, d, n, o, c;
 }
 {
-  	v = < VARIABLE > #VARIABLE {jjtThis.value = v.image;}
-  	d = < DOT > #DOT {jjtThis.value = d.image;}
-  	n = < NODES > #NODES {jjtThis.value = n.image;}
-  	o = < OPAR > #OBR {jjtThis.value = o.image;}
+  	v = < VARIABLE > {jjtThis.val = v.image;}
+  	d = < DOT > {jjtThis.val = d.image;}
+  	n = < NODES > {jjtThis.val = n.image;}
+  	o = < OPAR > {jjtThis.val = o.image;}
   	( AllParametersNode() )?
-  	c = < CPAR > #CBR {jjtThis.value = c.image;}
+  	c = < CPAR > {jjtThis.val = c.image;}
 }
 
 /*
@@ -276,10 +268,10 @@ void AllParametersNode() #ALLPARAMETERSNODE :
   	LOOKAHEAD(2)
 	NodeLabel()
   	(
-    	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+    	comma = < COMMA > {jjtThis.val = comma.image;}
     	NodeDegree()
 	    (
-	      comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+	      comma = < COMMA > {jjtThis.val = comma.image;}
 	      NodeProperties()
 	    )?
     )?
@@ -287,10 +279,10 @@ void AllParametersNode() #ALLPARAMETERSNODE :
 	NodeLabel()
   	(
 	    
-	    comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+	    comma = < COMMA > {jjtThis.val = comma.image;}
     	NodeProperties()
 	    (
-	      comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+	      comma = < COMMA > {jjtThis.val = comma.image;}
 	      NodeDegree()
 	    )?
     )?
@@ -298,20 +290,20 @@ void AllParametersNode() #ALLPARAMETERSNODE :
 	LOOKAHEAD(2)
 	NodeDegree()
   	(
-    	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+    	comma = < COMMA > {jjtThis.val = comma.image;}
     	NodeLabel()
 	    (
-	      comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+	      comma = < COMMA > {jjtThis.val = comma.image;}
 	      NodeProperties()
 	    )?
     )?
 |
 	NodeDegree()
   	(
-    	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+    	comma = < COMMA > {jjtThis.val = comma.image;}
     	NodeProperties()
 	    (
-	      comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+	      comma = < COMMA > {jjtThis.val = comma.image;}
 	      NodeLabel()
 	    )?
     )?
@@ -319,20 +311,20 @@ void AllParametersNode() #ALLPARAMETERSNODE :
 	LOOKAHEAD(2)
 	NodeProperties()
   	(
-    	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+    	comma = < COMMA > {jjtThis.val = comma.image;}
     	NodeLabel()
 	    (
-	      comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+	      comma = < COMMA > {jjtThis.val = comma.image;}
 	      NodeDegree()
 	    )?
     )?
 |
 	NodeProperties()
   	(
-		comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+		comma = < COMMA > {jjtThis.val = comma.image;}
     	NodeDegree()
 	    (
-	      comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+	      comma = < COMMA > {jjtThis.val = comma.image;}
 	      NodeLabel()
 	    )?
     )?
@@ -346,8 +338,8 @@ void NodeLabel() :
   Token label, eq;
 }
 {
-  label = < LABEL > #LABEL {jjtThis.value = label.image;}
-  eq = < EQ > #EQ {jjtThis.value = eq.image;}
+  label = < LABEL > {jjtThis.val = label.image;}
+  eq = < EQ > {jjtThis.val = eq.image;}
   Value()
 }
 
@@ -359,7 +351,7 @@ void NodeDegree() :
   Token degree;
 }
 {
-  degree = < DEGREE > #DEGREE {jjtThis.value = degree.image;}
+  degree = < DEGREE > {jjtThis.val = degree.image;}
   CompareValues()
 }
 
@@ -371,11 +363,11 @@ void Value() :
   Token s, i, f;
 }
 {
-  	s = < STRING > #STRING {jjtThis.value = s.image;}
-|   i = < INTEGER > #INTEGER {jjtThis.value = i.image;}
-|   f = < FLOAT > #FLOAT {jjtThis.value = f.image;}
+  	s = < STRING > {jjtThis.val = s.image;}
+|   i = < INTEGER > {jjtThis.val = i.image;}
+|   f = < FLOAT > {jjtThis.val = f.image;}
 }
-/*
+/*
 	== SEARCH ==
 */
 void SearchGraph() #SEARCHGRAPH :
@@ -383,8 +375,8 @@ void SearchGraph() #SEARCHGRAPH :
 	Token v, d, scol;
 }
 {
- 	v = < VARIABLE > #VARIABLE {jjtThis.value = v.image;}
- 	d = < DOT > #DOT {jjtThis.value = d.image;}
+ 	v = < VARIABLE > {jjtThis.val = v.image;}
+ 	d = < DOT > {jjtThis.val = d.image;}
  	(
  	   	SearchShortestPath()
  	|
@@ -392,7 +384,7 @@ void SearchGraph() #SEARCHGRAPH :
  	|
  	   	SearchBreadth()
  	)
- 	scol = < SCOL > #SCOL {jjtThis.value = scol.image;}
+ 	scol = < SCOL > {jjtThis.val = scol.image;}
 }
 
 /*
@@ -403,16 +395,16 @@ void SearchShortestPath() #SEARCHSHORTESTPATH :
   	Token sp, opar, v1, comma, v2, cpar;
 }
 {
-  	sp = < SHORTESTPATH > #SHORTESTPATH {jjtThis.value = sp.image;}
-  	opar = < OPAR > #OPAR {jjtThis.value = opar.image;}
-  	v1 = < VARIABLE > #VARIABLE {jjtThis.value = v1.image;}
-  	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
-  	v2 = < VARIABLE > #VARIABLE {jjtThis.value = v2.image;}
+  	sp = < SHORTESTPATH > {jjtThis.val = sp.image;}
+  	opar = < OPAR > {jjtThis.val = opar.image;}
+  	v1 = < VARIABLE > {jjtThis.val = v1.image;}
+  	comma = < COMMA > {jjtThis.val = comma.image;}
+  	v2 = < VARIABLE > {jjtThis.val = v2.image;}
 	(
-	  	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+	  	comma = < COMMA > {jjtThis.val = comma.image;}
 	  	NodeProperties()
 	)?
-   	cpar = < CPAR > #CPAR {jjtThis.value = cpar.image;}
+   	cpar = < CPAR > {jjtThis.val = cpar.image;}
 }
 
 /*
@@ -423,16 +415,16 @@ void SearchDepth() #DEPTHSEARCH :
   	Token sp, opar, v1, comma, v2, cpar;
 }
 {
-  	sp = < DEPTHSEARCH > {jjtThis.value = sp.image;}
-  	opar = < OPAR > #OPAR {jjtThis.value = opar.image;}
-  	v1 = < VARIABLE > #VARIABLE {jjtThis.value = v1.image;}
-  	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
-  	v2 = < VARIABLE > #VARIABLE {jjtThis.value = v2.image;}
+  	sp = < DEPTHSEARCH > {jjtThis.val = sp.image;}
+  	opar = < OPAR > {jjtThis.val = opar.image;}
+  	v1 = < VARIABLE > {jjtThis.val = v1.image;}
+  	comma = < COMMA > {jjtThis.val = comma.image;}
+  	v2 = < VARIABLE > {jjtThis.val = v2.image;}
 	(
-	  	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+	  	comma = < COMMA > {jjtThis.val = comma.image;}
 	  	NodeProperties()
 	)?
-   	cpar = < CPAR > #CPAR {jjtThis.value = cpar.image;}
+   	cpar = < CPAR > {jjtThis.val = cpar.image;}
 }
 
 /*
@@ -443,16 +435,16 @@ void SearchBreadth() #BREADTHSEARCH :
   	Token sp, opar, v1, comma, v2, cpar;
 }
 {
-  	sp = < BREADTHSEARCH > {jjtThis.value = sp.image;}
-  	opar = < OPAR > #OPAR {jjtThis.value = opar.image;}
-  	v1 = < VARIABLE > #VARIABLE {jjtThis.value = v1.image;}
-  	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
-  	v2 = < VARIABLE > #VARIABLE {jjtThis.value = v2.image;}
+  	sp = < BREADTHSEARCH > {jjtThis.val = sp.image;}
+  	opar = < OPAR > {jjtThis.val = opar.image;}
+  	v1 = < VARIABLE > {jjtThis.val = v1.image;}
+  	comma = < COMMA > {jjtThis.val = comma.image;}
+  	v2 = < VARIABLE > {jjtThis.val = v2.image;}
 	(
-		comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+		comma = < COMMA > {jjtThis.val = comma.image;}
 	  	NodeProperties()
 	)?
-  	cpar = < CPAR > #CPAR {jjtThis.value = cpar.image;}
+  	cpar = < CPAR > {jjtThis.val = cpar.image;}
 }
 
 /*
@@ -463,15 +455,15 @@ void NodeProperties() :
   	Token comma, osqbr, csqbr, key;
 }
 {
-  	osqbr = < OSQBR > #OSQBR {jjtThis.value = osqbr.image;}
-  	key = < VARIABLE > #VARIABLE {jjtThis.value = key.image;}
+  	osqbr = < OSQBR > {jjtThis.val = osqbr.image;}
+  	key = < VARIABLE > {jjtThis.val = key.image;}
   	CompareValues()
   	(
-    	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
-    	key = < VARIABLE > #VARIABLE {jjtThis.value = key.image;}
+    	comma = < COMMA > {jjtThis.val = comma.image;}
+    	key = < VARIABLE > {jjtThis.val = key.image;}
     	CompareValues()
   	)*
-  	csqbr = < CSQBR > #CSQBR {jjtThis.value = csqbr.image;}
+  	csqbr = < CSQBR > {jjtThis.val = csqbr.image;}
 }
 
 /*
@@ -483,33 +475,33 @@ void CompareValues() :
 }
 {
   	// Equals to an Interval
-  	eq = < EQ > #EQ {jjtThis.value = eq.image;}
+  	eq = < EQ > {jjtThis.val = eq.image;}
   	(
-  	  	os = < OSQBR > #OSQBR {jjtThis.value = os.image;}
+  	  	os = < OSQBR > {jjtThis.val = os.image;}
   	|
-  		cs = < CSQBR > #CSQBR {jjtThis.value = cs.image;})
+  		cs = < CSQBR > {jjtThis.val = cs.image;})
   	(
-  	  	s = < STRING > #STRING {jjtThis.value = s.image;}
+  	  	s = < STRING > {jjtThis.val = s.image;}
   	|
-  	  	i = < INTEGER > #INTEGER {jjtThis.value = i.image;}
+  	  	i = < INTEGER > {jjtThis.val = i.image;}
   	|
-  	  	f = < FLOAT > #FLOAT {jjtThis.value = f.image;}
+  	  	f = < FLOAT > {jjtThis.val = f.image;}
   	)
-  	comma = < COMMA > #COMMA {jjtThis.value = comma.image;}
+  	comma = < COMMA > {jjtThis.val = comma.image;}
   	Value()
   	(
-  	  	os = < OSQBR > #OSQBR {jjtThis.value = os.image;}
+  	  	os = < OSQBR > {jjtThis.val = os.image;}
   	|
-  		cs = < CSQBR > #CSQBR {jjtThis.value = cs.image;}
+  		cs = < CSQBR > {jjtThis.val = cs.image;}
   	)
 |
 	// Compares to a Value
-	comp = < COMP > #COMP {jjtThis.value = comp.image;}
+	comp = < COMP > {jjtThis.val = comp.image;}
 	(
-  	  	s = < STRING > #STRING {jjtThis.value = s.image;}
+  	  	s = < STRING > {jjtThis.val = s.image;}
   	|
-  	  	i = < INTEGER > #INTEGER {jjtThis.value = i.image;}
+  	  	i = < INTEGER > {jjtThis.val = i.image;}
   	|
-  	  	f = < FLOAT > #FLOAT {jjtThis.value = f.image;}
+  	  	f = < FLOAT > {jjtThis.val = f.image;}
   	)
 }

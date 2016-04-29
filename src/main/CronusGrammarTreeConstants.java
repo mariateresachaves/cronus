@@ -5,91 +5,53 @@ public interface CronusGrammarTreeConstants
 {
   public int JJTSTART = 0;
   public int JJTDECLARATION = 1;
-  public int JJTSCOL = 2;
-  public int JJTGRAPH = 3;
-  public int JJTVARIABLE = 4;
+  public int JJTGRAPH = 2;
+  public int JJTVARIABLE = 3;
+  public int JJTSCOL = 4;
   public int JJTEDGE = 5;
   public int JJTNODE = 6;
   public int JJTLISTNODE = 7;
-  public int JJTOSQBR = 8;
-  public int JJTCSQBR = 9;
-  public int JJTNEWGRAPH = 10;
-  public int JJTEQ = 11;
-  public int JJTNEWGRAPHRIGHT = 12;
-  public int JJTNEW = 13;
-  public int JJTOPAR = 14;
-  public int JJTPATH = 15;
-  public int JJTCPAR = 16;
-  public int JJTLISTNODES = 17;
-  public int JJTNODELISTDECLARATION = 18;
-  public int JJTLISTNODESRIGHT = 19;
-  public int JJTDOT = 20;
-  public int JJTNODES = 21;
-  public int JJTOBR = 22;
-  public int JJTCBR = 23;
-  public int JJTALLPARAMETERSNODE = 24;
-  public int JJTCOMMA = 25;
-  public int JJTNODELABEL = 26;
-  public int JJTLABEL = 27;
-  public int JJTNODEDEGREE = 28;
-  public int JJTDEGREE = 29;
-  public int JJTVALUE = 30;
-  public int JJTSTRING = 31;
-  public int JJTINTEGER = 32;
-  public int JJTFLOAT = 33;
-  public int JJTSEARCHGRAPH = 34;
-  public int JJTSEARCHSHORTESTPATH = 35;
-  public int JJTSHORTESTPATH = 36;
-  public int JJTDEPTHSEARCH = 37;
-  public int JJTBREADTHSEARCH = 38;
-  public int JJTNODEPROPERTIES = 39;
-  public int JJTCOMPAREVALUES = 40;
-  public int JJTCOMP = 41;
+  public int JJTNEWGRAPH = 8;
+  public int JJTNEWGRAPHRIGHT = 9;
+  public int JJTLISTNODES = 10;
+  public int JJTNODELISTDECLARATION = 11;
+  public int JJTLISTNODESRIGHT = 12;
+  public int JJTALLPARAMETERSNODE = 13;
+  public int JJTNODELABEL = 14;
+  public int JJTNODEDEGREE = 15;
+  public int JJTVALUE = 16;
+  public int JJTSEARCHGRAPH = 17;
+  public int JJTSEARCHSHORTESTPATH = 18;
+  public int JJTDEPTHSEARCH = 19;
+  public int JJTBREADTHSEARCH = 20;
+  public int JJTNODEPROPERTIES = 21;
+  public int JJTCOMPAREVALUES = 22;
 
 
   public String[] jjtNodeName = {
     "Start",
     "DECLARATION",
-    "SCOL",
-    "Graph",
+    "GRAPH",
     "VARIABLE",
+    "SCOL",
     "Edge",
     "Node",
-    "LISTNODE",
-    "OSQBR",
-    "CSQBR",
+    "ListNode",
     "NEWGRAPH",
-    "EQ",
     "NEWGRAPHRIGHT",
-    "NEW",
-    "OPAR",
-    "PATH",
-    "CPAR",
     "LISTNODES",
     "NODELISTDECLARATION",
     "LISTNODESRIGHT",
-    "DOT",
-    "NODES",
-    "OBR",
-    "CBR",
     "ALLPARAMETERSNODE",
-    "COMMA",
     "NodeLabel",
-    "LABEL",
     "NodeDegree",
-    "DEGREE",
     "Value",
-    "STRING",
-    "INTEGER",
-    "FLOAT",
     "SEARCHGRAPH",
     "SEARCHSHORTESTPATH",
-    "SHORTESTPATH",
     "DEPTHSEARCH",
     "BREADTHSEARCH",
     "NodeProperties",
     "CompareValues",
-    "COMP",
   };
 }
-/* JavaCC - OriginalChecksum=2e47650cd39745053f097932e317cc6b (do not edit this line) */
+/* JavaCC - OriginalChecksum=4be85435a35740d7a14ac1e8dc7f0ba1 (do not edit this line) */
