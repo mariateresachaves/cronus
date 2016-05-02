@@ -6,52 +6,90 @@ public interface CronusGrammarTreeConstants
   public int JJTSTART = 0;
   public int JJTDECLARATION = 1;
   public int JJTGRAPH = 2;
-  public int JJTVARIABLE = 3;
-  public int JJTSCOL = 4;
-  public int JJTEDGE = 5;
-  public int JJTNODE = 6;
-  public int JJTLISTNODE = 7;
-  public int JJTNEWGRAPH = 8;
-  public int JJTNEWGRAPHRIGHT = 9;
-  public int JJTLISTNODES = 10;
-  public int JJTNODELISTDECLARATION = 11;
-  public int JJTLISTNODESRIGHT = 12;
-  public int JJTALLPARAMETERSNODE = 13;
-  public int JJTNODELABEL = 14;
-  public int JJTNODEDEGREE = 15;
-  public int JJTVALUE = 16;
-  public int JJTSEARCHGRAPH = 17;
-  public int JJTSEARCHSHORTESTPATH = 18;
-  public int JJTDEPTHSEARCH = 19;
-  public int JJTBREADTHSEARCH = 20;
-  public int JJTNODEPROPERTIES = 21;
-  public int JJTCOMPAREVALUES = 22;
+  public int JJTEDGE = 3;
+  public int JJTNODE = 4;
+  public int JJTOPENSQUAREBRACKET = 5;
+  public int JJTCLOSESQUAREBRACKET = 6;
+  public int JJTVARIABLE = 7;
+  public int JJTSEMICOLON = 8;
+  public int JJTNEWGRAPH = 9;
+  public int JJTEQUAL = 10;
+  public int JJTNEWGRAPHRIGHT = 11;
+  public int JJTNEW = 12;
+  public int JJTOPENPARENTHESIS = 13;
+  public int JJTPATH = 14;
+  public int JJTCLOSEPARENTHESIS = 15;
+  public int JJTLISTNODES = 16;
+  public int JJTNODELISTDEC = 17;
+  public int JJTLISTNODESRIGHT = 18;
+  public int JJTDOT = 19;
+  public int JJTNODES = 20;
+  public int JJTALLPARAMETERSNODE = 21;
+  public int JJTCOMMA = 22;
+  public int JJTNODELABEL = 23;
+  public int JJTLABEL = 24;
+  public int JJTNODEDEGREE = 25;
+  public int JJTDEGREE = 26;
+  public int JJTVALUE = 27;
+  public int JJTSTRING = 28;
+  public int JJTINTEGER = 29;
+  public int JJTFLOAT = 30;
+  public int JJTSEARCHGRAPH = 31;
+  public int JJTSEARCHTYPE = 32;
+  public int JJTSHORTESTPATH = 33;
+  public int JJTDEPTHSEARCH = 34;
+  public int JJTBREADTHSEARCH = 35;
+  public int JJTMOREOPTIONS = 36;
+  public int JJTNODEPROPERTIES = 37;
+  public int JJTCOMPAREVALUES = 38;
+  public int JJTCOMPARES = 39;
+  public int JJTINTERVALBRACKET = 40;
+  public int JJTDATATOCOMPARE = 41;
 
 
   public String[] jjtNodeName = {
     "Start",
-    "DECLARATION",
-    "GRAPH",
-    "VARIABLE",
-    "SCOL",
+    "Declaration",
+    "Graph",
     "Edge",
     "Node",
-    "ListNode",
-    "NEWGRAPH",
-    "NEWGRAPHRIGHT",
-    "LISTNODES",
-    "NODELISTDECLARATION",
-    "LISTNODESRIGHT",
-    "ALLPARAMETERSNODE",
+    "OpenSquareBracket",
+    "CloseSquareBracket",
+    "Variable",
+    "Semicolon",
+    "NewGraph",
+    "Equal",
+    "NewGraphRight",
+    "New",
+    "OpenParenthesis",
+    "Path",
+    "CloseParenthesis",
+    "ListNodes",
+    "NodeListDec",
+    "ListNodesRight",
+    "Dot",
+    "Nodes",
+    "AllParametersNode",
+    "Comma",
     "NodeLabel",
+    "Label",
     "NodeDegree",
+    "Degree",
     "Value",
-    "SEARCHGRAPH",
-    "SEARCHSHORTESTPATH",
-    "DEPTHSEARCH",
-    "BREADTHSEARCH",
+    "String",
+    "Integer",
+    "Float",
+    "SearchGraph",
+    "SearchType",
+    "ShortestPath",
+    "DepthSearch",
+    "BreadthSearch",
+    "MoreOptions",
     "NodeProperties",
     "CompareValues",
+    "Compares",
+    "IntervalBracket",
+    "DataToCompare",
   };
 }
-/* JavaCC - OriginalChecksum=4be85435a35740d7a14ac1e8dc7f0ba1 (do not edit this line) */
+/* JavaCC - OriginalChecksum=55cba5413bc89e27fc5167e12b0cc03e (do not edit this line) */
