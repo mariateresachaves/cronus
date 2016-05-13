@@ -4,12 +4,16 @@
  */
 options
 {
+  	             
 	STATIC = true;
 	LOOKAHEAD = 1;
 }
 
 PARSER_BEGIN(CronusGrammar)
 package main;
+
+import java.util.Map;
+import java.util.HashMap;
 
 public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants/*@egen*/
 {/*@bgen(jjtree)*/
@@ -19,9 +23,31 @@ public class CronusGrammar/*@bgen(jjtree)*/implements CronusGrammarTreeConstants
 	public static void main(String args []) throws ParseException, TokenMgrError
 	{
 		CronusGrammar parser = new CronusGrammar(System.in);
-		SimpleNode root = parser.Start();
-		root.dump("");
+		
+		try {
+		    parser.Start();
+		    System.out.println("Succesful parse");
+		    
+		    ASTStart root = (ASTStart)parser.jjtree.rootNode();
+		    // root.dump(args[0]); // print the structure of the AST
+		    
+		    Map<String,Integer> store = new HashMap<String,Integer>();
+		    store = root.execStart(store); // execute the interpreter
+		    // root.printStore("Final store" , store);
+
+			//System.out.println("AST:");
+		    //root.dump("");
+		}
+		catch (ParseException e) {
+			    System.out.println("Parse error: " + e);
+			    return;
+		}
+		catch (TokenMgrError e) {
+			    System.out.println("Token error: " + e);
+			    return;
+		}
 	}
+
 }
 
 PARSER_END(CronusGrammar)
@@ -99,7 +125,7 @@ TOKEN : /* --- FUNCTIONS --- */
 */
 SimpleNode Start() :
 {/*@bgen(jjtree) Start */
-        SimpleNode jjtn000 = new SimpleNode(JJTSTART);
+        ASTStart jjtn000 = new ASTStart(JJTSTART);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
 /*@egen*/
@@ -154,7 +180,7 @@ SimpleNode Start() :
 */
 void Declaration() :
 {/*@bgen(jjtree) Declaration */
-        SimpleNode jjtn000 = new SimpleNode(JJTDECLARATION);
+        ASTDeclaration jjtn000 = new ASTDeclaration(JJTDECLARATION);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
 /*@egen*/
@@ -166,7 +192,7 @@ void Declaration() :
   	(
   	  	g = < GRAPH >/*@bgen(jjtree) Graph */
                               {
-                                SimpleNode jjtn001 = new SimpleNode(JJTGRAPH);
+                                ASTGraph jjtn001 = new ASTGraph(JJTGRAPH);
                                 boolean jjtc001 = true;
                                 jjtree.openNodeScope(jjtn001);
                               }
@@ -186,7 +212,7 @@ void Declaration() :
 	|
 	  	e = < EDGE >/*@bgen(jjtree) Edge */
                              {
-                               SimpleNode jjtn002 = new SimpleNode(JJTEDGE);
+                               ASTEdge jjtn002 = new ASTEdge(JJTEDGE);
                                boolean jjtc002 = true;
                                jjtree.openNodeScope(jjtn002);
                              }
@@ -206,7 +232,7 @@ void Declaration() :
 	|
 		LOOKAHEAD(2)	  	n = < NODE >/*@bgen(jjtree) Node */
                              {
-                               SimpleNode jjtn003 = new SimpleNode(JJTNODE);
+                               ASTNode jjtn003 = new ASTNode(JJTNODE);
                                boolean jjtc003 = true;
                                jjtree.openNodeScope(jjtn003);
                              }
@@ -226,7 +252,7 @@ void Declaration() :
 	|
 		n     = < NODE >/*@bgen(jjtree) Node */
                                  {
-                                   SimpleNode jjtn004 = new SimpleNode(JJTNODE);
+                                   ASTNode jjtn004 = new ASTNode(JJTNODE);
                                    boolean jjtc004 = true;
                                    jjtree.openNodeScope(jjtn004);
                                  }
@@ -245,7 +271,7 @@ void Declaration() :
 /*@egen*/ 		     
 		osqbr = < OSQBR >/*@bgen(jjtree) OpenSquareBracket */
                                   {
-                                    SimpleNode jjtn005 = new SimpleNode(JJTOPENSQUAREBRACKET);
+                                    ASTOpenSquareBracket jjtn005 = new ASTOpenSquareBracket(JJTOPENSQUAREBRACKET);
                                     boolean jjtc005 = true;
                                     jjtree.openNodeScope(jjtn005);
                                   }
@@ -264,7 +290,7 @@ void Declaration() :
 /*@egen*/ 	                  
 		csqbr = < CSQBR >/*@bgen(jjtree) CloseSquareBracket */
                                   {
-                                    SimpleNode jjtn006 = new SimpleNode(JJTCLOSESQUAREBRACKET);
+                                    ASTCloseSquareBracket jjtn006 = new ASTCloseSquareBracket(JJTCLOSESQUAREBRACKET);
                                     boolean jjtc006 = true;
                                     jjtree.openNodeScope(jjtn006);
                                   }
@@ -283,7 +309,7 @@ void Declaration() :
 /*@egen*/ 	                   	)
 	v    = < VARIABLE >/*@bgen(jjtree) Variable */
                             {
-                              SimpleNode jjtn007 = new SimpleNode(JJTVARIABLE);
+                              ASTVariable jjtn007 = new ASTVariable(JJTVARIABLE);
                               boolean jjtc007 = true;
                               jjtree.openNodeScope(jjtn007);
                             }
@@ -302,7 +328,7 @@ void Declaration() :
 /*@egen*/ 		         
   	scol = < SCOL >/*@bgen(jjtree) Semicolon */
                         {
-                          SimpleNode jjtn008 = new SimpleNode(JJTSEMICOLON);
+                          ASTSemicolon jjtn008 = new ASTSemicolon(JJTSEMICOLON);
                           boolean jjtc008 = true;
                           jjtree.openNodeScope(jjtn008);
                         }
@@ -332,7 +358,7 @@ void Declaration() :
 */
 void NewGraph() :
 {/*@bgen(jjtree) NewGraph */
-        SimpleNode jjtn000 = new SimpleNode(JJTNEWGRAPH);
+        ASTNewGraph jjtn000 = new ASTNewGraph(JJTNEWGRAPH);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
 /*@egen*/
@@ -345,7 +371,7 @@ void NewGraph() :
 		(
 	  	  	g = < GRAPH >/*@bgen(jjtree) Graph */
                                       {
-                                        SimpleNode jjtn001 = new SimpleNode(JJTGRAPH);
+                                        ASTGraph jjtn001 = new ASTGraph(JJTGRAPH);
                                         boolean jjtc001 = true;
                                         jjtree.openNodeScope(jjtn001);
                                       }
@@ -365,7 +391,7 @@ void NewGraph() :
 		|
 		  	e = < EDGE >/*@bgen(jjtree) Edge */
                                      {
-                                       SimpleNode jjtn002 = new SimpleNode(JJTEDGE);
+                                       ASTEdge jjtn002 = new ASTEdge(JJTEDGE);
                                        boolean jjtc002 = true;
                                        jjtree.openNodeScope(jjtn002);
                                      }
@@ -386,7 +412,7 @@ void NewGraph() :
 			LOOKAHEAD(2)
 		  	n = < NODE >/*@bgen(jjtree) Node */
                                      {
-                                       SimpleNode jjtn003 = new SimpleNode(JJTNODE);
+                                       ASTNode jjtn003 = new ASTNode(JJTNODE);
                                        boolean jjtc003 = true;
                                        jjtree.openNodeScope(jjtn003);
                                      }
@@ -406,7 +432,7 @@ void NewGraph() :
 		|
 			n 	  = < NODE >/*@bgen(jjtree) Node */
                                              {
-                                               SimpleNode jjtn004 = new SimpleNode(JJTNODE);
+                                               ASTNode jjtn004 = new ASTNode(JJTNODE);
                                                boolean jjtc004 = true;
                                                jjtree.openNodeScope(jjtn004);
                                              }
@@ -425,7 +451,7 @@ void NewGraph() :
 /*@egen*/ 		     
 			osqbr = < OSQBR >/*@bgen(jjtree) OpenSquareBracket */
                                           {
-                                            SimpleNode jjtn005 = new SimpleNode(JJTOPENSQUAREBRACKET);
+                                            ASTOpenSquareBracket jjtn005 = new ASTOpenSquareBracket(JJTOPENSQUAREBRACKET);
                                             boolean jjtc005 = true;
                                             jjtree.openNodeScope(jjtn005);
                                           }
@@ -444,7 +470,7 @@ void NewGraph() :
 /*@egen*/ 	                  
 			csqbr = < CSQBR >/*@bgen(jjtree) CloseSquareBracket */
                                           {
-                                            SimpleNode jjtn006 = new SimpleNode(JJTCLOSESQUAREBRACKET);
+                                            ASTCloseSquareBracket jjtn006 = new ASTCloseSquareBracket(JJTCLOSESQUAREBRACKET);
                                             boolean jjtc006 = true;
                                             jjtree.openNodeScope(jjtn006);
                                           }
@@ -464,7 +490,7 @@ void NewGraph() :
 		)?
 		v = < VARIABLE >/*@bgen(jjtree) Variable */
                                  {
-                                   SimpleNode jjtn007 = new SimpleNode(JJTVARIABLE);
+                                   ASTVariable jjtn007 = new ASTVariable(JJTVARIABLE);
                                    boolean jjtc007 = true;
                                    jjtree.openNodeScope(jjtn007);
                                  }
@@ -484,7 +510,7 @@ void NewGraph() :
   	)
 	eq   = < EQ >/*@bgen(jjtree) Equal */
                       {
-                        SimpleNode jjtn008 = new SimpleNode(JJTEQUAL);
+                        ASTEqual jjtn008 = new ASTEqual(JJTEQUAL);
                         boolean jjtc008 = true;
                         jjtree.openNodeScope(jjtn008);
                       }
@@ -504,7 +530,7 @@ void NewGraph() :
 	NewGraphRight()
   	scol = < SCOL >/*@bgen(jjtree) Semicolon */
                         {
-                          SimpleNode jjtn009 = new SimpleNode(JJTSEMICOLON);
+                          ASTSemicolon jjtn009 = new ASTSemicolon(JJTSEMICOLON);
                           boolean jjtc009 = true;
                           jjtree.openNodeScope(jjtn009);
                         }
@@ -548,7 +574,7 @@ void NewGraph() :
 */
 void NewGraphRight() :
 {/*@bgen(jjtree) NewGraphRight */
-        SimpleNode jjtn000 = new SimpleNode(JJTNEWGRAPHRIGHT);
+        ASTNewGraphRight jjtn000 = new ASTNewGraphRight(JJTNEWGRAPHRIGHT);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
 /*@egen*/
@@ -559,7 +585,7 @@ void NewGraphRight() :
 /*@egen*/
   	n    = < NEW >/*@bgen(jjtree) New */
                        {
-                         SimpleNode jjtn001 = new SimpleNode(JJTNEW);
+                         ASTNew jjtn001 = new ASTNew(JJTNEW);
                          boolean jjtc001 = true;
                          jjtree.openNodeScope(jjtn001);
                        }
@@ -578,7 +604,7 @@ void NewGraphRight() :
 /*@egen*/ 	    
   	g    = < GRAPH >/*@bgen(jjtree) Graph */
                          {
-                           SimpleNode jjtn002 = new SimpleNode(JJTGRAPH);
+                           ASTGraph jjtn002 = new ASTGraph(JJTGRAPH);
                            boolean jjtc002 = true;
                            jjtree.openNodeScope(jjtn002);
                          }
@@ -597,7 +623,7 @@ void NewGraphRight() :
 /*@egen*/	      
   	opar = < OPAR >/*@bgen(jjtree) OpenParenthesis */
                         {
-                          SimpleNode jjtn003 = new SimpleNode(JJTOPENPARENTHESIS);
+                          ASTOpenParenthesis jjtn003 = new ASTOpenParenthesis(JJTOPENPARENTHESIS);
                           boolean jjtc003 = true;
                           jjtree.openNodeScope(jjtn003);
                         }
@@ -616,7 +642,7 @@ void NewGraphRight() :
 /*@egen*/                 
   	p    = < PATH >/*@bgen(jjtree) Path */
                         {
-                          SimpleNode jjtn004 = new SimpleNode(JJTPATH);
+                          ASTPath jjtn004 = new ASTPath(JJTPATH);
                           boolean jjtc004 = true;
                           jjtree.openNodeScope(jjtn004);
                         }
@@ -635,7 +661,7 @@ void NewGraphRight() :
 /*@egen*/ 	     
   	cpar = < CPAR >/*@bgen(jjtree) CloseParenthesis */
                         {
-                          SimpleNode jjtn005 = new SimpleNode(JJTCLOSEPARENTHESIS);
+                          ASTCloseParenthesis jjtn005 = new ASTCloseParenthesis(JJTCLOSEPARENTHESIS);
                           boolean jjtc005 = true;
                           jjtree.openNodeScope(jjtn005);
                         }
@@ -665,7 +691,7 @@ void NewGraphRight() :
 */
 void ListNodes() :
 {/*@bgen(jjtree) ListNodes */
-        SimpleNode jjtn000 = new SimpleNode(JJTLISTNODES);
+        ASTListNodes jjtn000 = new ASTListNodes(JJTLISTNODES);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
 /*@egen*/
@@ -678,7 +704,7 @@ void ListNodes() :
   	(
     	eq = < EQ >/*@bgen(jjtree) Equal */
                     {
-                      SimpleNode jjtn001 = new SimpleNode(JJTEQUAL);
+                      ASTEqual jjtn001 = new ASTEqual(JJTEQUAL);
                       boolean jjtc001 = true;
                       jjtree.openNodeScope(jjtn001);
                     }
@@ -699,7 +725,7 @@ void ListNodes() :
   	)?
   	scol = < SCOL >/*@bgen(jjtree) Semicolon */
                         {
-                          SimpleNode jjtn002 = new SimpleNode(JJTSEMICOLON);
+                          ASTSemicolon jjtn002 = new ASTSemicolon(JJTSEMICOLON);
                           boolean jjtc002 = true;
                           jjtree.openNodeScope(jjtn002);
                         }
@@ -719,7 +745,7 @@ void ListNodes() :
 |
 	v = < VARIABLE >/*@bgen(jjtree) Variable */
                          {
-                           SimpleNode jjtn003 = new SimpleNode(JJTVARIABLE);
+                           ASTVariable jjtn003 = new ASTVariable(JJTVARIABLE);
                            boolean jjtc003 = true;
                            jjtree.openNodeScope(jjtn003);
                          }
@@ -738,7 +764,7 @@ void ListNodes() :
 /*@egen*/ 	         
   	eq = < EQ >/*@bgen(jjtree) Equal */
                     {
-                      SimpleNode jjtn004 = new SimpleNode(JJTEQUAL);
+                      ASTEqual jjtn004 = new ASTEqual(JJTEQUAL);
                       boolean jjtc004 = true;
                       jjtree.openNodeScope(jjtn004);
                     }
@@ -758,7 +784,7 @@ void ListNodes() :
   	ListNodesRight()
   	scol = < SCOL >/*@bgen(jjtree) Semicolon */
                         {
-                          SimpleNode jjtn005 = new SimpleNode(JJTSEMICOLON);
+                          ASTSemicolon jjtn005 = new ASTSemicolon(JJTSEMICOLON);
                           boolean jjtc005 = true;
                           jjtree.openNodeScope(jjtn005);
                         }
@@ -802,7 +828,7 @@ void ListNodes() :
 */
 void NodeListDec() :
 {/*@bgen(jjtree) NodeListDec */
-        SimpleNode jjtn000 = new SimpleNode(JJTNODELISTDEC);
+        ASTNodeListDec jjtn000 = new ASTNodeListDec(JJTNODELISTDEC);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
 /*@egen*/
@@ -813,7 +839,7 @@ void NodeListDec() :
 /*@egen*/
   	n = < NODE >/*@bgen(jjtree) Node */
                      {
-                       SimpleNode jjtn001 = new SimpleNode(JJTNODE);
+                       ASTNode jjtn001 = new ASTNode(JJTNODE);
                        boolean jjtc001 = true;
                        jjtree.openNodeScope(jjtn001);
                      }
@@ -832,7 +858,7 @@ void NodeListDec() :
 /*@egen*/ 		     
   	obr = < OSQBR >/*@bgen(jjtree) OpenSquareBracket */
                         {
-                          SimpleNode jjtn002 = new SimpleNode(JJTOPENSQUAREBRACKET);
+                          ASTOpenSquareBracket jjtn002 = new ASTOpenSquareBracket(JJTOPENSQUAREBRACKET);
                           boolean jjtc002 = true;
                           jjtree.openNodeScope(jjtn002);
                         }
@@ -851,7 +877,7 @@ void NodeListDec() :
 /*@egen*/ 	                  
   	cbr = < CSQBR >/*@bgen(jjtree) CloseSquareBracket */
                         {
-                          SimpleNode jjtn003 = new SimpleNode(JJTCLOSESQUAREBRACKET);
+                          ASTCloseSquareBracket jjtn003 = new ASTCloseSquareBracket(JJTCLOSESQUAREBRACKET);
                           boolean jjtc003 = true;
                           jjtree.openNodeScope(jjtn003);
                         }
@@ -870,7 +896,7 @@ void NodeListDec() :
 /*@egen*/ 	                   
   	v = < VARIABLE >/*@bgen(jjtree) Variable */
                          {
-                           SimpleNode jjtn004 = new SimpleNode(JJTVARIABLE);
+                           ASTVariable jjtn004 = new ASTVariable(JJTVARIABLE);
                            boolean jjtc004 = true;
                            jjtree.openNodeScope(jjtn004);
                          }
@@ -900,7 +926,7 @@ void NodeListDec() :
 */
 void ListNodesRight() :
 {/*@bgen(jjtree) ListNodesRight */
-        SimpleNode jjtn000 = new SimpleNode(JJTLISTNODESRIGHT);
+        ASTListNodesRight jjtn000 = new ASTListNodesRight(JJTLISTNODESRIGHT);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
 /*@egen*/
@@ -911,7 +937,7 @@ void ListNodesRight() :
 /*@egen*/
   	v = < VARIABLE >/*@bgen(jjtree) Variable */
                          {
-                           SimpleNode jjtn001 = new SimpleNode(JJTVARIABLE);
+                           ASTVariable jjtn001 = new ASTVariable(JJTVARIABLE);
                            boolean jjtc001 = true;
                            jjtree.openNodeScope(jjtn001);
                          }
@@ -930,7 +956,7 @@ void ListNodesRight() :
 /*@egen*/ 	         
   	d = < DOT >/*@bgen(jjtree) Dot */
                     {
-                      SimpleNode jjtn002 = new SimpleNode(JJTDOT);
+                      ASTDot jjtn002 = new ASTDot(JJTDOT);
                       boolean jjtc002 = true;
                       jjtree.openNodeScope(jjtn002);
                     }
@@ -949,7 +975,7 @@ void ListNodesRight() :
 /*@egen*/		    
   	n = < NODES >/*@bgen(jjtree) Nodes */
                       {
-                        SimpleNode jjtn003 = new SimpleNode(JJTNODES);
+                        ASTNodes jjtn003 = new ASTNodes(JJTNODES);
                         boolean jjtc003 = true;
                         jjtree.openNodeScope(jjtn003);
                       }
@@ -968,7 +994,7 @@ void ListNodesRight() :
 /*@egen*/		      
   	o = < OPAR >/*@bgen(jjtree) OpenParenthesis */
                      {
-                       SimpleNode jjtn004 = new SimpleNode(JJTOPENPARENTHESIS);
+                       ASTOpenParenthesis jjtn004 = new ASTOpenParenthesis(JJTOPENPARENTHESIS);
                        boolean jjtc004 = true;
                        jjtree.openNodeScope(jjtn004);
                      }
@@ -988,7 +1014,7 @@ void ListNodesRight() :
   	AllParametersNode()
   	c = < CPAR >/*@bgen(jjtree) CloseParenthesis */
                      {
-                       SimpleNode jjtn005 = new SimpleNode(JJTCLOSEPARENTHESIS);
+                       ASTCloseParenthesis jjtn005 = new ASTCloseParenthesis(JJTCLOSEPARENTHESIS);
                        boolean jjtc005 = true;
                        jjtree.openNodeScope(jjtn005);
                      }
@@ -1032,7 +1058,7 @@ void ListNodesRight() :
 */
 void AllParametersNode() :
 {/*@bgen(jjtree) AllParametersNode */
-        SimpleNode jjtn000 = new SimpleNode(JJTALLPARAMETERSNODE);
+        ASTAllParametersNode jjtn000 = new ASTAllParametersNode(JJTALLPARAMETERSNODE);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
 /*@egen*/
@@ -1046,7 +1072,7 @@ void AllParametersNode() :
 	  	(
 	    	comma = < COMMA >/*@bgen(jjtree) Comma */
                                   {
-                                    SimpleNode jjtn001 = new SimpleNode(JJTCOMMA);
+                                    ASTComma jjtn001 = new ASTComma(JJTCOMMA);
                                     boolean jjtc001 = true;
                                     jjtree.openNodeScope(jjtn001);
                                   }
@@ -1067,7 +1093,7 @@ void AllParametersNode() :
 		    (
 		      comma = < COMMA >/*@bgen(jjtree) Comma */
                                         {
-                                          SimpleNode jjtn002 = new SimpleNode(JJTCOMMA);
+                                          ASTComma jjtn002 = new ASTComma(JJTCOMMA);
                                           boolean jjtc002 = true;
                                           jjtree.openNodeScope(jjtn002);
                                         }
@@ -1093,7 +1119,7 @@ void AllParametersNode() :
 		    
 		    comma = < COMMA >/*@bgen(jjtree) Comma */
                                       {
-                                        SimpleNode jjtn003 = new SimpleNode(JJTCOMMA);
+                                        ASTComma jjtn003 = new ASTComma(JJTCOMMA);
                                         boolean jjtc003 = true;
                                         jjtree.openNodeScope(jjtn003);
                                       }
@@ -1114,7 +1140,7 @@ void AllParametersNode() :
 		    (
 		      comma = < COMMA >/*@bgen(jjtree) Comma */
                                         {
-                                          SimpleNode jjtn004 = new SimpleNode(JJTCOMMA);
+                                          ASTComma jjtn004 = new ASTComma(JJTCOMMA);
                                           boolean jjtc004 = true;
                                           jjtree.openNodeScope(jjtn004);
                                         }
@@ -1140,7 +1166,7 @@ void AllParametersNode() :
 	  	(
 	    	comma = < COMMA >/*@bgen(jjtree) Comma */
                                   {
-                                    SimpleNode jjtn005 = new SimpleNode(JJTCOMMA);
+                                    ASTComma jjtn005 = new ASTComma(JJTCOMMA);
                                     boolean jjtc005 = true;
                                     jjtree.openNodeScope(jjtn005);
                                   }
@@ -1161,7 +1187,7 @@ void AllParametersNode() :
 		    (
 		      comma = < COMMA >/*@bgen(jjtree) Comma */
                                         {
-                                          SimpleNode jjtn006 = new SimpleNode(JJTCOMMA);
+                                          ASTComma jjtn006 = new ASTComma(JJTCOMMA);
                                           boolean jjtc006 = true;
                                           jjtree.openNodeScope(jjtn006);
                                         }
@@ -1186,7 +1212,7 @@ void AllParametersNode() :
 	  	(
 	    	comma = < COMMA >/*@bgen(jjtree) Comma */
                                   {
-                                    SimpleNode jjtn007 = new SimpleNode(JJTCOMMA);
+                                    ASTComma jjtn007 = new ASTComma(JJTCOMMA);
                                     boolean jjtc007 = true;
                                     jjtree.openNodeScope(jjtn007);
                                   }
@@ -1207,7 +1233,7 @@ void AllParametersNode() :
 		    (
 		      comma = < COMMA >/*@bgen(jjtree) Comma */
                                         {
-                                          SimpleNode jjtn008 = new SimpleNode(JJTCOMMA);
+                                          ASTComma jjtn008 = new ASTComma(JJTCOMMA);
                                           boolean jjtc008 = true;
                                           jjtree.openNodeScope(jjtn008);
                                         }
@@ -1233,7 +1259,7 @@ void AllParametersNode() :
 	  	(
 	    	comma = < COMMA >/*@bgen(jjtree) Comma */
                                   {
-                                    SimpleNode jjtn009 = new SimpleNode(JJTCOMMA);
+                                    ASTComma jjtn009 = new ASTComma(JJTCOMMA);
                                     boolean jjtc009 = true;
                                     jjtree.openNodeScope(jjtn009);
                                   }
@@ -1254,7 +1280,7 @@ void AllParametersNode() :
 		    (
 		      comma = < COMMA >/*@bgen(jjtree) Comma */
                                         {
-                                          SimpleNode jjtn010 = new SimpleNode(JJTCOMMA);
+                                          ASTComma jjtn010 = new ASTComma(JJTCOMMA);
                                           boolean jjtc010 = true;
                                           jjtree.openNodeScope(jjtn010);
                                         }
@@ -1279,7 +1305,7 @@ void AllParametersNode() :
 	  	(
 			comma = < COMMA >/*@bgen(jjtree) Comma */
                                           {
-                                            SimpleNode jjtn011 = new SimpleNode(JJTCOMMA);
+                                            ASTComma jjtn011 = new ASTComma(JJTCOMMA);
                                             boolean jjtc011 = true;
                                             jjtree.openNodeScope(jjtn011);
                                           }
@@ -1300,7 +1326,7 @@ void AllParametersNode() :
 		    (
 		      comma = < COMMA >/*@bgen(jjtree) Comma */
                                         {
-                                          SimpleNode jjtn012 = new SimpleNode(JJTCOMMA);
+                                          ASTComma jjtn012 = new ASTComma(JJTCOMMA);
                                           boolean jjtc012 = true;
                                           jjtree.openNodeScope(jjtn012);
                                         }
@@ -1348,7 +1374,7 @@ void AllParametersNode() :
 */
 void NodeLabel() :
 {/*@bgen(jjtree) NodeLabel */
-        SimpleNode jjtn000 = new SimpleNode(JJTNODELABEL);
+        ASTNodeLabel jjtn000 = new ASTNodeLabel(JJTNODELABEL);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
 /*@egen*/
@@ -1359,7 +1385,7 @@ void NodeLabel() :
 /*@egen*/
   	label = < LABEL >/*@bgen(jjtree) Label */
                           {
-                            SimpleNode jjtn001 = new SimpleNode(JJTLABEL);
+                            ASTLabel jjtn001 = new ASTLabel(JJTLABEL);
                             boolean jjtc001 = true;
                             jjtree.openNodeScope(jjtn001);
                           }
@@ -1378,7 +1404,7 @@ void NodeLabel() :
 /*@egen*/	      
  	eq = < EQ >/*@bgen(jjtree) Equal */
                     {
-                      SimpleNode jjtn002 = new SimpleNode(JJTEQUAL);
+                      ASTEqual jjtn002 = new ASTEqual(JJTEQUAL);
                       boolean jjtc002 = true;
                       jjtree.openNodeScope(jjtn002);
                     }
@@ -1423,7 +1449,7 @@ void NodeLabel() :
 */
 void NodeDegree() :
 {/*@bgen(jjtree) NodeDegree */
-        SimpleNode jjtn000 = new SimpleNode(JJTNODEDEGREE);
+        ASTNodeDegree jjtn000 = new ASTNodeDegree(JJTNODEDEGREE);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
 /*@egen*/
@@ -1434,7 +1460,7 @@ void NodeDegree() :
 /*@egen*/
   	degree = < DEGREE >/*@bgen(jjtree) Degree */
                             {
-                              SimpleNode jjtn001 = new SimpleNode(JJTDEGREE);
+                              ASTDegree jjtn001 = new ASTDegree(JJTDEGREE);
                               boolean jjtc001 = true;
                               jjtree.openNodeScope(jjtn001);
                             }
@@ -1479,7 +1505,7 @@ void NodeDegree() :
 */
 void Value() :
 {/*@bgen(jjtree) Value */
-        SimpleNode jjtn000 = new SimpleNode(JJTVALUE);
+        ASTValue jjtn000 = new ASTValue(JJTVALUE);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
 /*@egen*/
@@ -1490,7 +1516,7 @@ void Value() :
 /*@egen*/
   	s = < STRING >/*@bgen(jjtree) String */
                        {
-                         SimpleNode jjtn001 = new SimpleNode(JJTSTRING);
+                         ASTString jjtn001 = new ASTString(JJTSTRING);
                          boolean jjtc001 = true;
                          jjtree.openNodeScope(jjtn001);
                        }
@@ -1509,7 +1535,7 @@ void Value() :
 /*@egen*/		       
 |   i = < INTEGER >/*@bgen(jjtree) Integer */
                     {
-                      SimpleNode jjtn002 = new SimpleNode(JJTINTEGER);
+                      ASTInteger jjtn002 = new ASTInteger(JJTINTEGER);
                       boolean jjtc002 = true;
                       jjtree.openNodeScope(jjtn002);
                     }
@@ -1528,7 +1554,7 @@ void Value() :
 /*@egen*/	        
 |   f = < FLOAT >/*@bgen(jjtree) Float */
                   {
-                    SimpleNode jjtn003 = new SimpleNode(JJTFLOAT);
+                    ASTFloat jjtn003 = new ASTFloat(JJTFLOAT);
                     boolean jjtc003 = true;
                     jjtree.openNodeScope(jjtn003);
                   }
@@ -1558,7 +1584,7 @@ void Value() :
 */
 void SearchGraph() :
 {/*@bgen(jjtree) SearchGraph */
-        SimpleNode jjtn000 = new SimpleNode(JJTSEARCHGRAPH);
+        ASTSearchGraph jjtn000 = new ASTSearchGraph(JJTSEARCHGRAPH);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
 /*@egen*/
@@ -1569,7 +1595,7 @@ void SearchGraph() :
 /*@egen*/
  	v = < VARIABLE >/*@bgen(jjtree) Variable */
                          {
-                           SimpleNode jjtn001 = new SimpleNode(JJTVARIABLE);
+                           ASTVariable jjtn001 = new ASTVariable(JJTVARIABLE);
                            boolean jjtc001 = true;
                            jjtree.openNodeScope(jjtn001);
                          }
@@ -1588,7 +1614,7 @@ void SearchGraph() :
 /*@egen*/				         
  	d = < DOT >/*@bgen(jjtree) Dot */
                     {
-                      SimpleNode jjtn002 = new SimpleNode(JJTDOT);
+                      ASTDot jjtn002 = new ASTDot(JJTDOT);
                       boolean jjtc002 = true;
                       jjtree.openNodeScope(jjtn002);
                     }
@@ -1608,7 +1634,7 @@ void SearchGraph() :
  	SearchType()
   	opar = < OPAR >/*@bgen(jjtree) OpenParenthesis */
                         {
-                          SimpleNode jjtn003 = new SimpleNode(JJTOPENPARENTHESIS);
+                          ASTOpenParenthesis jjtn003 = new ASTOpenParenthesis(JJTOPENPARENTHESIS);
                           boolean jjtc003 = true;
                           jjtree.openNodeScope(jjtn003);
                         }
@@ -1627,7 +1653,7 @@ void SearchGraph() :
 /*@egen*/				                
   	v1 = < VARIABLE >/*@bgen(jjtree) Variable */
                           {
-                            SimpleNode jjtn004 = new SimpleNode(JJTVARIABLE);
+                            ASTVariable jjtn004 = new ASTVariable(JJTVARIABLE);
                             boolean jjtc004 = true;
                             jjtree.openNodeScope(jjtn004);
                           }
@@ -1646,7 +1672,7 @@ void SearchGraph() :
 /*@egen*/				         
   	comma = < COMMA >/*@bgen(jjtree) Comma */
                           {
-                            SimpleNode jjtn005 = new SimpleNode(JJTCOMMA);
+                            ASTComma jjtn005 = new ASTComma(JJTCOMMA);
                             boolean jjtc005 = true;
                             jjtree.openNodeScope(jjtn005);
                           }
@@ -1665,7 +1691,7 @@ void SearchGraph() :
 /*@egen*/			      
   	v2 = < VARIABLE >/*@bgen(jjtree) Variable */
                           {
-                            SimpleNode jjtn006 = new SimpleNode(JJTVARIABLE);
+                            ASTVariable jjtn006 = new ASTVariable(JJTVARIABLE);
                             boolean jjtc006 = true;
                             jjtree.openNodeScope(jjtn006);
                           }
@@ -1685,7 +1711,7 @@ void SearchGraph() :
 	MoreOptions()
    	cpar = < CPAR >/*@bgen(jjtree) CloseParenthesis */
                         {
-                          SimpleNode jjtn007 = new SimpleNode(JJTCLOSEPARENTHESIS);
+                          ASTCloseParenthesis jjtn007 = new ASTCloseParenthesis(JJTCLOSEPARENTHESIS);
                           boolean jjtc007 = true;
                           jjtree.openNodeScope(jjtn007);
                         }
@@ -1704,7 +1730,7 @@ void SearchGraph() :
 /*@egen*/				                 
  	scol = < SCOL >/*@bgen(jjtree) Semicolon */
                         {
-                          SimpleNode jjtn008 = new SimpleNode(JJTSEMICOLON);
+                          ASTSemicolon jjtn008 = new ASTSemicolon(JJTSEMICOLON);
                           boolean jjtc008 = true;
                           jjtree.openNodeScope(jjtn008);
                         }
@@ -1748,7 +1774,7 @@ void SearchGraph() :
 */
 void SearchType() :
 {/*@bgen(jjtree) SearchType */
-        SimpleNode jjtn000 = new SimpleNode(JJTSEARCHTYPE);
+        ASTSearchType jjtn000 = new ASTSearchType(JJTSEARCHTYPE);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
 /*@egen*/
@@ -1759,7 +1785,7 @@ void SearchType() :
 /*@egen*/
   	sp = < SHORTESTPATH >/*@bgen(jjtree) ShortestPath */
                               {
-                                SimpleNode jjtn001 = new SimpleNode(JJTSHORTESTPATH);
+                                ASTShortestPath jjtn001 = new ASTShortestPath(JJTSHORTESTPATH);
                                 boolean jjtc001 = true;
                                 jjtree.openNodeScope(jjtn001);
                               }
@@ -1779,7 +1805,7 @@ void SearchType() :
 |
  	sp = < DEPTHSEARCH >/*@bgen(jjtree) DepthSearch */
                              {
-                               SimpleNode jjtn002 = new SimpleNode(JJTDEPTHSEARCH);
+                               ASTDepthSearch jjtn002 = new ASTDepthSearch(JJTDEPTHSEARCH);
                                boolean jjtc002 = true;
                                jjtree.openNodeScope(jjtn002);
                              }
@@ -1799,7 +1825,7 @@ void SearchType() :
 |
 	sp = < BREADTHSEARCH >/*@bgen(jjtree) BreadthSearch */
                                {
-                                 SimpleNode jjtn003 = new SimpleNode(JJTBREADTHSEARCH);
+                                 ASTBreadthSearch jjtn003 = new ASTBreadthSearch(JJTBREADTHSEARCH);
                                  boolean jjtc003 = true;
                                  jjtree.openNodeScope(jjtn003);
                                }
@@ -1829,7 +1855,7 @@ void SearchType() :
 */
 void MoreOptions() :
 {/*@bgen(jjtree) MoreOptions */
-        SimpleNode jjtn000 = new SimpleNode(JJTMOREOPTIONS);
+        ASTMoreOptions jjtn000 = new ASTMoreOptions(JJTMOREOPTIONS);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
 /*@egen*/
@@ -1841,7 +1867,7 @@ void MoreOptions() :
   	(
 	  	comma = < COMMA >/*@bgen(jjtree) Comma */
                                   {
-                                    SimpleNode jjtn001 = new SimpleNode(JJTCOMMA);
+                                    ASTComma jjtn001 = new ASTComma(JJTCOMMA);
                                     boolean jjtc001 = true;
                                     jjtree.openNodeScope(jjtn001);
                                   }
@@ -1887,7 +1913,7 @@ void MoreOptions() :
 */
 void NodeProperties() :
 {/*@bgen(jjtree) NodeProperties */
-        SimpleNode jjtn000 = new SimpleNode(JJTNODEPROPERTIES);
+        ASTNodeProperties jjtn000 = new ASTNodeProperties(JJTNODEPROPERTIES);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
 /*@egen*/
@@ -1898,7 +1924,7 @@ void NodeProperties() :
 /*@egen*/
   	osqbr = < OSQBR >/*@bgen(jjtree) OpenSquareBracket */
                           {
-                            SimpleNode jjtn001 = new SimpleNode(JJTOPENSQUAREBRACKET);
+                            ASTOpenSquareBracket jjtn001 = new ASTOpenSquareBracket(JJTOPENSQUAREBRACKET);
                             boolean jjtc001 = true;
                             jjtree.openNodeScope(jjtn001);
                           }
@@ -1917,7 +1943,7 @@ void NodeProperties() :
 /*@egen*/		                  
   	key = < VARIABLE >/*@bgen(jjtree) Variable */
                            {
-                             SimpleNode jjtn002 = new SimpleNode(JJTVARIABLE);
+                             ASTVariable jjtn002 = new ASTVariable(JJTVARIABLE);
                              boolean jjtc002 = true;
                              jjtree.openNodeScope(jjtn002);
                            }
@@ -1938,7 +1964,7 @@ void NodeProperties() :
   	(
     	comma = < COMMA >/*@bgen(jjtree) Comma */
                           {
-                            SimpleNode jjtn003 = new SimpleNode(JJTCOMMA);
+                            ASTComma jjtn003 = new ASTComma(JJTCOMMA);
                             boolean jjtc003 = true;
                             jjtree.openNodeScope(jjtn003);
                           }
@@ -1957,7 +1983,7 @@ void NodeProperties() :
 /*@egen*/	      
     	key = < VARIABLE >/*@bgen(jjtree) Variable */
                            {
-                             SimpleNode jjtn004 = new SimpleNode(JJTVARIABLE);
+                             ASTVariable jjtn004 = new ASTVariable(JJTVARIABLE);
                              boolean jjtc004 = true;
                              jjtree.openNodeScope(jjtn004);
                            }
@@ -1978,7 +2004,7 @@ void NodeProperties() :
   	)*
   	csqbr = < CSQBR >/*@bgen(jjtree) CloseSquareBracket */
                           {
-                            SimpleNode jjtn005 = new SimpleNode(JJTCLOSESQUAREBRACKET);
+                            ASTCloseSquareBracket jjtn005 = new ASTCloseSquareBracket(JJTCLOSESQUAREBRACKET);
                             boolean jjtc005 = true;
                             jjtree.openNodeScope(jjtn005);
                           }
@@ -2022,7 +2048,7 @@ void NodeProperties() :
 */
 void CompareValues() :
 {/*@bgen(jjtree) CompareValues */
-        SimpleNode jjtn000 = new SimpleNode(JJTCOMPAREVALUES);
+        ASTCompareValues jjtn000 = new ASTCompareValues(JJTCOMPAREVALUES);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
 /*@egen*/
@@ -2034,7 +2060,7 @@ void CompareValues() :
   	// Equals to an Interval
   	eq = < EQ >/*@bgen(jjtree) Equal */
                     {
-                      SimpleNode jjtn001 = new SimpleNode(JJTEQUAL);
+                      ASTEqual jjtn001 = new ASTEqual(JJTEQUAL);
                       boolean jjtc001 = true;
                       jjtree.openNodeScope(jjtn001);
                     }
@@ -2055,7 +2081,7 @@ void CompareValues() :
   	DataToCompare()
   	comma = < COMMA >/*@bgen(jjtree) Comma */
                           {
-                            SimpleNode jjtn002 = new SimpleNode(JJTCOMMA);
+                            ASTComma jjtn002 = new ASTComma(JJTCOMMA);
                             boolean jjtc002 = true;
                             jjtree.openNodeScope(jjtn002);
                           }
@@ -2078,7 +2104,7 @@ void CompareValues() :
 	// Compares to a Value
 	comp = < COMP >/*@bgen(jjtree) Compares */
                         {
-                          SimpleNode jjtn003 = new SimpleNode(JJTCOMPARES);
+                          ASTCompares jjtn003 = new ASTCompares(JJTCOMPARES);
                           boolean jjtc003 = true;
                           jjtree.openNodeScope(jjtn003);
                         }
@@ -2123,7 +2149,7 @@ void CompareValues() :
 */
 void IntervalBracket() :
 {/*@bgen(jjtree) IntervalBracket */
-        SimpleNode jjtn000 = new SimpleNode(JJTINTERVALBRACKET);
+        ASTIntervalBracket jjtn000 = new ASTIntervalBracket(JJTINTERVALBRACKET);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
 /*@egen*/
@@ -2132,7 +2158,7 @@ void IntervalBracket() :
 /*@egen*/
   	os = < OSQBR >/*@bgen(jjtree) OpenSquareBracket */
                        {
-                         SimpleNode jjtn001 = new SimpleNode(JJTOPENSQUAREBRACKET);
+                         ASTOpenSquareBracket jjtn001 = new ASTOpenSquareBracket(JJTOPENSQUAREBRACKET);
                          boolean jjtc001 = true;
                          jjtree.openNodeScope(jjtn001);
                        }
@@ -2152,7 +2178,7 @@ void IntervalBracket() :
 |
 	cs = < CSQBR >/*@bgen(jjtree) CloseSquareBracket */
                        {
-                         SimpleNode jjtn002 = new SimpleNode(JJTCLOSESQUAREBRACKET);
+                         ASTCloseSquareBracket jjtn002 = new ASTCloseSquareBracket(JJTCLOSESQUAREBRACKET);
                          boolean jjtc002 = true;
                          jjtree.openNodeScope(jjtn002);
                        }
@@ -2181,7 +2207,7 @@ void IntervalBracket() :
 */
 void DataToCompare() :
 {/*@bgen(jjtree) DataToCompare */
-        SimpleNode jjtn000 = new SimpleNode(JJTDATATOCOMPARE);
+        ASTDataToCompare jjtn000 = new ASTDataToCompare(JJTDATATOCOMPARE);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
 /*@egen*/
@@ -2190,7 +2216,7 @@ void DataToCompare() :
 /*@egen*/
   	s = < STRING >/*@bgen(jjtree) String */
                        {
-                         SimpleNode jjtn001 = new SimpleNode(JJTSTRING);
+                         ASTString jjtn001 = new ASTString(JJTSTRING);
                          boolean jjtc001 = true;
                          jjtree.openNodeScope(jjtn001);
                        }
@@ -2210,7 +2236,7 @@ void DataToCompare() :
 |
   	i = < INTEGER >/*@bgen(jjtree) Integer */
                         {
-                          SimpleNode jjtn002 = new SimpleNode(JJTINTEGER);
+                          ASTInteger jjtn002 = new ASTInteger(JJTINTEGER);
                           boolean jjtc002 = true;
                           jjtree.openNodeScope(jjtn002);
                         }
@@ -2230,7 +2256,7 @@ void DataToCompare() :
 |
   	f = < FLOAT >/*@bgen(jjtree) Float */
                       {
-                        SimpleNode jjtn003 = new SimpleNode(JJTFLOAT);
+                        ASTFloat jjtn003 = new ASTFloat(JJTFLOAT);
                         boolean jjtc003 = true;
                         jjtree.openNodeScope(jjtn003);
                       }

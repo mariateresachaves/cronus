@@ -2,6 +2,8 @@
 /* JavaCCOptions:MULTI=false,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=false,NODE_PREFIX=AST,NODE_EXTENDS=,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
+import java.util.Map;
+
 public
 class SimpleNode implements Node {
 
@@ -16,12 +18,12 @@ class SimpleNode implements Node {
   public SimpleNode(int i) {
     id = i;
   }
-
+  
   public SimpleNode(CronusGrammar p, int i) {
     this(i);
     parser = p;
   }
-
+  
   public void jjtOpen() {
   }
 
@@ -80,6 +82,30 @@ class SimpleNode implements Node {
       }
     }
   }
+  
+  public Map<String, Integer> execStart(Map<String, Integer> store) {
+	  System.out.println("Start");
+	  
+	  if(jjtGetChild(0).toString() == "Declaration") {
+		  //jjtGetChild(0).execDeclaration(store);
+	  }
+	  
+	  else if(jjtGetChild(0).toString() == "NewGraph") {
+		  //store = jjtGetChild(0).execNewGraph(store);
+	  }
+	  
+	  else if(jjtGetChild(0).toString() == "ListNodes") {
+		  //store = jjtGetChild(0).execListNodes(store);
+	  }
+	  
+	  else if(jjtGetChild(0).toString() == "SearchGraph") {
+		  //store = jjtGetChild(0).execSearchGraph(store);
+	  }
+	  
+	  System.out.println("-- " + jjtGetChild(0).toString() + " --");
+	  return store;
+  }
+ 
 }
 
 /* JavaCC - OriginalChecksum=bdea4781e060d2d51349e66b21d646a6 (do not edit this line) */
