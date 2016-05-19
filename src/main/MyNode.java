@@ -4,13 +4,14 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.Writer;
+import java.util.Hashtable;
 
 /**
  * Specialised node.
  */
 public class MyNode {
 	/** Symbol table */
-	protected static java.util.Hashtable symtab = new java.util.Hashtable();
+	protected static Hashtable symtab = new Hashtable();
 
 	/** Stack for calculations. */
 	protected static Object[] stack = new Object[1024];

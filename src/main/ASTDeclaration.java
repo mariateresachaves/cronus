@@ -3,12 +3,42 @@
 package main;
 
 public class ASTDeclaration extends SimpleNode {
+
 	public ASTDeclaration(int id) {
+
 		super(id);
+
 	}
 
 	public ASTDeclaration(CronusGrammarParser p, int id) {
+
 		super(p, id);
+
+	}
+
+	@Override
+	public void interpret() {
+
+		int k = jjtGetNumChildren();
+
+		if (k > 3)
+			symtab.put(jjtGetChild(3).toString(), new NodeList());
+
+		else
+			switch (val) {
+			case "Graph":
+				symtab.put(jjtGetChild(2).toString(), new Graph());
+				break;
+
+			case "Edge":
+				symtab.put(jjtGetChild(2).toString(), new Edge());
+				break;
+
+			case "Node":
+				symtab.put(jjtGetChild(2).toString(), new NodeT());
+				break;
+			}
+
 	}
 
 }
