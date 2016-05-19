@@ -2,16 +2,7 @@
 package main;
 
 public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserTreeConstants, CronusGrammarParserConstants {/*@bgen(jjtree)*/
-  protected static JJTCronusGrammarParserState jjtree = new JJTCronusGrammarParserState();
-        /*public static void main(String args []) throws ParseException, TokenMgrError
-	{
-		CronusGrammar parser = new CronusGrammar(System.in);
-
-		SimpleNode root = parser.Start();
-		root.dump("");
-	}*/
-
-        /**
+  protected static JJTCronusGrammarParserState jjtree = new JJTCronusGrammarParserState();/**
 	* Returns the root node of the AST.
 	* It only makes sense to call this after a successful parse.
 	* @return the root node
@@ -2152,6 +2143,67 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
     finally { jj_save(7, xla); }
   }
 
+  static private boolean jj_3R_3() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_9()) {
+    jj_scanpos = xsp;
+    if (jj_3R_10()) {
+    jj_scanpos = xsp;
+    if (jj_3_4()) {
+    jj_scanpos = xsp;
+    if (jj_3R_11()) return true;
+    }
+    }
+    }
+    if (jj_scan_token(VARIABLE)) return true;
+    if (jj_scan_token(SCOL)) return true;
+    return false;
+  }
+
+  static private boolean jj_3_5() {
+    if (jj_scan_token(NODE)) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_8() {
+    if (jj_scan_token(OSQBR)) return true;
+    if (jj_scan_token(VARIABLE)) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_17() {
+    if (jj_scan_token(EDGE)) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_16() {
+    if (jj_scan_token(GRAPH)) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_12() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_16()) {
+    jj_scanpos = xsp;
+    if (jj_3R_17()) {
+    jj_scanpos = xsp;
+    if (jj_3_5()) {
+    jj_scanpos = xsp;
+    if (jj_3R_18()) return true;
+    }
+    }
+    }
+    return false;
+  }
+
+  static private boolean jj_3R_19() {
+    if (jj_scan_token(NODE)) return true;
+    if (jj_scan_token(OSQBR)) return true;
+    return false;
+  }
+
   static private boolean jj_3_3() {
     if (jj_3R_5()) return true;
     return false;
@@ -2267,67 +2319,6 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
   }
 
   static private boolean jj_3R_18() {
-    if (jj_scan_token(NODE)) return true;
-    if (jj_scan_token(OSQBR)) return true;
-    return false;
-  }
-
-  static private boolean jj_3R_3() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_9()) {
-    jj_scanpos = xsp;
-    if (jj_3R_10()) {
-    jj_scanpos = xsp;
-    if (jj_3_4()) {
-    jj_scanpos = xsp;
-    if (jj_3R_11()) return true;
-    }
-    }
-    }
-    if (jj_scan_token(VARIABLE)) return true;
-    if (jj_scan_token(SCOL)) return true;
-    return false;
-  }
-
-  static private boolean jj_3_5() {
-    if (jj_scan_token(NODE)) return true;
-    return false;
-  }
-
-  static private boolean jj_3R_8() {
-    if (jj_scan_token(OSQBR)) return true;
-    if (jj_scan_token(VARIABLE)) return true;
-    return false;
-  }
-
-  static private boolean jj_3R_17() {
-    if (jj_scan_token(EDGE)) return true;
-    return false;
-  }
-
-  static private boolean jj_3R_16() {
-    if (jj_scan_token(GRAPH)) return true;
-    return false;
-  }
-
-  static private boolean jj_3R_12() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_16()) {
-    jj_scanpos = xsp;
-    if (jj_3R_17()) {
-    jj_scanpos = xsp;
-    if (jj_3_5()) {
-    jj_scanpos = xsp;
-    if (jj_3R_18()) return true;
-    }
-    }
-    }
-    return false;
-  }
-
-  static private boolean jj_3R_19() {
     if (jj_scan_token(NODE)) return true;
     if (jj_scan_token(OSQBR)) return true;
     return false;

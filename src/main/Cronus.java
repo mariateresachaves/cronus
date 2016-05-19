@@ -1,7 +1,14 @@
 package main;
 
+import javax.swing.RootPaneContainer;
+
 public class Cronus {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
+		
+		/*CronusGrammarParser parser = new CronusGrammarParser(System.in);
+
+		SimpleNode root = parser.Start();
+		root.dump("");*/
 
 		CronusGrammarParser parser;
 
@@ -20,6 +27,8 @@ public class Cronus {
 		try {
 			parser.Start();
 			parser.jjtree.rootNode().interpret();
+			parser.jjtree.rootNode().printTab();
+			
 		} catch (ParseException e) {
 			System.out.println("Cronus Version 0.2:  Encountered errors during parse.");
 			e.printStackTrace();
@@ -28,5 +37,5 @@ public class Cronus {
 			e1.printStackTrace();
 		}
 	}
-
+	
 }

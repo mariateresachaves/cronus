@@ -2,6 +2,9 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
+import java.util.Iterator;
+import java.util.Set;
+
 public class SimpleNode extends MyNode implements Node {
 
 	protected Node parent;
@@ -115,6 +118,40 @@ public class SimpleNode extends MyNode implements Node {
 			}
 		}
 	}
+
+	public String getVal() {
+		
+		return val;
+		
+	}
+	
+	public void printTab() {
+		
+		System.out.println("");
+		System.out.println("--- Symbol Table ---");
+		System.out.println("");
+		
+		Set keys = symtab.keySet();
+		Iterator it = keys.iterator();
+		
+		while(it.hasNext()) {
+			String key = (String) it.next();
+		    
+		    if(symtab.get(key) instanceof Graph)
+		    	System.out.println(key + " = Graph");
+		    
+		    else if(symtab.get(key) instanceof Edge)
+		    	System.out.println(key + " = Edge");
+		    
+		    else if(symtab.get(key) instanceof NodeT)
+		    	System.out.println(key + " = Node");
+		    
+		}
+		
+		System.out.println("");
+	}
+	
+	
 }
 
 /*

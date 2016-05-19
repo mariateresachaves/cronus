@@ -38,6 +38,7 @@ public class ASTStart extends SimpleNode {
 			System.out.println();
 
 			jjtGetChild(i).interpret();
+			
 		}
 
 	}

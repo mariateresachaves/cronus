@@ -1,0 +1,4 @@
+Graph g;
+Node n;
+Edge e;
+Graph g2;

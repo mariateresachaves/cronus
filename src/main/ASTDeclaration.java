@@ -19,25 +19,19 @@ public class ASTDeclaration extends SimpleNode {
 	@Override
 	public void interpret() {
 
-		int k = jjtGetNumChildren();
+		switch (jjtGetChild(0).toString()) {
+		case "Graph":
+			symtab.put(jjtGetChild(1).getVal(), new Graph());
+			break;
 
-		if (k > 3)
-			symtab.put(jjtGetChild(3).toString(), new NodeList());
+		case "Edge":
+			symtab.put(jjtGetChild(1).getVal(), new Edge());
+			break;
 
-		else
-			switch (val) {
-			case "Graph":
-				symtab.put(jjtGetChild(2).toString(), new Graph());
-				break;
-
-			case "Edge":
-				symtab.put(jjtGetChild(2).toString(), new Edge());
-				break;
-
-			case "Node":
-				symtab.put(jjtGetChild(2).toString(), new NodeT());
-				break;
-			}
+		case "Node":
+			symtab.put(jjtGetChild(1).getVal(), new NodeT());
+			break;
+		}
 
 	}
 
