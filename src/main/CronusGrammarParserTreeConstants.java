@@ -8,19 +8,19 @@ public interface CronusGrammarParserTreeConstants
   public int JJTGRAPH = 2;
   public int JJTEDGE = 3;
   public int JJTNODE = 4;
-  public int JJTOPENSQUAREBRACKET = 5;
-  public int JJTCLOSESQUAREBRACKET = 6;
-  public int JJTVARIABLE = 7;
-  public int JJTSEMICOLON = 8;
-  public int JJTNEWGRAPH = 9;
-  public int JJTEQUAL = 10;
-  public int JJTNEWGRAPHRIGHT = 11;
-  public int JJTNEW = 12;
-  public int JJTOPENPARENTHESIS = 13;
-  public int JJTPATH = 14;
-  public int JJTCLOSEPARENTHESIS = 15;
-  public int JJTLISTNODES = 16;
-  public int JJTNODELISTDEC = 17;
+  public int JJTVARIABLE = 5;
+  public int JJTSEMICOLON = 6;
+  public int JJTNEWGRAPH = 7;
+  public int JJTEQUAL = 8;
+  public int JJTNEWGRAPHRIGHT = 9;
+  public int JJTNEW = 10;
+  public int JJTOPENPARENTHESIS = 11;
+  public int JJTPATH = 12;
+  public int JJTCLOSEPARENTHESIS = 13;
+  public int JJTLISTNODES = 14;
+  public int JJTNODELISTDEC = 15;
+  public int JJTOPENSQUAREBRACKET = 16;
+  public int JJTCLOSESQUAREBRACKET = 17;
   public int JJTLISTNODESRIGHT = 18;
   public int JJTDOT = 19;
   public int JJTNODES = 20;
@@ -53,8 +53,6 @@ public interface CronusGrammarParserTreeConstants
     "Graph",
     "Edge",
     "Node",
-    "OpenSquareBracket",
-    "CloseSquareBracket",
     "Variable",
     "Semicolon",
     "NewGraph",
@@ -66,6 +64,8 @@ public interface CronusGrammarParserTreeConstants
     "CloseParenthesis",
     "ListNodes",
     "NodeListDec",
+    "OpenSquareBracket",
+    "CloseSquareBracket",
     "ListNodesRight",
     "Dot",
     "Nodes",
@@ -92,4 +92,4 @@ public interface CronusGrammarParserTreeConstants
     "DataToCompare",
   };
 }
-/* JavaCC - OriginalChecksum=51a0dba22e5690f9ab0bc3f113567593 (do not edit this line) */
+/* JavaCC - OriginalChecksum=d2340f2b26a221d7616fcf8a97ada912 (do not edit this line) */

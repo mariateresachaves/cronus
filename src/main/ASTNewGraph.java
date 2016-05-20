@@ -2,15 +2,56 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
-public
-class ASTNewGraph extends SimpleNode {
-  public ASTNewGraph(int id) {
-    super(id);
-  }
+public class ASTNewGraph extends SimpleNode {
+	
+	public ASTNewGraph(int id) {
 
-  public ASTNewGraph(CronusGrammarParser p, int id) {
-    super(p, id);
-  }
+		super(id);
+
+	}
+
+	public ASTNewGraph(CronusGrammarParser p, int id) {
+
+		super(p, id);
+
+	}
+
+	@Override
+	public void interpret() {
+
+		int k = jjtGetNumChildren();
+		
+		// Graph Variable = NewGraphRight
+		if(k > 5) {
+			
+			// Graph
+			if (symtab.containsKey(jjtGetChild(0).getVal()))
+				System.err.println("\t[Semantic Error] Duplicate entry of Graph for variable " + jjtGetChild(0).getVal());
+
+			else
+				symtab.put(jjtGetChild(0).getVal(), new Graph());
+			
+		}
+
+		// TODO: Variable = NewGraphRight
+		if(symtab.containsKey(jjtGetChild(0).getVal())) {
+
+			if(symtab.get(jjtGetChild(0).getVal()) instanceof Graph) {
+				
+				// TODO: NewGraphRight
+				
+			}
+			else
+				System.out.println("\t[Semantic Error] The variable " + jjtGetChild(0).getVal() + " is not of type Graph.");
+		}
+		else
+			System.out.println("\t[Semantic Error] The variable " + jjtGetChild(0).getVal() + " is not defined.");
+		
+		
+	}
 
 }
-/* JavaCC - OriginalChecksum=33fe44e76d5a35d047b507dec2b929c5 (do not edit this line) */
+/*
+ * JavaCC - OriginalChecksum=33fe44e76d5a35d047b507dec2b929c5 (do not edit this
+ * line)
+ */

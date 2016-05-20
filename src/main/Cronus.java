@@ -13,7 +13,7 @@ public class Cronus {
 		CronusGrammarParser parser;
 
 		if (args.length == 1) {
-			System.out.println("Cronus Version 0.2:  Reading from file " + args[0] + " . . .");
+			System.out.println("Cronus Version 0.2:  Reading from file " + args[0] + " . . . \n");
 			try {
 				parser = new CronusGrammarParser(new java.io.FileInputStream(args[0]));
 			} catch (java.io.FileNotFoundException e) {

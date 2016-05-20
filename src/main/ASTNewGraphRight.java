@@ -2,15 +2,39 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
-public
-class ASTNewGraphRight extends SimpleNode {
-  public ASTNewGraphRight(int id) {
-    super(id);
-  }
+public class ASTNewGraphRight extends SimpleNode {
 
-  public ASTNewGraphRight(CronusGrammarParser p, int id) {
-    super(p, id);
-  }
+	public ASTNewGraphRight(int id) {
+
+		super(id);
+
+	}
+
+	public ASTNewGraphRight(CronusGrammarParser p, int id) {
+
+		super(p, id);
+
+	}
+	
+	@Override
+	public void interpret() {
+		
+		int k=jjtGetNumChildren();
+		
+		System.out.println("");
+		System.out.println("Tenho " + k + "filhos.");
+				
+		System.out.println("Os filhos são: ");
+				
+		while(k>0) {
+			System.out.println(k + " - " + jjtGetChild(k-1).getVal());
+			k--;
+		}
+		
+	}
 
 }
-/* JavaCC - OriginalChecksum=83bebc27370c9bfbae681ebaa3cd842b (do not edit this line) */
+/*
+ * JavaCC - OriginalChecksum=83bebc27370c9bfbae681ebaa3cd842b (do not edit this
+ * line)
+ */

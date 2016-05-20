@@ -124,7 +124,7 @@ SimpleNode Start() :
 */
 void Declaration() :
 {
-  	Token g, e, n, osqbr, csqbr, v, scol;
+  	Token g, e, n, v, scol;
 }
 {
   	(
@@ -132,11 +132,7 @@ void Declaration() :
 	|
 	  	e = < EDGE > {jjtThis.val = e.image;} 			#Edge
 	|
-		LOOKAHEAD(2)	  	n = < NODE > {jjtThis.val = n.image;} 			#Node
-	|
-		n     = < NODE > {jjtThis.val = n.image;} 		#Node
-		osqbr = < OSQBR > {jjtThis.val = osqbr.image;} 	#OpenSquareBracket
-		csqbr = < CSQBR > {jjtThis.val = csqbr.image;} 	#CloseSquareBracket	)
+		LOOKAHEAD(2)	  	n = < NODE > {jjtThis.val = n.image;} 			#Node	)
 	v    = < VARIABLE > {jjtThis.val = v.image;} 		#Variable
   	scol = < SCOL > {jjtThis.val = scol.image;} 		#Semicolon
 }
@@ -152,20 +148,11 @@ void NewGraph() :
   	(
 		(
 	  	  	g = < GRAPH > {jjtThis.val = g.image;} 			#Graph
-		|
-		  	e = < EDGE > {jjtThis.val = e.image;} 			#Edge
-		|
-			LOOKAHEAD(2)
-		  	n = < NODE > {jjtThis.val = n.image;} 			#Node
-		|
-			n 	  = < NODE > {jjtThis.val = n.image;} 		#Node
-			osqbr = < OSQBR > {jjtThis.val = osqbr.image;} 	#OpenSquareBracket
-			csqbr = < CSQBR > {jjtThis.val = csqbr.image;} 	#CloseSquareBracket
 		)?
 		v = < VARIABLE > {jjtThis.val = v.image;} 			#Variable
   	)
 	eq   = < EQ > {jjtThis.val = eq.image;} 				#Equal
-	NewGraphRight()
+	NewGraphRight() 										#NewGraphRight
   	scol = < SCOL > {jjtThis.val = scol.image;} 			#Semicolon
 }
 

@@ -3,3 +3,6 @@ Node n;
 Edge e;
 Edge g;
 Graph g2;
+g2 = new Graph("C:\home");
+e = new Graph("C:\home");
+d = new Graph("C:\home");

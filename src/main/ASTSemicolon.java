@@ -4,13 +4,20 @@ package main;
 
 public
 class ASTSemicolon extends SimpleNode {
-  public ASTSemicolon(int id) {
-    super(id);
-  }
+	
+  
+	public ASTSemicolon(int id) {
+    
+		super(id);
+  
+	}
 
-  public ASTSemicolon(CronusGrammarParser p, int id) {
-    super(p, id);
-  }
+  
+	public ASTSemicolon(CronusGrammarParser p, int id) {
+    
+		super(p, id);
+
+	}
 
 }
 /* JavaCC - OriginalChecksum=9fa4c81d0cc3e6a8c1b87f0a7fe4e78c (do not edit this line) */
