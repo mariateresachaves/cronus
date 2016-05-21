@@ -4,12 +4,25 @@ package main;
 
 public
 class ASTAllParametersNode extends SimpleNode {
+	
   public ASTAllParametersNode(int id) {
-    super(id);
+    
+	  super(id);
+	  
   }
 
   public ASTAllParametersNode(CronusGrammarParser p, int id) {
-    super(p, id);
+    
+	  super(p, id);
+	  
+  }
+  
+  @Override
+  public void interpret() {
+	  
+	  // TODO: AllParametersNode
+	  System.out.println("TODO: AllParametersNode");
+	  
   }
 
 }

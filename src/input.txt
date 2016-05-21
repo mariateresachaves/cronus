@@ -9,3 +9,6 @@ d = new Graph("C:\home");
 Node [] ns = g2.nodes();
 Node [] nodes2;
 nodes2 = g2.nodes();
+d = g2.nodes();
+n = g2.nodes();
+nodes2 = e.nodes();

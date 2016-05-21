@@ -19,7 +19,25 @@ public class ASTListNodesRight extends SimpleNode {
 	@Override
 	public void interpret() {
 
-		// TODO: Lado direito do ListNodes
+		if (symtab.containsKey(jjtGetChild(0).getVal())) {
+			
+			if (!(symtab.get(jjtGetChild(0).getVal()) instanceof Graph)) {
+
+				System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type Graph.");
+				return;
+
+			} else {
+				
+				jjtGetChild(4).interpret();
+				
+			}
+
+		} else {
+
+			System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(0).getVal() + ".");
+			return;
+
+		}
 
 	}
 

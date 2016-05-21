@@ -33,7 +33,27 @@ public class ASTListNodes extends SimpleNode {
 			}
 
 		} else {
-			// TODO: Quando a variável já está declarada
+			
+			if (symtab.containsKey(jjtGetChild(0).getVal())) {
+				
+				if (!(symtab.get(jjtGetChild(0).getVal()) instanceof NodeList)) {
+
+					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type NodeList.");
+					return;
+
+				} else {
+					
+					jjtGetChild(2).interpret();
+					
+				}
+
+			} else {
+
+				System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(0).getVal() + ".");
+				return;
+
+			}
+			
 		}
 
 	}

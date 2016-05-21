@@ -35,7 +35,7 @@ public class ASTNewGraph extends SimpleNode {
 
 		}
 
-		// TODO: Variable = NewGraphRight
+		// Variable = NewGraphRight
 		if (symtab.containsKey(jjtGetChild(0).getVal())) {
 
 			if (!(symtab.get(jjtGetChild(0).getVal()) instanceof Graph)) {
