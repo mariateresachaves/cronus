@@ -27,7 +27,7 @@ public class ASTNewGraph extends SimpleNode {
 			// Graph
 			if (symtab.containsKey(jjtGetChild(0).getVal())) {
 
-				System.err.println(ErrorConstant.DUPLICATE_ENTRY + jjtGetChild(0).getVal() + ".");
+				System.err.println(ErrorConstant.DUPLICATE_ENTRY + jjtGetChild(0).getVal() + " of type Graph.");
 				return;
 
 			} else

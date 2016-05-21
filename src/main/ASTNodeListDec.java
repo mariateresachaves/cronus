@@ -2,15 +2,36 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
-public
-class ASTNodeListDec extends SimpleNode {
-  public ASTNodeListDec(int id) {
-    super(id);
-  }
+public class ASTNodeListDec extends SimpleNode {
 
-  public ASTNodeListDec(CronusGrammarParser p, int id) {
-    super(p, id);
-  }
+	public ASTNodeListDec(int id) {
 
+		super(id);
+
+	}
+
+	public ASTNodeListDec(CronusGrammarParser p, int id) {
+
+		super(p, id);
+
+	}
+
+	@Override
+	public void interpret() {
+		
+		// NodeList
+		if (symtab.containsKey(jjtGetChild(3).getVal())) {
+
+			System.err.println(ErrorConstant.DUPLICATE_ENTRY + jjtGetChild(3).getVal() + " of type NodeList.");
+			return;
+
+		} else
+			symtab.put(jjtGetChild(3).getVal(), new NodeList());
+		
+	}
+	
 }
-/* JavaCC - OriginalChecksum=6243a46c048ed58c0da12f0e90102dc9 (do not edit this line) */
+/*
+ * JavaCC - OriginalChecksum=6243a46c048ed58c0da12f0e90102dc9 (do not edit this
+ * line)
+ */

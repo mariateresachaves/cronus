@@ -107,7 +107,7 @@ SimpleNode Start() :
  	    LOOKAHEAD(3)
     	Declaration() 
 	|
-		LOOKAHEAD(2)
+		LOOKAHEAD(3)
     	NewGraph()
 	|
 		LOOKAHEAD(2)
@@ -174,7 +174,7 @@ void NewGraphRight() #NewGraphRight :
 /*
 	== LIST ALL NODES ACCORDING TWO PARAMETERS (IF ANY) ==
 */
-void ListNodes() :
+void ListNodes() #ListNodes :
 {
   	Token eq, scol, v;
 }
@@ -195,7 +195,7 @@ void ListNodes() :
 /*
 	== NODE LIST DECLARATION ==
 */
-void NodeListDec() :
+void NodeListDec() #NodeListDec :
 {
   	Token n, obr, cbr, v;
 }
@@ -209,7 +209,7 @@ void NodeListDec() :
 /*
 	== RIGHT SIDE OF DECLARATION TO GET LIST OF NODES ==
 */
-void ListNodesRight() :
+void ListNodesRight() #ListNodesRight :
 {
 	Token v, d, n, o, c;
 }
@@ -225,7 +225,7 @@ void ListNodesRight() :
 /*
 	== FILTER SEARCH NODE WITH ALL THREE PARAMETERS ==
 */
-void AllParametersNode() :
+void AllParametersNode() #AllParametersNode :
 {
   	Token comma;
 }
@@ -299,7 +299,7 @@ void AllParametersNode() :
 /*
 	== FILTER NODE PARAMETER LABEL ==
 */
-void NodeLabel() :
+void NodeLabel() #NodeLabel :
 {
   	Token label, eq;
 }
@@ -312,7 +312,7 @@ void NodeLabel() :
 /*
 	== FILTER NODE PARAMETER DEGREE ==
 */
-void NodeDegree() :
+void NodeDegree() #NodeDegree :
 {
   	Token degree;
 }
@@ -322,16 +322,71 @@ void NodeDegree() :
 }
 
 /*
+ 	== FILTER NODE PARAMETER PROPERTIES ==
+*/
+void NodeProperties() #NodeProperties :
+{
+  	Token comma, osqbr, csqbr, key;
+}
+{
+  	osqbr = < OSQBR > {jjtThis.val = osqbr.image;}		#OpenSquareBracket
+  	key = < VARIABLE > {jjtThis.val = key.image;}		#Variable
+  	CompareValues()
+  	(
+    	comma = < COMMA > {jjtThis.val = comma.image;}	#Comma
+    	key = < VARIABLE > {jjtThis.val = key.image;}	#Variable
+    	CompareValues()
+  	)*
+  	csqbr = < CSQBR > {jjtThis.val = csqbr.image;}		#CloseSquareBracket
+}
+
+/*
 	== TYPES OF VALUES: STRING OR NUMBER ==
 */
-void Value() :
+void Value() #Values :
 {
   	Token s, i, f;
 }
 {
   	s = < STRING > {jjtThis.val = s.image;}		#String
-|   i = < INTEGER > {jjtThis.val = i.image;}	#Integer
-|   f = < FLOAT > {jjtThis.val = f.image;}		#Float
+|
+	i = < INTEGER > {jjtThis.val = i.image;}	#Integer
+|
+	f = < FLOAT > {jjtThis.val = f.image;}		#Float
+}
+
+/*
+	== DEFINE WAYS TO COMPARE VARIABLE WITH VALUES ==
+*/
+void CompareValues() #CompareValues :
+{
+  	Token eq, os, s, i, f, cs, comma, comp;
+}
+{
+  	// Equals to an Interval
+  	eq = < EQ > {jjtThis.val = eq.image;}			#Equal
+  	IntervalBracket()
+  	Value()
+  	comma = < COMMA > {jjtThis.val = comma.image;}	#Comma
+  	Value()
+  	IntervalBracket()
+|
+	// Compares to a Value
+	comp = < COMP > {jjtThis.val = comp.image;}		#Compares
+	Value()
+}
+
+/*
+	== INTERVAL BRACKET ==
+*/
+void IntervalBracket() #IntervalBracket :
+{
+  	Token os, cs;
+}
+{
+  	os = < OSQBR > {jjtThis.val = os.image;}	#OpenSquareBracket
+|
+	cs = < CSQBR > {jjtThis.val = cs.image;}	#CloseSquareBracket
 }
 
 /*
@@ -382,65 +437,3 @@ void MoreOptions() :
 	  	NodeProperties()
 	)?
 }
-
-/*
- 	== FILTER NODE PARAMETER PROPERTIES ==
-*/
-void NodeProperties() :
-{
-  	Token comma, osqbr, csqbr, key;
-}
-{
-  	osqbr = < OSQBR > {jjtThis.val = osqbr.image;}		#OpenSquareBracket
-  	key = < VARIABLE > {jjtThis.val = key.image;}		#Variable
-  	CompareValues()
-  	(
-    	comma = < COMMA > {jjtThis.val = comma.image;}	#Comma
-    	key = < VARIABLE > {jjtThis.val = key.image;}	#Variable
-    	CompareValues()
-  	)*
-  	csqbr = < CSQBR > {jjtThis.val = csqbr.image;}		#CloseSquareBracket
-}
-
-/*
-	== DEFINE WAYS TO COMPARE VARIABLE WITH VALUES ==
-*/
-void CompareValues() :
-{
-  	Token eq, os, s, i, f, cs, comma, comp;
-}
-{
-  	// Equals to an Interval
-  	eq = < EQ > {jjtThis.val = eq.image;}			#Equal
-  	IntervalBracket()
-  	DataToCompare()
-  	comma = < COMMA > {jjtThis.val = comma.image;}	#Comma
-  	Value()
-  	IntervalBracket()
-|
-	// Compares to a Value
-	comp = < COMP > {jjtThis.val = comp.image;}		#Compares
-	DataToCompare()
-}
-
-/*
-	== INTERVAL BRACKET ==
-*/
-void IntervalBracket() :
-{
-  	Token os, cs;}{
-  	os = < OSQBR > {jjtThis.val = os.image;}	#OpenSquareBracket
-|
-	cs = < CSQBR > {jjtThis.val = cs.image;}	#CloseSquareBracket}
-
-/*
-	== DATA TYPE TO COMPARE ==
-*/
-void DataToCompare() :
-{
-  	Token s, i, f;}{
-  	s = < STRING > {jjtThis.val = s.image;}		#String
-|
-  	i = < INTEGER > {jjtThis.val = i.image;}	#Integer
-|
-  	f = < FLOAT > {jjtThis.val = f.image;}		#Float}

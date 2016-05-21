@@ -146,6 +146,9 @@ public class SimpleNode extends MyNode implements Node {
 		    else if(symtab.get(key) instanceof NodeT)
 		    	System.out.println(key + " = Node");
 		    
+		    else if(symtab.get(key) instanceof NodeList)
+		    	System.out.println(key + " = NodeList");
+		    
 		}
 		
 		System.out.println("");

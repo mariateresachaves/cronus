@@ -39,7 +39,7 @@ public class Cronus {
 
 			parser.Start();
 			parser.jjtree.rootNode().interpret();
-			// parser.jjtree.rootNode().printTab();
+			parser.jjtree.rootNode().printTab();
 
 		} catch (ParseException e) {
 

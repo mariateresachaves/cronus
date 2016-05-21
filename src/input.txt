@@ -6,3 +6,6 @@ Graph g2;
 g2 = new Graph("C:\home");
 e = new Graph("C:\home");
 d = new Graph("C:\home");
+Node [] ns = g2.nodes();
+Node [] nodes2;
+nodes2 = g2.nodes();

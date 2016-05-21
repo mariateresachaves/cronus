@@ -2,15 +2,29 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
-public
-class ASTListNodesRight extends SimpleNode {
-  public ASTListNodesRight(int id) {
-    super(id);
-  }
+public class ASTListNodesRight extends SimpleNode {
 
-  public ASTListNodesRight(CronusGrammarParser p, int id) {
-    super(p, id);
-  }
+	public ASTListNodesRight(int id) {
+
+		super(id);
+
+	}
+
+	public ASTListNodesRight(CronusGrammarParser p, int id) {
+
+		super(p, id);
+
+	}
+
+	@Override
+	public void interpret() {
+
+		// TODO: Lado direito do ListNodes
+
+	}
 
 }
-/* JavaCC - OriginalChecksum=77d783c9464748b6c39dce8f704d2023 (do not edit this line) */
+/*
+ * JavaCC - OriginalChecksum=77d783c9464748b6c39dce8f704d2023 (do not edit this
+ * line)
+ */

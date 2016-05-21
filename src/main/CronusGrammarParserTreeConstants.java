@@ -30,21 +30,20 @@ public interface CronusGrammarParserTreeConstants
   public int JJTLABEL = 24;
   public int JJTNODEDEGREE = 25;
   public int JJTDEGREE = 26;
-  public int JJTVALUE = 27;
-  public int JJTSTRING = 28;
-  public int JJTINTEGER = 29;
-  public int JJTFLOAT = 30;
-  public int JJTSEARCHGRAPH = 31;
-  public int JJTSEARCHTYPE = 32;
-  public int JJTSHORTESTPATH = 33;
-  public int JJTDEPTHSEARCH = 34;
-  public int JJTBREADTHSEARCH = 35;
-  public int JJTMOREOPTIONS = 36;
-  public int JJTNODEPROPERTIES = 37;
-  public int JJTCOMPAREVALUES = 38;
-  public int JJTCOMPARES = 39;
-  public int JJTINTERVALBRACKET = 40;
-  public int JJTDATATOCOMPARE = 41;
+  public int JJTNODEPROPERTIES = 27;
+  public int JJTVALUES = 28;
+  public int JJTSTRING = 29;
+  public int JJTINTEGER = 30;
+  public int JJTFLOAT = 31;
+  public int JJTCOMPAREVALUES = 32;
+  public int JJTCOMPARES = 33;
+  public int JJTINTERVALBRACKET = 34;
+  public int JJTSEARCHGRAPH = 35;
+  public int JJTSEARCHTYPE = 36;
+  public int JJTSHORTESTPATH = 37;
+  public int JJTDEPTHSEARCH = 38;
+  public int JJTBREADTHSEARCH = 39;
+  public int JJTMOREOPTIONS = 40;
 
 
   public String[] jjtNodeName = {
@@ -75,21 +74,20 @@ public interface CronusGrammarParserTreeConstants
     "Label",
     "NodeDegree",
     "Degree",
-    "Value",
+    "NodeProperties",
+    "Values",
     "String",
     "Integer",
     "Float",
+    "CompareValues",
+    "Compares",
+    "IntervalBracket",
     "SearchGraph",
     "SearchType",
     "ShortestPath",
     "DepthSearch",
     "BreadthSearch",
     "MoreOptions",
-    "NodeProperties",
-    "CompareValues",
-    "Compares",
-    "IntervalBracket",
-    "DataToCompare",
   };
 }
-/* JavaCC - OriginalChecksum=d2340f2b26a221d7616fcf8a97ada912 (do not edit this line) */
+/* JavaCC - OriginalChecksum=d8d38b5b46efe643fe3f11c756e97af1 (do not edit this line) */

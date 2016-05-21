@@ -24,7 +24,7 @@ public class ASTDeclaration extends SimpleNode {
 		switch (jjtGetChild(0).toString()) {
 		case "Graph":
 			if (symtab.containsKey(child_1))
-				System.err.println(ErrorConstant.DUPLICATE_ENTRY + child_1 + ".");
+				System.err.println(ErrorConstant.DUPLICATE_ENTRY + child_1 + " of type Graph.");
 
 			else
 				symtab.put(child_1, new Graph());
@@ -33,7 +33,7 @@ public class ASTDeclaration extends SimpleNode {
 
 		case "Edge":
 			if (symtab.containsKey(child_1))
-				System.err.println(ErrorConstant.DUPLICATE_ENTRY + child_1 + ".");
+				System.err.println(ErrorConstant.DUPLICATE_ENTRY + child_1 + " of type Edge.");
 
 			else
 				symtab.put(child_1, new Edge());
@@ -42,7 +42,7 @@ public class ASTDeclaration extends SimpleNode {
 
 		case "Node":
 			if (symtab.containsKey(child_1))
-				System.err.println(ErrorConstant.DUPLICATE_ENTRY + child_1 + ".");
+				System.err.println(ErrorConstant.DUPLICATE_ENTRY + child_1 + " of type Node.");
 
 			else
 				symtab.put(child_1, new NodeT());
