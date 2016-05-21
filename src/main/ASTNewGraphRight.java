@@ -15,24 +15,11 @@ public class ASTNewGraphRight extends SimpleNode {
 		super(p, id);
 
 	}
-	
+
 	@Override
 	public void interpret() {
-		
-		int k=jjtGetNumChildren();
-		
-		System.out.println("");
-		System.out.println("Tenho " + k + "filhos.");
-				
-		System.out.println("Os filhos são: ");
-				
-		while(k>0) {
-			System.out.println(k + " - " + jjtGetChild(k-1).getVal());
-			k--;
-		}
-		
-	}
 
+	}
 }
 /*
  * JavaCC - OriginalChecksum=83bebc27370c9bfbae681ebaa3cd842b (do not edit this

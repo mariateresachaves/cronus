@@ -152,14 +152,14 @@ void NewGraph() :
 		v = < VARIABLE > {jjtThis.val = v.image;} 			#Variable
   	)
 	eq   = < EQ > {jjtThis.val = eq.image;} 				#Equal
-	NewGraphRight() 										#NewGraphRight
+	NewGraphRight()
   	scol = < SCOL > {jjtThis.val = scol.image;} 			#Semicolon
 }
 
 /*
 	== RIGHT HAND SIDE OF A NEW GRAPH ==
 */
-void NewGraphRight() :
+void NewGraphRight() #NewGraphRight :
 {
   	Token n, g, p, opar, cpar;
 }

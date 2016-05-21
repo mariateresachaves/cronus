@@ -2,15 +2,22 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
-public
-class ASTNew extends SimpleNode {
-  public ASTNew(int id) {
-    super(id);
-  }
+public class ASTNew extends SimpleNode {
 
-  public ASTNew(CronusGrammarParser p, int id) {
-    super(p, id);
-  }
+	public ASTNew(int id) {
+
+		super(id);
+
+	}
+
+	public ASTNew(CronusGrammarParser p, int id) {
+
+		super(p, id);
+
+	}
 
 }
-/* JavaCC - OriginalChecksum=07833fb656dca301d3e6943a1118f27d (do not edit this line) */
+/*
+ * JavaCC - OriginalChecksum=07833fb656dca301d3e6943a1118f27d (do not edit this
+ * line)
+ */

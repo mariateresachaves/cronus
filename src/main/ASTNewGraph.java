@@ -3,7 +3,7 @@
 package main;
 
 public class ASTNewGraph extends SimpleNode {
-	
+
 	public ASTNewGraph(int id) {
 
 		super(id);
@@ -20,34 +20,40 @@ public class ASTNewGraph extends SimpleNode {
 	public void interpret() {
 
 		int k = jjtGetNumChildren();
-		
-		// Graph Variable = NewGraphRight
-		if(k > 5) {
-			
-			// Graph
-			if (symtab.containsKey(jjtGetChild(0).getVal()))
-				System.err.println("\t[Semantic Error] Duplicate entry of Graph for variable " + jjtGetChild(0).getVal());
 
-			else
+		// Graph Variable = NewGraphRight
+		if (k > 5) {
+
+			// Graph
+			if (symtab.containsKey(jjtGetChild(0).getVal())) {
+
+				System.err.println(ErrorConstant.DUPLICATE_ENTRY + jjtGetChild(0).getVal() + ".");
+				return;
+
+			} else
 				symtab.put(jjtGetChild(0).getVal(), new Graph());
-			
+
 		}
 
 		// TODO: Variable = NewGraphRight
-		if(symtab.containsKey(jjtGetChild(0).getVal())) {
+		if (symtab.containsKey(jjtGetChild(0).getVal())) {
 
-			if(symtab.get(jjtGetChild(0).getVal()) instanceof Graph) {
-				
-				// TODO: NewGraphRight
-				
+			if (!(symtab.get(jjtGetChild(0).getVal()) instanceof Graph)) {
+
+				System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type Graph.");
+				return;
+
 			}
-			else
-				System.out.println("\t[Semantic Error] The variable " + jjtGetChild(0).getVal() + " is not of type Graph.");
+
+		} else {
+
+			System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(0).getVal() + ".");
+			return;
+
 		}
-		else
-			System.out.println("\t[Semantic Error] The variable " + jjtGetChild(0).getVal() + " is not defined.");
-		
-		
+
+		jjtGetChild(2).interpret();
+
 	}
 
 }

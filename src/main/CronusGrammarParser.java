@@ -256,46 +256,21 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
                           jjtn003.jjtSetLastToken(getToken(0));
                         }
       }
-          ASTNewGraphRight jjtn004 = new ASTNewGraphRight(JJTNEWGRAPHRIGHT);
-          boolean jjtc004 = true;
-          jjtree.openNodeScope(jjtn004);
-          jjtn004.jjtSetFirstToken(getToken(1));
-      try {
-        NewGraphRight();
-      } catch (Throwable jjte004) {
-          if (jjtc004) {
-            jjtree.clearNodeScope(jjtn004);
-            jjtc004 = false;
-          } else {
-            jjtree.popNode();
-          }
-          if (jjte004 instanceof RuntimeException) {
-            {if (true) throw (RuntimeException)jjte004;}
-          }
-          if (jjte004 instanceof ParseException) {
-            {if (true) throw (ParseException)jjte004;}
-          }
-          {if (true) throw (Error)jjte004;}
-      } finally {
-          if (jjtc004) {
-            jjtree.closeNodeScope(jjtn004, true);
-            jjtn004.jjtSetLastToken(getToken(0));
-          }
-      }
+      NewGraphRight();
       scol = jj_consume_token(SCOL);
-                          ASTSemicolon jjtn005 = new ASTSemicolon(JJTSEMICOLON);
-                          boolean jjtc005 = true;
-                          jjtree.openNodeScope(jjtn005);
-                          jjtn005.jjtSetFirstToken(getToken(1));
+                          ASTSemicolon jjtn004 = new ASTSemicolon(JJTSEMICOLON);
+                          boolean jjtc004 = true;
+                          jjtree.openNodeScope(jjtn004);
+                          jjtn004.jjtSetFirstToken(getToken(1));
       try {
-                          jjtree.closeNodeScope(jjtn005, true);
-                          jjtc005 = false;
-                          jjtn005.jjtSetLastToken(getToken(0));
-                         jjtn005.val = scol.image;
+                          jjtree.closeNodeScope(jjtn004, true);
+                          jjtc004 = false;
+                          jjtn004.jjtSetLastToken(getToken(0));
+                         jjtn004.val = scol.image;
       } finally {
-                          if (jjtc005) {
-                            jjtree.closeNodeScope(jjtn005, true);
-                            jjtn005.jjtSetLastToken(getToken(0));
+                          if (jjtc004) {
+                            jjtree.closeNodeScope(jjtn004, true);
+                            jjtn004.jjtSetLastToken(getToken(0));
                           }
       }
     } catch (Throwable jjte000) {

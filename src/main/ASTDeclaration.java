@@ -18,13 +18,13 @@ public class ASTDeclaration extends SimpleNode {
 
 	@Override
 	public void interpret() {
-		
+
 		String child_1 = jjtGetChild(1).getVal();
 
 		switch (jjtGetChild(0).toString()) {
 		case "Graph":
 			if (symtab.containsKey(child_1))
-				System.err.println("\t[Semantic Error] Duplicate entry of Graph for variable " + child_1);
+				System.err.println(ErrorConstant.DUPLICATE_ENTRY + child_1 + ".");
 
 			else
 				symtab.put(child_1, new Graph());
@@ -33,16 +33,16 @@ public class ASTDeclaration extends SimpleNode {
 
 		case "Edge":
 			if (symtab.containsKey(child_1))
-				System.err.println("\t[Semantic Error] Duplicate entry of Edge for variable " + child_1);
+				System.err.println(ErrorConstant.DUPLICATE_ENTRY + child_1 + ".");
 
 			else
 				symtab.put(child_1, new Edge());
-
+			
 			break;
 
 		case "Node":
 			if (symtab.containsKey(child_1))
-				System.err.println("\t[Semantic Error] Duplicate entry of Node for variable " + child_1);
+				System.err.println(ErrorConstant.DUPLICATE_ENTRY + child_1 + ".");
 
 			else
 				symtab.put(child_1, new NodeT());

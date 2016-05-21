@@ -29,10 +29,12 @@ public class ASTStart extends SimpleNode {
 			Token last = ((SimpleNode) jjtGetChild(i)).jjtGetLastToken();
 
 			for (Token t = first; t != null; t = t.next) {
+
 				System.out.print(" " + t);
 
 				if (t == last)
 					break;
+
 			}
 
 			System.out.println("");

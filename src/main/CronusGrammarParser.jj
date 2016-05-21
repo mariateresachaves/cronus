@@ -378,56 +378,27 @@ void NewGraph() :
                           jjtn003.jjtSetLastToken(getToken(0));
                         }
                       }
-/*@egen*/ 				      /*@bgen(jjtree) NewGraphRight */
-        {
-          ASTNewGraphRight jjtn004 = new ASTNewGraphRight(JJTNEWGRAPHRIGHT);
-          boolean jjtc004 = true;
-          jjtree.openNodeScope(jjtn004);
-          jjtn004.jjtSetFirstToken(getToken(1));
-        }
-        try {
-/*@egen*/
-	NewGraphRight()/*@bgen(jjtree)*/
-        } catch (Throwable jjte004) {
-          if (jjtc004) {
-            jjtree.clearNodeScope(jjtn004);
-            jjtc004 = false;
-          } else {
-            jjtree.popNode();
-          }
-          if (jjte004 instanceof RuntimeException) {
-            throw (RuntimeException)jjte004;
-          }
-          if (jjte004 instanceof ParseException) {
-            throw (ParseException)jjte004;
-          }
-          throw (Error)jjte004;
-        } finally {
-          if (jjtc004) {
-            jjtree.closeNodeScope(jjtn004, true);
-            jjtn004.jjtSetLastToken(getToken(0));
-          }
-        }
-/*@egen*/ 										              
+/*@egen*/ 				      
+	NewGraphRight()
   	scol = < SCOL >/*@bgen(jjtree) Semicolon */
                         {
-                          ASTSemicolon jjtn005 = new ASTSemicolon(JJTSEMICOLON);
-                          boolean jjtc005 = true;
-                          jjtree.openNodeScope(jjtn005);
-                          jjtn005.jjtSetFirstToken(getToken(1));
+                          ASTSemicolon jjtn004 = new ASTSemicolon(JJTSEMICOLON);
+                          boolean jjtc004 = true;
+                          jjtree.openNodeScope(jjtn004);
+                          jjtn004.jjtSetFirstToken(getToken(1));
                         }
                         try {
 /*@egen*//*@bgen(jjtree)*/
                         {
-                          jjtree.closeNodeScope(jjtn005, true);
-                          jjtc005 = false;
-                          jjtn005.jjtSetLastToken(getToken(0));
+                          jjtree.closeNodeScope(jjtn004, true);
+                          jjtc004 = false;
+                          jjtn004.jjtSetLastToken(getToken(0));
                         }
-/*@egen*/ {jjtn005.val = scol.image;}/*@bgen(jjtree)*/
+/*@egen*/ {jjtn004.val = scol.image;}/*@bgen(jjtree)*/
                         } finally {
-                          if (jjtc005) {
-                            jjtree.closeNodeScope(jjtn005, true);
-                            jjtn005.jjtSetLastToken(getToken(0));
+                          if (jjtc004) {
+                            jjtree.closeNodeScope(jjtn004, true);
+                            jjtn004.jjtSetLastToken(getToken(0));
                           }
                         }
 /*@egen*/ 			          /*@bgen(jjtree)*/
@@ -457,7 +428,7 @@ void NewGraph() :
 /*
 	== RIGHT HAND SIDE OF A NEW GRAPH ==
 */
-void NewGraphRight() :
+void NewGraphRight()                :
 {/*@bgen(jjtree) NewGraphRight */
         ASTNewGraphRight jjtn000 = new ASTNewGraphRight(JJTNEWGRAPHRIGHT);
         boolean jjtc000 = true;
