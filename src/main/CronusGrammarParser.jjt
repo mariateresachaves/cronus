@@ -113,6 +113,9 @@ SimpleNode Start() :
 		LOOKAHEAD(2)
    		ListNodes()
 	|
+		// TODO: MUDAR O LOOKAHEAD PARA NAO DAR ERRO
+		GetNode()
+   	|
    		SearchGraph()
   	)+
   	< EOF >
@@ -122,7 +125,7 @@ SimpleNode Start() :
 /*
 	== DECLARATION OF VARIABLES ==
 */
-void Declaration() :
+void Declaration() #Declaration :
 {
   	Token g, e, n, v, scol;
 }
@@ -140,7 +143,7 @@ void Declaration() :
 /*
 	== NEW GRAPH ==
 */
-void NewGraph() :
+void NewGraph() #NewGraph :
 {
   	Token g, e, n, osqbr, csqbr, v, eq, scol;
 }
@@ -407,7 +410,7 @@ void IntervalBracket() #IntervalBracket :
 /*
 	== SEARCH ==
 */
-void SearchGraph() :
+void SearchGraph() #SearchGraph :
 {
 	Token v, d, opar, v1, comma, v2, cpar, scol;
 }
@@ -427,7 +430,7 @@ void SearchGraph() :
 /*
 	== SEARCH TYPE ==
 */
-void SearchType() :
+void SearchType() #SearchType :
 {
   	Token sp;
 }
@@ -442,7 +445,7 @@ void SearchType() :
 /*
 	== MORE OPTIONS ==
 */
-void MoreOptions() :
+void MoreOptions() #MoreOptions :
 {
   	Token comma;
 }
@@ -452,3 +455,19 @@ void MoreOptions() :
 	  	NodeProperties()
 	)?
 }
+
+/*
+	== GET A NODE OF A NODES LIST ==
+*/
+void GetNode() #GetNode :
+{
+  	Token n, v, eq, osqbr, i, csqbr, scol;}{
+  	(
+  	  	n = < NODE > {jjtThis.val = n.image;} 		#Node  	)?
+	v = < VARIABLE > {jjtThis.val = v.image;} 		#Variable
+	eq = < EQ > {jjtThis.val = eq.image;}			#Equal
+	v = < VARIABLE > {jjtThis.val = v.image;} 		#Variable
+	osqbr = < OSQBR > {jjtThis.val = osqbr.image;}	#OpenSquareBrackets
+	i = < INTEGER > {jjtThis.val = i.image;}			#Integer
+	csqbr = < CSQBR > {jjtThis.val = csqbr.image;}	#CloseSquareBrackets
+	scol = < SCOL > {jjtThis.val = scol.image;}			#Semicolon}

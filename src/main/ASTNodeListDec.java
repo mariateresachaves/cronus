@@ -18,7 +18,7 @@ public class ASTNodeListDec extends SimpleNode {
 
 	@Override
 	public void interpret() {
-		
+
 		// NodeList
 		if (symtab.containsKey(jjtGetChild(3).getVal())) {
 
@@ -27,9 +27,9 @@ public class ASTNodeListDec extends SimpleNode {
 
 		} else
 			symtab.put(jjtGetChild(3).getVal(), new NodeList());
-		
+
 	}
-	
+
 }
 /*
  * JavaCC - OriginalChecksum=6243a46c048ed58c0da12f0e90102dc9 (do not edit this

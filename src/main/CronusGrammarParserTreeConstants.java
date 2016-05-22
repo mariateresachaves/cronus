@@ -46,6 +46,9 @@ public interface CronusGrammarParserTreeConstants
   public int JJTDEPTHSEARCH = 40;
   public int JJTBREADTHSEARCH = 41;
   public int JJTMOREOPTIONS = 42;
+  public int JJTGETNODE = 43;
+  public int JJTOPENSQUAREBRACKETS = 44;
+  public int JJTCLOSESQUAREBRACKETS = 45;
 
 
   public String[] jjtNodeName = {
@@ -92,6 +95,9 @@ public interface CronusGrammarParserTreeConstants
     "DepthSearch",
     "BreadthSearch",
     "MoreOptions",
+    "GetNode",
+    "OpenSquareBrackets",
+    "CloseSquareBrackets",
   };
 }
-/* JavaCC - OriginalChecksum=ce73c5f24e518872248482d11d90ab7a (do not edit this line) */
+/* JavaCC - OriginalChecksum=60b85f255dfef4df83f8fb56b3ddffd0 (do not edit this line) */

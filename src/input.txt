@@ -18,3 +18,7 @@ d = g2.nodes();
 n = g2.nodes();
 nodes2 = e.nodes();
 nodes2 = d.nodes();
+Node b = nodes2[2];
+Node n = nodes2[2];
+Node e = nodes2[3];
+d = nodes2[3];
