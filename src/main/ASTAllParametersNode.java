@@ -20,9 +20,23 @@ class ASTAllParametersNode extends SimpleNode {
   @Override
   public void interpret() {
 	  
-	  // TODO: AllParametersNode
-	  System.out.println("TODO: AllParametersNode");
+	  int k = jjtGetNumChildren();
 	  
+	  switch (k) {
+	  case 1:
+		  jjtGetChild(0).interpret();
+		  break;
+	  case 3:
+		  jjtGetChild(0).interpret();
+		  jjtGetChild(2).interpret();
+		  break;
+	  case 5:
+		  jjtGetChild(0).interpret();
+		  jjtGetChild(2).interpret();
+		  jjtGetChild(4).interpret();
+		  break;
+	  }
+
   }
 
 }

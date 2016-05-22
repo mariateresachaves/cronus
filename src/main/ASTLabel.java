@@ -2,15 +2,22 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
-public
-class ASTLabel extends SimpleNode {
-  public ASTLabel(int id) {
-    super(id);
-  }
+public class ASTLabel extends SimpleNode {
 
-  public ASTLabel(CronusGrammarParser p, int id) {
-    super(p, id);
-  }
+	public ASTLabel(int id) {
+
+		super(id);
+
+	}
+
+	public ASTLabel(CronusGrammarParser p, int id) {
+
+		super(p, id);
+
+	}
 
 }
-/* JavaCC - OriginalChecksum=0df8fd9915f8afcaa97f5286d5aab636 (do not edit this line) */
+/*
+ * JavaCC - OriginalChecksum=0df8fd9915f8afcaa97f5286d5aab636 (do not edit this
+ * line)
+ */

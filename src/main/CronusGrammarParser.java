@@ -733,7 +733,7 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case LABEL:
       case DEGREE:
-      case OSQBR:
+      case OBR:
         if (jj_2_5(2)) {
           NodeLabel();
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -996,7 +996,7 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
                   }
                 } else {
                   switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-                  case OSQBR:
+                  case OBR:
                     NodeProperties();
                     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
                     case COMMA:
@@ -1206,41 +1206,117 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
         ASTNodeProperties jjtn000 = new ASTNodeProperties(JJTNODEPROPERTIES);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
-        jjtn000.jjtSetFirstToken(getToken(1));Token comma, osqbr, csqbr, key;
+        jjtn000.jjtSetFirstToken(getToken(1));Token comma, osqbr, csqbr, key, eq;
     try {
-      osqbr = jj_consume_token(OSQBR);
-                            ASTOpenSquareBracket jjtn001 = new ASTOpenSquareBracket(JJTOPENSQUAREBRACKET);
-                            boolean jjtc001 = true;
-                            jjtree.openNodeScope(jjtn001);
-                            jjtn001.jjtSetFirstToken(getToken(1));
-      try {
-                            jjtree.closeNodeScope(jjtn001, true);
-                            jjtc001 = false;
-                            jjtn001.jjtSetLastToken(getToken(0));
-                           jjtn001.val = osqbr.image;
-      } finally {
-                            if (jjtc001) {
-                              jjtree.closeNodeScope(jjtn001, true);
-                              jjtn001.jjtSetLastToken(getToken(0));
-                            }
+      if (jj_2_8(4)) {
+        osqbr = jj_consume_token(OBR);
+                                  ASTOpenBracket jjtn001 = new ASTOpenBracket(JJTOPENBRACKET);
+                                  boolean jjtc001 = true;
+                                  jjtree.openNodeScope(jjtn001);
+                                  jjtn001.jjtSetFirstToken(getToken(1));
+        try {
+                                  jjtree.closeNodeScope(jjtn001, true);
+                                  jjtc001 = false;
+                                  jjtn001.jjtSetLastToken(getToken(0));
+                                 jjtn001.val = osqbr.image;
+        } finally {
+                                  if (jjtc001) {
+                                    jjtree.closeNodeScope(jjtn001, true);
+                                    jjtn001.jjtSetLastToken(getToken(0));
+                                  }
+        }
+        key = jj_consume_token(VARIABLE);
+                                     ASTVariable jjtn002 = new ASTVariable(JJTVARIABLE);
+                                     boolean jjtc002 = true;
+                                     jjtree.openNodeScope(jjtn002);
+                                     jjtn002.jjtSetFirstToken(getToken(1));
+        try {
+                                     jjtree.closeNodeScope(jjtn002, true);
+                                     jjtc002 = false;
+                                     jjtn002.jjtSetLastToken(getToken(0));
+                                    jjtn002.val = key.image;
+        } finally {
+                                     if (jjtc002) {
+                                       jjtree.closeNodeScope(jjtn002, true);
+                                       jjtn002.jjtSetLastToken(getToken(0));
+                                     }
+        }
+        eq = jj_consume_token(EQ);
+                              ASTEqual jjtn003 = new ASTEqual(JJTEQUAL);
+                              boolean jjtc003 = true;
+                              jjtree.openNodeScope(jjtn003);
+                              jjtn003.jjtSetFirstToken(getToken(1));
+        try {
+                              jjtree.closeNodeScope(jjtn003, true);
+                              jjtc003 = false;
+                              jjtn003.jjtSetLastToken(getToken(0));
+                             jjtn003.val = eq.image;
+        } finally {
+                              if (jjtc003) {
+                                jjtree.closeNodeScope(jjtn003, true);
+                                jjtn003.jjtSetLastToken(getToken(0));
+                              }
+        }
+        Value();
+      } else {
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case OBR:
+          osqbr = jj_consume_token(OBR);
+                                  ASTOpenBracket jjtn004 = new ASTOpenBracket(JJTOPENBRACKET);
+                                  boolean jjtc004 = true;
+                                  jjtree.openNodeScope(jjtn004);
+                                  jjtn004.jjtSetFirstToken(getToken(1));
+          try {
+                                  jjtree.closeNodeScope(jjtn004, true);
+                                  jjtc004 = false;
+                                  jjtn004.jjtSetLastToken(getToken(0));
+                                 jjtn004.val = osqbr.image;
+          } finally {
+                                  if (jjtc004) {
+                                    jjtree.closeNodeScope(jjtn004, true);
+                                    jjtn004.jjtSetLastToken(getToken(0));
+                                  }
+          }
+          key = jj_consume_token(VARIABLE);
+                                     ASTVariable jjtn005 = new ASTVariable(JJTVARIABLE);
+                                     boolean jjtc005 = true;
+                                     jjtree.openNodeScope(jjtn005);
+                                     jjtn005.jjtSetFirstToken(getToken(1));
+          try {
+                                     jjtree.closeNodeScope(jjtn005, true);
+                                     jjtc005 = false;
+                                     jjtn005.jjtSetLastToken(getToken(0));
+                                    jjtn005.val = key.image;
+          } finally {
+                                     if (jjtc005) {
+                                       jjtree.closeNodeScope(jjtn005, true);
+                                       jjtn005.jjtSetLastToken(getToken(0));
+                                     }
+          }
+          eq = jj_consume_token(EQ);
+                              ASTEqual jjtn006 = new ASTEqual(JJTEQUAL);
+                              boolean jjtc006 = true;
+                              jjtree.openNodeScope(jjtn006);
+                              jjtn006.jjtSetFirstToken(getToken(1));
+          try {
+                              jjtree.closeNodeScope(jjtn006, true);
+                              jjtc006 = false;
+                              jjtn006.jjtSetLastToken(getToken(0));
+                             jjtn006.val = eq.image;
+          } finally {
+                              if (jjtc006) {
+                                jjtree.closeNodeScope(jjtn006, true);
+                                jjtn006.jjtSetLastToken(getToken(0));
+                              }
+          }
+          CompareValues();
+          break;
+        default:
+          jj_la1[22] = jj_gen;
+          jj_consume_token(-1);
+          throw new ParseException();
+        }
       }
-      key = jj_consume_token(VARIABLE);
-                             ASTVariable jjtn002 = new ASTVariable(JJTVARIABLE);
-                             boolean jjtc002 = true;
-                             jjtree.openNodeScope(jjtn002);
-                             jjtn002.jjtSetFirstToken(getToken(1));
-      try {
-                             jjtree.closeNodeScope(jjtn002, true);
-                             jjtc002 = false;
-                             jjtn002.jjtSetLastToken(getToken(0));
-                            jjtn002.val = key.image;
-      } finally {
-                             if (jjtc002) {
-                               jjtree.closeNodeScope(jjtn002, true);
-                               jjtn002.jjtSetLastToken(getToken(0));
-                             }
-      }
-      CompareValues();
       label_2:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -1248,58 +1324,134 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
           ;
           break;
         default:
-          jj_la1[22] = jj_gen;
+          jj_la1[23] = jj_gen;
           break label_2;
         }
-        comma = jj_consume_token(COMMA);
-                            ASTComma jjtn003 = new ASTComma(JJTCOMMA);
-                            boolean jjtc003 = true;
-                            jjtree.openNodeScope(jjtn003);
-                            jjtn003.jjtSetFirstToken(getToken(1));
-        try {
-                            jjtree.closeNodeScope(jjtn003, true);
-                            jjtc003 = false;
-                            jjtn003.jjtSetLastToken(getToken(0));
-                           jjtn003.val = comma.image;
-        } finally {
-                            if (jjtc003) {
-                              jjtree.closeNodeScope(jjtn003, true);
-                              jjtn003.jjtSetLastToken(getToken(0));
+        if (jj_2_9(4)) {
+          comma = jj_consume_token(COMMA);
+                            ASTComma jjtn007 = new ASTComma(JJTCOMMA);
+                            boolean jjtc007 = true;
+                            jjtree.openNodeScope(jjtn007);
+                            jjtn007.jjtSetFirstToken(getToken(1));
+          try {
+                            jjtree.closeNodeScope(jjtn007, true);
+                            jjtc007 = false;
+                            jjtn007.jjtSetLastToken(getToken(0));
+                           jjtn007.val = comma.image;
+          } finally {
+                            if (jjtc007) {
+                              jjtree.closeNodeScope(jjtn007, true);
+                              jjtn007.jjtSetLastToken(getToken(0));
                             }
-        }
-        key = jj_consume_token(VARIABLE);
-                             ASTVariable jjtn004 = new ASTVariable(JJTVARIABLE);
-                             boolean jjtc004 = true;
-                             jjtree.openNodeScope(jjtn004);
-                             jjtn004.jjtSetFirstToken(getToken(1));
-        try {
-                             jjtree.closeNodeScope(jjtn004, true);
-                             jjtc004 = false;
-                             jjtn004.jjtSetLastToken(getToken(0));
-                            jjtn004.val = key.image;
-        } finally {
-                             if (jjtc004) {
-                               jjtree.closeNodeScope(jjtn004, true);
-                               jjtn004.jjtSetLastToken(getToken(0));
+          }
+          key = jj_consume_token(VARIABLE);
+                             ASTVariable jjtn008 = new ASTVariable(JJTVARIABLE);
+                             boolean jjtc008 = true;
+                             jjtree.openNodeScope(jjtn008);
+                             jjtn008.jjtSetFirstToken(getToken(1));
+          try {
+                             jjtree.closeNodeScope(jjtn008, true);
+                             jjtc008 = false;
+                             jjtn008.jjtSetLastToken(getToken(0));
+                            jjtn008.val = key.image;
+          } finally {
+                             if (jjtc008) {
+                               jjtree.closeNodeScope(jjtn008, true);
+                               jjtn008.jjtSetLastToken(getToken(0));
                              }
+          }
+          eq = jj_consume_token(EQ);
+                      ASTEqual jjtn009 = new ASTEqual(JJTEQUAL);
+                      boolean jjtc009 = true;
+                      jjtree.openNodeScope(jjtn009);
+                      jjtn009.jjtSetFirstToken(getToken(1));
+          try {
+                      jjtree.closeNodeScope(jjtn009, true);
+                      jjtc009 = false;
+                      jjtn009.jjtSetLastToken(getToken(0));
+                     jjtn009.val = eq.image;
+          } finally {
+                      if (jjtc009) {
+                        jjtree.closeNodeScope(jjtn009, true);
+                        jjtn009.jjtSetLastToken(getToken(0));
+                      }
+          }
+          Value();
+        } else {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case COMMA:
+            comma = jj_consume_token(COMMA);
+                                    ASTComma jjtn010 = new ASTComma(JJTCOMMA);
+                                    boolean jjtc010 = true;
+                                    jjtree.openNodeScope(jjtn010);
+                                    jjtn010.jjtSetFirstToken(getToken(1));
+            try {
+                                    jjtree.closeNodeScope(jjtn010, true);
+                                    jjtc010 = false;
+                                    jjtn010.jjtSetLastToken(getToken(0));
+                                   jjtn010.val = comma.image;
+            } finally {
+                                    if (jjtc010) {
+                                      jjtree.closeNodeScope(jjtn010, true);
+                                      jjtn010.jjtSetLastToken(getToken(0));
+                                    }
+            }
+            key = jj_consume_token(VARIABLE);
+                             ASTVariable jjtn011 = new ASTVariable(JJTVARIABLE);
+                             boolean jjtc011 = true;
+                             jjtree.openNodeScope(jjtn011);
+                             jjtn011.jjtSetFirstToken(getToken(1));
+            try {
+                             jjtree.closeNodeScope(jjtn011, true);
+                             jjtc011 = false;
+                             jjtn011.jjtSetLastToken(getToken(0));
+                            jjtn011.val = key.image;
+            } finally {
+                             if (jjtc011) {
+                               jjtree.closeNodeScope(jjtn011, true);
+                               jjtn011.jjtSetLastToken(getToken(0));
+                             }
+            }
+            eq = jj_consume_token(EQ);
+                      ASTEqual jjtn012 = new ASTEqual(JJTEQUAL);
+                      boolean jjtc012 = true;
+                      jjtree.openNodeScope(jjtn012);
+                      jjtn012.jjtSetFirstToken(getToken(1));
+            try {
+                      jjtree.closeNodeScope(jjtn012, true);
+                      jjtc012 = false;
+                      jjtn012.jjtSetLastToken(getToken(0));
+                     jjtn012.val = eq.image;
+            } finally {
+                      if (jjtc012) {
+                        jjtree.closeNodeScope(jjtn012, true);
+                        jjtn012.jjtSetLastToken(getToken(0));
+                      }
+            }
+            CompareValues();
+            break;
+          default:
+            jj_la1[24] = jj_gen;
+            jj_consume_token(-1);
+            throw new ParseException();
+          }
         }
-        CompareValues();
       }
-      csqbr = jj_consume_token(CSQBR);
-                            ASTCloseSquareBracket jjtn005 = new ASTCloseSquareBracket(JJTCLOSESQUAREBRACKET);
-                            boolean jjtc005 = true;
-                            jjtree.openNodeScope(jjtn005);
-                            jjtn005.jjtSetFirstToken(getToken(1));
+      csqbr = jj_consume_token(CBR);
+                          ASTCloseBracket jjtn013 = new ASTCloseBracket(JJTCLOSEBRACKET);
+                          boolean jjtc013 = true;
+                          jjtree.openNodeScope(jjtn013);
+                          jjtn013.jjtSetFirstToken(getToken(1));
       try {
-                            jjtree.closeNodeScope(jjtn005, true);
-                            jjtc005 = false;
-                            jjtn005.jjtSetLastToken(getToken(0));
-                           jjtn005.val = csqbr.image;
+                          jjtree.closeNodeScope(jjtn013, true);
+                          jjtc013 = false;
+                          jjtn013.jjtSetLastToken(getToken(0));
+                         jjtn013.val = csqbr.image;
       } finally {
-                            if (jjtc005) {
-                              jjtree.closeNodeScope(jjtn005, true);
-                              jjtn005.jjtSetLastToken(getToken(0));
-                            }
+                          if (jjtc013) {
+                            jjtree.closeNodeScope(jjtn013, true);
+                            jjtn013.jjtSetLastToken(getToken(0));
+                          }
       }
     } catch (Throwable jjte000) {
           if (jjtc000) {
@@ -1327,8 +1479,8 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
 	== TYPES OF VALUES: STRING OR NUMBER ==
 */
   static final public void Value() throws ParseException {
- /*@bgen(jjtree) Values */
-        ASTValues jjtn000 = new ASTValues(JJTVALUES);
+ /*@bgen(jjtree) Value */
+        ASTValue jjtn000 = new ASTValue(JJTVALUE);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
         jjtn000.jjtSetFirstToken(getToken(1));Token s, i, f;
@@ -1389,7 +1541,7 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
         }
         break;
       default:
-        jj_la1[23] = jj_gen;
+        jj_la1[25] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1412,40 +1564,24 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
         jjtn000.jjtSetFirstToken(getToken(1));Token eq, os, s, i, f, cs, comma, comp;
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case EQ:
-        // Equals to an Interval
-                eq = jj_consume_token(EQ);
-                      ASTEqual jjtn001 = new ASTEqual(JJTEQUAL);
-                      boolean jjtc001 = true;
-                      jjtree.openNodeScope(jjtn001);
-                      jjtn001.jjtSetFirstToken(getToken(1));
-        try {
-                      jjtree.closeNodeScope(jjtn001, true);
-                      jjtc001 = false;
-                      jjtn001.jjtSetLastToken(getToken(0));
-                     jjtn001.val = eq.image;
-        } finally {
-                      if (jjtc001) {
-                        jjtree.closeNodeScope(jjtn001, true);
-                        jjtn001.jjtSetLastToken(getToken(0));
-                      }
-        }
+      case OSQBR:
+      case CSQBR:
         IntervalBracket();
         Value();
         comma = jj_consume_token(COMMA);
-                            ASTComma jjtn002 = new ASTComma(JJTCOMMA);
-                            boolean jjtc002 = true;
-                            jjtree.openNodeScope(jjtn002);
-                            jjtn002.jjtSetFirstToken(getToken(1));
+                            ASTComma jjtn001 = new ASTComma(JJTCOMMA);
+                            boolean jjtc001 = true;
+                            jjtree.openNodeScope(jjtn001);
+                            jjtn001.jjtSetFirstToken(getToken(1));
         try {
-                            jjtree.closeNodeScope(jjtn002, true);
-                            jjtc002 = false;
-                            jjtn002.jjtSetLastToken(getToken(0));
-                           jjtn002.val = comma.image;
+                            jjtree.closeNodeScope(jjtn001, true);
+                            jjtc001 = false;
+                            jjtn001.jjtSetLastToken(getToken(0));
+                           jjtn001.val = comma.image;
         } finally {
-                            if (jjtc002) {
-                              jjtree.closeNodeScope(jjtn002, true);
-                              jjtn002.jjtSetLastToken(getToken(0));
+                            if (jjtc001) {
+                              jjtree.closeNodeScope(jjtn001, true);
+                              jjtn001.jjtSetLastToken(getToken(0));
                             }
         }
         Value();
@@ -1454,25 +1590,25 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
       case COMP:
         // Compares to a Value
                 comp = jj_consume_token(COMP);
-                          ASTCompares jjtn003 = new ASTCompares(JJTCOMPARES);
-                          boolean jjtc003 = true;
-                          jjtree.openNodeScope(jjtn003);
-                          jjtn003.jjtSetFirstToken(getToken(1));
+                          ASTCompares jjtn002 = new ASTCompares(JJTCOMPARES);
+                          boolean jjtc002 = true;
+                          jjtree.openNodeScope(jjtn002);
+                          jjtn002.jjtSetFirstToken(getToken(1));
         try {
-                          jjtree.closeNodeScope(jjtn003, true);
-                          jjtc003 = false;
-                          jjtn003.jjtSetLastToken(getToken(0));
-                         jjtn003.val = comp.image;
+                          jjtree.closeNodeScope(jjtn002, true);
+                          jjtc002 = false;
+                          jjtn002.jjtSetLastToken(getToken(0));
+                         jjtn002.val = comp.image;
         } finally {
-                          if (jjtc003) {
-                            jjtree.closeNodeScope(jjtn003, true);
-                            jjtn003.jjtSetLastToken(getToken(0));
+                          if (jjtc002) {
+                            jjtree.closeNodeScope(jjtn002, true);
+                            jjtn002.jjtSetLastToken(getToken(0));
                           }
         }
         Value();
         break;
       default:
-        jj_la1[24] = jj_gen;
+        jj_la1[26] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1546,7 +1682,7 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
         }
         break;
       default:
-        jj_la1[25] = jj_gen;
+        jj_la1[27] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1786,7 +1922,7 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
         }
         break;
       default:
-        jj_la1[26] = jj_gen;
+        jj_la1[28] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1829,7 +1965,7 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
         NodeProperties();
         break;
       default:
-        jj_la1[27] = jj_gen;
+        jj_la1[29] = jj_gen;
         ;
       }
     } catch (Throwable jjte000) {
@@ -1903,12 +2039,26 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
     finally { jj_save(6, xla); }
   }
 
+  static private boolean jj_2_8(int xla) {
+    jj_la = xla; jj_lastpos = jj_scanpos = token;
+    try { return !jj_3_8(); }
+    catch(LookaheadSuccess ls) { return true; }
+    finally { jj_save(7, xla); }
+  }
+
+  static private boolean jj_2_9(int xla) {
+    jj_la = xla; jj_lastpos = jj_scanpos = token;
+    try { return !jj_3_9(); }
+    catch(LookaheadSuccess ls) { return true; }
+    finally { jj_save(8, xla); }
+  }
+
   static private boolean jj_3R_3() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_3R_9()) {
-    jj_scanpos = xsp;
     if (jj_3R_10()) {
+    jj_scanpos = xsp;
+    if (jj_3R_11()) {
     jj_scanpos = xsp;
     if (jj_3_4()) return true;
     }
@@ -1918,12 +2068,32 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
     return false;
   }
 
+  static private boolean jj_3R_26() {
+    if (jj_scan_token(CSQBR)) return true;
+    return false;
+  }
+
   static private boolean jj_3_6() {
     if (jj_3R_7()) return true;
     return false;
   }
 
-  static private boolean jj_3R_12() {
+  static private boolean jj_3R_25() {
+    if (jj_scan_token(OSQBR)) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_24() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_25()) {
+    jj_scanpos = xsp;
+    if (jj_3R_26()) return true;
+    }
+    return false;
+  }
+
+  static private boolean jj_3R_13() {
     if (jj_scan_token(NEW)) return true;
     return false;
   }
@@ -1934,13 +2104,21 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
     return false;
   }
 
+  static private boolean jj_3R_12() {
+    if (jj_scan_token(GRAPH)) return true;
+    return false;
+  }
+
   static private boolean jj_3_3() {
     if (jj_3R_5()) return true;
     return false;
   }
 
-  static private boolean jj_3R_11() {
-    if (jj_scan_token(GRAPH)) return true;
+  static private boolean jj_3_9() {
+    if (jj_scan_token(COMMA)) return true;
+    if (jj_scan_token(VARIABLE)) return true;
+    if (jj_scan_token(EQ)) return true;
+    if (jj_3R_9()) return true;
     return false;
   }
 
@@ -1949,7 +2127,18 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
     return false;
   }
 
-  static private boolean jj_3R_16() {
+  static private boolean jj_3R_17() {
+    if (jj_scan_token(OBR)) return true;
+    if (jj_scan_token(VARIABLE)) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_23() {
+    if (jj_scan_token(COMP)) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_21() {
     if (jj_scan_token(NODE)) return true;
     if (jj_scan_token(OSQBR)) return true;
     return false;
@@ -1957,6 +2146,29 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
 
   static private boolean jj_3_1() {
     if (jj_3R_3()) return true;
+    return false;
+  }
+
+  static private boolean jj_3_8() {
+    if (jj_scan_token(OBR)) return true;
+    if (jj_scan_token(VARIABLE)) return true;
+    if (jj_scan_token(EQ)) return true;
+    if (jj_3R_9()) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_22() {
+    if (jj_3R_24()) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_16() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_22()) {
+    jj_scanpos = xsp;
+    if (jj_3R_23()) return true;
+    }
     return false;
   }
 
@@ -1968,16 +2180,20 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
   static private boolean jj_3R_4() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_3R_11()) jj_scanpos = xsp;
+    if (jj_3R_12()) jj_scanpos = xsp;
     if (jj_scan_token(VARIABLE)) return true;
     if (jj_scan_token(EQ)) return true;
-    if (jj_3R_12()) return true;
+    if (jj_3R_13()) return true;
     return false;
   }
 
   static private boolean jj_3R_8() {
-    if (jj_scan_token(OSQBR)) return true;
-    if (jj_scan_token(VARIABLE)) return true;
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3_8()) {
+    jj_scanpos = xsp;
+    if (jj_3R_17()) return true;
+    }
     return false;
   }
 
@@ -1986,14 +2202,9 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
     return false;
   }
 
-  static private boolean jj_3R_14() {
+  static private boolean jj_3R_15() {
     if (jj_scan_token(VARIABLE)) return true;
     if (jj_scan_token(EQ)) return true;
-    return false;
-  }
-
-  static private boolean jj_3R_18() {
-    if (jj_scan_token(COMP)) return true;
     return false;
   }
 
@@ -2002,48 +2213,61 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
     return false;
   }
 
-  static private boolean jj_3R_10() {
+  static private boolean jj_3R_11() {
     if (jj_scan_token(EDGE)) return true;
     return false;
   }
 
-  static private boolean jj_3R_9() {
+  static private boolean jj_3R_20() {
+    if (jj_scan_token(FLOAT)) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_10() {
     if (jj_scan_token(GRAPH)) return true;
     return false;
   }
 
-  static private boolean jj_3R_13() {
-    if (jj_3R_16()) return true;
+  static private boolean jj_3R_19() {
+    if (jj_scan_token(INTEGER)) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_14() {
+    if (jj_3R_21()) return true;
     return false;
   }
 
   static private boolean jj_3R_5() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_3R_13()) {
+    if (jj_3R_14()) {
     jj_scanpos = xsp;
-    if (jj_3R_14()) return true;
+    if (jj_3R_15()) return true;
     }
     return false;
   }
 
-  static private boolean jj_3R_17() {
-    if (jj_scan_token(EQ)) return true;
+  static private boolean jj_3R_18() {
+    if (jj_scan_token(STRING)) return true;
     return false;
   }
 
   static private boolean jj_3R_7() {
     if (jj_scan_token(DEGREE)) return true;
-    if (jj_3R_15()) return true;
+    if (jj_3R_16()) return true;
     return false;
   }
 
-  static private boolean jj_3R_15() {
+  static private boolean jj_3R_9() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_3R_17()) {
+    if (jj_3R_18()) {
     jj_scanpos = xsp;
-    if (jj_3R_18()) return true;
+    if (jj_3R_19()) {
+    jj_scanpos = xsp;
+    if (jj_3R_20()) return true;
+    }
     }
     return false;
   }
@@ -2060,7 +2284,7 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
   static private Token jj_scanpos, jj_lastpos;
   static private int jj_la;
   static private int jj_gen;
-  static final private int[] jj_la1 = new int[28];
+  static final private int[] jj_la1 = new int[30];
   static private int[] jj_la1_0;
   static private int[] jj_la1_1;
   static {
@@ -2068,12 +2292,12 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
       jj_la1_init_1();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x2000000,0x3c00000,0x1400000,0x400000,0x0,0x2800000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x400,0x800,0x0,0xc00,0x0,0x1c000000,0x0,0x0,0xe000,0x0,};
+      jj_la1_0 = new int[] {0x2000000,0x3c00000,0x1400000,0x400000,0x0,0x2800000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x400,0x800,0x80000000,0x80000c00,0x80000000,0x0,0x0,0x1c000000,0x0,0x0,0xe000,0x0,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x0,0x0,0x0,0x0,0x40,0x0,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x0,0x0,0x2,0x2,0x20,0x0,0x240,0x6,0x0,0x20,};
+      jj_la1_1 = new int[] {0x0,0x0,0x0,0x0,0x40,0x0,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x0,0x0,0x0,0x0,0x0,0x20,0x20,0x0,0x206,0x6,0x0,0x20,};
    }
-  static final private JJCalls[] jj_2_rtns = new JJCalls[7];
+  static final private JJCalls[] jj_2_rtns = new JJCalls[9];
   static private boolean jj_rescan = false;
   static private int jj_gc = 0;
 
@@ -2095,7 +2319,7 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 28; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 30; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -2111,7 +2335,7 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
     jj_ntk = -1;
     jjtree.reset();
     jj_gen = 0;
-    for (int i = 0; i < 28; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 30; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -2129,7 +2353,7 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 28; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 30; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -2141,7 +2365,7 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
     jj_ntk = -1;
     jjtree.reset();
     jj_gen = 0;
-    for (int i = 0; i < 28; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 30; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -2158,7 +2382,7 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 28; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 30; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -2169,7 +2393,7 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
     jj_ntk = -1;
     jjtree.reset();
     jj_gen = 0;
-    for (int i = 0; i < 28; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 30; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -2286,7 +2510,7 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 28; i++) {
+    for (int i = 0; i < 30; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {
@@ -2325,7 +2549,7 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
 
   static private void jj_rescan_token() {
     jj_rescan = true;
-    for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < 9; i++) {
     try {
       JJCalls p = jj_2_rtns[i];
       do {
@@ -2339,6 +2563,8 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
             case 4: jj_3_5(); break;
             case 5: jj_3_6(); break;
             case 6: jj_3_7(); break;
+            case 7: jj_3_8(); break;
+            case 8: jj_3_9(); break;
           }
         }
         p = p.next;

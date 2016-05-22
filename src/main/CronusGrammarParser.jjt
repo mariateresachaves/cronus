@@ -326,24 +326,40 @@ void NodeDegree() #NodeDegree :
 */
 void NodeProperties() #NodeProperties :
 {
-  	Token comma, osqbr, csqbr, key;
+  	Token comma, osqbr, csqbr, key, eq;
 }
 {
-  	osqbr = < OSQBR > {jjtThis.val = osqbr.image;}		#OpenSquareBracket
-  	key = < VARIABLE > {jjtThis.val = key.image;}		#Variable
-  	CompareValues()
   	(
-    	comma = < COMMA > {jjtThis.val = comma.image;}	#Comma
-    	key = < VARIABLE > {jjtThis.val = key.image;}	#Variable
+  	  	LOOKAHEAD(4)
+		osqbr = < OBR > {jjtThis.val = osqbr.image;}		#OpenBracket
+  		key = < VARIABLE > {jjtThis.val = key.image;}		#Variable
+  		eq = < EQ > {jjtThis.val = eq.image;}				#Equal
+  		Value()
+	|
+  		osqbr = < OBR > {jjtThis.val = osqbr.image;}		#OpenBracket
+	  	key = < VARIABLE > {jjtThis.val = key.image;}		#Variable
+	  	eq = < EQ > {jjtThis.val = eq.image;}				#Equal
+	  	CompareValues()
+  	)
+  	(
+  	  	LOOKAHEAD(4) 
+    	comma = < COMMA > {jjtThis.val = comma.image;}		#Comma
+    	key = < VARIABLE > {jjtThis.val = key.image;}		#Variable
+    	eq = < EQ > {jjtThis.val = eq.image;}				#Equal
+    	Value()
+   |
+   		comma = < COMMA > {jjtThis.val = comma.image;}		#Comma
+    	key = < VARIABLE > {jjtThis.val = key.image;}		#Variable
+    	eq = < EQ > {jjtThis.val = eq.image;}				#Equal
     	CompareValues()
   	)*
-  	csqbr = < CSQBR > {jjtThis.val = csqbr.image;}		#CloseSquareBracket
+  	csqbr = < CBR > {jjtThis.val = csqbr.image;}			#CloseBracket
 }
 
 /*
 	== TYPES OF VALUES: STRING OR NUMBER ==
 */
-void Value() #Values :
+void Value() #Value :
 {
   	Token s, i, f;
 }
@@ -364,7 +380,6 @@ void CompareValues() #CompareValues :
 }
 {
   	// Equals to an Interval
-  	eq = < EQ > {jjtThis.val = eq.image;}			#Equal
   	IntervalBracket()
   	Value()
   	comma = < COMMA > {jjtThis.val = comma.image;}	#Comma
