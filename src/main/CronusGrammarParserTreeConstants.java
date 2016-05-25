@@ -18,34 +18,35 @@ public interface CronusGrammarParserTreeConstants
   public int JJTPATH = 12;
   public int JJTCLOSEPARENTHESIS = 13;
   public int JJTLISTNODES = 14;
-  public int JJTDOT = 15;
-  public int JJTNODES = 16;
-  public int JJTNODELISTDEC = 17;
-  public int JJTOPENSQUAREBRACKET = 18;
-  public int JJTCLOSESQUAREBRACKET = 19;
-  public int JJTALLPARAMETERSNODE = 20;
-  public int JJTCOMMA = 21;
-  public int JJTNODELABEL = 22;
-  public int JJTLABEL = 23;
-  public int JJTNODEDEGREE = 24;
-  public int JJTDEGREE = 25;
-  public int JJTNODEPROPERTIES = 26;
-  public int JJTOPENBRACKET = 27;
-  public int JJTCLOSEBRACKET = 28;
-  public int JJTVALUE = 29;
-  public int JJTSTRING = 30;
-  public int JJTINTEGER = 31;
-  public int JJTFLOAT = 32;
-  public int JJTCOMPAREVALUES = 33;
-  public int JJTCOMPARES = 34;
-  public int JJTINTERVALBRACKET = 35;
-  public int JJTSEARCHGRAPH = 36;
-  public int JJTSEARCHTYPE = 37;
-  public int JJTSHORTESTPATH = 38;
-  public int JJTDEPTHSEARCH = 39;
-  public int JJTBREADTHSEARCH = 40;
-  public int JJTMOREOPTIONS = 41;
-  public int JJTGETNODE = 42;
+  public int JJTNODELISTDEC = 15;
+  public int JJTOPENSQUAREBRACKET = 16;
+  public int JJTCLOSESQUAREBRACKET = 17;
+  public int JJTLISTNODESRIGHT = 18;
+  public int JJTDOT = 19;
+  public int JJTNODES = 20;
+  public int JJTALLPARAMETERSNODE = 21;
+  public int JJTCOMMA = 22;
+  public int JJTNODELABEL = 23;
+  public int JJTLABEL = 24;
+  public int JJTNODEDEGREE = 25;
+  public int JJTDEGREE = 26;
+  public int JJTNODEPROPERTIES = 27;
+  public int JJTOPENBRACKET = 28;
+  public int JJTCLOSEBRACKET = 29;
+  public int JJTVALUE = 30;
+  public int JJTSTRING = 31;
+  public int JJTINTEGER = 32;
+  public int JJTFLOAT = 33;
+  public int JJTCOMPAREVALUES = 34;
+  public int JJTCOMPARES = 35;
+  public int JJTINTERVALBRACKET = 36;
+  public int JJTSEARCHGRAPH = 37;
+  public int JJTSEARCHTYPE = 38;
+  public int JJTSHORTESTPATH = 39;
+  public int JJTDEPTHSEARCH = 40;
+  public int JJTBREADTHSEARCH = 41;
+  public int JJTMOREOPTIONS = 42;
+  public int JJTGETNODE = 43;
 
 
   public String[] jjtNodeName = {
@@ -64,11 +65,12 @@ public interface CronusGrammarParserTreeConstants
     "Path",
     "CloseParenthesis",
     "ListNodes",
-    "Dot",
-    "Nodes",
     "NodeListDec",
     "OpenSquareBracket",
     "CloseSquareBracket",
+    "ListNodesRight",
+    "Dot",
+    "Nodes",
     "AllParametersNode",
     "Comma",
     "NodeLabel",
@@ -94,4 +96,4 @@ public interface CronusGrammarParserTreeConstants
     "GetNode",
   };
 }
-/* JavaCC - OriginalChecksum=6af8d7c2443f0d484be409a078997f77 (do not edit this line) */
+/* JavaCC - OriginalChecksum=e8a1c74eca8ed0b922110e18533dbdf9 (do not edit this line) */

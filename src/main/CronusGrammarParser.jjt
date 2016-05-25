@@ -114,7 +114,7 @@ SimpleNode Start() :
 		LOOKAHEAD(ListNodes())
    		ListNodes()
    	|
-   		LOOKAHEAD(SearchGraph()) 
+   		LOOKAHEAD(SearchGraph())
    		SearchGraph()
    	|
    		GetNode()
@@ -186,23 +186,13 @@ void ListNodes() #ListNodes :
   	NodeListDec()
   	(
     	eq = < EQ > {jjtThis.val = eq.image;} 		#Equal
-    	v  = < VARIABLE > {jjtThis.val = v.image;} 	#Variable
-  		d  = < DOT > {jjtThis.val = d.image;}		#Dot
-  		n  = < NODES > {jjtThis.val = n.image;}		#Nodes
-  		o  = < OPAR > {jjtThis.val = o.image;}		#OpenParenthesis
-  		AllParametersNode()
-  		c  = < CPAR > {jjtThis.val = c.image;}		#CloseParenthesis
+    	ListNodesRight()
   	)?
   	scol = < SCOL > {jjtThis.val = scol.image;}		#Semicolon
 |
 	v    = < VARIABLE > {jjtThis.val = v.image;}	#Variable
   	eq   = < EQ > {jjtThis.val = eq.image;} 		#Equal
-  	v    = < VARIABLE > {jjtThis.val = v.image;} 	#Variable
-  	d    = < DOT > {jjtThis.val = d.image;}			#Dot
-  	n    = < NODES > {jjtThis.val = n.image;}		#Nodes
-  	o    = < OPAR > {jjtThis.val = o.image;}		#OpenParenthesis
-  	AllParametersNode()
-  	c    = < CPAR > {jjtThis.val = c.image;}		#CloseParenthesis
+  	ListNodesRight()
   	scol = < SCOL > {jjtThis.val = scol.image;} 	#Semicolon
 }
 
@@ -219,6 +209,20 @@ void NodeListDec() #NodeListDec :
   	cbr = < CSQBR > {jjtThis.val = cbr.image;} 		#CloseSquareBracket
   	v   = < VARIABLE > {jjtThis.val = v.image;} 	#Variable
 }
+
+/*
+	== LIST NODES RIGHT ==
+*/
+
+void ListNodesRight() #ListNodesRight :
+{
+  	Token v, d, n, o, c;}{
+  	v  = < VARIABLE > {jjtThis.val = v.image;} 	#Variable
+	d  = < DOT > {jjtThis.val = d.image;}		#Dot
+	n  = < NODES > {jjtThis.val = n.image;}		#Nodes
+	o  = < OPAR > {jjtThis.val = o.image;}		#OpenParenthesis
+	AllParametersNode()
+	c  = < CPAR > {jjtThis.val = c.image;}		#CloseParenthesis}
 
 /*
 	== FILTER SEARCH NODE WITH ALL THREE PARAMETERS ==

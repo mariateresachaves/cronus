@@ -19,7 +19,7 @@ public class ASTGetNode extends SimpleNode {
 	@Override
 	public void interpret() {
 
-		// TODO: NODE? VARIABLE EQ VARIABLE OSQBR INTEGER CSQBR SCOL
+		// NODE? VARIABLE EQ VARIABLE OSQBR INTEGER CSQBR SCOL
 		if (jjtGetNumChildren() == 8) {
 
 			if (symtab.containsKey(jjtGetChild(1).getVal())) {
@@ -30,32 +30,87 @@ public class ASTGetNode extends SimpleNode {
 			} else
 				symtab.put(jjtGetChild(1).getVal(), new NodeT());
 
-		} else {
-			
-			if (symtab.containsKey(jjtGetChild(0).getVal())) {
+			// Right side
+			if (symtab.containsKey(jjtGetChild(3).getVal())) {
 
-				if (!(symtab.get(jjtGetChild(0).getVal()) instanceof Node)) {
+				if (!(symtab.get(jjtGetChild(3).getVal()) instanceof NodeList)) {
 
-					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type Node.");
+					System.out.println(
+							ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(3).getVal() + " is not of type Node[].");
 					return;
 
 				} else {
-					
-					
-					
+
 				}
 
 			} else {
 
-				System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(1).getVal() + ".");
+				System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(3).getVal() + ".");
 				return;
 
 			}
-			// TODO: TESTAR SE VARIAVEL NAO DECLARADA DA ERRO
+
+			// INTEGER must be >= 0
+			if (Integer.parseInt(jjtGetChild(5).getVal()) < 0) {
+
+				System.out.println(ErrorConstant.NODE_LIST_INDEX);
+
+			}
+
 		}
-		
-		// TODO: FAZER VERIFICAÇÕES DO NA VARIAVEL DO LADO DIREITO
-		
+
+		// NODE? VARIABLE EQ VARIABLE OSQBR INTEGER CSQBR SCOL
+		else {
+
+			// Left side
+			if (symtab.containsKey(jjtGetChild(0).getVal())) {
+
+				if (!(symtab.get(jjtGetChild(0).getVal()) instanceof NodeT)) {
+
+					System.out.println(
+							ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type Node.");
+					return;
+
+				} else {
+
+				}
+
+			} else {
+
+				System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(0).getVal() + ".");
+				return;
+
+			}
+
+			// Right side
+			if (symtab.containsKey(jjtGetChild(2).getVal())) {
+
+				if (!(symtab.get(jjtGetChild(2).getVal()) instanceof NodeList)) {
+
+					System.out.println(
+							ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(2).getVal() + " is not of type Node[].");
+					return;
+
+				} else {
+
+				}
+
+			} else {
+
+				System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(2).getVal() + ".");
+				return;
+
+			}
+
+			// INTEGER must be >= 0
+			if (Integer.parseInt(jjtGetChild(4).getVal()) < 0) {
+
+				System.out.println(ErrorConstant.NODE_LIST_INDEX);
+
+			}
+
+		}
+
 	}
 
 }
