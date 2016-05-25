@@ -101,6 +101,7 @@ TOKEN : /* --- FUNCTIONS --- */
 */
 SimpleNode Start() :
 {
+  	Token v, eq, d, opar, comma, cpar, scol, n, osqbr, csqbr, i;
 }
 {
  	(
@@ -110,13 +111,13 @@ SimpleNode Start() :
 		LOOKAHEAD(3)
     	NewGraph()
 	|
-		LOOKAHEAD(2)
+		LOOKAHEAD(ListNodes())
    		ListNodes()
-	|
-		// TODO: MUDAR O LOOKAHEAD PARA NAO DAR ERRO
-		GetNode()
    	|
+   		LOOKAHEAD(SearchGraph()) 
    		SearchGraph()
+   	|
+   		GetNode()
   	)+
   	< EOF >
   	{return jjtThis;}
@@ -179,20 +180,30 @@ void NewGraphRight() #NewGraphRight :
 */
 void ListNodes() #ListNodes :
 {
-  	Token eq, scol, v;
+  	Token eq, scol, v, d, n, o, c;
 }
 {
   	NodeListDec()
   	(
-    	eq = < EQ > {jjtThis.val = eq.image;} 	#Equal
-    	ListNodesRight()
+    	eq = < EQ > {jjtThis.val = eq.image;} 		#Equal
+    	v  = < VARIABLE > {jjtThis.val = v.image;} 	#Variable
+  		d  = < DOT > {jjtThis.val = d.image;}		#Dot
+  		n  = < NODES > {jjtThis.val = n.image;}		#Nodes
+  		o  = < OPAR > {jjtThis.val = o.image;}		#OpenParenthesis
+  		AllParametersNode()
+  		c  = < CPAR > {jjtThis.val = c.image;}		#CloseParenthesis
   	)?
-  	scol = < SCOL > {jjtThis.val = scol.image;} #Semicolon
+  	scol = < SCOL > {jjtThis.val = scol.image;}		#Semicolon
 |
-	v = < VARIABLE > {jjtThis.val = v.image;} 	#Variable
-  	eq = < EQ > {jjtThis.val = eq.image;} 		#Equal
-  	ListNodesRight()
-  	scol = < SCOL > {jjtThis.val = scol.image;} #Semicolon
+	v    = < VARIABLE > {jjtThis.val = v.image;}	#Variable
+  	eq   = < EQ > {jjtThis.val = eq.image;} 		#Equal
+  	v    = < VARIABLE > {jjtThis.val = v.image;} 	#Variable
+  	d    = < DOT > {jjtThis.val = d.image;}			#Dot
+  	n    = < NODES > {jjtThis.val = n.image;}		#Nodes
+  	o    = < OPAR > {jjtThis.val = o.image;}		#OpenParenthesis
+  	AllParametersNode()
+  	c    = < CPAR > {jjtThis.val = c.image;}		#CloseParenthesis
+  	scol = < SCOL > {jjtThis.val = scol.image;} 	#Semicolon
 }
 
 /*
@@ -203,26 +214,10 @@ void NodeListDec() #NodeListDec :
   	Token n, obr, cbr, v;
 }
 {
-  	n = < NODE > {jjtThis.val = n.image;} 		#Node
-  	obr = < OSQBR > {jjtThis.val = obr.image;} 	#OpenSquareBracket
-  	cbr = < CSQBR > {jjtThis.val = cbr.image;} 	#CloseSquareBracket
-  	v = < VARIABLE > {jjtThis.val = v.image;} 	#Variable
-}
-
-/*
-	== RIGHT SIDE OF DECLARATION TO GET LIST OF NODES ==
-*/
-void ListNodesRight() #ListNodesRight :
-{
-	Token v, d, n, o, c;
-}
-{
-  	v = < VARIABLE > {jjtThis.val = v.image;} 	#Variable
-  	d = < DOT > {jjtThis.val = d.image;}		#Dot
-  	n = < NODES > {jjtThis.val = n.image;}		#Nodes
-  	o = < OPAR > {jjtThis.val = o.image;}		#OpenParenthesis
-  	AllParametersNode()
-  	c = < CPAR > {jjtThis.val = c.image;}		#CloseParenthesis
+  	n   = < NODE > {jjtThis.val = n.image;} 		#Node
+  	obr = < OSQBR > {jjtThis.val = obr.image;} 		#OpenSquareBracket
+  	cbr = < CSQBR > {jjtThis.val = cbr.image;} 		#CloseSquareBracket
+  	v   = < VARIABLE > {jjtThis.val = v.image;} 	#Variable
 }
 
 /*
@@ -308,7 +303,7 @@ void NodeLabel() #NodeLabel :
 }
 {
   	label = < LABEL > {jjtThis.val = label.image;}	#Label
- 	eq = < EQ > {jjtThis.val = eq.image;}			#Equal
+ 	eq    = < EQ > {jjtThis.val = eq.image;}		#Equal
  	Value()
 }
 
@@ -335,25 +330,25 @@ void NodeProperties() #NodeProperties :
   	(
   	  	LOOKAHEAD(4)
 		osqbr = < OBR > {jjtThis.val = osqbr.image;}		#OpenBracket
-  		key = < VARIABLE > {jjtThis.val = key.image;}		#Variable
-  		eq = < EQ > {jjtThis.val = eq.image;}				#Equal
+  		key   = < VARIABLE > {jjtThis.val = key.image;}		#Variable
+  		eq    = < EQ > {jjtThis.val = eq.image;}			#Equal
   		Value()
 	|
   		osqbr = < OBR > {jjtThis.val = osqbr.image;}		#OpenBracket
-	  	key = < VARIABLE > {jjtThis.val = key.image;}		#Variable
-	  	eq = < EQ > {jjtThis.val = eq.image;}				#Equal
+	  	key   = < VARIABLE > {jjtThis.val = key.image;}		#Variable
+	  	eq    = < EQ > {jjtThis.val = eq.image;}			#Equal
 	  	CompareValues()
   	)
   	(
   	  	LOOKAHEAD(4) 
     	comma = < COMMA > {jjtThis.val = comma.image;}		#Comma
-    	key = < VARIABLE > {jjtThis.val = key.image;}		#Variable
-    	eq = < EQ > {jjtThis.val = eq.image;}				#Equal
+    	key   = < VARIABLE > {jjtThis.val = key.image;}		#Variable
+    	eq    = < EQ > {jjtThis.val = eq.image;}			#Equal
     	Value()
    |
    		comma = < COMMA > {jjtThis.val = comma.image;}		#Comma
-    	key = < VARIABLE > {jjtThis.val = key.image;}		#Variable
-    	eq = < EQ > {jjtThis.val = eq.image;}				#Equal
+    	key   = < VARIABLE > {jjtThis.val = key.image;}		#Variable
+    	eq    = < EQ > {jjtThis.val = eq.image;}			#Equal
     	CompareValues()
   	)*
   	csqbr = < CBR > {jjtThis.val = csqbr.image;}			#CloseBracket
@@ -408,24 +403,27 @@ void IntervalBracket() #IntervalBracket :
 }
 
 /*
-	== SEARCH ==
+	== SEARCH GRAPH ==
 */
+
 void SearchGraph() #SearchGraph :
 {
-	Token v, d, opar, v1, comma, v2, cpar, scol;
-}
-{
- 	v = < VARIABLE > {jjtThis.val = v.image;}				#Variable
- 	d = < DOT > {jjtThis.val = d.image;}					#Dot
+  	Token v, eq, d, opar, comma, cpar, scol;}{
+	(	  	NodeListDec()
+	|
+		v     = < VARIABLE > {jjtThis.val = v.image;}		#Variable
+	)
+  	eq    = < EQ > {jjtThis.val = eq.image;}				#Equal
+  	v     = < VARIABLE > {jjtThis.val = v.image;}			#Variable
+ 	d     = < DOT > {jjtThis.val = d.image;}				#Dot
  	SearchType()
-  	opar = < OPAR > {jjtThis.val = opar.image;}				#OpenParenthesis
-  	v1 = < VARIABLE > {jjtThis.val = v1.image;}				#Variable
+  	opar  = < OPAR > {jjtThis.val = opar.image;}			#OpenParenthesis
+  	v     = < VARIABLE > {jjtThis.val = v.image;}			#Variable
   	comma = < COMMA > {jjtThis.val = comma.image;}			#Comma
-  	v2 = < VARIABLE > {jjtThis.val = v2.image;}				#Variable
+  	v     = < VARIABLE > {jjtThis.val = v.image;}			#Variable
 	MoreOptions()
-   	cpar = < CPAR > {jjtThis.val = cpar.image;}				#CloseParenthesis
- 	scol = < SCOL > {jjtThis.val = scol.image;}				#Semicolon
-}
+   	cpar  = < CPAR > {jjtThis.val = cpar.image;}			#CloseParenthesis
+ 	scol  = < SCOL > {jjtThis.val = scol.image;}			#Semicolon}
 
 /*
 	== SEARCH TYPE ==
@@ -457,17 +455,18 @@ void MoreOptions() #MoreOptions :
 }
 
 /*
-	== GET A NODE OF A NODES LIST ==
+	== GET NODE ==
 */
+
 void GetNode() #GetNode :
 {
   	Token n, v, eq, osqbr, i, csqbr, scol;}{
-  	(
-  	  	n = < NODE > {jjtThis.val = n.image;} 		#Node  	)?
-	v = < VARIABLE > {jjtThis.val = v.image;} 		#Variable
-	eq = < EQ > {jjtThis.val = eq.image;}			#Equal
-	v = < VARIABLE > {jjtThis.val = v.image;} 		#Variable
-	osqbr = < OSQBR > {jjtThis.val = osqbr.image;}	#OpenSquareBrackets
-	i = < INTEGER > {jjtThis.val = i.image;}			#Integer
-	csqbr = < CSQBR > {jjtThis.val = csqbr.image;}	#CloseSquareBrackets
-	scol = < SCOL > {jjtThis.val = scol.image;}			#Semicolon}
+  	(  	  	n     = < NODE > {jjtThis.val = n.image;} 		#Node
+  	)?
+  	v     = < VARIABLE > {jjtThis.val = v.image;} 	#Variable
+  	eq    = < EQ > {jjtThis.val = eq.image;} 		#Equal
+  	v     = < VARIABLE > {jjtThis.val = v.image;} 	#Variable
+  	osqbr = < OSQBR > {jjtThis.val = osqbr.image;} 	#OpenSquareBracket
+  	i     = < INTEGER > {jjtThis.val = i.image;} 	#Integer
+  	csqbr = < CSQBR > {jjtThis.val = csqbr.image;} 	#CloseSquareBracket
+  	scol  = < SCOL > {jjtThis.val = scol.image;} 	#Semicolon}

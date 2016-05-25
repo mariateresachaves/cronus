@@ -21,4 +21,5 @@ nodes2 = d.nodes();
 Node b = nodes2[2];
 Node n = nodes2[2];
 Node e = nodes2[3];
-d = nodes2[3];
+Node [] nos;
+n = nos[3];
