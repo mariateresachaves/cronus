@@ -14,7 +14,7 @@ public class Cronus {
 
 		if (args.length == 1) {
 
-			System.out.println("\n*** Cronus Version 0.3 ***");
+			System.out.println("\n*** Cronus Version 0.5 ***");
 			System.out.println("\nReading from file " + args[0] + " . . .\n");
 
 			try {
@@ -23,7 +23,7 @@ public class Cronus {
 
 			} catch (java.io.FileNotFoundException e) {
 
-				System.err.println("Cronus Version 0.3:  File " + args[0] + " not found.");
+				System.err.println("Cronus Version 0.5:  File " + args[0] + " not found.");
 				return;
 
 			}
