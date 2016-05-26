@@ -2,42 +2,44 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
-public
-class ASTAllParametersNode extends SimpleNode {
-	
-  public ASTAllParametersNode(int id) {
-    
-	  super(id);
-	  
-  }
+public class ASTAllParametersNode extends SimpleNode {
 
-  public ASTAllParametersNode(CronusGrammarParser p, int id) {
-    
-	  super(p, id);
-	  
-  }
-  
-  @Override
-  public void interpret() {
-	  
-	  int k = jjtGetNumChildren();
-	  
-	  switch (k) {
-	  case 1:
-		  jjtGetChild(0).interpret();
-		  break;
-	  case 3:
-		  jjtGetChild(0).interpret();
-		  jjtGetChild(2).interpret();
-		  break;
-	  case 5:
-		  jjtGetChild(0).interpret();
-		  jjtGetChild(2).interpret();
-		  jjtGetChild(4).interpret();
-		  break;
-	  }
+	public ASTAllParametersNode(int id) {
 
-  }
+		super(id);
+
+	}
+
+	public ASTAllParametersNode(CronusGrammarParser p, int id) {
+
+		super(p, id);
+
+	}
+
+	@Override
+	public void interpret() {
+
+		int k = jjtGetNumChildren();
+
+		switch (k) {
+		case 1:
+			jjtGetChild(0).interpret();
+			break;
+		case 3:
+			jjtGetChild(0).interpret();
+			jjtGetChild(2).interpret();
+			break;
+		case 5:
+			jjtGetChild(0).interpret();
+			jjtGetChild(2).interpret();
+			jjtGetChild(4).interpret();
+			break;
+		}
+
+	}
 
 }
-/* JavaCC - OriginalChecksum=69fb5ac5253a68089cb87350e11a9b74 (do not edit this line) */
+/*
+ * JavaCC - OriginalChecksum=69fb5ac5253a68089cb87350e11a9b74 (do not edit this
+ * line)
+ */

@@ -1,7 +1,7 @@
 package main;
 
 public class Cronus {
-	
+
 	public static void main(String[] args) throws ParseException {
 
 		/*
@@ -27,7 +27,7 @@ public class Cronus {
 				return;
 
 			}
-			
+
 		} else {
 
 			System.err.println(ErrorConstant.USAGE_ERROR);

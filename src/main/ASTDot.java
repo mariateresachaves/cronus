@@ -2,15 +2,22 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
-public
-class ASTDot extends SimpleNode {
-  public ASTDot(int id) {
-    super(id);
-  }
+public class ASTDot extends SimpleNode {
 
-  public ASTDot(CronusGrammarParser p, int id) {
-    super(p, id);
-  }
+	public ASTDot(int id) {
+
+		super(id);
+
+	}
+
+	public ASTDot(CronusGrammarParser p, int id) {
+
+		super(p, id);
+
+	}
 
 }
-/* JavaCC - OriginalChecksum=9e6795751f042e93520f3088cd553eab (do not edit this line) */
+/*
+ * JavaCC - OriginalChecksum=9e6795751f042e93520f3088cd553eab (do not edit this
+ * line)
+ */

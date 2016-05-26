@@ -2,15 +2,22 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
-public
-class ASTBreadthSearch extends SimpleNode {
-  public ASTBreadthSearch(int id) {
-    super(id);
-  }
+public class ASTBreadthSearch extends SimpleNode {
 
-  public ASTBreadthSearch(CronusGrammarParser p, int id) {
-    super(p, id);
-  }
+	public ASTBreadthSearch(int id) {
+
+		super(id);
+
+	}
+
+	public ASTBreadthSearch(CronusGrammarParser p, int id) {
+
+		super(p, id);
+
+	}
 
 }
-/* JavaCC - OriginalChecksum=1f3df838ec4058a4c311f3e63dcdd1ea (do not edit this line) */
+/*
+ * JavaCC - OriginalChecksum=1f3df838ec4058a4c311f3e63dcdd1ea (do not edit this
+ * line)
+ */

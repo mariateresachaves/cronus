@@ -2,15 +2,22 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
-public
-class ASTOpenSquareBracket extends SimpleNode {
-  public ASTOpenSquareBracket(int id) {
-    super(id);
-  }
+public class ASTOpenSquareBracket extends SimpleNode {
 
-  public ASTOpenSquareBracket(CronusGrammarParser p, int id) {
-    super(p, id);
-  }
+	public ASTOpenSquareBracket(int id) {
+
+		super(id);
+
+	}
+
+	public ASTOpenSquareBracket(CronusGrammarParser p, int id) {
+
+		super(p, id);
+
+	}
 
 }
-/* JavaCC - OriginalChecksum=a84aa54987bf8faa6bd106d680efbaa2 (do not edit this line) */
+/*
+ * JavaCC - OriginalChecksum=a84aa54987bf8faa6bd106d680efbaa2 (do not edit this
+ * line)
+ */

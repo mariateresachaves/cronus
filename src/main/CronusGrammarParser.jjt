@@ -465,7 +465,7 @@ void MoreOptions() #MoreOptions :
 void GetNode() #GetNode :
 {
   	Token n, v, eq, osqbr, i, csqbr, scol;}{
-  	(  	  	n     = < NODE > {jjtThis.val = n.image;} 		#Node
+  	(  	  	n     = < NODE > {jjtThis.val = n.image;} 	#Node
   	)?
   	v     = < VARIABLE > {jjtThis.val = v.image;} 	#Variable
   	eq    = < EQ > {jjtThis.val = eq.image;} 		#Equal

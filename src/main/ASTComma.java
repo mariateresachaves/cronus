@@ -2,15 +2,22 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
-public
-class ASTComma extends SimpleNode {
-  public ASTComma(int id) {
-    super(id);
-  }
+public class ASTComma extends SimpleNode {
 
-  public ASTComma(CronusGrammarParser p, int id) {
-    super(p, id);
-  }
+	public ASTComma(int id) {
+
+		super(id);
+
+	}
+
+	public ASTComma(CronusGrammarParser p, int id) {
+
+		super(p, id);
+
+	}
 
 }
-/* JavaCC - OriginalChecksum=a6b0778974bc09ee67dd1b27498982f8 (do not edit this line) */
+/*
+ * JavaCC - OriginalChecksum=a6b0778974bc09ee67dd1b27498982f8 (do not edit this
+ * line)
+ */

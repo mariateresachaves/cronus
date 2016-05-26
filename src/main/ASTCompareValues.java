@@ -20,7 +20,7 @@ public class ASTCompareValues extends SimpleNode {
 	public void interpret() {
 
 		// TODO: alguma verificação que seja necessária
-		
+
 	}
 
 }

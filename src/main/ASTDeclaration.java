@@ -37,7 +37,7 @@ public class ASTDeclaration extends SimpleNode {
 
 			else
 				symtab.put(child_1, new Edge());
-			
+
 			break;
 
 		case "Node":

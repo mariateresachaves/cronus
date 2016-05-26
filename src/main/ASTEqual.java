@@ -2,15 +2,22 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
-public
-class ASTEqual extends SimpleNode {
-  public ASTEqual(int id) {
-    super(id);
-  }
+public class ASTEqual extends SimpleNode {
 
-  public ASTEqual(CronusGrammarParser p, int id) {
-    super(p, id);
-  }
+	public ASTEqual(int id) {
+
+		super(id);
+
+	}
+
+	public ASTEqual(CronusGrammarParser p, int id) {
+
+		super(p, id);
+
+	}
 
 }
-/* JavaCC - OriginalChecksum=c66cf623d4722affc3c29770562e415a (do not edit this line) */
+/*
+ * JavaCC - OriginalChecksum=c66cf623d4722affc3c29770562e415a (do not edit this
+ * line)
+ */

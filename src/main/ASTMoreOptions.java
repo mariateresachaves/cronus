@@ -2,15 +2,32 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
-public
-class ASTMoreOptions extends SimpleNode {
-  public ASTMoreOptions(int id) {
-    super(id);
-  }
+public class ASTMoreOptions extends SimpleNode {
 
-  public ASTMoreOptions(CronusGrammarParser p, int id) {
-    super(p, id);
-  }
+	public ASTMoreOptions(int id) {
+
+		super(id);
+
+	}
+
+	public ASTMoreOptions(CronusGrammarParser p, int id) {
+
+		super(p, id);
+
+	}
+
+	@Override
+	public void interpret() {
+
+		// TODO: alguma verificação que seja necessária
+		
+		if(jjtGetNumChildren() != 0)
+			jjtGetChild(1).interpret();
+		
+	}
 
 }
-/* JavaCC - OriginalChecksum=e9b1f879b24c534e5570d99112318e71 (do not edit this line) */
+/*
+ * JavaCC - OriginalChecksum=e9b1f879b24c534e5570d99112318e71 (do not edit this
+ * line)
+ */

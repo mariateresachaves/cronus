@@ -2512,7 +2512,7 @@ void GetNode()          :
                                      jjtn001.jjtSetLastToken(getToken(0));
                                    }
                                  }
-/*@egen*/ 		     
+/*@egen*/ 	     
   	)?
   	v     = < VARIABLE >/*@bgen(jjtree) Variable */
                              {

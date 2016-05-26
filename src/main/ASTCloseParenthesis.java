@@ -2,15 +2,22 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
-public
-class ASTCloseParenthesis extends SimpleNode {
-  public ASTCloseParenthesis(int id) {
-    super(id);
-  }
+public class ASTCloseParenthesis extends SimpleNode {
 
-  public ASTCloseParenthesis(CronusGrammarParser p, int id) {
-    super(p, id);
-  }
+	public ASTCloseParenthesis(int id) {
+
+		super(id);
+
+	}
+
+	public ASTCloseParenthesis(CronusGrammarParser p, int id) {
+
+		super(p, id);
+
+	}
 
 }
-/* JavaCC - OriginalChecksum=bf0fe51d6a79016e98e1bae1023d15ba (do not edit this line) */
+/*
+ * JavaCC - OriginalChecksum=bf0fe51d6a79016e98e1bae1023d15ba (do not edit this
+ * line)
+ */

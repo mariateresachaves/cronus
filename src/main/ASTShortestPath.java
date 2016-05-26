@@ -2,15 +2,22 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
-public
-class ASTShortestPath extends SimpleNode {
-  public ASTShortestPath(int id) {
-    super(id);
-  }
+public class ASTShortestPath extends SimpleNode {
 
-  public ASTShortestPath(CronusGrammarParser p, int id) {
-    super(p, id);
-  }
+	public ASTShortestPath(int id) {
+
+		super(id);
+
+	}
+
+	public ASTShortestPath(CronusGrammarParser p, int id) {
+
+		super(p, id);
+
+	}
 
 }
-/* JavaCC - OriginalChecksum=bae906a8f5c549252a95ff2d465d940b (do not edit this line) */
+/*
+ * JavaCC - OriginalChecksum=bae906a8f5c549252a95ff2d465d940b (do not edit this
+ * line)
+ */

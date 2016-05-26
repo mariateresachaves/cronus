@@ -2,15 +2,22 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
-public
-class ASTFloat extends SimpleNode {
-  public ASTFloat(int id) {
-    super(id);
-  }
+public class ASTFloat extends SimpleNode {
 
-  public ASTFloat(CronusGrammarParser p, int id) {
-    super(p, id);
-  }
+	public ASTFloat(int id) {
+
+		super(id);
+
+	}
+
+	public ASTFloat(CronusGrammarParser p, int id) {
+
+		super(p, id);
+
+	}
 
 }
-/* JavaCC - OriginalChecksum=b5eb0e54d397bceaebbea7896125a12d (do not edit this line) */
+/*
+ * JavaCC - OriginalChecksum=b5eb0e54d397bceaebbea7896125a12d (do not edit this
+ * line)
+ */

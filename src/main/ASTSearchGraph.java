@@ -19,25 +19,91 @@ public class ASTSearchGraph extends SimpleNode {
 	@Override
 	public void interpret() {
 
-		// TODO: VARIABLE DOT SearchType OPAR VARIABLE COMMA VARIABLE MoreOptions CPAR SCOL
-		
-		int k=jjtGetNumChildren();
-		
-		System.out.println("");
-		System.out.println("[SearchGraph] Tenho " + k + "filhos.\n");
-				
-		System.out.println("Os filhos são: ");
-				
-		while(k>0) {
-			System.out.println(k + " - " + jjtGetChild(k-1).getVal());
-			k--;
+		// NodeListDec EQ VARIABLE DOT SearchType OPAR VARIBLE COMMA VARIABLE
+		// MoreOptions CPAR SCOL
+		if (jjtGetChild(0) instanceof ASTNodeListDec) {
+
+			if (symtab.containsKey(jjtGetChild(0).getVal()))
+				System.err.println(ErrorConstant.DUPLICATE_ENTRY + jjtGetChild(0).getVal() + " of type Node[].");
+
+			else
+				symtab.put(jjtGetChild(0).getVal(), new NodeList());
+
 		}
-		
-		System.out.println("");
-		
-		//jjtGetChild(2).interpret();
-		//jjtGetChild(7).interpret();
-		
+		// VARIABLE EQ VARIABLE DOT SearchType OPAR VARIBLE COMMA VARIABLE
+		// MoreOptions CPAR SCOL
+		else {
+
+			if (symtab.containsKey(jjtGetChild(0).getVal())) {
+
+				if (!(symtab.get(jjtGetChild(0).getVal()) instanceof NodeList)) {
+
+					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type Node[].");
+					return;
+
+				}
+
+			} else {
+
+				System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(0).getVal() + ".");
+				return;
+
+			}
+
+		}
+
+		// Right Side
+		verify_graph(2);
+		verify_node(6);
+		verify_node(8);
+
+		// SearchType
+		jjtGetChild(4).interpret();
+
+		// MoreOptions
+		jjtGetChild(9).interpret();
+
+	}
+
+	public void verify_graph(Integer i) {
+
+		if (symtab.containsKey(jjtGetChild(i).getVal())) {
+
+			if (!(symtab.get(jjtGetChild(i).getVal()) instanceof Graph)) {
+
+				System.out
+						.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(i).getVal() + " is not of type Graph.");
+				return;
+
+			}
+
+		} else {
+
+			System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(i).getVal() + ".");
+			return;
+
+		}
+
+	}
+
+	public void verify_node(Integer i) {
+
+		if (symtab.containsKey(jjtGetChild(i).getVal())) {
+
+			if (!(symtab.get(jjtGetChild(i).getVal()) instanceof NodeT)) {
+
+				System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(i).getVal() + " is not of type Node.");
+				return;
+
+			}
+
+		} else {
+
+			System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(i).getVal() + ".");
+			return;
+
+		}
+
 	}
 
 }
