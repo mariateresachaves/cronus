@@ -23,12 +23,11 @@ public class ASTSearchGraph extends SimpleNode {
 		// MoreOptions CPAR SCOL
 		if (jjtGetChild(0) instanceof ASTNodeListDec) {
 
-			if (symtab.containsKey(jjtGetChild(0).getVal()))
-				System.err.println(ErrorConstant.DUPLICATE_ENTRY + jjtGetChild(0).getVal() + " of type Node[].");
+			if (symtab.containsKey(jjtGetChild(1).getVal()))
+				System.err.println(ErrorConstant.DUPLICATE_ENTRY + jjtGetChild(1).getVal() + " of type Node[].");
 
-			else
-				symtab.put(jjtGetChild(0).getVal(), new NodeList());
-
+			jjtGetChild(0).interpret();
+			
 		}
 		// VARIABLE EQ VARIABLE DOT SearchType OPAR VARIBLE COMMA VARIABLE
 		// MoreOptions CPAR SCOL

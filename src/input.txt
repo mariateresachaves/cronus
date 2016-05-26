@@ -32,6 +32,7 @@ d = nos[3];
 n = nos[-1];
 Node[] res;
 res = g2.shortestPath(n1, n2);
+Node[] res2 = g2.shortestPath(n1, n2);
 s = g2.shortestPath(n1, n2);
 n = g2.shortestPath(n1, n2);
 res = s.shortestPath(n1, n2);

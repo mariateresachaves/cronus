@@ -21,8 +21,8 @@ public class ASTMoreOptions extends SimpleNode {
 
 		// TODO: alguma verificação que seja necessária
 		
-		if(jjtGetNumChildren() != 0)
-			jjtGetChild(1).interpret();
+		/*if(jjtGetNumChildren() != 0)
+			jjtGetChild(1).interpret();*/
 		
 	}
 
