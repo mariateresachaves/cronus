@@ -1,2 +1,3 @@
-Graph g = new Graph('/graph.txt');
+Graph g = new Graph('/graph.xml');
 Graph g2;
+g = new Graph('/graph2.xml');

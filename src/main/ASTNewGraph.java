@@ -67,16 +67,27 @@ public class ASTNewGraph extends SimpleNode {
 	@Override
 	public void toGremlin(PrintWriter writer) {
 		
-		String graph = jjtGetChild(1).getVal().toString();
+		String graph = "";
 		
-		String line = graph + " = new TinkerGraph()";
-		writer.println(line);
-		
-		writer.print(graph);
-		jjtGetChild(3).toGremlin(writer);
-		
-		// g = new TinkerGraph()
-		// g.loadGraphML('path')
+		if(jjtGetNumChildren() >= 5) {
+			
+			graph = jjtGetChild(1).getVal().toString();
+			
+			String line = graph + " = new TinkerGraph()";
+			writer.println(line);
+			
+			writer.print(graph);
+			jjtGetChild(3).toGremlin(writer);
+			
+		}
+			
+		else {
+			
+			graph = jjtGetChild(0).getVal().toString();
+			writer.print(graph);
+			jjtGetChild(2).toGremlin(writer);
+			
+		}
 		
 	}
 	

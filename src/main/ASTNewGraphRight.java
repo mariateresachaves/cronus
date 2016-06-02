@@ -28,7 +28,6 @@ public class ASTNewGraphRight extends SimpleNode {
 		
 		// TODO: verificar extensão para diferentes tipos de load
 		
-		// g.loadGraphML('path')
 		String path = jjtGetChild(3).getVal().toString();
 		
 		writer.println(".loadGraphML(" + path + ")");
