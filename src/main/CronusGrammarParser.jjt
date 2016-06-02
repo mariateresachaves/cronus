@@ -61,6 +61,15 @@ TOKEN : /* --- RESERVED WORDS --- */
 |   < NODEF         : "node" >
 }
 
+TOKEN : /* --- FUNCTIONS --- */
+{
+  	< PATH : (
+  			 	("\'")( (< LOWER > | < UPPER >) ":")? ("\\"(< LOWER > | < UPPER > | < DIGIT > | "_" | "." | "-")+ )+("\\")?("\'")
+  			 |
+  			 	("\'")(~["\'"])*("\'")
+  			 )>
+}
+
 TOKEN : /* --- CLASSES --- */
 {
   	< GRAPH    : "Graph" >
@@ -85,15 +94,7 @@ TOKEN : /*--- OPERATORS --- */
 | 	< COMMA   : "," >
 | 	< EQ      : "=" >
 | 	< DOT     : "." >
-| 	< QUOTE   : "\"" | "'" >
 | 	< COMP    : ">" | "<" | "<=" | ">=" | "==" >
-}
-
-TOKEN : /* --- FUNCTIONS --- */
-{
-  	< PATH : ("\"" | "'") ( ( (< LOWER > | < UPPER >) ":")? ("\\"(< LOWER > | < UPPER > | < DIGIT > | "_" | "." | "-")+ )+("\\")?
-    	   | ("/")?((< LOWER > | < UPPER > | < DIGIT > | "_" | "." | "-")+"/")+("/")? )
-        	("\"" | "'") >
 }
 
 /*
@@ -170,7 +171,7 @@ void NewGraphRight() #NewGraphRight :
 {
   	n    = < NEW > {jjtThis.val = n.image;} 	#New
   	g    = < GRAPH > {jjtThis.val = g.image;}	#Graph
-  	opar = < OPAR > {jjtThis.val = opar.image;} #OpenParenthesis
+  	opar = < OPAR > {jjtThis.val = opar.image;} #OpenParenthesis 
   	p    = < PATH > {jjtThis.val = p.image;} 	#Path
   	cpar = < CPAR > {jjtThis.val = cpar.image;} #CloseParenthesis
 }

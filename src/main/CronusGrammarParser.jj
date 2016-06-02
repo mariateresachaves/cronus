@@ -65,6 +65,15 @@ TOKEN : /* --- RESERVED WORDS --- */
 |   < NODEF         : "node" >
 }
 
+TOKEN : /* --- FUNCTIONS --- */
+{
+  	< PATH : (
+  			 	("\'")( (< LOWER > | < UPPER >) ":")? ("\\"(< LOWER > | < UPPER > | < DIGIT > | "_" | "." | "-")+ )+("\\")?("\'")
+  			 |
+  			 	("\'")(~["\'"])*("\'")
+  			 )>
+}
+
 TOKEN : /* --- CLASSES --- */
 {
   	< GRAPH    : "Graph" >
@@ -89,15 +98,7 @@ TOKEN : /*--- OPERATORS --- */
 | 	< COMMA   : "," >
 | 	< EQ      : "=" >
 | 	< DOT     : "." >
-| 	< QUOTE   : "\"" | "'" >
 | 	< COMP    : ">" | "<" | "<=" | ">=" | "==" >
-}
-
-TOKEN : /* --- FUNCTIONS --- */
-{
-  	< PATH : ("\"" | "'") ( ( (< LOWER > | < UPPER >) ":")? ("\\"(< LOWER > | < UPPER > | < DIGIT > | "_" | "." | "-")+ )+("\\")?
-    	   | ("/")?((< LOWER > | < UPPER > | < DIGIT > | "_" | "." | "-")+"/")+("/")? )
-        	("\"" | "'") >
 }
 
 /*
@@ -509,7 +510,7 @@ void NewGraphRight()                :
                             jjtn003.jjtSetLastToken(getToken(0));
                           }
                         }
-/*@egen*/                 
+/*@egen*/                  
   	p    = < PATH >/*@bgen(jjtree) Path */
                         {
                           ASTPath jjtn004 = new ASTPath(JJTPATH);

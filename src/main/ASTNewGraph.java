@@ -2,6 +2,8 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
+import java.io.PrintWriter;
+
 public class ASTNewGraph extends SimpleNode {
 
 	public ASTNewGraph(int id) {
@@ -20,42 +22,58 @@ public class ASTNewGraph extends SimpleNode {
 	public void interpret() {
 
 		int k = jjtGetNumChildren();
-
+		
 		// Graph Variable = NewGraphRight
-		if (k > 5) {
+		if (k >= 5) {
 
 			// Graph
-			if (symtab.containsKey(jjtGetChild(0).getVal())) {
+			if (symtab.containsKey(jjtGetChild(1).getVal())) {
 
-				System.err.println(ErrorConstant.DUPLICATE_ENTRY + jjtGetChild(0).getVal() + " of type Graph.");
-				return;
-
-			} else
-				symtab.put(jjtGetChild(0).getVal(), new Graph());
-
-		}
-
-		// Variable = NewGraphRight
-		if (symtab.containsKey(jjtGetChild(0).getVal())) {
-
-			if (!(symtab.get(jjtGetChild(0).getVal()) instanceof Graph)) {
-
-				System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type Graph.");
+				System.err.println(ErrorConstant.DUPLICATE_ENTRY + jjtGetChild(1).getVal() + " of type Graph.");
 				return;
 
 			}
+			
+			else {
+				symtab.put(jjtGetChild(1).getVal(), new Graph());
+				jjtGetChild(3).interpret();
+			}
+				
 
 		} else {
-
-			System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(0).getVal() + ".");
-			return;
-
+			
+			// Variable = NewGraphRight
+			if (symtab.containsKey(jjtGetChild(0).getVal())) {
+	
+				if (!(symtab.get(jjtGetChild(0).getVal()) instanceof Graph)) {
+	
+					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type Graph.");
+					return;
+	
+				}
+	
+			} else {
+	
+				System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(0).getVal() + ".");
+				return;
+	
+			}
+			
+			jjtGetChild(2).interpret();
 		}
-
-		jjtGetChild(2).interpret();
 
 	}
 
+	@Override
+	public void toGremlin(PrintWriter writer) {
+
+		writer.println("The second line");
+		
+		// g = new TinkerGraph()
+		// g.loadGraphML('path')
+		
+	}
+	
 }
 /*
  * JavaCC - OriginalChecksum=33fe44e76d5a35d047b507dec2b929c5 (do not edit this

@@ -152,8 +152,7 @@ public class SimpleNode extends MyNode implements Node {
 		}
 		
 		System.out.println("");
-	}
-	
+	}	
 	
 }
 

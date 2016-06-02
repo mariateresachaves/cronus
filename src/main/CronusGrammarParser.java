@@ -2259,13 +2259,6 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
     finally { jj_save(9, xla); }
   }
 
-  static private boolean jj_3R_20() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_32()) jj_scanpos = xsp;
-    return false;
-  }
-
   static private boolean jj_3R_47() {
     if (jj_scan_token(COMMA)) return true;
     if (jj_3R_7()) return true;
@@ -2762,6 +2755,13 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
     return false;
   }
 
+  static private boolean jj_3R_20() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_32()) jj_scanpos = xsp;
+    return false;
+  }
+
   static private boolean jj_initialized_once = false;
   /** Generated Token Manager. */
   static public CronusGrammarParserTokenManager token_source;
@@ -2782,10 +2782,10 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
       jj_la1_init_1();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x2800000,0x3c00000,0x1400000,0x400000,0x0,0x2800000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x400,0x800,0x80000000,0x80000c00,0x80000000,0x0,0x0,0x1c000000,0x0,0x0,0x2800000,0xe000,0x0,0x800000,};
+      jj_la1_0 = new int[] {0x5000000,0x7800000,0x2800000,0x800000,0x0,0x5000000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x400,0x800,0x0,0xc00,0x0,0x0,0x0,0x38000000,0x0,0x0,0x5000000,0xe000,0x0,0x1000000,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x0,0x0,0x0,0x0,0x40,0x0,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x0,0x0,0x0,0x0,0x0,0x20,0x20,0x0,0x206,0x6,0x0,0x0,0x20,0x0,};
+      jj_la1_1 = new int[] {0x0,0x0,0x0,0x0,0x80,0x0,0x40,0x40,0x40,0x40,0x40,0x40,0x40,0x40,0x40,0x40,0x40,0x40,0x0,0x0,0x1,0x1,0x1,0x40,0x40,0x0,0x20c,0xc,0x0,0x0,0x40,0x0,};
    }
   static final private JJCalls[] jj_2_rtns = new JJCalls[10];
   static private boolean jj_rescan = false;
@@ -2995,7 +2995,7 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
   /** Generate ParseException. */
   static public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[43];
+    boolean[] la1tokens = new boolean[42];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
@@ -3012,7 +3012,7 @@ public class CronusGrammarParser/*@bgen(jjtree)*/implements CronusGrammarParserT
         }
       }
     }
-    for (int i = 0; i < 43; i++) {
+    for (int i = 0; i < 42; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;

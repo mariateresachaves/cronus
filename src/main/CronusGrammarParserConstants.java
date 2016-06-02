@@ -45,47 +45,45 @@ public interface CronusGrammarParserConstants {
   /** RegularExpression Id. */
   int NODEF = 21;
   /** RegularExpression Id. */
-  int GRAPH = 22;
+  int PATH = 22;
   /** RegularExpression Id. */
-  int NODE = 23;
+  int GRAPH = 23;
   /** RegularExpression Id. */
-  int EDGE = 24;
+  int NODE = 24;
   /** RegularExpression Id. */
-  int VARIABLE = 25;
+  int EDGE = 25;
   /** RegularExpression Id. */
-  int STRING = 26;
+  int VARIABLE = 26;
   /** RegularExpression Id. */
-  int INTEGER = 27;
+  int STRING = 27;
   /** RegularExpression Id. */
-  int FLOAT = 28;
+  int INTEGER = 28;
   /** RegularExpression Id. */
-  int OPAR = 29;
+  int FLOAT = 29;
   /** RegularExpression Id. */
-  int CPAR = 30;
+  int OPAR = 30;
   /** RegularExpression Id. */
-  int OBR = 31;
+  int CPAR = 31;
   /** RegularExpression Id. */
-  int CBR = 32;
+  int OBR = 32;
   /** RegularExpression Id. */
-  int OSQBR = 33;
+  int CBR = 33;
   /** RegularExpression Id. */
-  int CSQBR = 34;
+  int OSQBR = 34;
   /** RegularExpression Id. */
-  int COL = 35;
+  int CSQBR = 35;
   /** RegularExpression Id. */
-  int SCOL = 36;
+  int COL = 36;
   /** RegularExpression Id. */
-  int COMMA = 37;
+  int SCOL = 37;
   /** RegularExpression Id. */
-  int EQ = 38;
+  int COMMA = 38;
   /** RegularExpression Id. */
-  int DOT = 39;
+  int EQ = 39;
   /** RegularExpression Id. */
-  int QUOTE = 40;
+  int DOT = 40;
   /** RegularExpression Id. */
   int COMP = 41;
-  /** RegularExpression Id. */
-  int PATH = 42;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -114,6 +112,7 @@ public interface CronusGrammarParserConstants {
     "\"edge\"",
     "\"nodes\"",
     "\"node\"",
+    "<PATH>",
     "\"Graph\"",
     "\"Node\"",
     "\"Edge\"",
@@ -132,9 +131,7 @@ public interface CronusGrammarParserConstants {
     "\",\"",
     "\"=\"",
     "\".\"",
-    "<QUOTE>",
     "<COMP>",
-    "<PATH>",
   };
 
 }

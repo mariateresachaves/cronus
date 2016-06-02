@@ -34,4 +34,7 @@ public class MyNode {
 		MyNode.out = out;
 	}
 	
+	public void toGremlin(PrintWriter writer) {
+		throw new UnsupportedOperationException(); // It better not come here.
+	}
 }
