@@ -58,7 +58,7 @@ public class Cronus {
 				Runtime.getRuntime().exec("open ../gremlin.txt");
 			
 			else if (os.indexOf("win") >= 0)
-				Runtime.getRuntime().exec("RUNDLL32.EXE SHELL32.DLL,OpenAs_RunDLL ../gremlin.txt");
+				Runtime.getRuntime().exec("notepad.exe ../gremlin.txt");
 			
 			else if (os.indexOf("nux") >= 0)
 				Runtime.getRuntime().exec("edit ../gremlin.txt");
