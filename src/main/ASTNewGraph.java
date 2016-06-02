@@ -67,7 +67,11 @@ public class ASTNewGraph extends SimpleNode {
 	@Override
 	public void toGremlin(PrintWriter writer) {
 
-		writer.println("The second line");
+		// TODO: Continuar...
+		
+		String graph = jjtGetChild(1).getVal().toString();
+		
+		writer.print(graph);
 		
 		// g = new TinkerGraph()
 		// g.loadGraphML('path')
