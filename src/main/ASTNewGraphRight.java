@@ -2,6 +2,8 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
+import java.io.PrintWriter;
+
 public class ASTNewGraphRight extends SimpleNode {
 
 	public ASTNewGraphRight(int id) {
@@ -20,6 +22,19 @@ public class ASTNewGraphRight extends SimpleNode {
 	public void interpret() {
 
 	}
+
+	@Override
+	public void toGremlin(PrintWriter writer) {
+		
+		// TODO: verificar extensão para diferentes tipos de load
+		
+		// g.loadGraphML('path')
+		String path = jjtGetChild(1).getVal().toString();
+		
+		writer.println(".loadGraphML(\'" + path + "\')");
+		
+	}
+	
 }
 /*
  * JavaCC - OriginalChecksum=83bebc27370c9bfbae681ebaa3cd842b (do not edit this

@@ -71,7 +71,11 @@ public class ASTNewGraph extends SimpleNode {
 		
 		String graph = jjtGetChild(1).getVal().toString();
 		
+		String line = graph + " = new TinkerGraph()";
+		writer.println(line);
+		
 		writer.print(graph);
+		jjtGetChild(3).toGremlin(writer);
 		
 		// g = new TinkerGraph()
 		// g.loadGraphML('path')
