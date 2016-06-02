@@ -2,6 +2,8 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
+import java.io.PrintWriter;
+
 public class ASTDeclaration extends SimpleNode {
 
 	public ASTDeclaration(int id) {
@@ -52,6 +54,19 @@ public class ASTDeclaration extends SimpleNode {
 
 	}
 
+	@Override
+	public void toGremlin(PrintWriter writer) {
+		
+		// Graph declaration
+		String graph = jjtGetChild(1).getVal().toString();
+		String line = graph + " = new TinkerGraph()";
+		
+		writer.println(line);
+		
+		// TODO: Missing: Edge and Node
+		
+	}
+	
 }
 /*
  * JavaCC - OriginalChecksum=236a818438e24a2223330af6f74d3499 (do not edit this
