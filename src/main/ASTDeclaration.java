@@ -63,8 +63,6 @@ public class ASTDeclaration extends SimpleNode {
 		
 		writer.println(line);
 		
-		// TODO: Missing: Edge and Node
-		
 	}
 	
 }

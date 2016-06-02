@@ -118,7 +118,7 @@ SimpleNode Start() :
 /*@egen*/
  	(
  	    LOOKAHEAD(3)
-    	Declaration() 
+    	Declaration()
 	|
 		LOOKAHEAD(3)
     	NewGraph()
