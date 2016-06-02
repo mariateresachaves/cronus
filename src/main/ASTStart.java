@@ -50,6 +50,8 @@ public class ASTStart extends SimpleNode {
 	@Override
 	public void toGremlin(PrintWriter writer) {
 		
+		writer.println("The first line");
+		
 		for (int i = 0; i < jjtGetNumChildren(); i++)
 			jjtGetChild(i).toGremlin(writer);
 		
