@@ -8,4 +8,7 @@ Node n1 = nos[3];
 Node n2;
 n2 = nos[2];
 nos = g2.shortestPath(n1, n2);
+Node[] res2 = g.shortestPath(nos, n2);
+Node[] res2 = g.shortestPath(n1, nos);
+Node[] res2 = g.shortestPath(nos, nos);
 Node[] res2 = g.shortestPath(n1, n2);

@@ -30,20 +30,19 @@ public class ASTGetNode extends SimpleNode {
 				return;
 
 			} else {
+
 				String graph = symtab.get(jjtGetChild(3).getVal()).toString();
 				String index = jjtGetChild(5).getVal().toString();
 				symtab.put(jjtGetChild(1).getVal(), graph + ".v(" + index + ")");
+
 			}
 			// Right side
 			if (symtab.containsKey(jjtGetChild(3).getVal())) {
 
 				if (!(symtab.contains(symtab.get(jjtGetChild(3).getVal())))) {
 
-					System.out.println(
-							ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(3).getVal() + " is not of type Node[].");
+					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(3).getVal() + " is not of type Node[].");
 					return;
-
-				} else {
 
 				}
 
@@ -71,15 +70,15 @@ public class ASTGetNode extends SimpleNode {
 
 				if (!(symtab.contains(symtab.get(jjtGetChild(0).getVal().toString().split("\\.")[0])))) {
 
-					System.out.println(
-							ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type Node.");
+					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type Node.");
 					return;
 
 				} else {
-					
+
 					String graph = symtab.get(jjtGetChild(2).getVal()).toString();
 					String index = jjtGetChild(4).getVal().toString();
 					symtab.put(jjtGetChild(0).getVal(), graph + ".v(" + index + ")");
+
 				}
 
 			} else {
@@ -94,12 +93,9 @@ public class ASTGetNode extends SimpleNode {
 
 				if (!(symtab.contains(symtab.get(jjtGetChild(2).getVal())))) {
 
-					System.out.println(
-							ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(2).getVal() + " is not of type Node[].");
+					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(2).getVal() + " is not of type Node[].");
 					return;
 
-				} else {
-					
 				}
 
 			} else {
@@ -121,35 +117,28 @@ public class ASTGetNode extends SimpleNode {
 	}
 
 	@Override
-	public void toGremlin(PrintWriter writer){
+	public void toGremlin(PrintWriter writer) {
 		// NODE? VARIABLE EQ VARIABLE OSQBR INTEGER CSQBR SCOL
 		String graph;
 		String node;
 		String index;
-		if (jjtGetNumChildren() == 7){
+
+		if (jjtGetNumChildren() == 7) {
+
 			graph = symtab.get(jjtGetChild(2).getVal()).toString();
 			node = jjtGetChild(0).getVal().toString();
 			index = jjtGetChild(4).getVal().toString();
+
 		} else {
+
 			graph = symtab.get(jjtGetChild(3).getVal()).toString();
 			node = jjtGetChild(1).getVal().toString();
 			index = jjtGetChild(5).getVal().toString();
+
 		}
-		
+
 		writer.println(node + " = " + graph + ".v(" + index + ")");
-		
-		/*int k = jjtGetNumChildren();
-		
-		System.out.println("");
-		System.out.println("Tenho " + k + " filhos.");
-		
-		System.out.println("Os filhos sao: ");
-		
-		while(k>0){
-			System.out.println(k-1 + " - " + jjtGetChild(k-1).getVal());
-			k--;
-		}
-		System.out.println("");*/
+
 	}
 }
 /*

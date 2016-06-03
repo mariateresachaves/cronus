@@ -35,8 +35,10 @@ public class ASTNewGraph extends SimpleNode {
 			}
 			
 			else {
+				
 				symtab.put(jjtGetChild(1).getVal(), new Graph());
 				jjtGetChild(3).interpret();
+				
 			}
 				
 
@@ -60,6 +62,7 @@ public class ASTNewGraph extends SimpleNode {
 			}
 			
 			jjtGetChild(2).interpret();
+			
 		}
 
 	}

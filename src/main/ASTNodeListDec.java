@@ -26,13 +26,19 @@ public class ASTNodeListDec extends SimpleNode {
 			return null;
 
 		} else{
+			
 			if (graph.equals("")){
+			
 				symtab.put(jjtGetChild(3).getVal(), new NodeList());
 				return "";
+				
 			} else {
+				
 				symtab.put(jjtGetChild(3).getVal(), graph);
 				return "";
+				
 			}
+			
 		}
 
 	}

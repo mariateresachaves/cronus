@@ -46,7 +46,7 @@ public class Cronus {
 			
 			PrintWriter writer = new PrintWriter("../gremlin.txt", "UTF-8");
 
-			parser.jjtree.rootNode().toGremlin(writer);
+			//parser.jjtree.rootNode().toGremlin(writer);
 			
 			writer.close();
 			

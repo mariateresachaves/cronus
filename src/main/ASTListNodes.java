@@ -29,9 +29,9 @@ public class ASTListNodes extends SimpleNode {
 
 			} else {
 
-				
 				String graph = jjtGetChild(2).interpret("");
 				jjtGetChild(0).interpret(graph);
+
 			}
 
 		} else {
@@ -44,8 +44,8 @@ public class ASTListNodes extends SimpleNode {
 					return;
 
 				} else {
+
 					String graph = symtab.get(jjtGetChild(0).getVal()).toString();
-					
 					jjtGetChild(2).interpret(graph);
 
 				}
@@ -60,9 +60,10 @@ public class ASTListNodes extends SimpleNode {
 		}
 
 	}
+
 	@Override
-	public void toGremlin(PrintWriter writer){
-	
+	public void toGremlin(PrintWriter writer) {
+
 	}
 }
 /*
