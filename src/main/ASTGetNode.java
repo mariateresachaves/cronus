@@ -30,13 +30,14 @@ public class ASTGetNode extends SimpleNode {
 				return;
 
 			} else {
-				String graph =symtab.get(jjtGetChild(3).getVal()).toString();
-				symtab.put(jjtGetChild(1).getVal(), graph);
+				String graph = symtab.get(jjtGetChild(3).getVal()).toString();
+				String index = jjtGetChild(5).getVal().toString();
+				symtab.put(jjtGetChild(1).getVal(), graph + ".v(" + index + ")");
 			}
 			// Right side
 			if (symtab.containsKey(jjtGetChild(3).getVal())) {
 
-				if (!(symtab.get(jjtGetChild(3).getVal()) instanceof NodeList)) {
+				if (!(symtab.contains(symtab.get(jjtGetChild(3).getVal())))) {
 
 					System.out.println(
 							ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(3).getVal() + " is not of type Node[].");
@@ -68,7 +69,7 @@ public class ASTGetNode extends SimpleNode {
 			// Left side
 			if (symtab.containsKey(jjtGetChild(0).getVal())) {
 
-				if (!(symtab.get(jjtGetChild(0).getVal()) instanceof NodeT)) {
+				if (!(symtab.contains(symtab.get(jjtGetChild(0).getVal().toString().split("\\.")[0])))) {
 
 					System.out.println(
 							ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type Node.");
@@ -77,7 +78,8 @@ public class ASTGetNode extends SimpleNode {
 				} else {
 					
 					String graph = symtab.get(jjtGetChild(2).getVal()).toString();
-					symtab.put(jjtGetChild(0).getVal(), graph);
+					String index = jjtGetChild(4).getVal().toString();
+					symtab.put(jjtGetChild(0).getVal(), graph + ".v(" + index + ")");
 				}
 
 			} else {
@@ -90,7 +92,7 @@ public class ASTGetNode extends SimpleNode {
 			// Right side
 			if (symtab.containsKey(jjtGetChild(2).getVal())) {
 
-				if (!(symtab.get(jjtGetChild(2).getVal()) instanceof NodeList)) {
+				if (!(symtab.contains(symtab.get(jjtGetChild(2).getVal())))) {
 
 					System.out.println(
 							ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(2).getVal() + " is not of type Node[].");

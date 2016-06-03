@@ -21,32 +21,34 @@ public class ASTSearchGraph extends SimpleNode {
 	@Override
 	public void interpret() {
 
-		// NodeListDec EQ VARIABLE DOT SearchType OPAR VARIBLE COMMA VARIABLE
+		// NodeListDec EQ VARIABLE DOT SearchType OPAR VARIABLE COMMA VARIABLE
 		// MoreOptions CPAR SCOL
+		String[] graph1 = (symtab.get(jjtGetChild(6).getVal()).toString()).split("\\.");
+		String[] graph2 = (symtab.get(jjtGetChild(8).getVal()).toString()).split("\\.");
+		
 		if (jjtGetChild(0) instanceof ASTNodeListDec) {
-
+			System.out.println("ooooooooooo");
 			jjtGetChild(0).interpret(jjtGetChild(2).getVal().toString());
 			
 		}
 		// VARIABLE EQ VARIABLE DOT SearchType OPAR VARIABLE COMMA VARIABLE
 		// MoreOptions CPAR SCOL
 		else {
-
+			
 			if (symtab.containsKey(jjtGetChild(0).getVal())) {
-
-				if (!(symtab.get(jjtGetChild(0).getVal()) instanceof NodeList)) {
-
+				
+				if (!(symtab.contains(symtab.get(jjtGetChild(0).getVal())))) {
 					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type Node[].");
 					return;
 
 				}
 				else {
 					symtab.put(jjtGetChild(0).getVal(), jjtGetChild(2).getVal().toString());
-					if (!jjtGetChild(2).getVal().toString().equals(jjtGetChild(6).getVal().toString())){
+					if (!graph1[0].equals(jjtGetChild(2).getVal().toString())){
 						System.out.println(ErrorConstant.FIRST_NODE_NF + jjtGetChild(2).getVal() + ".");
 						return;
 					} else {
-						if (!jjtGetChild(2).getVal().toString().equals(jjtGetChild(8).getVal().toString())){
+						if (!graph2[0].equals(jjtGetChild(2).getVal().toString())){
 							System.out.println(ErrorConstant.SECOND_NODE_NF + jjtGetChild(2).getVal() + ".");
 							return;
 						}
