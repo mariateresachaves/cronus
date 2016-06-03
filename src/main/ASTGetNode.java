@@ -2,6 +2,8 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
+import java.io.PrintWriter;
+
 public class ASTGetNode extends SimpleNode {
 
 	public ASTGetNode(int id) {
@@ -113,6 +115,21 @@ public class ASTGetNode extends SimpleNode {
 
 	}
 
+	@Override
+	public void toGremlin(PrintWriter writer){
+		int k = jjtGetNumChildren();
+		
+		System.out.println("");
+		System.out.println("Tenho " + k + " filhos.");
+		
+		System.out.println("Os filhos sao: ");
+		
+		while(k>0){
+			System.out.println(k-1 + " - " + jjtGetChild(k-1).getVal());
+			k--;
+		}
+		System.out.println("");
+	}
 }
 /*
  * JavaCC - OriginalChecksum=cded3144411652adc8992d54d573c4b0 (do not edit this

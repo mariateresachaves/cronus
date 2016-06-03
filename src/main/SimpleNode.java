@@ -148,6 +148,8 @@ public class SimpleNode extends MyNode implements Node {
 		    
 		    else if(symtab.get(key) instanceof NodeList)
 		    	System.out.println(key + " = NodeList");
+		    else 
+		    	System.out.println(key + " = " + symtab.get(key));
 		    
 		}
 		

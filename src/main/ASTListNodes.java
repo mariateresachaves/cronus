@@ -2,6 +2,8 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
+import java.io.PrintWriter;
+
 public class ASTListNodes extends SimpleNode {
 
 	public ASTListNodes(int id) {
@@ -23,13 +25,13 @@ public class ASTListNodes extends SimpleNode {
 
 			if (jjtGetNumChildren() < 4) {
 
-				jjtGetChild(0).interpret();
+				jjtGetChild(0).interpret("");
 
 			} else {
 
-				jjtGetChild(0).interpret();
-				jjtGetChild(2).interpret();
-
+				
+				String graph = jjtGetChild(2).interpret("");
+				jjtGetChild(0).interpret(graph);
 			}
 
 		} else {
@@ -42,8 +44,9 @@ public class ASTListNodes extends SimpleNode {
 					return;
 
 				} else {
-
-					jjtGetChild(2).interpret();
+					String graph = symtab.get(jjtGetChild(0).getVal()).toString();
+					
+					jjtGetChild(2).interpret(graph);
 
 				}
 
@@ -57,7 +60,10 @@ public class ASTListNodes extends SimpleNode {
 		}
 
 	}
-
+	@Override
+	public void toGremlin(PrintWriter writer){
+	
+	}
 }
 /*
  * JavaCC - OriginalChecksum=8735df251d00f45445747c1ebe0ed7b0 (do not edit this

@@ -17,25 +17,25 @@ public class ASTListNodesRight extends SimpleNode {
 	}
 
 	@Override
-	public void interpret() {
+	public String interpret(String graph) {
 
 		if (symtab.containsKey(jjtGetChild(0).getVal())) {
 			
 			if (!(symtab.get(jjtGetChild(0).getVal()) instanceof Graph)) {
 
 				System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type Graph.");
-				return;
+				return null;
 
 			} else {
 				
 				jjtGetChild(4).interpret();
-				
+				return jjtGetChild(0).getVal().toString();
 			}
 
 		} else {
 
 			System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(0).getVal() + ".");
-			return;
+			return null;
 
 		}
 

@@ -39,6 +39,7 @@ interface Node {
   
   /** Interpret method */
   public void interpret();
+  public String interpret(String graph);
   
   /** Cronus code to Gremlin code */
   public void toGremlin(PrintWriter writer);

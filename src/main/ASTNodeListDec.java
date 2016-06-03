@@ -17,16 +17,23 @@ public class ASTNodeListDec extends SimpleNode {
 	}
 
 	@Override
-	public void interpret() {
+	public String interpret(String graph) {
 
 		// NodeList
 		if (symtab.containsKey(jjtGetChild(3).getVal())) {
 
 			System.err.println(ErrorConstant.DUPLICATE_ENTRY + jjtGetChild(3).getVal() + " of type NodeList.");
-			return;
+			return null;
 
-		} else
-			symtab.put(jjtGetChild(3).getVal(), new NodeList());
+		} else{
+			if (graph.equals("")){
+				symtab.put(jjtGetChild(3).getVal(), new NodeList());
+				return "";
+			} else {
+				symtab.put(jjtGetChild(3).getVal(), graph);
+				return "";
+			}
+		}
 
 	}
 

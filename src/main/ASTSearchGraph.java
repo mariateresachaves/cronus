@@ -2,6 +2,8 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
+import java.io.PrintWriter;
+
 public class ASTSearchGraph extends SimpleNode {
 
 	public ASTSearchGraph(int id) {
@@ -26,7 +28,7 @@ public class ASTSearchGraph extends SimpleNode {
 			if (symtab.containsKey(jjtGetChild(1).getVal()))
 				System.err.println(ErrorConstant.DUPLICATE_ENTRY + jjtGetChild(1).getVal() + " of type Node[].");
 
-			jjtGetChild(0).interpret();
+			jjtGetChild(0).interpret(jjtGetChild(2).getVal().toString());
 			
 		}
 		// VARIABLE EQ VARIABLE DOT SearchType OPAR VARIBLE COMMA VARIABLE
@@ -41,7 +43,9 @@ public class ASTSearchGraph extends SimpleNode {
 					return;
 
 				}
-
+				else {
+					symtab.put(jjtGetChild(0).getVal(), jjtGetChild(2).getVal().toString());
+				}
 			} else {
 
 				System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(0).getVal() + ".");
@@ -105,6 +109,10 @@ public class ASTSearchGraph extends SimpleNode {
 
 	}
 
+	@Override
+	public void toGremlin(PrintWriter writer){
+		
+	}
 }
 /*
  * JavaCC - OriginalChecksum=846292d1a956497664ce7a1a19b15629 (do not edit this

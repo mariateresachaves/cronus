@@ -22,6 +22,9 @@ public class MyNode {
 	public void interpret() {
 		throw new UnsupportedOperationException(); // It better not come here.
 	}
+	public String interpret(String graph) {
+		throw new UnsupportedOperationException(); // It better not come here.
+	}
 
 	protected static Writer out = new PrintWriter(System.out);
 	protected static Reader in = new InputStreamReader(System.in);
