@@ -3,3 +3,7 @@ Graph g2;
 g = new Graph('/graph2.xml');
 g = new Graph('/graph2.gml');
 g = new Graph('/graph2.json');
+Node [] nos = g.nodes();
+Node n1 = nos[3];
+Node n2;
+n2 = nos[2];
