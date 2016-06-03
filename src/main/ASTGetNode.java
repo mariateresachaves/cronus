@@ -29,9 +29,10 @@ public class ASTGetNode extends SimpleNode {
 				System.err.println(ErrorConstant.DUPLICATE_ENTRY + jjtGetChild(1).getVal() + " of type Node.");
 				return;
 
-			} else
-				symtab.put(jjtGetChild(1).getVal(), new NodeT());
-
+			} else {
+				String graph =symtab.get(jjtGetChild(3).getVal()).toString();
+				symtab.put(jjtGetChild(1).getVal(), graph);
+			}
 			// Right side
 			if (symtab.containsKey(jjtGetChild(3).getVal())) {
 
@@ -61,7 +62,7 @@ public class ASTGetNode extends SimpleNode {
 
 		}
 
-		// NODE? VARIABLE EQ VARIABLE OSQBR INTEGER CSQBR SCOL
+		// VARIABLE EQ VARIABLE OSQBR INTEGER CSQBR SCOL
 		else {
 
 			// Left side
@@ -74,7 +75,9 @@ public class ASTGetNode extends SimpleNode {
 					return;
 
 				} else {
-
+					
+					String graph = symtab.get(jjtGetChild(2).getVal()).toString();
+					symtab.put(jjtGetChild(0).getVal(), graph);
 				}
 
 			} else {
@@ -94,7 +97,7 @@ public class ASTGetNode extends SimpleNode {
 					return;
 
 				} else {
-
+					
 				}
 
 			} else {
@@ -117,7 +120,23 @@ public class ASTGetNode extends SimpleNode {
 
 	@Override
 	public void toGremlin(PrintWriter writer){
-		int k = jjtGetNumChildren();
+		// NODE? VARIABLE EQ VARIABLE OSQBR INTEGER CSQBR SCOL
+		String graph;
+		String node;
+		String index;
+		if (jjtGetNumChildren() == 7){
+			graph = symtab.get(jjtGetChild(2).getVal()).toString();
+			node = jjtGetChild(0).getVal().toString();
+			index = jjtGetChild(4).getVal().toString();
+		} else {
+			graph = symtab.get(jjtGetChild(3).getVal()).toString();
+			node = jjtGetChild(1).getVal().toString();
+			index = jjtGetChild(5).getVal().toString();
+		}
+		
+		writer.println(node + " = " + graph + ".v(" + index + ")");
+		
+		/*int k = jjtGetNumChildren();
 		
 		System.out.println("");
 		System.out.println("Tenho " + k + " filhos.");
@@ -128,7 +147,7 @@ public class ASTGetNode extends SimpleNode {
 			System.out.println(k-1 + " - " + jjtGetChild(k-1).getVal());
 			k--;
 		}
-		System.out.println("");
+		System.out.println("");*/
 	}
 }
 /*

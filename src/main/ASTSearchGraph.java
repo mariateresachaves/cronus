@@ -25,13 +25,10 @@ public class ASTSearchGraph extends SimpleNode {
 		// MoreOptions CPAR SCOL
 		if (jjtGetChild(0) instanceof ASTNodeListDec) {
 
-			if (symtab.containsKey(jjtGetChild(1).getVal()))
-				System.err.println(ErrorConstant.DUPLICATE_ENTRY + jjtGetChild(1).getVal() + " of type Node[].");
-
 			jjtGetChild(0).interpret(jjtGetChild(2).getVal().toString());
 			
 		}
-		// VARIABLE EQ VARIABLE DOT SearchType OPAR VARIBLE COMMA VARIABLE
+		// VARIABLE EQ VARIABLE DOT SearchType OPAR VARIABLE COMMA VARIABLE
 		// MoreOptions CPAR SCOL
 		else {
 
@@ -45,6 +42,15 @@ public class ASTSearchGraph extends SimpleNode {
 				}
 				else {
 					symtab.put(jjtGetChild(0).getVal(), jjtGetChild(2).getVal().toString());
+					if (!jjtGetChild(2).getVal().toString().equals(jjtGetChild(6).getVal().toString())){
+						System.out.println(ErrorConstant.FIRST_NODE_NF + jjtGetChild(2).getVal() + ".");
+						return;
+					} else {
+						if (!jjtGetChild(2).getVal().toString().equals(jjtGetChild(8).getVal().toString())){
+							System.out.println(ErrorConstant.SECOND_NODE_NF + jjtGetChild(2).getVal() + ".");
+							return;
+						}
+					}
 				}
 			} else {
 
