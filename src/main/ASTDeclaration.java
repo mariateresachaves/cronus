@@ -58,10 +58,14 @@ public class ASTDeclaration extends SimpleNode {
 	public void toGremlin(PrintWriter writer) {
 		
 		// Graph declaration
-		String graph = jjtGetChild(1).getVal().toString();
-		String line = graph + " = new TinkerGraph()";
+		if(jjtGetChild(0).getVal().toString() == "Graph") {
 		
-		writer.println(line);
+			String graph = jjtGetChild(1).getVal().toString();
+			String line = graph + " = new TinkerGraph()";
+			
+			writer.println(line);
+			
+		}
 		
 	}
 	
