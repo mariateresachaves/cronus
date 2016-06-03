@@ -23,6 +23,19 @@ public class ASTSearchGraph extends SimpleNode {
 
 		// NodeListDec EQ VARIABLE DOT SearchType OPAR VARIABLE COMMA VARIABLE
 		// MoreOptions CPAR SCOL
+		
+		if(!symtab.contains(jjtGetChild(6).getVal())) {
+			
+			System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(6).getVal() + ".");
+			return;
+			
+		} else if(!symtab.contains(jjtGetChild(8).getVal())) {
+			
+			System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(6).getVal() + ".");
+			return;
+			
+		}
+			
 		String[] graph1 = (symtab.get(jjtGetChild(6).getVal()).toString()).split("\\.");
 		String[] graph2 = (symtab.get(jjtGetChild(8).getVal()).toString()).split("\\.");
 

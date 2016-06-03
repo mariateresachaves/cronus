@@ -13,4 +13,5 @@ public class ErrorConstant {
 	static String NODE_LIST_INDEX = "\t[Semantic Error] Node list index must be a number greater or equal to 0.";
 	static String FIRST_NODE_NF = "\t[Semantic Error] The first argument is not a node of graph ";
 	static String SECOND_NODE_NF = "\t[Semantic Error] The second argument is not a node of graph ";
+	static String NOT_INIT = "\t[Semantic Error] The variable is not initialized.";
 }

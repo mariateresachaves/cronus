@@ -24,13 +24,20 @@ public class ASTGetNode extends SimpleNode {
 		// NODE? VARIABLE EQ VARIABLE OSQBR INTEGER CSQBR SCOL
 		if (jjtGetNumChildren() == 8) {
 
+			if(!(jjtGetChild(3) instanceof NodeList)) {
+				
+				System.err.println(ErrorConstant.NOT_INIT);
+				return;
+				
+			}
+			
 			if (symtab.containsKey(jjtGetChild(1).getVal())) {
 
 				System.err.println(ErrorConstant.DUPLICATE_ENTRY + jjtGetChild(1).getVal() + " of type Node.");
 				return;
 
 			} else {
-
+				
 				String graph = symtab.get(jjtGetChild(3).getVal()).toString();
 				String index = jjtGetChild(5).getVal().toString();
 				symtab.put(jjtGetChild(1).getVal(), graph + ".v(" + index + ")");
@@ -65,6 +72,13 @@ public class ASTGetNode extends SimpleNode {
 		// VARIABLE EQ VARIABLE OSQBR INTEGER CSQBR SCOL
 		else {
 
+			if(!(jjtGetChild(2) instanceof NodeList)) {
+				
+				System.err.println(ErrorConstant.NOT_INIT);
+				return;
+				
+			}
+			
 			// Left side
 			if (symtab.containsKey(jjtGetChild(0).getVal())) {
 
@@ -75,9 +89,18 @@ public class ASTGetNode extends SimpleNode {
 
 				} else {
 
-					String graph = symtab.get(jjtGetChild(2).getVal()).toString();
-					String index = jjtGetChild(4).getVal().toString();
-					symtab.put(jjtGetChild(0).getVal(), graph + ".v(" + index + ")");
+					if(!symtab.contains(jjtGetChild(2).getVal())) {
+						
+						System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(2).getVal() + ".");
+						return;
+						
+					} else {
+					
+						String graph = symtab.get(jjtGetChild(2).getVal()).toString();
+						String index = jjtGetChild(4).getVal().toString();
+						symtab.put(jjtGetChild(0).getVal(), graph + ".v(" + index + ")");
+						
+					}
 
 				}
 
