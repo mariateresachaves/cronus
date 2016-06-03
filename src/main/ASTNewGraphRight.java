@@ -30,8 +30,15 @@ public class ASTNewGraphRight extends SimpleNode {
 		
 		String path = jjtGetChild(3).getVal().toString();
 		
-		writer.println(".loadGraphML(" + path + ")");
+		if(path.contains(".xml"))
+			writer.println(".loadGraphML(" + path + ")");
 		
+		else if(path.contains(".gml"))
+			writer.println(".loadGML(" + path + ")");
+		
+		else if(path.contains(".json"))
+			writer.println(".loadGraphSON(" + path + ")");
+
 	}
 	
 }
