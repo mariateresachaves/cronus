@@ -21,7 +21,7 @@ public class ASTDeclaration extends SimpleNode {
 	}
 
 	@Override
-	public void interpret() {
+	public String interpret(String dec) {
 
 		String child_1 = jjtGetChild(1).getVal();
 
@@ -31,14 +31,12 @@ public class ASTDeclaration extends SimpleNode {
 				
 				System.err.println(ErrorConstant.DUPLICATE_ENTRY + child_1 + " of type Graph.");
 				semantic_error = true;
-				return;
+				return "semantic_error";
 				
 			}
 			
-
 			else
 				symtab.put(child_1, new Graph());
-
 			break;
 
 		case "Edge":
@@ -46,7 +44,7 @@ public class ASTDeclaration extends SimpleNode {
 				
 				System.err.println(ErrorConstant.DUPLICATE_ENTRY + child_1 + " of type Edge.");
 				semantic_error = true;
-				return;
+				return "semantic_error";
 				
 			}
 
@@ -60,7 +58,7 @@ public class ASTDeclaration extends SimpleNode {
 				
 				System.err.println(ErrorConstant.DUPLICATE_ENTRY + child_1 + " of type Node.");
 				semantic_error = true;
-				return;
+				return "semantic_error";
 				
 			}
 
@@ -69,6 +67,8 @@ public class ASTDeclaration extends SimpleNode {
 
 			break;
 		}
+		
+		return "";
 
 	}
 

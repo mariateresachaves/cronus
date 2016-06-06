@@ -21,22 +21,30 @@ public class ASTListNodes extends SimpleNode {
 	}
 
 	@Override
-	public void interpret() {
-			
+	public String interpret(String listNodes) {
+		
+		String error;
+		
 		// with declaration
 		if (jjtGetChild(0).getVal() == null) {
 
-			if (jjtGetNumChildren() < 4) {
-				
-				jjtGetChild(0).interpret("");
+			if (jjtGetNumChildren() < 4)	
+				error = jjtGetChild(0).interpret("");
 
-			} else {
+			else {
 				
 				String graph = jjtGetChild(2).interpret("");
-				jjtGetChild(0).interpret(graph);
+				error = jjtGetChild(0).interpret(graph);
 
 			}
 			
+			
+			if(error.equals("semantic_error")) {
+				
+				semantic_error = true;
+				return "semantic_error";
+				
+			}
 
 		//without declaration
 		} else {
@@ -47,11 +55,19 @@ public class ASTListNodes extends SimpleNode {
 
 					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type NodeList.");
 					semantic_error = true;
-					return;
+					return "semantic_error";
 
 				} else {
 					
 					String graph = jjtGetChild(2).interpret("");
+					
+					if(graph.equals("semantic_error")) {
+						
+						semantic_error = true;
+						return "semantic_error";
+						
+					}
+					
 					symtab.put(jjtGetChild(0).getVal(), graph);
 
 				}
@@ -60,11 +76,13 @@ public class ASTListNodes extends SimpleNode {
 
 				System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(0).getVal() + ".");
 				semantic_error = true;
-				return;
+				return "semantic_error";
 
 			}
 
 		}
+		
+		return "";
 
 	}
 

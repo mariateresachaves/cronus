@@ -29,7 +29,7 @@ public class ASTListNodesRight extends SimpleNode {
 
 				System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type Graph.");
 				semantic_error = true;
-				return null;
+				return "semantic_error";
 
 			} else {
 				
@@ -41,9 +41,9 @@ public class ASTListNodesRight extends SimpleNode {
 
 			System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(0).getVal() + ".");
 			semantic_error = true;
-			return null;
+			return "semantic_error";
 
-		}	
+		}
 
 	}
 	
@@ -51,6 +51,7 @@ public class ASTListNodesRight extends SimpleNode {
 	public void toGremlin(PrintWriter writer) {
 		
 		// ListNodeRight -> VARIABLE DOT NODE OPAR AllParameters CPAR
+		
 		if(!semantic_error){
 			
 			String graph = jjtGetChild(0).getVal().toString();

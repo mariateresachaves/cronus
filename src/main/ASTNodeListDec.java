@@ -28,7 +28,7 @@ public class ASTNodeListDec extends SimpleNode {
 
 			System.err.println(ErrorConstant.DUPLICATE_ENTRY + jjtGetChild(3).getVal() + " of type NodeList.");
 			semantic_error = true;
-			return null;
+			return "semantic_error";
 
 		} else{
 			

@@ -1,0 +1,17 @@
+Graph g = new Graph('/graph.xml');
+Graph g2;
+g = new Graph('/graph2.xml');
+g = new Graph('/graph2.gml');
+g = new Graph('/graph2.json');
+Node [] nos = g.nodes();
+Node n1 = nos[3];
+Node n2;
+n2 = nos[2];
+nos = g.shortestPath(n1, n2);
+Node[] res2 = g.shortestPath(n1, n2);
+Node[] nos3 = g.nodes();
+Node[] nns = g.nodes(label="knows");
+Node[] nns2 = g.nodes(degree < 3);
+Node[] nns3 = g.nodes(label="knows", degree < 3);
+Node[] nns4 = g.nodes({name="josh", age=[23,41]});
+Node[] nns5 = g.nodes(label="knows", degree < 3, {name="josh", age=[23,41]});

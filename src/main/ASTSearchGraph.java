@@ -21,80 +21,84 @@ public class ASTSearchGraph extends SimpleNode {
 	}
 
 	@Override
-	public void interpret() {
+	public String interpret(String searchGraph) {
+		
+		String[] nodes1 = (symtab.get(jjtGetChild(6).getVal()).toString()).split("\\[");
+		String[] nodes2 = (symtab.get(jjtGetChild(8).getVal()).toString()).split("\\[");
+		
+		if (!symtab.containsKey(nodes1[0])) {
+
+			System.out.println(ErrorConstant.FIRST_NODE_NF + jjtGetChild(0).getVal() + ".");
+			semantic_error = true;
+			return "semantic_error";
+
+		} else if (!symtab.containsKey(nodes2[0])) {
+
+			System.out.println(ErrorConstant.SECOND_NODE_NF + jjtGetChild(0).getVal() + ".");
+			semantic_error = true;
+			return "semantic_error";
+
+		}
+		
+		String g1 = symtab.get(nodes1[0]).toString();
+		String g2 = symtab.get(nodes2[0]).toString();
+		
+		if((!g1.equals(g2)) | (!g1.equals(jjtGetChild(2).getVal().toString()))) {
+			
+			System.out.println(ErrorConstant.INC_PARA_TYPES);
+			semantic_error = true;
+			return "semantic_error";
+			
+		}
 		
 		// NodeListDec EQ VARIABLE DOT SearchType OPAR VARIABLE COMMA VARIABLE
 		// MoreOptions CPAR SCOL
-		
-		if(!symtab.contains(jjtGetChild(6).getVal())) {
+		if(!symtab.containsKey(jjtGetChild(6).getVal())) {
 			
 			System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(6).getVal() + ".");
 			semantic_error = true;
-			return;
+			return "semantic_error";
 			
-		} else if(!symtab.contains(jjtGetChild(8).getVal())) {
+		} else if(!symtab.containsKey(jjtGetChild(8).getVal())) {
 			
-			System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(6).getVal() + ".");
+			System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(8).getVal() + ".");
 			semantic_error = true;
-			return;
+			return "semantic_error";
 			
 		}
-			
-		String[] graph1 = (symtab.get(jjtGetChild(6).getVal()).toString()).split("\\.");
-		String[] graph2 = (symtab.get(jjtGetChild(8).getVal()).toString()).split("\\.");
 
-		if (jjtGetChild(0) instanceof ASTNodeListDec) {
-
-			if (!graph1[0].equals(jjtGetChild(2).getVal().toString())) {
-
-				System.out.println(ErrorConstant.FIRST_NODE_NF + jjtGetChild(2).getVal() + ".");
-				semantic_error = true;
-				return;
-
-			} else {
-
-				if (!graph2[0].equals(jjtGetChild(2).getVal().toString())) {
-
-					System.out.println(ErrorConstant.SECOND_NODE_NF + jjtGetChild(2).getVal() + ".");
-					semantic_error = true;
-					return;
-
-				}
-
-			}
-
+		if (jjtGetChild(0) instanceof ASTNodeListDec)
 			jjtGetChild(0).interpret(jjtGetChild(2).getVal().toString());
 
-		}
 		// VARIABLE EQ VARIABLE DOT SearchType OPAR VARIABLE COMMA VARIABLE
 		// MoreOptions CPAR SCOL
 		else {
 
 			if (symtab.containsKey(jjtGetChild(0).getVal())) {
 
-				if (!(symtab.contains(symtab.get(jjtGetChild(0).getVal())))) {
+				if (!(symtab.containsKey(symtab.get(jjtGetChild(0).getVal())))) {
 
-					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type Node[].");
+					System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + symtab.get(jjtGetChild(0).getVal()).toString() + " is not of defined.");
 					semantic_error = true;
-					return;
+					return "semantic_error";
 
 				} else {
 
 					symtab.put(jjtGetChild(0).getVal(), jjtGetChild(2).getVal().toString());
 
-					if (!graph1[0].equals(jjtGetChild(2).getVal().toString())) {
+					if (!symtab.containsKey(nodes1[0])) {
 
 						System.out.println(ErrorConstant.FIRST_NODE_NF + jjtGetChild(2).getVal() + ".");
 						semantic_error = true;
-						return;
+						return "semantic_error";
 
 					} else {
 
-						if (!graph2[0].equals(jjtGetChild(2).getVal().toString())) {
+						if (!symtab.containsKey(nodes2[0])) {
 
 							System.out.println(ErrorConstant.SECOND_NODE_NF + jjtGetChild(2).getVal() + ".");
 							semantic_error = true;
-							return;
+							return "semantic_error";
 
 						}
 
@@ -106,7 +110,7 @@ public class ASTSearchGraph extends SimpleNode {
 
 				System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(0).getVal() + ".");
 				semantic_error = true;
-				return;
+				return "semantic_error";
 
 			}
 
@@ -121,6 +125,8 @@ public class ASTSearchGraph extends SimpleNode {
 		// MoreOptions
 		if(jjtGetChild(9).getVal() != null)
 			jjtGetChild(9).interpret();
+		
+		return "";
 
 	}
 
@@ -182,8 +188,6 @@ public class ASTSearchGraph extends SimpleNode {
 					searchParameterString = "";
 				
 			}
-			
-			writer.println(" ");
 			
 		}
 		

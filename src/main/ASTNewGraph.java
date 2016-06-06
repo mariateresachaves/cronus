@@ -21,7 +21,7 @@ public class ASTNewGraph extends SimpleNode {
 	}
 
 	@Override
-	public void interpret() {
+	public String interpret(String newGraph) {
 
 		int k = jjtGetNumChildren();
 		
@@ -33,7 +33,7 @@ public class ASTNewGraph extends SimpleNode {
 
 				System.err.println(ErrorConstant.DUPLICATE_ENTRY + jjtGetChild(1).getVal() + " of type Graph.");
 				semantic_error = true;
-				return;
+				return "semantic_error";
 
 			}
 			
@@ -54,7 +54,7 @@ public class ASTNewGraph extends SimpleNode {
 	
 					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type Graph.");
 					semantic_error = true;
-					return;
+					return "semantic_error";
 	
 				}
 	
@@ -62,13 +62,15 @@ public class ASTNewGraph extends SimpleNode {
 	
 				System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(0).getVal() + ".");
 				semantic_error = true;
-				return;
+				return "semantic_error";
 	
 			}
 			
 			jjtGetChild(2).interpret();
 			
 		}
+		
+		return "";
 
 	}
 

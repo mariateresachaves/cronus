@@ -24,6 +24,7 @@ public class ASTStart extends SimpleNode {
 	public void interpret() {
 
 		int i, k = jjtGetNumChildren();
+		String res;
 
 		for (i = 0; i < k; i++) {
 
@@ -43,8 +44,11 @@ public class ASTStart extends SimpleNode {
 
 			System.out.println("");
 
-			jjtGetChild(i).interpret();
+			res = jjtGetChild(i).interpret("");
 
+			if(res.equals("semantic_error"))
+				semantic_error = true;
+			
 		}
 
 	}

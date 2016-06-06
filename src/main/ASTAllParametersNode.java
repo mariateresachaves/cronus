@@ -56,8 +56,6 @@ public class ASTAllParametersNode extends SimpleNode {
 			
 			int k = jjtGetNumChildren();
 			
-			System.out.println("K " + k);
-			
 			if(k == 0)
 				writer.println(".V.toList()");
 			

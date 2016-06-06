@@ -21,7 +21,7 @@ public class ASTGetNode extends SimpleNode {
 	}
 
 	@Override
-	public void interpret() {
+	public String interpret(String getNode) {
 		
 		// NODE? VARIABLE EQ VARIABLE OSQBR INTEGER CSQBR SCOL
 		if (jjtGetNumChildren() == 8) {
@@ -30,7 +30,7 @@ public class ASTGetNode extends SimpleNode {
 				
 				System.err.println(ErrorConstant.NOT_INIT);
 				semantic_error = true;
-				return;
+				return "semantic_error";
 				
 			}
 			
@@ -38,7 +38,7 @@ public class ASTGetNode extends SimpleNode {
 
 				System.err.println(ErrorConstant.DUPLICATE_ENTRY + jjtGetChild(1).getVal() + " of type Node.");
 				semantic_error = true;
-				return;
+				return "semantic_error";
 
 			} else {
 				
@@ -54,7 +54,7 @@ public class ASTGetNode extends SimpleNode {
 
 					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(3).getVal() + " is not of type Node[].");
 					semantic_error = true;
-					return;
+					return "semantic_error";
 
 				}
 
@@ -62,7 +62,7 @@ public class ASTGetNode extends SimpleNode {
 
 				System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(3).getVal() + ".");
 				semantic_error = true;
-				return;
+				return "semantic_error";
 
 			}
 
@@ -71,6 +71,7 @@ public class ASTGetNode extends SimpleNode {
 
 				System.out.println(ErrorConstant.NODE_LIST_INDEX);
 				semantic_error = true;
+				return "semantic_error";
 
 			}
 
@@ -83,7 +84,7 @@ public class ASTGetNode extends SimpleNode {
 				
 				System.err.println(ErrorConstant.NOT_INIT);
 				semantic_error = true;
-				return;
+				return "semantic_error";
 				
 			}
 			
@@ -94,7 +95,7 @@ public class ASTGetNode extends SimpleNode {
 
 					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type Node.");
 					semantic_error = true;
-					return;
+					return "semantic_error";
 
 				} else {
 					
@@ -102,7 +103,7 @@ public class ASTGetNode extends SimpleNode {
 						
 						System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(2).getVal() + ".");
 						semantic_error = true;
-						return;
+						return "semantic_error";
 						
 					} else {
 					
@@ -118,7 +119,7 @@ public class ASTGetNode extends SimpleNode {
 
 				System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(0).getVal() + ".");
 				semantic_error = true;
-				return;
+				return "semantic_error";
 
 			}
 
@@ -129,7 +130,7 @@ public class ASTGetNode extends SimpleNode {
 
 					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(2).getVal() + " is not of type Node[].");
 					semantic_error = true;
-					return;
+					return "semantic_error";
 
 				}
 
@@ -137,7 +138,7 @@ public class ASTGetNode extends SimpleNode {
 
 				System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(2).getVal() + ".");
 				semantic_error = true;
-				return;
+				return "semantic_error";
 
 			}
 
@@ -146,11 +147,14 @@ public class ASTGetNode extends SimpleNode {
 
 				System.out.println(ErrorConstant.NODE_LIST_INDEX);
 				semantic_error = true;
+				return "semantic_error";
 
 			}
 
 		}
 
+		return "";
+		
 	}
 
 	@Override

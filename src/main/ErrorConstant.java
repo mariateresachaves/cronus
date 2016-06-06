@@ -14,4 +14,6 @@ public class ErrorConstant {
 	static String FIRST_NODE_NF = "\t[Semantic Error] The first argument is not a node of graph ";
 	static String SECOND_NODE_NF = "\t[Semantic Error] The second argument is not a node of graph ";
 	static String NOT_INIT = "\t[Semantic Error] The variable is not initialized.";
+	static String INC_PARA_TYPES = "\t[Semantic Error] Incorrect parameters types.";
+
 }
