@@ -1,0 +1,1 @@
+Este exemplo serve para que se houverem erros semanticos nao são colocadas instruções no ficheiro gremlin.txt

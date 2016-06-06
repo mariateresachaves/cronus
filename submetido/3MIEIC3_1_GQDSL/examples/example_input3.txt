@@ -1,0 +1,1 @@
+Este exemplo serve para mostrar como é colocado o codigo gerado no ficheiro gremlin.txt
