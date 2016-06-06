@@ -135,7 +135,45 @@ public class ASTSearchGraph extends SimpleNode {
 
 	@Override
 	public void toGremlin(PrintWriter writer) {
+		// NodeListDec EQ VARIABLE DOT SearchType OPAR VARIABLE COMMA VARIABLE
+		String nodeList;
+		String graph;
+		String node1;
+		String node2;
+		String searchParameterString = "cenas";
+		
+		int k=jjtGetNumChildren();
+		
+		System.out.println("");
+		System.out.println("[SearchGraph] Tenho " + k + " filhos.");
+				
+		System.out.println("Os filhos são: ");
+				
+		while(k>0) {
+			System.out.println(k-1 + " - " + jjtGetChild(k-1).getVal());
+			k--;
+		}
+		
+		System.out.println("");
 
+		if (jjtGetNumChildren() == 12){
+			graph = jjtGetChild(2).getVal().toString();
+			node1 = jjtGetChild(6).getVal().toString();
+			node2 = jjtGetChild(8).getVal().toString();
+			nodeList = jjtGetChild(0).getVal().toString();
+			if (jjtGetChild(9).getVal() != null){
+				//searchParameterString = jjtGetChild(9).getVal().toString();
+			} else {
+				searchParameterString = "";
+			}
+		} else{
+			graph = jjtGetChild(0).getVal().toString();
+			node1 = jjtGetChild(5).getVal().toString();
+			node2 = jjtGetChild(7).getVal().toString();
+			nodeList = "";
+		}
+		
+		writer.println(nodeList + " = " + graph + ".v(" + node1 + ").out.loop(1){it.object.id != \"" + node2 + "\"}.path");
 	}
 }
 /*

@@ -20,7 +20,7 @@ public class ASTSearchType extends SimpleNode {
 	public void interpret() {
 
 		// TODO: alguma verificação que seja necessária
-		//System.out.println("Type: " + jjtGetChild(0).getVal());
+		System.out.println("Type: " + jjtGetChild(0).getVal());
 	}
 
 }

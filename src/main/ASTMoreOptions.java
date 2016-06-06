@@ -2,6 +2,8 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
+import java.io.PrintWriter;
+
 public class ASTMoreOptions extends SimpleNode {
 
 	public ASTMoreOptions(int id) {
@@ -23,6 +25,11 @@ public class ASTMoreOptions extends SimpleNode {
 		
 		/*if(jjtGetNumChildren() != 0)
 			jjtGetChild(1).interpret();*/
+		
+	}
+	
+	@Override
+	public void toGremlin(PrintWriter writer) {
 		
 	}
 
