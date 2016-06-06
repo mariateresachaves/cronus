@@ -5,6 +5,8 @@ package main;
 import java.io.PrintWriter;
 
 public class ASTGetNode extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTGetNode(int id) {
 
@@ -20,13 +22,14 @@ public class ASTGetNode extends SimpleNode {
 
 	@Override
 	public void interpret() {
-
+		
 		// NODE? VARIABLE EQ VARIABLE OSQBR INTEGER CSQBR SCOL
 		if (jjtGetNumChildren() == 8) {
 
-			if(!(jjtGetChild(3) instanceof NodeList)) {
+			if(symtab.get(jjtGetChild(3).getVal()) instanceof NodeList) {
 				
 				System.err.println(ErrorConstant.NOT_INIT);
+				semantic_error = true;
 				return;
 				
 			}
@@ -34,13 +37,14 @@ public class ASTGetNode extends SimpleNode {
 			if (symtab.containsKey(jjtGetChild(1).getVal())) {
 
 				System.err.println(ErrorConstant.DUPLICATE_ENTRY + jjtGetChild(1).getVal() + " of type Node.");
+				semantic_error = true;
 				return;
 
 			} else {
 				
-				String graph = symtab.get(jjtGetChild(3).getVal()).toString();
+				String nodes = jjtGetChild(3).getVal();
 				String index = jjtGetChild(5).getVal().toString();
-				symtab.put(jjtGetChild(1).getVal(), graph + ".v(" + index + ")");
+				symtab.put(jjtGetChild(1).getVal(), nodes + "[" + index + "]");
 
 			}
 			// Right side
@@ -49,6 +53,7 @@ public class ASTGetNode extends SimpleNode {
 				if (!(symtab.contains(symtab.get(jjtGetChild(3).getVal())))) {
 
 					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(3).getVal() + " is not of type Node[].");
+					semantic_error = true;
 					return;
 
 				}
@@ -56,6 +61,7 @@ public class ASTGetNode extends SimpleNode {
 			} else {
 
 				System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(3).getVal() + ".");
+				semantic_error = true;
 				return;
 
 			}
@@ -64,6 +70,7 @@ public class ASTGetNode extends SimpleNode {
 			if (Integer.parseInt(jjtGetChild(5).getVal()) < 0) {
 
 				System.out.println(ErrorConstant.NODE_LIST_INDEX);
+				semantic_error = true;
 
 			}
 
@@ -72,9 +79,10 @@ public class ASTGetNode extends SimpleNode {
 		// VARIABLE EQ VARIABLE OSQBR INTEGER CSQBR SCOL
 		else {
 
-			if(!(jjtGetChild(2) instanceof NodeList)) {
+			if(symtab.get(jjtGetChild(2).getVal()) instanceof NodeList) {
 				
 				System.err.println(ErrorConstant.NOT_INIT);
+				semantic_error = true;
 				return;
 				
 			}
@@ -85,20 +93,22 @@ public class ASTGetNode extends SimpleNode {
 				if (!(symtab.contains(symtab.get(jjtGetChild(0).getVal().toString().split("\\.")[0])))) {
 
 					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type Node.");
+					semantic_error = true;
 					return;
 
 				} else {
-
-					if(!symtab.contains(jjtGetChild(2).getVal())) {
+					
+					if(symtab.get(jjtGetChild(2).getVal()) == null) {
 						
 						System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(2).getVal() + ".");
+						semantic_error = true;
 						return;
 						
 					} else {
 					
-						String graph = symtab.get(jjtGetChild(2).getVal()).toString();
-						String index = jjtGetChild(4).getVal().toString();
-						symtab.put(jjtGetChild(0).getVal(), graph + ".v(" + index + ")");
+						String nodes = jjtGetChild(2).getVal();
+						String index = jjtGetChild(4).getVal();
+						symtab.put(jjtGetChild(0).getVal(), nodes + "[" + index + "]");
 						
 					}
 
@@ -107,6 +117,7 @@ public class ASTGetNode extends SimpleNode {
 			} else {
 
 				System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(0).getVal() + ".");
+				semantic_error = true;
 				return;
 
 			}
@@ -117,6 +128,7 @@ public class ASTGetNode extends SimpleNode {
 				if (!(symtab.contains(symtab.get(jjtGetChild(2).getVal())))) {
 
 					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(2).getVal() + " is not of type Node[].");
+					semantic_error = true;
 					return;
 
 				}
@@ -124,6 +136,7 @@ public class ASTGetNode extends SimpleNode {
 			} else {
 
 				System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(2).getVal() + ".");
+				semantic_error = true;
 				return;
 
 			}
@@ -132,6 +145,7 @@ public class ASTGetNode extends SimpleNode {
 			if (Integer.parseInt(jjtGetChild(4).getVal()) < 0) {
 
 				System.out.println(ErrorConstant.NODE_LIST_INDEX);
+				semantic_error = true;
 
 			}
 
@@ -141,26 +155,20 @@ public class ASTGetNode extends SimpleNode {
 
 	@Override
 	public void toGremlin(PrintWriter writer) {
-		// NODE? VARIABLE EQ VARIABLE OSQBR INTEGER CSQBR SCOL
-		String graph;
-		String node;
-		String index;
+		
+		if(!semantic_error) {
 
-		if (jjtGetNumChildren() == 7) {
-
-			graph = symtab.get(jjtGetChild(2).getVal()).toString();
-			node = jjtGetChild(0).getVal().toString();
-			index = jjtGetChild(4).getVal().toString();
-
-		} else {
-
-			graph = symtab.get(jjtGetChild(3).getVal()).toString();
-			node = jjtGetChild(1).getVal().toString();
-			index = jjtGetChild(5).getVal().toString();
-
+			// NODE? VARIABLE EQ VARIABLE OSQBR INTEGER CSQBR SCOL
+			String nodes;
+			String node;
+			Integer index = ((8 - jjtGetNumChildren()) == 0) ? 3 : 0;
+			
+			nodes = symtab.get(jjtGetChild(index).getVal()).toString();
+			node = jjtGetChild(index).getVal();
+			
+			writer.println(node + " = " + nodes);
+			
 		}
-
-		writer.println(node + " = " + graph + ".v(" + index + ")");
 
 	}
 }

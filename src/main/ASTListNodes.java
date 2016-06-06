@@ -20,34 +20,22 @@ public class ASTListNodes extends SimpleNode {
 
 	@Override
 	public void interpret() {
-
-		int k=jjtGetNumChildren();
 		
-		System.out.println("");
-		System.out.println("[ListNodes] Tenho " + k + " filhos.");
-				
-		System.out.println("Os filhos são: ");
-				
-		while(k>0) {
-			System.out.println(k-1 + " - " + jjtGetChild(k-1).getVal());
-			k--;
-		}
-		
-		System.out.println("");
-		
+		// with declaration
 		if (jjtGetChild(0).getVal() == null) {
 
 			if (jjtGetNumChildren() < 4) {
-
+				
 				jjtGetChild(0).interpret("");
 
 			} else {
-
+				
 				String graph = jjtGetChild(2).interpret("");
 				jjtGetChild(0).interpret(graph);
 
 			}
 
+		//without declaration
 		} else {
 
 			if (symtab.containsKey(jjtGetChild(0).getVal())) {

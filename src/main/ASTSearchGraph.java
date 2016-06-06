@@ -143,23 +143,8 @@ public class ASTSearchGraph extends SimpleNode {
 		String node2;
 		String searchParameterString = "cenas";
 		
-		int k=jjtGetNumChildren();
-		
-		System.out.println("");
-		System.out.println("[SearchGraph] Tenho " + k + " filhos.");
-				
-		System.out.println("Os filhos sao: ");
-				
-		while(k>0) {
-			System.out.println(k-1 + " - " + jjtGetChild(k-1).getVal());
-			k--;
-		}
-		
-		System.out.println("");
-		
 		try {
-			if (symtab.get(symtab.get(jjtGetChild(0).getVal())) instanceof Graph){
-				System.out.println("Sou lista de nos definida");
+			if (symtab.get(symtab.get(jjtGetChild(0).getVal())) instanceof Graph) {
 				
 				graph = jjtGetChild(0).getVal().toString();
 				node1 = jjtGetChild(5).getVal().toString();
@@ -167,7 +152,6 @@ public class ASTSearchGraph extends SimpleNode {
 				nodeList = "";
 			}
 		} catch (NullPointerException e) {
-			System.out.println("Sou lista de nos nao definida");
 			
 			graph = jjtGetChild(2).getVal().toString();
 			node1 = jjtGetChild(6).getVal().toString();
