@@ -21,6 +21,20 @@ public class ASTListNodes extends SimpleNode {
 	@Override
 	public void interpret() {
 
+		int k=jjtGetNumChildren();
+		
+		System.out.println("");
+		System.out.println("[ListNodes] Tenho " + k + " filhos.");
+				
+		System.out.println("Os filhos são: ");
+				
+		while(k>0) {
+			System.out.println(k-1 + " - " + jjtGetChild(k-1).getVal());
+			k--;
+		}
+		
+		System.out.println("");
+		
 		if (jjtGetChild(0).getVal() == null) {
 
 			if (jjtGetNumChildren() < 4) {
@@ -38,15 +52,15 @@ public class ASTListNodes extends SimpleNode {
 
 			if (symtab.containsKey(jjtGetChild(0).getVal())) {
 
-				if (!(symtab.get(jjtGetChild(0).getVal()) instanceof NodeList)) {
+				if (!(symtab.get(symtab.get(jjtGetChild(0).getVal())) instanceof Graph)) {
 
 					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type NodeList.");
 					return;
 
 				} else {
-
-					String graph = symtab.get(jjtGetChild(0).getVal()).toString();
-					jjtGetChild(2).interpret(graph);
+					
+					String graph = jjtGetChild(2).interpret("");
+					symtab.put(jjtGetChild(0).getVal(), graph);
 
 				}
 
