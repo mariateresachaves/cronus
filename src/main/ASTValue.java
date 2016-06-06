@@ -2,6 +2,8 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
+import java.io.PrintWriter;
+
 public class ASTValue extends SimpleNode {
 	
 	public Boolean semantic_error = false;
@@ -25,6 +27,15 @@ public class ASTValue extends SimpleNode {
 
 	}
 
+	@Override
+	public void toGremlin(PrintWriter writer) {
+		
+		// Value -> STRING | INTEGER | FLOAT
+		
+		writer.print(jjtGetChild(0).getVal().toString());
+		
+	}
+	
 }
 /*
  * JavaCC - OriginalChecksum=07dcfa71072fe065f3b9da53656575af (do not edit this

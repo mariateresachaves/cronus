@@ -161,7 +161,7 @@ public class ASTGetNode extends SimpleNode {
 			// NODE? VARIABLE EQ VARIABLE OSQBR INTEGER CSQBR SCOL
 			String nodes;
 			String node;
-			Integer index = ((8 - jjtGetNumChildren()) == 0) ? 3 : 0;
+			Integer index = ((8 - jjtGetNumChildren()) == 0) ? 1 : 0;
 			
 			nodes = symtab.get(jjtGetChild(index).getVal()).toString();
 			node = jjtGetChild(index).getVal();

@@ -2,6 +2,8 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
+import java.io.PrintWriter;
+
 public class ASTNodeDegree extends SimpleNode {
 	
 	public Boolean semantic_error = false;
@@ -28,6 +30,16 @@ public class ASTNodeDegree extends SimpleNode {
 
 	}
 
+	@Override
+	public void toGremlin(PrintWriter writer) {
+		
+		// NodeDegree -> DEGREE CompareValues
+	
+		writer.print("it.outE.toList().size()");
+		jjtGetChild(1).toGremlin(writer);
+		
+	}
+	
 }
 /*
  * JavaCC - OriginalChecksum=247899e96275778e2d4dbbedb66da088 (do not edit this

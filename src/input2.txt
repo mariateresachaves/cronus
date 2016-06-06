@@ -17,3 +17,4 @@ no2 = nos2[2];
 Node no4 = nos[2];
 Node[] nos3 = g.nodes();
 no4 = nos3[1];
+Node[] nns = g.nodes(label="knows");

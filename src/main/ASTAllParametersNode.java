@@ -2,6 +2,8 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
+import java.io.PrintWriter;
+
 public class ASTAllParametersNode extends SimpleNode {
 	
 	public Boolean semantic_error = false;
@@ -20,7 +22,7 @@ public class ASTAllParametersNode extends SimpleNode {
 
 	@Override
 	public void interpret() {
-
+		
 		int k = jjtGetNumChildren();
 
 		switch (k) {
@@ -36,6 +38,49 @@ public class ASTAllParametersNode extends SimpleNode {
 			jjtGetChild(2).interpret();
 			jjtGetChild(4).interpret();
 			break;
+		}
+
+	}
+	
+	@Override
+	public void toGremlin(PrintWriter writer) {
+		
+		// AllParameters -> NodeLabel ( COMMA NodeDegree ( COMMA NodeProperties)?)?
+		//				|	NodeLabel ( COMMA NodeProperties ( COMMA NodeDegree)?)?
+		//				|	NodeDegree ( COMMA NodeLabel ( COMMA NodeProperties)?)?
+		//				|	NodeDegree ( COMMA NodeProperties ( COMMA NodeLabel)?)?
+		//				|	NodeProperties ( COMMA NodeLabel ( COMMA NodeDegree)?)?
+		//				|	NodeProperties ( COMMA NodeDegree ( COMMA NodeLabel)?)?
+		
+		int k = jjtGetNumChildren();
+		
+		System.out.println("K " + k);
+		
+		if(k == 0)
+			writer.println(".V.toList()");
+		
+		else if(k == 1) {
+			writer.print(".V.filter{");
+			jjtGetChild(0).toGremlin(writer);
+			writer.println("}.toList()");
+		}
+		
+		else if(k == 3) {
+			writer.print(".V.filter{");
+			jjtGetChild(0).toGremlin(writer);
+			writer.print("; ");
+			jjtGetChild(2).toGremlin(writer);
+			writer.println("}.toList()");
+		}
+		
+		else if(k == 5) {
+			writer.print(".V.filter{");
+			jjtGetChild(0).toGremlin(writer);
+			writer.print("; ");
+			jjtGetChild(2).toGremlin(writer);
+			writer.print("; ");
+			jjtGetChild(4).toGremlin(writer);
+			writer.println("}.toList()");
 		}
 
 	}

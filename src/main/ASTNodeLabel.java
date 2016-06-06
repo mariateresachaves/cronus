@@ -2,6 +2,8 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
+import java.io.PrintWriter;
+
 public class ASTNodeLabel extends SimpleNode {
 	
 	public Boolean semantic_error = false;
@@ -23,9 +25,20 @@ public class ASTNodeLabel extends SimpleNode {
 
 		// TODO: alguma verificação que seja necessária
 		// LABEL EQ Value
-		
+		System.out.println("NodeLabel");
 		jjtGetChild(2).interpret();
 
+	}
+	
+	@Override
+	public void toGremlin(PrintWriter writer) {
+		
+		// NodeLabel -> LABEL EQ Value
+		
+		writer.print("it.outE('");
+		jjtGetChild(2).toGremlin(writer);
+		writer.print("').hasNext()");
+	
 	}
 
 }

@@ -2,6 +2,8 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
+import java.io.PrintWriter;
+
 public class ASTListNodesRight extends SimpleNode {
 	
 	public Boolean semantic_error = false;
@@ -41,10 +43,20 @@ public class ASTListNodesRight extends SimpleNode {
 			semantic_error = true;
 			return null;
 
-		}
-		
-		
+		}	
 
+	}
+	
+	@Override
+	public void toGremlin(PrintWriter writer) {
+		
+		// ListNodeRight -> VARIABLE DOT NODE OPAR AllParameters CPAR
+		
+		String graph = jjtGetChild(0).getVal().toString();
+		writer.print(" = " + graph);
+		
+		jjtGetChild(4).toGremlin(writer);
+		
 	}
 
 }

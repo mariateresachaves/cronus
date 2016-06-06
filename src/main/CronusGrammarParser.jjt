@@ -137,7 +137,9 @@ void Declaration() #Declaration :
 	|
 	  	e = < EDGE > {jjtThis.val = e.image;} 			#Edge
 	|
-		LOOKAHEAD(2)	  	n = < NODE > {jjtThis.val = n.image;} 			#Node	)
+		LOOKAHEAD(2)
+	  	n = < NODE > {jjtThis.val = n.image;} 			#Node
+	)
 	v    = < VARIABLE > {jjtThis.val = v.image;} 		#Variable
   	scol = < SCOL > {jjtThis.val = scol.image;} 		#Semicolon
 }
@@ -217,13 +219,16 @@ void NodeListDec() #NodeListDec :
 
 void ListNodesRight() #ListNodesRight :
 {
-  	Token v, d, n, o, c;}{
+  	Token v, d, n, o, c;
+}
+{
   	v  = < VARIABLE > {jjtThis.val = v.image;} 	#Variable
 	d  = < DOT > {jjtThis.val = d.image;}		#Dot
 	n  = < NODES > {jjtThis.val = n.image;}		#Nodes
 	o  = < OPAR > {jjtThis.val = o.image;}		#OpenParenthesis
 	AllParametersNode()
-	c  = < CPAR > {jjtThis.val = c.image;}		#CloseParenthesis}
+	c  = < CPAR > {jjtThis.val = c.image;}		#CloseParenthesis
+}
 
 /*
 	== FILTER SEARCH NODE WITH ALL THREE PARAMETERS ==
@@ -234,15 +239,16 @@ void AllParametersNode() #AllParametersNode :
 }
 {
 	(
-	  	LOOKAHEAD(2)		NodeLabel()
+	  	LOOKAHEAD(2)
+		NodeLabel()
 	  	(
 	    	comma = < COMMA > {jjtThis.val = comma.image;} 		#Comma
 	    	NodeDegree()
 		    (
 		      comma = < COMMA > {jjtThis.val = comma.image;} 	#Comma
-		      NodeProperties()
-		    )?
-	    )?
+		      NodeProperties() #NodeProperties
+			)?
+		)?
 	|
 		NodeLabel()
 	  	(
@@ -379,32 +385,19 @@ void Value() #Value :
 */
 void CompareValues() #CompareValues :
 {
-  	Token eq, os, s, i, f, cs, comma, comp;
+  	Token eq, os, s, i, f, cs, comma, comp, osqbr, csqbr;
 }
 {
   	// Equals to an Interval
-  	IntervalBracket()
+  	( osqbr = < OSQBR > #OpenSquareBracket | csqbr = < CSQBR > #CloseSquareBracket)
   	Value()
   	comma = < COMMA > {jjtThis.val = comma.image;}	#Comma
   	Value()
-  	IntervalBracket()
+  	( osqbr = < OSQBR > #OpenSquareBracket | csqbr = < CSQBR > #CloseSquareBracket)
 |
 	// Compares to a Value
 	comp = < COMP > {jjtThis.val = comp.image;}		#Compares
 	Value()
-}
-
-/*
-	== INTERVAL BRACKET ==
-*/
-void IntervalBracket() #IntervalBracket :
-{
-  	Token os, cs;
-}
-{
-  	os = < OSQBR > {jjtThis.val = os.image;}	#OpenSquareBracket
-|
-	cs = < CSQBR > {jjtThis.val = cs.image;}	#CloseSquareBracket
 }
 
 /*
@@ -413,8 +406,11 @@ void IntervalBracket() #IntervalBracket :
 
 void SearchGraph() #SearchGraph :
 {
-  	Token v, eq, d, opar, comma, cpar, scol;}{
-	(	  	NodeListDec()
+  	Token v, eq, d, opar, comma, cpar, scol;
+}
+{
+	(
+	  	NodeListDec()
 	|
 		v     = < VARIABLE > {jjtThis.val = v.image;}		#Variable
 	)
@@ -428,7 +424,8 @@ void SearchGraph() #SearchGraph :
   	v     = < VARIABLE > {jjtThis.val = v.image;}			#Variable
 	MoreOptions()
    	cpar  = < CPAR > {jjtThis.val = cpar.image;}			#CloseParenthesis
- 	scol  = < SCOL > {jjtThis.val = scol.image;}			#Semicolon}
+ 	scol  = < SCOL > {jjtThis.val = scol.image;}			#Semicolon
+}
 
 /*
 	== SEARCH TYPE ==
@@ -465,8 +462,11 @@ void MoreOptions() #MoreOptions :
 
 void GetNode() #GetNode :
 {
-  	Token n, v, eq, osqbr, i, csqbr, scol;}{
-  	(  	  	n     = < NODE > {jjtThis.val = n.image;} 	#Node
+  	Token n, v, eq, osqbr, i, csqbr, scol;
+}
+{
+  	(
+  	  	n     = < NODE > {jjtThis.val = n.image;} 	#Node
   	)?
   	v     = < VARIABLE > {jjtThis.val = v.image;} 	#Variable
   	eq    = < EQ > {jjtThis.val = eq.image;} 		#Equal
@@ -474,4 +474,5 @@ void GetNode() #GetNode :
   	osqbr = < OSQBR > {jjtThis.val = osqbr.image;} 	#OpenSquareBracket
   	i     = < INTEGER > {jjtThis.val = i.image;} 	#Integer
   	csqbr = < CSQBR > {jjtThis.val = csqbr.image;} 	#CloseSquareBracket
-  	scol  = < SCOL > {jjtThis.val = scol.image;} 	#Semicolon}
+  	scol  = < SCOL > {jjtThis.val = scol.image;} 	#Semicolon
+}

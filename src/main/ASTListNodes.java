@@ -72,6 +72,31 @@ public class ASTListNodes extends SimpleNode {
 		
 		if(!semantic_error) {
 			
+			// num_filhos: 4 - NodeListDec EQ ListNodeRight SCOL
+			// 			   2 - NodeListDec SCOL
+			//			   4 - VARIABLE EQ ListNodeRight SCOL
+			
+			if(jjtGetNumChildren() == 4) {
+				
+				// NodeListDec EQ ListNodeRight SCOL
+				if(jjtGetChild(0).getVal() == null) {
+					
+					// NodeListDec
+					jjtGetChild(0).toGremlin(writer);
+					
+				}
+				// VARIABLE EQ ListNodeRight SCOL
+				else {
+					
+					writer.print(jjtGetChild(0).getVal());
+					
+				}
+				
+				//ListNodeRight
+				jjtGetChild(2).toGremlin(writer);
+				
+			}
+			
 		}
 		
 	}

@@ -53,6 +53,8 @@ public class ASTNodeListDec extends SimpleNode {
 		
 		if(!semantic_error) {
 			
+			writer.print(jjtGetChild(3).getVal());
+			
 		}
 		
 	}

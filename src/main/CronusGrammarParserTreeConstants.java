@@ -26,11 +26,11 @@ public interface CronusGrammarParserTreeConstants
   public int JJTNODES = 20;
   public int JJTALLPARAMETERSNODE = 21;
   public int JJTCOMMA = 22;
-  public int JJTNODELABEL = 23;
-  public int JJTLABEL = 24;
-  public int JJTNODEDEGREE = 25;
-  public int JJTDEGREE = 26;
-  public int JJTNODEPROPERTIES = 27;
+  public int JJTNODEPROPERTIES = 23;
+  public int JJTNODELABEL = 24;
+  public int JJTLABEL = 25;
+  public int JJTNODEDEGREE = 26;
+  public int JJTDEGREE = 27;
   public int JJTOPENBRACKET = 28;
   public int JJTCLOSEBRACKET = 29;
   public int JJTVALUE = 30;
@@ -39,14 +39,13 @@ public interface CronusGrammarParserTreeConstants
   public int JJTFLOAT = 33;
   public int JJTCOMPAREVALUES = 34;
   public int JJTCOMPARES = 35;
-  public int JJTINTERVALBRACKET = 36;
-  public int JJTSEARCHGRAPH = 37;
-  public int JJTSEARCHTYPE = 38;
-  public int JJTSHORTESTPATH = 39;
-  public int JJTDEPTHSEARCH = 40;
-  public int JJTBREADTHSEARCH = 41;
-  public int JJTMOREOPTIONS = 42;
-  public int JJTGETNODE = 43;
+  public int JJTSEARCHGRAPH = 36;
+  public int JJTSEARCHTYPE = 37;
+  public int JJTSHORTESTPATH = 38;
+  public int JJTDEPTHSEARCH = 39;
+  public int JJTBREADTHSEARCH = 40;
+  public int JJTMOREOPTIONS = 41;
+  public int JJTGETNODE = 42;
 
 
   public String[] jjtNodeName = {
@@ -73,11 +72,11 @@ public interface CronusGrammarParserTreeConstants
     "Nodes",
     "AllParametersNode",
     "Comma",
+    "NodeProperties",
     "NodeLabel",
     "Label",
     "NodeDegree",
     "Degree",
-    "NodeProperties",
     "OpenBracket",
     "CloseBracket",
     "Value",
@@ -86,7 +85,6 @@ public interface CronusGrammarParserTreeConstants
     "Float",
     "CompareValues",
     "Compares",
-    "IntervalBracket",
     "SearchGraph",
     "SearchType",
     "ShortestPath",
@@ -96,4 +94,4 @@ public interface CronusGrammarParserTreeConstants
     "GetNode",
   };
 }
-/* JavaCC - OriginalChecksum=e8a1c74eca8ed0b922110e18533dbdf9 (do not edit this line) */
+/* JavaCC - OriginalChecksum=f207c6ab87aa95f505a151bbeaa39823 (do not edit this line) */
