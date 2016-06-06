@@ -1,0 +1,13 @@
+		int k=jjtGetNumChildren();
+		
+		System.out.println("");
+		System.out.println("[NewGraphRight] Tenho " + k + " filhos.");
+				
+		System.out.println("Os filhos são: ");
+				
+		while(k>0) {
+			System.out.println(k-1 + " - " + jjtGetChild(k-1).getVal());
+			k--;
+		}
+		
+		System.out.println("");
