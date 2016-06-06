@@ -7,7 +7,5 @@ Fazer relatório
 
 percorrer ficheiro de teste e criar um novo para ter os erros sintáticos, depois os semânticos e depois sem erros e a escrever o código gremlin no ficheiro
 
-
 Do toGremlin falta:
-- NodeList
 - SearchGraph

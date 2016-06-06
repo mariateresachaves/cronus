@@ -28,7 +28,7 @@ public class ASTListNodes extends SimpleNode {
 		// with declaration
 		if (jjtGetChild(0).getVal() == null) {
 
-			if (jjtGetNumChildren() < 4)	
+			if (jjtGetNumChildren() < 4)
 				error = jjtGetChild(0).interpret("");
 
 			else {

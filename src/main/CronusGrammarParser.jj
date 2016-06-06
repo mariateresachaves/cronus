@@ -998,9 +998,9 @@ void AllParametersNode()                    :
         try {
 /*@egen*/
 	(
-	  	LOOKAHEAD(2)
 		NodeLabel()
 	  	(
+	  	  	LOOKAHEAD(2) 
 	    	comma = < COMMA >/*@bgen(jjtree) Comma */
                                   {
                                     ASTComma jjtn001 = new ASTComma(JJTCOMMA);
@@ -1046,86 +1046,53 @@ void AllParametersNode()                    :
                                             jjtn002.jjtSetLastToken(getToken(0));
                                           }
                                         }
-/*@egen*/ 	      /*@bgen(jjtree) NodeProperties */
-                      {
-                        ASTNodeProperties jjtn003 = new ASTNodeProperties(JJTNODEPROPERTIES);
-                        boolean jjtc003 = true;
-                        jjtree.openNodeScope(jjtn003);
-                        jjtn003.jjtSetFirstToken(getToken(1));
-                      }
-                      try {
-/*@egen*/
-		      NodeProperties()/*@bgen(jjtree)*/
-                      } catch (Throwable jjte003) {
-                        if (jjtc003) {
-                          jjtree.clearNodeScope(jjtn003);
-                          jjtc003 = false;
-                        } else {
-                          jjtree.popNode();
-                        }
-                        if (jjte003 instanceof RuntimeException) {
-                          throw (RuntimeException)jjte003;
-                        }
-                        if (jjte003 instanceof ParseException) {
-                          throw (ParseException)jjte003;
-                        }
-                        throw (Error)jjte003;
-                      } finally {
-                        if (jjtc003) {
-                          jjtree.closeNodeScope(jjtn003, true);
-                          jjtn003.jjtSetLastToken(getToken(0));
-                        }
-                      }
-/*@egen*/                
+/*@egen*/ 	      
+		      NodeProperties()
 			)?
-		)?
-	|
-		NodeLabel()
-	  	(
-		    
-		    comma = < COMMA >/*@bgen(jjtree) Comma */
-                                      {
-                                        ASTComma jjtn004 = new ASTComma(JJTCOMMA);
-                                        boolean jjtc004 = true;
-                                        jjtree.openNodeScope(jjtn004);
-                                        jjtn004.jjtSetFirstToken(getToken(1));
-                                      }
-                                      try {
+		|
+			comma = < COMMA >/*@bgen(jjtree) Comma */
+                                          {
+                                            ASTComma jjtn003 = new ASTComma(JJTCOMMA);
+                                            boolean jjtc003 = true;
+                                            jjtree.openNodeScope(jjtn003);
+                                            jjtn003.jjtSetFirstToken(getToken(1));
+                                          }
+                                          try {
 /*@egen*//*@bgen(jjtree)*/
-                                      {
-                                        jjtree.closeNodeScope(jjtn004, true);
-                                        jjtc004 = false;
-                                        jjtn004.jjtSetLastToken(getToken(0));
-                                      }
-/*@egen*/ {jjtn004.val = comma.image;}/*@bgen(jjtree)*/
-                                      } finally {
-                                        if (jjtc004) {
-                                          jjtree.closeNodeScope(jjtn004, true);
-                                          jjtn004.jjtSetLastToken(getToken(0));
-                                        }
-                                      }
+                                          {
+                                            jjtree.closeNodeScope(jjtn003, true);
+                                            jjtc003 = false;
+                                            jjtn003.jjtSetLastToken(getToken(0));
+                                          }
+/*@egen*/ {jjtn003.val = comma.image;}/*@bgen(jjtree)*/
+                                          } finally {
+                                            if (jjtc003) {
+                                              jjtree.closeNodeScope(jjtn003, true);
+                                              jjtn003.jjtSetLastToken(getToken(0));
+                                            }
+                                          }
 /*@egen*/ 		      
 	    	NodeProperties()
 		    (
 		      comma = < COMMA >/*@bgen(jjtree) Comma */
                                         {
-                                          ASTComma jjtn005 = new ASTComma(JJTCOMMA);
-                                          boolean jjtc005 = true;
-                                          jjtree.openNodeScope(jjtn005);
-                                          jjtn005.jjtSetFirstToken(getToken(1));
+                                          ASTComma jjtn004 = new ASTComma(JJTCOMMA);
+                                          boolean jjtc004 = true;
+                                          jjtree.openNodeScope(jjtn004);
+                                          jjtn004.jjtSetFirstToken(getToken(1));
                                         }
                                         try {
 /*@egen*//*@bgen(jjtree)*/
                                         {
-                                          jjtree.closeNodeScope(jjtn005, true);
-                                          jjtc005 = false;
-                                          jjtn005.jjtSetLastToken(getToken(0));
+                                          jjtree.closeNodeScope(jjtn004, true);
+                                          jjtc004 = false;
+                                          jjtn004.jjtSetLastToken(getToken(0));
                                         }
-/*@egen*/ {jjtn005.val = comma.image;}/*@bgen(jjtree)*/
+/*@egen*/ {jjtn004.val = comma.image;}/*@bgen(jjtree)*/
                                         } finally {
-                                          if (jjtc005) {
-                                            jjtree.closeNodeScope(jjtn005, true);
-                                            jjtn005.jjtSetLastToken(getToken(0));
+                                          if (jjtc004) {
+                                            jjtree.closeNodeScope(jjtn004, true);
+                                            jjtn004.jjtSetLastToken(getToken(0));
                                           }
                                         }
 /*@egen*/	      
@@ -1133,28 +1100,28 @@ void AllParametersNode()                    :
 		    )?
 	    )?
 	|
-		LOOKAHEAD(2)
 		NodeDegree()
 	  	(
+	  	  	LOOKAHEAD(2) 
 	    	comma = < COMMA >/*@bgen(jjtree) Comma */
                                   {
-                                    ASTComma jjtn006 = new ASTComma(JJTCOMMA);
-                                    boolean jjtc006 = true;
-                                    jjtree.openNodeScope(jjtn006);
-                                    jjtn006.jjtSetFirstToken(getToken(1));
+                                    ASTComma jjtn005 = new ASTComma(JJTCOMMA);
+                                    boolean jjtc005 = true;
+                                    jjtree.openNodeScope(jjtn005);
+                                    jjtn005.jjtSetFirstToken(getToken(1));
                                   }
                                   try {
 /*@egen*//*@bgen(jjtree)*/
                                   {
-                                    jjtree.closeNodeScope(jjtn006, true);
-                                    jjtc006 = false;
-                                    jjtn006.jjtSetLastToken(getToken(0));
+                                    jjtree.closeNodeScope(jjtn005, true);
+                                    jjtc005 = false;
+                                    jjtn005.jjtSetLastToken(getToken(0));
                                   }
-/*@egen*/ {jjtn006.val = comma.image;}/*@bgen(jjtree)*/
+/*@egen*/ {jjtn005.val = comma.image;}/*@bgen(jjtree)*/
                                   } finally {
-                                    if (jjtc006) {
-                                      jjtree.closeNodeScope(jjtn006, true);
-                                      jjtn006.jjtSetLastToken(getToken(0));
+                                    if (jjtc005) {
+                                      jjtree.closeNodeScope(jjtn005, true);
+                                      jjtn005.jjtSetLastToken(getToken(0));
                                     }
                                   }
 /*@egen*/		      
@@ -1162,51 +1129,48 @@ void AllParametersNode()                    :
 		    (
 		      comma = < COMMA >/*@bgen(jjtree) Comma */
                                         {
-                                          ASTComma jjtn007 = new ASTComma(JJTCOMMA);
-                                          boolean jjtc007 = true;
-                                          jjtree.openNodeScope(jjtn007);
-                                          jjtn007.jjtSetFirstToken(getToken(1));
+                                          ASTComma jjtn006 = new ASTComma(JJTCOMMA);
+                                          boolean jjtc006 = true;
+                                          jjtree.openNodeScope(jjtn006);
+                                          jjtn006.jjtSetFirstToken(getToken(1));
                                         }
                                         try {
 /*@egen*//*@bgen(jjtree)*/
                                         {
-                                          jjtree.closeNodeScope(jjtn007, true);
-                                          jjtc007 = false;
-                                          jjtn007.jjtSetLastToken(getToken(0));
+                                          jjtree.closeNodeScope(jjtn006, true);
+                                          jjtc006 = false;
+                                          jjtn006.jjtSetLastToken(getToken(0));
                                         }
-/*@egen*/ {jjtn007.val = comma.image;}/*@bgen(jjtree)*/
+/*@egen*/ {jjtn006.val = comma.image;}/*@bgen(jjtree)*/
                                         } finally {
-                                          if (jjtc007) {
-                                            jjtree.closeNodeScope(jjtn007, true);
-                                            jjtn007.jjtSetLastToken(getToken(0));
+                                          if (jjtc006) {
+                                            jjtree.closeNodeScope(jjtn006, true);
+                                            jjtn006.jjtSetLastToken(getToken(0));
                                           }
                                         }
 /*@egen*/	      
 		      NodeProperties()
 		    )?
-	    )?
-	|
-		NodeDegree()
-	  	(
+		|
 	    	comma = < COMMA >/*@bgen(jjtree) Comma */
                                   {
-                                    ASTComma jjtn008 = new ASTComma(JJTCOMMA);
-                                    boolean jjtc008 = true;
-                                    jjtree.openNodeScope(jjtn008);
-                                    jjtn008.jjtSetFirstToken(getToken(1));
+                                    ASTComma jjtn007 = new ASTComma(JJTCOMMA);
+                                    boolean jjtc007 = true;
+                                    jjtree.openNodeScope(jjtn007);
+                                    jjtn007.jjtSetFirstToken(getToken(1));
                                   }
                                   try {
 /*@egen*//*@bgen(jjtree)*/
                                   {
-                                    jjtree.closeNodeScope(jjtn008, true);
-                                    jjtc008 = false;
-                                    jjtn008.jjtSetLastToken(getToken(0));
+                                    jjtree.closeNodeScope(jjtn007, true);
+                                    jjtc007 = false;
+                                    jjtn007.jjtSetLastToken(getToken(0));
                                   }
-/*@egen*/ {jjtn008.val = comma.image;}/*@bgen(jjtree)*/
+/*@egen*/ {jjtn007.val = comma.image;}/*@bgen(jjtree)*/
                                   } finally {
-                                    if (jjtc008) {
-                                      jjtree.closeNodeScope(jjtn008, true);
-                                      jjtn008.jjtSetLastToken(getToken(0));
+                                    if (jjtc007) {
+                                      jjtree.closeNodeScope(jjtn007, true);
+                                      jjtn007.jjtSetLastToken(getToken(0));
                                     }
                                   }
 /*@egen*/		      
@@ -1214,23 +1178,23 @@ void AllParametersNode()                    :
 		    (
 		      comma = < COMMA >/*@bgen(jjtree) Comma */
                                         {
-                                          ASTComma jjtn009 = new ASTComma(JJTCOMMA);
-                                          boolean jjtc009 = true;
-                                          jjtree.openNodeScope(jjtn009);
-                                          jjtn009.jjtSetFirstToken(getToken(1));
+                                          ASTComma jjtn008 = new ASTComma(JJTCOMMA);
+                                          boolean jjtc008 = true;
+                                          jjtree.openNodeScope(jjtn008);
+                                          jjtn008.jjtSetFirstToken(getToken(1));
                                         }
                                         try {
 /*@egen*//*@bgen(jjtree)*/
                                         {
-                                          jjtree.closeNodeScope(jjtn009, true);
-                                          jjtc009 = false;
-                                          jjtn009.jjtSetLastToken(getToken(0));
+                                          jjtree.closeNodeScope(jjtn008, true);
+                                          jjtc008 = false;
+                                          jjtn008.jjtSetLastToken(getToken(0));
                                         }
-/*@egen*/ {jjtn009.val = comma.image;}/*@bgen(jjtree)*/
+/*@egen*/ {jjtn008.val = comma.image;}/*@bgen(jjtree)*/
                                         } finally {
-                                          if (jjtc009) {
-                                            jjtree.closeNodeScope(jjtn009, true);
-                                            jjtn009.jjtSetLastToken(getToken(0));
+                                          if (jjtc008) {
+                                            jjtree.closeNodeScope(jjtn008, true);
+                                            jjtn008.jjtSetLastToken(getToken(0));
                                           }
                                         }
 /*@egen*/	      
@@ -1238,28 +1202,28 @@ void AllParametersNode()                    :
 		    )?
 	    )?
 	|
-		LOOKAHEAD(2)
 		NodeProperties()
 	  	(
+	  	  	LOOKAHEAD(2)
 	    	comma = < COMMA >/*@bgen(jjtree) Comma */
                                   {
-                                    ASTComma jjtn010 = new ASTComma(JJTCOMMA);
-                                    boolean jjtc010 = true;
-                                    jjtree.openNodeScope(jjtn010);
-                                    jjtn010.jjtSetFirstToken(getToken(1));
+                                    ASTComma jjtn009 = new ASTComma(JJTCOMMA);
+                                    boolean jjtc009 = true;
+                                    jjtree.openNodeScope(jjtn009);
+                                    jjtn009.jjtSetFirstToken(getToken(1));
                                   }
                                   try {
 /*@egen*//*@bgen(jjtree)*/
                                   {
-                                    jjtree.closeNodeScope(jjtn010, true);
-                                    jjtc010 = false;
-                                    jjtn010.jjtSetLastToken(getToken(0));
+                                    jjtree.closeNodeScope(jjtn009, true);
+                                    jjtc009 = false;
+                                    jjtn009.jjtSetLastToken(getToken(0));
                                   }
-/*@egen*/ {jjtn010.val = comma.image;}/*@bgen(jjtree)*/
+/*@egen*/ {jjtn009.val = comma.image;}/*@bgen(jjtree)*/
                                   } finally {
-                                    if (jjtc010) {
-                                      jjtree.closeNodeScope(jjtn010, true);
-                                      jjtn010.jjtSetLastToken(getToken(0));
+                                    if (jjtc009) {
+                                      jjtree.closeNodeScope(jjtn009, true);
+                                      jjtn009.jjtSetLastToken(getToken(0));
                                     }
                                   }
 /*@egen*/		      
@@ -1267,51 +1231,48 @@ void AllParametersNode()                    :
 		    (
 		      comma = < COMMA >/*@bgen(jjtree) Comma */
                                         {
-                                          ASTComma jjtn011 = new ASTComma(JJTCOMMA);
-                                          boolean jjtc011 = true;
-                                          jjtree.openNodeScope(jjtn011);
-                                          jjtn011.jjtSetFirstToken(getToken(1));
+                                          ASTComma jjtn010 = new ASTComma(JJTCOMMA);
+                                          boolean jjtc010 = true;
+                                          jjtree.openNodeScope(jjtn010);
+                                          jjtn010.jjtSetFirstToken(getToken(1));
                                         }
                                         try {
 /*@egen*//*@bgen(jjtree)*/
                                         {
-                                          jjtree.closeNodeScope(jjtn011, true);
-                                          jjtc011 = false;
-                                          jjtn011.jjtSetLastToken(getToken(0));
+                                          jjtree.closeNodeScope(jjtn010, true);
+                                          jjtc010 = false;
+                                          jjtn010.jjtSetLastToken(getToken(0));
                                         }
-/*@egen*/ {jjtn011.val = comma.image;}/*@bgen(jjtree)*/
+/*@egen*/ {jjtn010.val = comma.image;}/*@bgen(jjtree)*/
                                         } finally {
-                                          if (jjtc011) {
-                                            jjtree.closeNodeScope(jjtn011, true);
-                                            jjtn011.jjtSetLastToken(getToken(0));
+                                          if (jjtc010) {
+                                            jjtree.closeNodeScope(jjtn010, true);
+                                            jjtn010.jjtSetLastToken(getToken(0));
                                           }
                                         }
 /*@egen*/	      
 		      NodeDegree()
 		    )?
-	    )?
-	|
-		NodeProperties()
-	  	(
+	 	|
 			comma = < COMMA >/*@bgen(jjtree) Comma */
                                           {
-                                            ASTComma jjtn012 = new ASTComma(JJTCOMMA);
-                                            boolean jjtc012 = true;
-                                            jjtree.openNodeScope(jjtn012);
-                                            jjtn012.jjtSetFirstToken(getToken(1));
+                                            ASTComma jjtn011 = new ASTComma(JJTCOMMA);
+                                            boolean jjtc011 = true;
+                                            jjtree.openNodeScope(jjtn011);
+                                            jjtn011.jjtSetFirstToken(getToken(1));
                                           }
                                           try {
 /*@egen*//*@bgen(jjtree)*/
                                           {
-                                            jjtree.closeNodeScope(jjtn012, true);
-                                            jjtc012 = false;
-                                            jjtn012.jjtSetLastToken(getToken(0));
+                                            jjtree.closeNodeScope(jjtn011, true);
+                                            jjtc011 = false;
+                                            jjtn011.jjtSetLastToken(getToken(0));
                                           }
-/*@egen*/ {jjtn012.val = comma.image;}/*@bgen(jjtree)*/
+/*@egen*/ {jjtn011.val = comma.image;}/*@bgen(jjtree)*/
                                           } finally {
-                                            if (jjtc012) {
-                                              jjtree.closeNodeScope(jjtn012, true);
-                                              jjtn012.jjtSetLastToken(getToken(0));
+                                            if (jjtc011) {
+                                              jjtree.closeNodeScope(jjtn011, true);
+                                              jjtn011.jjtSetLastToken(getToken(0));
                                             }
                                           }
 /*@egen*/		      
@@ -1319,23 +1280,23 @@ void AllParametersNode()                    :
 		    (
 		      comma = < COMMA >/*@bgen(jjtree) Comma */
                                         {
-                                          ASTComma jjtn013 = new ASTComma(JJTCOMMA);
-                                          boolean jjtc013 = true;
-                                          jjtree.openNodeScope(jjtn013);
-                                          jjtn013.jjtSetFirstToken(getToken(1));
+                                          ASTComma jjtn012 = new ASTComma(JJTCOMMA);
+                                          boolean jjtc012 = true;
+                                          jjtree.openNodeScope(jjtn012);
+                                          jjtn012.jjtSetFirstToken(getToken(1));
                                         }
                                         try {
 /*@egen*//*@bgen(jjtree)*/
                                         {
-                                          jjtree.closeNodeScope(jjtn013, true);
-                                          jjtc013 = false;
-                                          jjtn013.jjtSetLastToken(getToken(0));
+                                          jjtree.closeNodeScope(jjtn012, true);
+                                          jjtc012 = false;
+                                          jjtn012.jjtSetLastToken(getToken(0));
                                         }
-/*@egen*/ {jjtn013.val = comma.image;}/*@bgen(jjtree)*/
+/*@egen*/ {jjtn012.val = comma.image;}/*@bgen(jjtree)*/
                                         } finally {
-                                          if (jjtc013) {
-                                            jjtree.closeNodeScope(jjtn013, true);
-                                            jjtn013.jjtSetLastToken(getToken(0));
+                                          if (jjtc012) {
+                                            jjtree.closeNodeScope(jjtn012, true);
+                                            jjtn012.jjtSetLastToken(getToken(0));
                                           }
                                         }
 /*@egen*/	      
@@ -1661,7 +1622,7 @@ void NodeProperties()                 :
                                        }
                                      }
 /*@egen*/		         
-	  	eq    = < EQ >/*@bgen(jjtree) #Equal( ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) Value ( ) comma = < COMMA > { jjtThis . val = comma . image ; } # Comma Value ( ) ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) | comp = < COMP > { jjtThis . val = comp . image ; } # Compares Value ( )) */
+	  	eq    = < EQ >/*@bgen(jjtree) Equal */
                                {
                                  ASTEqual jjtn006 = new ASTEqual(JJTEQUAL);
                                  boolean jjtc006 = true;
@@ -1671,30 +1632,19 @@ void NodeProperties()                 :
                                try {
 /*@egen*//*@bgen(jjtree)*/
                                {
-                                 jjtree.closeNodeScope(jjtn006,  ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) Value ( ) comma = < COMMA > { jjtThis . val = comma . image ; } # Comma Value ( ) ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) | comp = < COMP > { jjtThis . val = comp . image ; } # Compares Value ( ));
+                                 jjtree.closeNodeScope(jjtn006, true);
                                  jjtc006 = false;
                                  jjtn006.jjtSetLastToken(getToken(0));
                                }
 /*@egen*/ {jjtn006.val = eq.image;}/*@bgen(jjtree)*/
                                } finally {
                                  if (jjtc006) {
-                                   jjtree.closeNodeScope(jjtn006,  ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) Value ( ) comma = < COMMA > { jjtThis . val = comma . image ; } # Comma Value ( ) ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) | comp = < COMP > { jjtThis . val = comp . image ; } # Compares Value ( ));
+                                   jjtree.closeNodeScope(jjtn006, true);
                                    jjtn006.jjtSetLastToken(getToken(0));
                                  }
                                }
 /*@egen*/			      
-	  	 
-			                        
-		  	                                                                               
-		  	       
-		  	                   jjtn006                    	      
-		  	       
-		  	                                                                               
-		 
-			                      
-			                 jjtn006                   		         
-			       
-	  	  	  	 
+	  	CompareValue()
   	)
   	(
   	  	LOOKAHEAD(4) 
@@ -1810,7 +1760,7 @@ void NodeProperties()                 :
                                }
                              }
 /*@egen*/		         
-    	eq    = < EQ >/*@bgen(jjtree) #Equal( ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) Value ( ) comma = < COMMA > { jjtThis . val = comma . image ; } # Comma Value ( ) ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) | comp = < COMP > { jjtThis . val = comp . image ; } # Compares Value ( )) */
+    	eq    = < EQ >/*@bgen(jjtree) Equal */
                        {
                          ASTEqual jjtn012 = new ASTEqual(JJTEQUAL);
                          boolean jjtc012 = true;
@@ -1820,31 +1770,19 @@ void NodeProperties()                 :
                        try {
 /*@egen*//*@bgen(jjtree)*/
                        {
-                         jjtree.closeNodeScope(jjtn012,  ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) Value ( ) comma = < COMMA > { jjtThis . val = comma . image ; } # Comma Value ( ) ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) | comp = < COMP > { jjtThis . val = comp . image ; } # Compares Value ( ));
+                         jjtree.closeNodeScope(jjtn012, true);
                          jjtc012 = false;
                          jjtn012.jjtSetLastToken(getToken(0));
                        }
 /*@egen*/ {jjtn012.val = eq.image;}/*@bgen(jjtree)*/
                        } finally {
                          if (jjtc012) {
-                           jjtree.closeNodeScope(jjtn012,  ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) Value ( ) comma = < COMMA > { jjtThis . val = comma . image ; } # Comma Value ( ) ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) | comp = < COMP > { jjtThis . val = comp . image ; } # Compares Value ( ));
+                           jjtree.closeNodeScope(jjtn012, true);
                            jjtn012.jjtSetLastToken(getToken(0));
                          }
                        }
 /*@egen*/			      
-    	 
-			                        
-		  	                                                                               
-		  	       
-		  	                   jjtn012                    	      
-		  	       
-		  	                                                                               
-		 
-			                      
-			                 jjtn012                   		         
-			       
-	  	  
-	  	 
+    	CompareValue()
   	)*
   	csqbr = < CBR >/*@bgen(jjtree) CloseBracket */
                         {

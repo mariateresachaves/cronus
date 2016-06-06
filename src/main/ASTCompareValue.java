@@ -38,6 +38,7 @@ public class ASTCompareValue extends SimpleNode {
 
 		// CompareValues -> IntervalBracket Value COMMA Value IntervalBracket
 		// | COMP Value
+		
 		if(!semantic_error) {
 			
 		

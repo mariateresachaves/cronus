@@ -239,21 +239,17 @@ void AllParametersNode() #AllParametersNode :
 }
 {
 	(
-	  	LOOKAHEAD(2)
 		NodeLabel()
 	  	(
+	  	  	LOOKAHEAD(2) 
 	    	comma = < COMMA > {jjtThis.val = comma.image;} 		#Comma
 	    	NodeDegree()
 		    (
 		      comma = < COMMA > {jjtThis.val = comma.image;} 	#Comma
-		      NodeProperties() #NodeProperties
+		      NodeProperties()
 			)?
-		)?
-	|
-		NodeLabel()
-	  	(
-		    
-		    comma = < COMMA > {jjtThis.val = comma.image;} 		#Comma
+		|
+			comma = < COMMA > {jjtThis.val = comma.image;} 		#Comma
 	    	NodeProperties()
 		    (
 		      comma = < COMMA > {jjtThis.val = comma.image;}	#Comma
@@ -261,19 +257,16 @@ void AllParametersNode() #AllParametersNode :
 		    )?
 	    )?
 	|
-		LOOKAHEAD(2)
 		NodeDegree()
 	  	(
+	  	  	LOOKAHEAD(2) 
 	    	comma = < COMMA > {jjtThis.val = comma.image;}		#Comma
 	    	NodeLabel()
 		    (
 		      comma = < COMMA > {jjtThis.val = comma.image;}	#Comma
 		      NodeProperties()
 		    )?
-	    )?
-	|
-		NodeDegree()
-	  	(
+		|
 	    	comma = < COMMA > {jjtThis.val = comma.image;}		#Comma
 	    	NodeProperties()
 		    (
@@ -282,19 +275,16 @@ void AllParametersNode() #AllParametersNode :
 		    )?
 	    )?
 	|
-		LOOKAHEAD(2)
 		NodeProperties()
 	  	(
+	  	  	LOOKAHEAD(2)
 	    	comma = < COMMA > {jjtThis.val = comma.image;}		#Comma
 	    	NodeLabel()
 		    (
 		      comma = < COMMA > {jjtThis.val = comma.image;}	#Comma
 		      NodeDegree()
 		    )?
-	    )?
-	|
-		NodeProperties()
-	  	(
+	 	|
 			comma = < COMMA > {jjtThis.val = comma.image;}		#Comma
 	    	NodeDegree()
 		    (
