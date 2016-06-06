@@ -7,11 +7,6 @@ Fazer relatório
 
 percorrer ficheiro de teste e criar um novo para ter os erros sintáticos, depois os semânticos e depois sem erros e a escrever o código gremlin no ficheiro
 
-Falta verificar se o node que esta na tabela for um grafo ainda dá erro semântico:
-Executing: nos = g2 . nodes ( ) ;
-	[Semantic Error] Incompatible types. nos is not of type NodeList.
-Falta colocar para também aceitar quando o NodeList ainda não foi inicializado.
-
 
 Do toGremlin falta:
 - NodeList
