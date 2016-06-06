@@ -2,6 +2,8 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
+import java.io.PrintWriter;
+
 public class ASTNodeListDec extends SimpleNode {
 
 	public ASTNodeListDec(int id) {
@@ -43,6 +45,11 @@ public class ASTNodeListDec extends SimpleNode {
 
 	}
 
+	@Override
+	public void toGremlin(PrintWriter writer) {
+		
+	}
+	
 }
 /*
  * JavaCC - OriginalChecksum=6243a46c048ed58c0da12f0e90102dc9 (do not edit this

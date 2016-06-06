@@ -20,7 +20,7 @@ public class ASTSearchGraph extends SimpleNode {
 
 	@Override
 	public void interpret() {
-
+		
 		// NodeListDec EQ VARIABLE DOT SearchType OPAR VARIABLE COMMA VARIABLE
 		// MoreOptions CPAR SCOL
 		
@@ -107,9 +107,10 @@ public class ASTSearchGraph extends SimpleNode {
 
 		// SearchType
 		jjtGetChild(4).interpret();
-
+		
 		// MoreOptions
-		jjtGetChild(9).interpret();
+		if(jjtGetChild(9).getVal() != null)
+			jjtGetChild(9).interpret();
 
 	}
 
@@ -147,7 +148,7 @@ public class ASTSearchGraph extends SimpleNode {
 		System.out.println("");
 		System.out.println("[SearchGraph] Tenho " + k + " filhos.");
 				
-		System.out.println("Os filhos são: ");
+		System.out.println("Os filhos sao: ");
 				
 		while(k>0) {
 			System.out.println(k-1 + " - " + jjtGetChild(k-1).getVal());
@@ -155,25 +156,36 @@ public class ASTSearchGraph extends SimpleNode {
 		}
 		
 		System.out.println("");
-
-		if (jjtGetNumChildren() == 12){
+		
+		try {
+			if (symtab.get(symtab.get(jjtGetChild(0).getVal())) instanceof Graph){
+				System.out.println("Sou lista de nos definida");
+				
+				graph = jjtGetChild(0).getVal().toString();
+				node1 = jjtGetChild(5).getVal().toString();
+				node2 = jjtGetChild(7).getVal().toString();
+				nodeList = "";
+			}
+		} catch (NullPointerException e) {
+			System.out.println("Sou lista de nos nao definida");
+			
 			graph = jjtGetChild(2).getVal().toString();
 			node1 = jjtGetChild(6).getVal().toString();
 			node2 = jjtGetChild(8).getVal().toString();
-			nodeList = jjtGetChild(0).getVal().toString();
-			if (jjtGetChild(9).getVal() != null){
-				//searchParameterString = jjtGetChild(9).getVal().toString();
-			} else {
+			
+			jjtGetChild(0).toGremlin(writer);
+			
+			writer.print(" = " + graph + ".v(" + node1 + ").out.loop(1){it.object.id != \"" + node2 + "\"}.path");
+			
+			if (jjtGetChild(9).getVal() == null)
+				jjtGetChild(9).toGremlin(writer);
+			else
 				searchParameterString = "";
-			}
-		} else{
-			graph = jjtGetChild(0).getVal().toString();
-			node1 = jjtGetChild(5).getVal().toString();
-			node2 = jjtGetChild(7).getVal().toString();
-			nodeList = "";
+			
 		}
 		
-		writer.println(nodeList + " = " + graph + ".v(" + node1 + ").out.loop(1){it.object.id != \"" + node2 + "\"}.path");
+		writer.println(" ");
+		
 	}
 }
 /*
