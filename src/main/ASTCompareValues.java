@@ -3,6 +3,8 @@
 package main;
 
 public class ASTCompareValues extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTCompareValues(int id) {
 

@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 
 public class ASTNewGraph extends SimpleNode {
 
+	public Boolean semantic_error = false;
+	
 	public ASTNewGraph(int id) {
 
 		super(id);
@@ -30,6 +32,7 @@ public class ASTNewGraph extends SimpleNode {
 			if (symtab.containsKey(jjtGetChild(1).getVal())) {
 
 				System.err.println(ErrorConstant.DUPLICATE_ENTRY + jjtGetChild(1).getVal() + " of type Graph.");
+				semantic_error = true;
 				return;
 
 			}
@@ -50,6 +53,7 @@ public class ASTNewGraph extends SimpleNode {
 				if (!(symtab.get(jjtGetChild(0).getVal()) instanceof Graph)) {
 	
 					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type Graph.");
+					semantic_error = true;
 					return;
 	
 				}
@@ -57,6 +61,7 @@ public class ASTNewGraph extends SimpleNode {
 			} else {
 	
 				System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(0).getVal() + ".");
+				semantic_error = true;
 				return;
 	
 			}
@@ -70,25 +75,29 @@ public class ASTNewGraph extends SimpleNode {
 	@Override
 	public void toGremlin(PrintWriter writer) {
 		
-		String graph = "";
+		if(!semantic_error) {
 		
-		if(jjtGetNumChildren() >= 5) {
+			String graph = "";
 			
-			graph = jjtGetChild(1).getVal().toString();
-			
-			String line = graph + " = new TinkerGraph()";
-			writer.println(line);
-			
-			writer.print(graph);
-			jjtGetChild(3).toGremlin(writer);
-			
-		}
-			
-		else {
-			
-			graph = jjtGetChild(0).getVal().toString();
-			writer.print(graph);
-			jjtGetChild(2).toGremlin(writer);
+			if(jjtGetNumChildren() >= 5) {
+				
+				graph = jjtGetChild(1).getVal().toString();
+				
+				String line = graph + " = new TinkerGraph()";
+				writer.println(line);
+				
+				writer.print(graph);
+				jjtGetChild(3).toGremlin(writer);
+				
+			}
+				
+			else {
+				
+				graph = jjtGetChild(0).getVal().toString();
+				writer.print(graph);
+				jjtGetChild(2).toGremlin(writer);
+				
+			}
 			
 		}
 		

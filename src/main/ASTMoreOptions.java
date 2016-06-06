@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 
 public class ASTMoreOptions extends SimpleNode {
 
+	public Boolean semantic_error = false;
+
 	public ASTMoreOptions(int id) {
 
 		super(id);
@@ -30,6 +32,10 @@ public class ASTMoreOptions extends SimpleNode {
 	
 	@Override
 	public void toGremlin(PrintWriter writer) {
+		
+		if(!semantic_error) {
+			
+		}
 		
 	}
 

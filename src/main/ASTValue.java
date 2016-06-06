@@ -3,6 +3,8 @@
 package main;
 
 public class ASTValue extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTValue(int id) {
 

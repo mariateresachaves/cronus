@@ -4,6 +4,8 @@ package main;
 
 public class ASTShortestPath extends SimpleNode {
 
+	public Boolean semantic_error = false;
+	
 	public ASTShortestPath(int id) {
 
 		super(id);

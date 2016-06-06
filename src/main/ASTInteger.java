@@ -3,6 +3,8 @@
 package main;
 
 public class ASTInteger extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTInteger(int id) {
 

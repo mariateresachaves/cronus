@@ -5,6 +5,7 @@ package main;
 public
 class ASTSemicolon extends SimpleNode {
 	
+	public Boolean semantic_error = false;
   
 	public ASTSemicolon(int id) {
     

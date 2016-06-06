@@ -4,6 +4,8 @@ package main;
 
 public class ASTDot extends SimpleNode {
 
+	public Boolean semantic_error = false;
+	
 	public ASTDot(int id) {
 
 		super(id);

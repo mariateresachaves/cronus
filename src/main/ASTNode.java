@@ -3,6 +3,8 @@
 package main;
 
 public class ASTNode extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTNode(int id) {
 

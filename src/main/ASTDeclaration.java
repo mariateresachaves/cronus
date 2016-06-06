@@ -5,6 +5,8 @@ package main;
 import java.io.PrintWriter;
 
 public class ASTDeclaration extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTDeclaration(int id) {
 
@@ -25,8 +27,14 @@ public class ASTDeclaration extends SimpleNode {
 
 		switch (jjtGetChild(0).toString()) {
 		case "Graph":
-			if (symtab.containsKey(child_1))
+			if (symtab.containsKey(child_1)) {
+				
 				System.err.println(ErrorConstant.DUPLICATE_ENTRY + child_1 + " of type Graph.");
+				semantic_error = true;
+				return;
+				
+			}
+			
 
 			else
 				symtab.put(child_1, new Graph());
@@ -34,8 +42,13 @@ public class ASTDeclaration extends SimpleNode {
 			break;
 
 		case "Edge":
-			if (symtab.containsKey(child_1))
+			if (symtab.containsKey(child_1)) {
+				
 				System.err.println(ErrorConstant.DUPLICATE_ENTRY + child_1 + " of type Edge.");
+				semantic_error = true;
+				return;
+				
+			}
 
 			else
 				symtab.put(child_1, new Edge());
@@ -43,8 +56,13 @@ public class ASTDeclaration extends SimpleNode {
 			break;
 
 		case "Node":
-			if (symtab.containsKey(child_1))
+			if (symtab.containsKey(child_1)) {
+				
 				System.err.println(ErrorConstant.DUPLICATE_ENTRY + child_1 + " of type Node.");
+				semantic_error = true;
+				return;
+				
+			}
 
 			else
 				symtab.put(child_1, new NodeT());
@@ -57,13 +75,17 @@ public class ASTDeclaration extends SimpleNode {
 	@Override
 	public void toGremlin(PrintWriter writer) {
 		
-		// Graph declaration
-		if(jjtGetChild(0).getVal().toString() == "Graph") {
+		if(!semantic_error) {
 		
-			String graph = jjtGetChild(1).getVal().toString();
-			String line = graph + " = new TinkerGraph()";
+			// Graph declaration
+			if(jjtGetChild(0).getVal().toString() == "Graph") {
 			
-			writer.println(line);
+				String graph = jjtGetChild(1).getVal().toString();
+				String line = graph + " = new TinkerGraph()";
+				
+				writer.println(line);
+				
+			}
 			
 		}
 		

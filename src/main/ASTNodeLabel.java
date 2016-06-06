@@ -3,6 +3,8 @@
 package main;
 
 public class ASTNodeLabel extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTNodeLabel(int id) {
 

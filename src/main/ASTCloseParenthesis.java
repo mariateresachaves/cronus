@@ -3,6 +3,8 @@
 package main;
 
 public class ASTCloseParenthesis extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTCloseParenthesis(int id) {
 

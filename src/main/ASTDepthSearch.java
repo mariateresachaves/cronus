@@ -3,6 +3,8 @@
 package main;
 
 public class ASTDepthSearch extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTDepthSearch(int id) {
 

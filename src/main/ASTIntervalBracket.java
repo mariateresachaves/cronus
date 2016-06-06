@@ -3,6 +3,8 @@
 package main;
 
 public class ASTIntervalBracket extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTIntervalBracket(int id) {
 

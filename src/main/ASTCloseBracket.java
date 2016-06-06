@@ -4,6 +4,8 @@ package main;
 
 public class ASTCloseBracket extends SimpleNode {
 
+	public Boolean semantic_error = false;
+	
 	public ASTCloseBracket(int id) {
 
 		super(id);

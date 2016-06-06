@@ -3,6 +3,8 @@
 package main;
 
 public class ASTAllParametersNode extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTAllParametersNode(int id) {
 

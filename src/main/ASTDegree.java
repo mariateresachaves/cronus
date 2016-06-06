@@ -4,6 +4,8 @@ package main;
 
 public class ASTDegree extends SimpleNode {
 
+	public Boolean semantic_error = false;
+	
 	public ASTDegree(int id) {
 
 		super(id);

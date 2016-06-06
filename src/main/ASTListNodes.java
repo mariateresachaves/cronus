@@ -5,6 +5,8 @@ package main;
 import java.io.PrintWriter;
 
 public class ASTListNodes extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTListNodes(int id) {
 
@@ -43,6 +45,7 @@ public class ASTListNodes extends SimpleNode {
 				if (!(symtab.get(symtab.get(jjtGetChild(0).getVal())) instanceof Graph)) {
 
 					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type NodeList.");
+					semantic_error = true;
 					return;
 
 				} else {
@@ -55,6 +58,7 @@ public class ASTListNodes extends SimpleNode {
 			} else {
 
 				System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(0).getVal() + ".");
+				semantic_error = true;
 				return;
 
 			}
@@ -65,7 +69,11 @@ public class ASTListNodes extends SimpleNode {
 
 	@Override
 	public void toGremlin(PrintWriter writer) {
-
+		
+		if(!semantic_error) {
+			
+		}
+		
 	}
 }
 /*

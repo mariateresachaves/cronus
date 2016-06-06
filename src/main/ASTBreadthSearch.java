@@ -3,6 +3,8 @@
 package main;
 
 public class ASTBreadthSearch extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTBreadthSearch(int id) {
 

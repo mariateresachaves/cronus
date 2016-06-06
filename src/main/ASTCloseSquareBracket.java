@@ -3,6 +3,8 @@
 package main;
 
 public class ASTCloseSquareBracket extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTCloseSquareBracket(int id) {
 

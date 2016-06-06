@@ -3,6 +3,8 @@
 package main;
 
 public class ASTFloat extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTFloat(int id) {
 

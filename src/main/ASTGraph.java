@@ -3,6 +3,8 @@
 package main;
 
 public class ASTGraph extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTGraph(int id) {
 

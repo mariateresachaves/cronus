@@ -3,6 +3,8 @@
 package main;
 
 public class ASTEdge extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTEdge(int id) {
 

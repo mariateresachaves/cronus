@@ -3,6 +3,8 @@
 package main;
 
 public class ASTLabel extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTLabel(int id) {
 

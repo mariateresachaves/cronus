@@ -5,6 +5,8 @@ package main;
 import java.io.PrintWriter;
 
 public class ASTStart extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTStart(int id) {
 
@@ -50,8 +52,12 @@ public class ASTStart extends SimpleNode {
 	@Override
 	public void toGremlin(PrintWriter writer) {
 
-		for (int i = 0; i < jjtGetNumChildren(); i++)
-			jjtGetChild(i).toGremlin(writer);
+		if(!semantic_error) {
+		
+			for (int i = 0; i < jjtGetNumChildren(); i++)
+				jjtGetChild(i).toGremlin(writer);
+			
+		}
 
 	}
 

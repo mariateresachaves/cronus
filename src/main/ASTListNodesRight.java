@@ -3,6 +3,8 @@
 package main;
 
 public class ASTListNodesRight extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTListNodesRight(int id) {
 
@@ -24,6 +26,7 @@ public class ASTListNodesRight extends SimpleNode {
 			if (!(symtab.get(jjtGetChild(0).getVal()) instanceof Graph)) {
 
 				System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type Graph.");
+				semantic_error = true;
 				return null;
 
 			} else {
@@ -35,6 +38,7 @@ public class ASTListNodesRight extends SimpleNode {
 		} else {
 
 			System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(0).getVal() + ".");
+			semantic_error = true;
 			return null;
 
 		}

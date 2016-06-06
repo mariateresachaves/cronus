@@ -5,6 +5,8 @@ package main;
 import java.io.PrintWriter;
 
 public class ASTNodeListDec extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTNodeListDec(int id) {
 
@@ -25,6 +27,7 @@ public class ASTNodeListDec extends SimpleNode {
 		if (symtab.containsKey(jjtGetChild(3).getVal())) {
 
 			System.err.println(ErrorConstant.DUPLICATE_ENTRY + jjtGetChild(3).getVal() + " of type NodeList.");
+			semantic_error = true;
 			return null;
 
 		} else{
@@ -47,6 +50,10 @@ public class ASTNodeListDec extends SimpleNode {
 
 	@Override
 	public void toGremlin(PrintWriter writer) {
+		
+		if(!semantic_error) {
+			
+		}
 		
 	}
 	

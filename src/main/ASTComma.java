@@ -3,6 +3,8 @@
 package main;
 
 public class ASTComma extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTComma(int id) {
 

@@ -5,6 +5,8 @@ package main;
 import java.io.PrintWriter;
 
 public class ASTNewGraphRight extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTNewGraphRight(int id) {
 
@@ -26,19 +28,23 @@ public class ASTNewGraphRight extends SimpleNode {
 	@Override
 	public void toGremlin(PrintWriter writer) {
 		
-		// TODO: verificar extensão para diferentes tipos de load
+		if(!semantic_error) {
 		
-		String path = jjtGetChild(3).getVal().toString();
-		
-		if(path.contains(".xml"))
-			writer.println(".loadGraphML(" + path + ")");
-		
-		else if(path.contains(".gml"))
-			writer.println(".loadGML(" + path + ")");
-		
-		else if(path.contains(".json"))
-			writer.println(".loadGraphSON(" + path + ")");
+			// TODO: verificar extensão para diferentes tipos de load
+			
+			String path = jjtGetChild(3).getVal().toString();
+			
+			if(path.contains(".xml"))
+				writer.println(".loadGraphML(" + path + ")");
+			
+			else if(path.contains(".gml"))
+				writer.println(".loadGML(" + path + ")");
+			
+			else if(path.contains(".json"))
+				writer.println(".loadGraphSON(" + path + ")");
 
+		}
+			
 	}
 	
 }

@@ -3,6 +3,8 @@
 package main;
 
 public class ASTEqual extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTEqual(int id) {
 

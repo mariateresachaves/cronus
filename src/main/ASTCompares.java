@@ -4,6 +4,8 @@ package main;
 
 public class ASTCompares extends SimpleNode {
 
+	public Boolean semantic_error = false;
+	
 	public ASTCompares(int id) {
 
 		super(id);

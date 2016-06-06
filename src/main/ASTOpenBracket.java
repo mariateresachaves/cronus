@@ -3,6 +3,8 @@
 package main;
 
 public class ASTOpenBracket extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTOpenBracket(int id) {
 

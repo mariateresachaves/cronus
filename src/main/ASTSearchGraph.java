@@ -5,6 +5,8 @@ package main;
 import java.io.PrintWriter;
 
 public class ASTSearchGraph extends SimpleNode {
+	
+	public Boolean semantic_error = false;
 
 	public ASTSearchGraph(int id) {
 
@@ -27,11 +29,13 @@ public class ASTSearchGraph extends SimpleNode {
 		if(!symtab.contains(jjtGetChild(6).getVal())) {
 			
 			System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(6).getVal() + ".");
+			semantic_error = true;
 			return;
 			
 		} else if(!symtab.contains(jjtGetChild(8).getVal())) {
 			
 			System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(6).getVal() + ".");
+			semantic_error = true;
 			return;
 			
 		}
@@ -44,6 +48,7 @@ public class ASTSearchGraph extends SimpleNode {
 			if (!graph1[0].equals(jjtGetChild(2).getVal().toString())) {
 
 				System.out.println(ErrorConstant.FIRST_NODE_NF + jjtGetChild(2).getVal() + ".");
+				semantic_error = true;
 				return;
 
 			} else {
@@ -51,6 +56,7 @@ public class ASTSearchGraph extends SimpleNode {
 				if (!graph2[0].equals(jjtGetChild(2).getVal().toString())) {
 
 					System.out.println(ErrorConstant.SECOND_NODE_NF + jjtGetChild(2).getVal() + ".");
+					semantic_error = true;
 					return;
 
 				}
@@ -69,6 +75,7 @@ public class ASTSearchGraph extends SimpleNode {
 				if (!(symtab.contains(symtab.get(jjtGetChild(0).getVal())))) {
 
 					System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(0).getVal() + " is not of type Node[].");
+					semantic_error = true;
 					return;
 
 				} else {
@@ -78,6 +85,7 @@ public class ASTSearchGraph extends SimpleNode {
 					if (!graph1[0].equals(jjtGetChild(2).getVal().toString())) {
 
 						System.out.println(ErrorConstant.FIRST_NODE_NF + jjtGetChild(2).getVal() + ".");
+						semantic_error = true;
 						return;
 
 					} else {
@@ -85,6 +93,7 @@ public class ASTSearchGraph extends SimpleNode {
 						if (!graph2[0].equals(jjtGetChild(2).getVal().toString())) {
 
 							System.out.println(ErrorConstant.SECOND_NODE_NF + jjtGetChild(2).getVal() + ".");
+							semantic_error = true;
 							return;
 
 						}
@@ -96,6 +105,7 @@ public class ASTSearchGraph extends SimpleNode {
 			} else {
 
 				System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(0).getVal() + ".");
+				semantic_error = true;
 				return;
 
 			}
@@ -121,6 +131,7 @@ public class ASTSearchGraph extends SimpleNode {
 			if (!(symtab.get(jjtGetChild(i).getVal()) instanceof Graph)) {
 
 				System.out.println(ErrorConstant.INCOMPATIBLE_TYPES + jjtGetChild(i).getVal() + " is not of type Graph.");
+				semantic_error = true;
 				return;
 
 			}
@@ -128,6 +139,7 @@ public class ASTSearchGraph extends SimpleNode {
 		} else {
 
 			System.out.println(ErrorConstant.SYMBOL_NOT_FOUND + jjtGetChild(i).getVal() + ".");
+			semantic_error = true;
 			return;
 
 		}
@@ -136,39 +148,44 @@ public class ASTSearchGraph extends SimpleNode {
 
 	@Override
 	public void toGremlin(PrintWriter writer) {
-		// NodeListDec EQ VARIABLE DOT SearchType OPAR VARIABLE COMMA VARIABLE
-		String nodeList;
-		String graph;
-		String node1;
-		String node2;
-		String searchParameterString = "cenas";
 		
-		try {
-			if (symtab.get(symtab.get(jjtGetChild(0).getVal())) instanceof Graph) {
+		if(!semantic_error) {
+		
+			// NodeListDec EQ VARIABLE DOT SearchType OPAR VARIABLE COMMA VARIABLE
+			String nodeList;
+			String graph;
+			String node1;
+			String node2;
+			String searchParameterString = "cenas";
+			
+			try {
+				if (symtab.get(symtab.get(jjtGetChild(0).getVal())) instanceof Graph) {
+					
+					graph = jjtGetChild(0).getVal().toString();
+					node1 = jjtGetChild(5).getVal().toString();
+					node2 = jjtGetChild(7).getVal().toString();
+					nodeList = "";
+				}
+			} catch (NullPointerException e) {
 				
-				graph = jjtGetChild(0).getVal().toString();
-				node1 = jjtGetChild(5).getVal().toString();
-				node2 = jjtGetChild(7).getVal().toString();
-				nodeList = "";
+				graph = jjtGetChild(2).getVal().toString();
+				node1 = jjtGetChild(6).getVal().toString();
+				node2 = jjtGetChild(8).getVal().toString();
+				
+				jjtGetChild(0).toGremlin(writer);
+				
+				writer.print(" = " + graph + ".v(" + node1 + ").out.loop(1){it.object.id != \"" + node2 + "\"}.path");
+				
+				if (jjtGetChild(9).getVal() == null)
+					jjtGetChild(9).toGremlin(writer);
+				else
+					searchParameterString = "";
+				
 			}
-		} catch (NullPointerException e) {
 			
-			graph = jjtGetChild(2).getVal().toString();
-			node1 = jjtGetChild(6).getVal().toString();
-			node2 = jjtGetChild(8).getVal().toString();
-			
-			jjtGetChild(0).toGremlin(writer);
-			
-			writer.print(" = " + graph + ".v(" + node1 + ").out.loop(1){it.object.id != \"" + node2 + "\"}.path");
-			
-			if (jjtGetChild(9).getVal() == null)
-				jjtGetChild(9).toGremlin(writer);
-			else
-				searchParameterString = "";
+			writer.println(" ");
 			
 		}
-		
-		writer.println(" ");
 		
 	}
 }
