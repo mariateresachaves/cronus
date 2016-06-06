@@ -9,3 +9,5 @@ percorrer ficheiro de teste e criar um novo para ter os erros sintáticos, depoi
 
 Do toGremlin falta:
 - SearchGraph
+
+semantic_error na tabela quando o grafo não está declarado
