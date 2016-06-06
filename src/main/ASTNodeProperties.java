@@ -2,6 +2,8 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=true,NODE_PREFIX=AST,NODE_EXTENDS=MyNode,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 package main;
 
+import java.io.PrintWriter;
+
 public class ASTNodeProperties extends SimpleNode {
 	
 	public Boolean semantic_error = false;
@@ -24,6 +26,109 @@ public class ASTNodeProperties extends SimpleNode {
 		// TODO: alguma verificação que seja necessária
 		// OBR VARIABLE EQ (Value | CompareValues) (COMMA VARIABLE EQ (Value | CompareValues))* CBR
 
+	}
+	
+	@Override
+	public void toGremlin(PrintWriter writer) {
+		
+		// ListNode -> NodeListDec ( EQ ListNodeRight)? SCOL
+		// | VARIABLE EQ ListNodeRight SCOL
+
+		// ListNodeRight -> VARIABLE DOT NODE OPAR AllParameters CPAR
+
+		// AllParameters -> NodeLabel ( COMMA NodeDegree ( COMMA
+		// NodeProperties)?)?
+		// | NodeLabel ( COMMA NodeProperties ( COMMA NodeDegree)?)?
+		// | NodeDegree ( COMMA NodeLabel ( COMMA NodeProperties)?)?
+		// | NodeDegree ( COMMA NodeProperties ( COMMA NodeLabel)?)?
+		// | NodeProperties ( COMMA NodeLabel ( COMMA NodeDegree)?)?
+		// | NodeProperties ( COMMA NodeDegree ( COMMA NodeLabel)?)?
+
+		// NodeLabel -> LABEL EQ Value
+
+		// NodeDegree -> DEGREE COMP Value
+
+		// CompareValues -> IntervalBracket Value COMMA Value IntervalBracket
+		// | COMP Value
+		
+		//{name="josh", age >= 2}
+		//it.name == 'josh'; it.age >= 2
+		
+		//NodeProperties -> OBR VARIABLE EQ (Value | CompareValues)
+		//					(COMMA VARIABLE EQ (Value | CompareValues))* CBR
+		
+		if(!semantic_error) {
+		
+			int k = jjtGetNumChildren();
+			int index = 1;
+			
+	
+			while(index < k){
+		
+				writer.print("it." + jjtGetChild(index).getVal().toString());
+				
+				if(jjtGetChild(index + 2) instanceof ASTValue)
+					writer.print(" == ");
+			
+				jjtGetChild(index + 2).setLabel(jjtGetChild(index).getVal().toString());
+				jjtGetChild(index + 2).toGremlin(writer);
+				
+				index += 4;
+				
+				if(index < k)
+					writer.print("; ");
+				
+			}
+			
+		}
+		
+		// Cronus
+		// Gremlin
+
+		// nos = g.nodes();
+		// nos = g.V.toList()
+
+		// Node[] nos = g.nodes();
+		// nos = g.V.toList()
+
+		// Node[] nos = g.nodes(label="knows");
+		// nos = g.V.filter{it.outE('knows').hasNext()}.toList()
+
+		// Node[] nos = g.nodes(label="knows", degree < 3);
+		// nos = g.V.filter{it.outE('knows').hasNext(); it.outE.toList().size()
+		// <
+		// 3}.toList()
+
+		// Node[] nos = g.nodes(label="knows", degree < 3, {name="josh"});
+		// nos = g.V.filter{it.outE('knows').hasNext(); it.outE.toList().size()
+		// < 3;
+		// it.name == 'josh'}.toList()
+
+		// nodes2 = g2.nodes(label="knows", degree < 3, {age = [2, 3],
+		// name="josh"});
+		// nos = g.V.filter{it.outE('knows').hasNext(); it.outE.toList().size()
+		// < 3;
+		// it.name == 'josh'; it.age >= 2; it.age <= 3}.toList()
+
+		// nodes2 = g2.nodes(label="knows", degree < 3, {name="josh", age = ]2,
+		// 3]});
+		// nos = g.V.filter{it.outE('knows').hasNext(); it.outE.toList().size()
+		// < 3;
+		// it.age > 2; it.age <= 3; it.name == 'josh'}.toList()
+
+		// nodes2 = g2.nodes(label="knows", degree < 3, {name="josh", age >=
+		// 2});
+		// nos = g.V.filter{it.outE('knows').hasNext(); it.outE.toList().size()
+		// < 3;
+		// it.name == 'josh'; it.age >= 2}.toList()
+
+		// nodes2 = g2.nodes(label="knows", degree < 3, {name="josh", age ==
+		// 2});
+		// nos = g.V.filter{it.outE('knows').hasNext(); it.outE.toList().size()
+		// < 3;
+		// it.name == 'josh'; it.age == 2}.toList()
+		
+		
 	}
 
 }

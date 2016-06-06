@@ -22,7 +22,7 @@ public class ASTListNodes extends SimpleNode {
 
 	@Override
 	public void interpret() {
-		
+			
 		// with declaration
 		if (jjtGetChild(0).getVal() == null) {
 
@@ -36,6 +36,7 @@ public class ASTListNodes extends SimpleNode {
 				jjtGetChild(0).interpret(graph);
 
 			}
+			
 
 		//without declaration
 		} else {

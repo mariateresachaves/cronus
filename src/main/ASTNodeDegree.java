@@ -23,20 +23,25 @@ public class ASTNodeDegree extends SimpleNode {
 	@Override
 	public void interpret() {
 
-		// TODO: alguma verificação que seja necessária
-		// DEGREE CompareValues
+		// DEGREE COMP Value
 
-		jjtGetChild(1).interpret();
+		jjtGetChild(2).interpret();
 
 	}
 
 	@Override
 	public void toGremlin(PrintWriter writer) {
 		
-		// NodeDegree -> DEGREE CompareValues
-	
-		writer.print("it.outE.toList().size()");
-		jjtGetChild(1).toGremlin(writer);
+		// NodeDegree -> DEGREE COMP Value
+		// Node[] nos = g.nodes(label="knows", degree < 3);
+		// nos = g.V.filter{it.outE('knows').hasNext(); it.outE.toList().size() < 3}.toList()
+		
+		if(!semantic_error) {
+			
+			writer.print("it.outE.toList().size() " + jjtGetChild(1).getVal().toString());
+			jjtGetChild(2).toGremlin(writer);
+			
+		}
 		
 	}
 	

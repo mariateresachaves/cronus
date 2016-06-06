@@ -52,39 +52,49 @@ public class ASTAllParametersNode extends SimpleNode {
 		//				|	NodeProperties ( COMMA NodeLabel ( COMMA NodeDegree)?)?
 		//				|	NodeProperties ( COMMA NodeDegree ( COMMA NodeLabel)?)?
 		
-		int k = jjtGetNumChildren();
-		
-		System.out.println("K " + k);
-		
-		if(k == 0)
-			writer.println(".V.toList()");
-		
-		else if(k == 1) {
-			writer.print(".V.filter{");
-			jjtGetChild(0).toGremlin(writer);
-			writer.println("}.toList()");
-		}
-		
-		else if(k == 3) {
-			writer.print(".V.filter{");
-			jjtGetChild(0).toGremlin(writer);
-			writer.print("; ");
-			jjtGetChild(2).toGremlin(writer);
-			writer.println("}.toList()");
-		}
-		
-		else if(k == 5) {
-			writer.print(".V.filter{");
-			jjtGetChild(0).toGremlin(writer);
-			writer.print("; ");
-			jjtGetChild(2).toGremlin(writer);
-			writer.print("; ");
-			jjtGetChild(4).toGremlin(writer);
-			writer.println("}.toList()");
-		}
+		if(!semantic_error) {
+			
+			int k = jjtGetNumChildren();
+			
+			System.out.println("K " + k);
+			
+			if(k == 0)
+				writer.println(".V.toList()");
+			
+			else if(k == 1) {
+				
+				writer.print(".V.filter{");
+				jjtGetChild(0).toGremlin(writer);
+				writer.println("}.toList()");
+				
+			}
+			
+			else if(k == 3) {
+				
+				writer.print(".V.filter{");
+				jjtGetChild(0).toGremlin(writer);
+				writer.print("; ");
+				jjtGetChild(2).toGremlin(writer);
+				writer.println("}.toList()");
+				
+			}
+			
+			else if(k == 5) {
+				
+				writer.print(".V.filter{");
+				jjtGetChild(0).toGremlin(writer);
+				writer.print("; ");
+				jjtGetChild(2).toGremlin(writer);
+				writer.print("; ");
+				jjtGetChild(4).toGremlin(writer);
+				writer.println("}.toList()");
+				
+			}
 
+		}
+		
 	}
-
+	
 }
 /*
  * JavaCC - OriginalChecksum=69fb5ac5253a68089cb87350e11a9b74 (do not edit this

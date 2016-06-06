@@ -40,4 +40,7 @@ public class MyNode {
 	public void toGremlin(PrintWriter writer) {
 		throw new UnsupportedOperationException(); // It better not come here.
 	}
+	
+	public void setLabel(String new_label) {
+	}
 }

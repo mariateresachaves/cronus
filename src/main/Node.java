@@ -46,5 +46,8 @@ interface Node {
   
   public void printTab();
   
+  /** Set label to a given string */
+  public void setLabel(String new_label);
+  
 }
 /* JavaCC - OriginalChecksum=9ea0256ca3a9f9df95a49ed6569f6191 (do not edit this line) */

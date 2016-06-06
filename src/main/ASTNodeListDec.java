@@ -50,13 +50,10 @@ public class ASTNodeListDec extends SimpleNode {
 
 	@Override
 	public void toGremlin(PrintWriter writer) {
-		
-		if(!semantic_error) {
-			
+	
+		if(!semantic_error)
 			writer.print(jjtGetChild(3).getVal());
-			
-		}
-		
+
 	}
 	
 }

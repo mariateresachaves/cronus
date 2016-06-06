@@ -323,11 +323,12 @@ void NodeLabel() #NodeLabel :
 */
 void NodeDegree() #NodeDegree :
 {
-  	Token degree;
+  	Token degree, comp;
 }
 {
   	degree = < DEGREE > {jjtThis.val = degree.image;}	#Degree
-  	CompareValues()
+  	comp = < COMP > {jjtThis.val = comp.image;}			#Compares
+  	Value()
 }
 
 /*
@@ -348,7 +349,7 @@ void NodeProperties() #NodeProperties :
   		osqbr = < OBR > {jjtThis.val = osqbr.image;}		#OpenBracket
 	  	key   = < VARIABLE > {jjtThis.val = key.image;}		#Variable
 	  	eq    = < EQ > {jjtThis.val = eq.image;}			#Equal
-	  	CompareValues()
+	  	CompareValue()
   	)
   	(
   	  	LOOKAHEAD(4) 
@@ -360,7 +361,7 @@ void NodeProperties() #NodeProperties :
    		comma = < COMMA > {jjtThis.val = comma.image;}		#Comma
     	key   = < VARIABLE > {jjtThis.val = key.image;}		#Variable
     	eq    = < EQ > {jjtThis.val = eq.image;}			#Equal
-    	CompareValues()
+    	CompareValue()
   	)*
   	csqbr = < CBR > {jjtThis.val = csqbr.image;}			#CloseBracket
 }
@@ -383,7 +384,7 @@ void Value() #Value :
 /*
 	== DEFINE WAYS TO COMPARE VARIABLE WITH VALUES ==
 */
-void CompareValues() #CompareValues :
+void CompareValue() #CompareValue :
 {
   	Token eq, os, s, i, f, cs, comma, comp, osqbr, csqbr;
 }

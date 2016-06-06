@@ -51,11 +51,14 @@ public class ASTListNodesRight extends SimpleNode {
 	public void toGremlin(PrintWriter writer) {
 		
 		// ListNodeRight -> VARIABLE DOT NODE OPAR AllParameters CPAR
+		if(!semantic_error){
+			
+			String graph = jjtGetChild(0).getVal().toString();
+			writer.print(" = " + graph);
+			
+			jjtGetChild(4).toGremlin(writer);
 		
-		String graph = jjtGetChild(0).getVal().toString();
-		writer.print(" = " + graph);
-		
-		jjtGetChild(4).toGremlin(writer);
+		}
 		
 	}
 

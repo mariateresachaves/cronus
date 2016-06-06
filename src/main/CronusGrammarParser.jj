@@ -1459,7 +1459,7 @@ void NodeDegree()             :
         jjtree.openNodeScope(jjtn000);
         jjtn000.jjtSetFirstToken(getToken(1));
 /*@egen*/
-  	Token degree;
+  	Token degree, comp;
 }
 {/*@bgen(jjtree) NodeDegree */
         try {
@@ -1486,7 +1486,29 @@ void NodeDegree()             :
                               }
                             }
 /*@egen*/	       
-  	CompareValues()/*@bgen(jjtree)*/
+  	comp = < COMP >/*@bgen(jjtree) Compares */
+                        {
+                          ASTCompares jjtn002 = new ASTCompares(JJTCOMPARES);
+                          boolean jjtc002 = true;
+                          jjtree.openNodeScope(jjtn002);
+                          jjtn002.jjtSetFirstToken(getToken(1));
+                        }
+                        try {
+/*@egen*//*@bgen(jjtree)*/
+                        {
+                          jjtree.closeNodeScope(jjtn002, true);
+                          jjtc002 = false;
+                          jjtn002.jjtSetLastToken(getToken(0));
+                        }
+/*@egen*/ {jjtn002.val = comp.image;}/*@bgen(jjtree)*/
+                        } finally {
+                          if (jjtc002) {
+                            jjtree.closeNodeScope(jjtn002, true);
+                            jjtn002.jjtSetLastToken(getToken(0));
+                          }
+                        }
+/*@egen*/			         
+  	Value()/*@bgen(jjtree)*/
         } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -1639,7 +1661,7 @@ void NodeProperties()                 :
                                        }
                                      }
 /*@egen*/		         
-	  	eq    = < EQ >/*@bgen(jjtree) Equal */
+	  	eq    = < EQ >/*@bgen(jjtree) #Equal( ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) Value ( ) comma = < COMMA > { jjtThis . val = comma . image ; } # Comma Value ( ) ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) | comp = < COMP > { jjtThis . val = comp . image ; } # Compares Value ( )) */
                                {
                                  ASTEqual jjtn006 = new ASTEqual(JJTEQUAL);
                                  boolean jjtc006 = true;
@@ -1649,19 +1671,30 @@ void NodeProperties()                 :
                                try {
 /*@egen*//*@bgen(jjtree)*/
                                {
-                                 jjtree.closeNodeScope(jjtn006, true);
+                                 jjtree.closeNodeScope(jjtn006,  ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) Value ( ) comma = < COMMA > { jjtThis . val = comma . image ; } # Comma Value ( ) ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) | comp = < COMP > { jjtThis . val = comp . image ; } # Compares Value ( ));
                                  jjtc006 = false;
                                  jjtn006.jjtSetLastToken(getToken(0));
                                }
 /*@egen*/ {jjtn006.val = eq.image;}/*@bgen(jjtree)*/
                                } finally {
                                  if (jjtc006) {
-                                   jjtree.closeNodeScope(jjtn006, true);
+                                   jjtree.closeNodeScope(jjtn006,  ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) Value ( ) comma = < COMMA > { jjtThis . val = comma . image ; } # Comma Value ( ) ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) | comp = < COMP > { jjtThis . val = comp . image ; } # Compares Value ( ));
                                    jjtn006.jjtSetLastToken(getToken(0));
                                  }
                                }
 /*@egen*/			      
-	  	CompareValues()
+	  	 
+			                        
+		  	                                                                               
+		  	       
+		  	                   jjtn006                    	      
+		  	       
+		  	                                                                               
+		 
+			                      
+			                 jjtn006                   		         
+			       
+	  	  	  	 
   	)
   	(
   	  	LOOKAHEAD(4) 
@@ -1777,7 +1810,7 @@ void NodeProperties()                 :
                                }
                              }
 /*@egen*/		         
-    	eq    = < EQ >/*@bgen(jjtree) Equal */
+    	eq    = < EQ >/*@bgen(jjtree) #Equal( ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) Value ( ) comma = < COMMA > { jjtThis . val = comma . image ; } # Comma Value ( ) ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) | comp = < COMP > { jjtThis . val = comp . image ; } # Compares Value ( )) */
                        {
                          ASTEqual jjtn012 = new ASTEqual(JJTEQUAL);
                          boolean jjtc012 = true;
@@ -1787,19 +1820,31 @@ void NodeProperties()                 :
                        try {
 /*@egen*//*@bgen(jjtree)*/
                        {
-                         jjtree.closeNodeScope(jjtn012, true);
+                         jjtree.closeNodeScope(jjtn012,  ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) Value ( ) comma = < COMMA > { jjtThis . val = comma . image ; } # Comma Value ( ) ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) | comp = < COMP > { jjtThis . val = comp . image ; } # Compares Value ( ));
                          jjtc012 = false;
                          jjtn012.jjtSetLastToken(getToken(0));
                        }
 /*@egen*/ {jjtn012.val = eq.image;}/*@bgen(jjtree)*/
                        } finally {
                          if (jjtc012) {
-                           jjtree.closeNodeScope(jjtn012, true);
+                           jjtree.closeNodeScope(jjtn012,  ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) Value ( ) comma = < COMMA > { jjtThis . val = comma . image ; } # Comma Value ( ) ( osqbr = < OSQBR > # OpenSquareBracket | csqbr = < CSQBR > # CloseSquareBracket ) | comp = < COMP > { jjtThis . val = comp . image ; } # Compares Value ( ));
                            jjtn012.jjtSetLastToken(getToken(0));
                          }
                        }
 /*@egen*/			      
-    	CompareValues()
+    	 
+			                        
+		  	                                                                               
+		  	       
+		  	                   jjtn012                    	      
+		  	       
+		  	                                                                               
+		 
+			                      
+			                 jjtn012                   		         
+			       
+	  	  
+	  	 
   	)*
   	csqbr = < CBR >/*@bgen(jjtree) CloseBracket */
                         {
@@ -1941,16 +1986,16 @@ void Value()        :
 /*
 	== DEFINE WAYS TO COMPARE VARIABLE WITH VALUES ==
 */
-void CompareValues()                :
-{/*@bgen(jjtree) CompareValues */
-        ASTCompareValues jjtn000 = new ASTCompareValues(JJTCOMPAREVALUES);
+void CompareValue()               :
+{/*@bgen(jjtree) CompareValue */
+        ASTCompareValue jjtn000 = new ASTCompareValue(JJTCOMPAREVALUE);
         boolean jjtc000 = true;
         jjtree.openNodeScope(jjtn000);
         jjtn000.jjtSetFirstToken(getToken(1));
 /*@egen*/
   	Token eq, os, s, i, f, cs, comma, comp, osqbr, csqbr;
 }
-{/*@bgen(jjtree) CompareValues */
+{/*@bgen(jjtree) CompareValue */
         try {
 /*@egen*/
   	// Equals to an Interval

@@ -18,3 +18,7 @@ Node no4 = nos[2];
 Node[] nos3 = g.nodes();
 no4 = nos3[1];
 Node[] nns = g.nodes(label="knows");
+Node[] nns2 = g.nodes(degree < 3);
+Node[] nns3 = g.nodes(label="knows", degree < 3);
+Node[] nns4 = g.nodes({name="josh", age=[23,41]});
+Node[] nns4 = g.nodes(label="knows", degree < 3, {name="josh", age=[23,41]});

@@ -25,7 +25,6 @@ public class ASTNodeLabel extends SimpleNode {
 
 		// TODO: alguma verificação que seja necessária
 		// LABEL EQ Value
-		System.out.println("NodeLabel");
 		jjtGetChild(2).interpret();
 
 	}
@@ -34,11 +33,14 @@ public class ASTNodeLabel extends SimpleNode {
 	public void toGremlin(PrintWriter writer) {
 		
 		// NodeLabel -> LABEL EQ Value
+		if(!semantic_error) {
+			
+			writer.print("it.outE('");
+			jjtGetChild(2).toGremlin(writer);
+			writer.print("').hasNext()");
+			
+		}
 		
-		writer.print("it.outE('");
-		jjtGetChild(2).toGremlin(writer);
-		writer.print("').hasNext()");
-	
 	}
 
 }

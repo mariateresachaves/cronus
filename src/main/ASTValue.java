@@ -32,7 +32,8 @@ public class ASTValue extends SimpleNode {
 		
 		// Value -> STRING | INTEGER | FLOAT
 		
-		writer.print(jjtGetChild(0).getVal().toString());
+		if(!semantic_error)
+			writer.print(jjtGetChild(0).getVal().toString());
 		
 	}
 	

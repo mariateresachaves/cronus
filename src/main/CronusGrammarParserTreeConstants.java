@@ -31,14 +31,14 @@ public interface CronusGrammarParserTreeConstants
   public int JJTLABEL = 25;
   public int JJTNODEDEGREE = 26;
   public int JJTDEGREE = 27;
-  public int JJTOPENBRACKET = 28;
-  public int JJTCLOSEBRACKET = 29;
-  public int JJTVALUE = 30;
-  public int JJTSTRING = 31;
-  public int JJTINTEGER = 32;
-  public int JJTFLOAT = 33;
-  public int JJTCOMPAREVALUES = 34;
-  public int JJTCOMPARES = 35;
+  public int JJTCOMPARES = 28;
+  public int JJTOPENBRACKET = 29;
+  public int JJTCLOSEBRACKET = 30;
+  public int JJTVALUE = 31;
+  public int JJTSTRING = 32;
+  public int JJTINTEGER = 33;
+  public int JJTFLOAT = 34;
+  public int JJTCOMPAREVALUE = 35;
   public int JJTSEARCHGRAPH = 36;
   public int JJTSEARCHTYPE = 37;
   public int JJTSHORTESTPATH = 38;
@@ -77,14 +77,14 @@ public interface CronusGrammarParserTreeConstants
     "Label",
     "NodeDegree",
     "Degree",
+    "Compares",
     "OpenBracket",
     "CloseBracket",
     "Value",
     "String",
     "Integer",
     "Float",
-    "CompareValues",
-    "Compares",
+    "CompareValue",
     "SearchGraph",
     "SearchType",
     "ShortestPath",
@@ -94,4 +94,4 @@ public interface CronusGrammarParserTreeConstants
     "GetNode",
   };
 }
-/* JavaCC - OriginalChecksum=f207c6ab87aa95f505a151bbeaa39823 (do not edit this line) */
+/* JavaCC - OriginalChecksum=35fa4a7872b93c66c6ffe9cf344850f4 (do not edit this line) */
