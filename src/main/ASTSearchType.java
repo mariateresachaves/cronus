@@ -64,7 +64,7 @@ public class ASTSearchType extends SimpleNode {
 		String[] nodes1 = (symtab.get(jjtGetChild(1).getVal()).toString()).split("\\[");
 		String[] index1 = nodes1[1].split("]");
 		
-		writer.print(index1[0] + ").out.loop(1){" + "it.object.id != \"");
+		writer.print(index1[0] + ").out.loop(1){");
 		jjtGetChild(3).toGremlin(writer);
 		
 	}
